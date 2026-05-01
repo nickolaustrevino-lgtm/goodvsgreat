@@ -1,12 +1,9 @@
-/* =============================================================
-   GOOD VS. GREAT — HOME PAGE
-   Design: Dark Editorial Intelligence
-   - Deep Navy (#1A1A2E) / Charcoal Dark (#2D2D2D) backgrounds
-   - Electric Blue (#2979FF) accents only
-   - Space Mono headings, IBM Plex Sans body, IBM Plex Mono labels
-   ============================================================= */
+/* Home — Good vs. Great
+   Original site content + structure, GvG brand guidelines applied.
+   Background: Off White (#F5F5F5) for light sections, Charcoal Dark (#2D2D2D) for dark sections.
+   All headings: Space Mono 700. Body: IBM Plex Sans. Captions: IBM Plex Mono.
+   Accent: Electric Blue (#2979FF) for CTAs, links, accents ONLY. */
 
-import { useEffect, useRef, useState } from "react";
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import ProblemSection from "@/components/ProblemSection";
@@ -21,27 +18,8 @@ import BookingSection from "@/components/BookingSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  // Intersection observer for fade-up animations
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
-    );
-
-    const elements = document.querySelectorAll(".fade-up");
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "#1A1A2E", color: "#FFFFFF" }}>
+    <div style={{ backgroundColor: "#F5F5F5", minHeight: "100vh" }}>
       <Navbar />
       <HeroSection />
       <ProblemSection />

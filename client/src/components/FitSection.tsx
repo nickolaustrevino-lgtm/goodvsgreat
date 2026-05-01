@@ -1,5 +1,10 @@
-/* FitSection — GvG Dark Editorial Intelligence
-   Deep Navy background. Two-column fit/no-fit checklist. */
+/* FitSection — Good vs. Great Brand Guidelines Applied
+   Background: Charcoal Dark (#2D2D2D) — dark section
+   H2: Space Mono 700, 36px — white
+   Body: IBM Plex Sans 400, 16px — white/muted
+   Caption: IBM Plex Mono, Electric Blue
+   Checkmarks: Electric Blue #2979FF
+   Dashes: muted white */
 
 const fitItems = [
   "You're spending at least $1M annually on paid media",
@@ -19,79 +24,68 @@ export default function FitSection() {
   return (
     <section
       id="fit"
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "#1A1A2E", padding: "6rem 0" }}
+      style={{
+        backgroundColor: "#2D2D2D",
+        padding: "5rem 0",
+      }}
     >
-      {/* Ghost ordinal */}
-      <div
-        className="absolute pointer-events-none select-none"
-        style={{
-          fontFamily: "'Space Mono', monospace",
-          fontSize: "clamp(8rem,18vw,16rem)",
-          fontWeight: 700,
-          color: "rgba(41,121,255,0.04)",
-          lineHeight: 1,
-          top: "-2rem",
-          right: "-1rem",
-        }}
-      >
-        06
-      </div>
+      <div className="container">
 
-      <div className="container relative z-10">
         {/* Header */}
-        <div className="mb-14 max-w-xl">
-          <div className="fade-up mb-5">
-            <span className="section-label">For Teams Spending Real Money and Asking Harder Questions</span>
-          </div>
-          <h2 className="fade-up delay-100 section-heading">
+        <div style={{ marginBottom: "3rem", maxWidth: "640px" }}>
+          <span className="gvg-caption gvg-section-label">
+            For Teams Spending Real Money and Asking Harder Questions
+          </span>
+          <h2 className="gvg-h2" style={{ color: "#FFFFFF", marginBottom: "1.25rem" }}>
             Is this a fit?
           </h2>
-          <p className="fade-up delay-200 mt-4" style={{
-            fontFamily: "'IBM Plex Sans', sans-serif",
-            fontSize: "1rem",
-            lineHeight: 1.7,
-            color: "rgba(255,255,255,0.55)",
-          }}>
-            Good vs. Great is built for companies that already have campaigns running, agencies in place, dashboards everywhere, and still don't feel fully confident in what's actually driving growth.
+          <p className="gvg-body" style={{ color: "rgba(255,255,255,0.65)" }}>
+            Good vs Great is built for companies that already have campaigns running, agencies in place, dashboards everywhere, and still don't feel fully confident in what's actually driving growth.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "1.5rem",
+          }}
+        >
           {/* Good fit */}
-          <div className="fade-up delay-100" style={{
-            backgroundColor: "rgba(41,121,255,0.05)",
-            border: "1px solid rgba(41,121,255,0.2)",
-            padding: "2.5rem",
-          }}>
-            <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.65rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "#2979FF",
-              marginBottom: "1.5rem",
-            }}>
+          <div
+            style={{
+              backgroundColor: "#1C1C1E",
+              borderTop: "3px solid #2979FF",
+              padding: "2.5rem",
+            }}
+          >
+            <span
+              className="gvg-caption"
+              style={{
+                color: "#2979FF",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                display: "block",
+                marginBottom: "1.5rem",
+              }}
+            >
               This Is Usually a Fit If
-            </p>
-            <div className="flex flex-col gap-4">
+            </span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               {fitItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.8rem",
-                    color: "#2979FF",
-                    marginTop: "0.1rem",
-                    flexShrink: 0,
-                  }}>
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                  <span
+                    style={{
+                      fontFamily: "'IBM Plex Sans', sans-serif",
+                      fontSize: "1rem",
+                      color: "#2979FF",
+                      flexShrink: 0,
+                      marginTop: "0.05rem",
+                    }}
+                  >
                     ✓
                   </span>
-                  <p style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.5,
-                    color: "rgba(255,255,255,0.75)",
-                  }}>
+                  <p className="gvg-body" style={{ color: "rgba(255,255,255,0.75)" }}>
                     {item}
                   </p>
                 </div>
@@ -100,39 +94,40 @@ export default function FitSection() {
           </div>
 
           {/* Not a fit */}
-          <div className="fade-up delay-200" style={{
-            backgroundColor: "rgba(255,255,255,0.02)",
-            border: "1px solid rgba(255,255,255,0.07)",
-            padding: "2.5rem",
-          }}>
-            <p style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.65rem",
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "rgba(255,255,255,0.3)",
-              marginBottom: "1.5rem",
-            }}>
+          <div
+            style={{
+              backgroundColor: "#1C1C1E",
+              borderTop: "3px solid rgba(255,255,255,0.1)",
+              padding: "2.5rem",
+            }}
+          >
+            <span
+              className="gvg-caption"
+              style={{
+                color: "rgba(255,255,255,0.35)",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                display: "block",
+                marginBottom: "1.5rem",
+              }}
+            >
               Probably Not the Right Fit If
-            </p>
-            <div className="flex flex-col gap-4">
+            </span>
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
               {noFitItems.map((item, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <span style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.8rem",
-                    color: "rgba(255,255,255,0.25)",
-                    marginTop: "0.1rem",
-                    flexShrink: 0,
-                  }}>
+                <div key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                  <span
+                    style={{
+                      fontFamily: "'IBM Plex Sans', sans-serif",
+                      fontSize: "1rem",
+                      color: "rgba(255,255,255,0.25)",
+                      flexShrink: 0,
+                      marginTop: "0.05rem",
+                    }}
+                  >
                     —
                   </span>
-                  <p style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.5,
-                    color: "rgba(255,255,255,0.35)",
-                  }}>
+                  <p className="gvg-body" style={{ color: "rgba(255,255,255,0.4)" }}>
                     {item}
                   </p>
                 </div>

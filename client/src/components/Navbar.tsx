@@ -1,15 +1,25 @@
-/* Navbar — GvG Dark Editorial Intelligence */
+/* Navbar — Good vs. Great Brand Guidelines Applied
+   Logo: "good vs. Great" in Courier New inside #2979FF rectangle
+   Tagline: "better media decisions." in Courier New below
+   Nav: IBM Plex Sans 400
+   CTA: Electric Blue filled button, sharp corners */
 import { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+
+const NAV_LINKS = [
+  { label: "What I Do", id: "services" },
+  { label: "Proof", id: "proof" },
+  { label: "How It Works", id: "pricing" },
+  { label: "Writing", id: "writing" },
+];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 10);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const scrollTo = (id: string) => {
@@ -19,136 +29,235 @@ export default function Navbar() {
   };
 
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+    <header
       style={{
-        backgroundColor: scrolled ? "rgba(26,26,46,0.97)" : "transparent",
-        borderBottom: scrolled ? "1px solid rgba(255,255,255,0.07)" : "none",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        backgroundColor: "#FFFFFF",
+        borderBottom: scrolled
+          ? "1px solid rgba(45,45,45,0.12)"
+          : "1px solid rgba(45,45,45,0.08)",
+        boxShadow: scrolled ? "0 2px 16px rgba(0,0,0,0.06)" : "none",
+        transition: "box-shadow 0.25s ease, border-color 0.25s ease",
       }}
     >
-      <div className="container">
-        <div className="flex items-center justify-between h-16 md:h-18">
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="flex items-center gap-2.5 group"
-          >
-            <div
-              className="flex items-center justify-center px-2.5 py-1.5"
-              style={{ backgroundColor: "#2979FF" }}
-            >
-              <span
-                style={{
-                  fontFamily: "'Courier New', monospace",
-                  fontSize: "0.75rem",
-                  fontWeight: 700,
-                  color: "#FFFFFF",
-                  letterSpacing: "0.05em",
-                  lineHeight: 1,
-                }}
-              >
-                GvG
-              </span>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "0.8rem",
-                  fontWeight: 700,
-                  color: "#FFFFFF",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                good vs. <span style={{ color: "#2979FF" }}>Great</span>
-              </span>
-              <span
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.55rem",
-                  color: "rgba(255,255,255,0.4)",
-                  letterSpacing: "0.12em",
-                  textTransform: "uppercase",
-                  marginTop: "2px",
-                }}
-              >
-                better media decisions.
-              </span>
-            </div>
-          </button>
-
-          {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            {[
-              { label: "What I Do", id: "services" },
-              { label: "Proof", id: "proof" },
-              { label: "How It Works", id: "pricing" },
-              { label: "Writing", id: "writing" },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="nav-link"
-              >
-                {item.label}
-              </button>
-            ))}
-            <button
-              onClick={() => scrollTo("booking")}
-              className="btn-primary"
-              style={{ padding: "0.6rem 1.25rem", fontSize: "0.7rem" }}
-            >
-              Book a Call →
-            </button>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="md:hidden text-white p-1"
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            {menuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {menuOpen && (
-        <div
-          className="md:hidden"
+      <div
+        className="container"
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          height: "64px",
+        }}
+      >
+        {/* Logo */}
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           style={{
-            backgroundColor: "rgba(26,26,46,0.98)",
-            borderTop: "1px solid rgba(255,255,255,0.07)",
+            background: "none",
+            border: "none",
+            padding: 0,
+            cursor: "pointer",
+            display: "flex",
+            flexDirection: "column",
+            gap: "0.3rem",
+            alignItems: "flex-start",
           }}
         >
-          <div className="container py-6 flex flex-col gap-5">
-            {[
-              { label: "What I Do", id: "services" },
-              { label: "Proof", id: "proof" },
-              { label: "How It Works", id: "pricing" },
-              { label: "Writing", id: "writing" },
-            ].map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="nav-link text-left"
-                style={{ fontSize: "0.85rem" }}
-              >
-                {item.label}
-              </button>
-            ))}
+          {/* Wordmark in Electric Blue rectangle — Courier New per brand spec */}
+          <span
+            style={{
+              display: "inline-block",
+              backgroundColor: "#2979FF",
+              padding: "0.28rem 0.6rem",
+              fontFamily: "'Courier New', Courier, monospace",
+              fontSize: "0.95rem",
+              fontWeight: 700,
+              color: "#FFFFFF",
+              letterSpacing: "0.02em",
+              lineHeight: 1.25,
+              whiteSpace: "nowrap",
+            }}
+          >
+            good vs. Great
+          </span>
+          {/* Tagline — Courier New, muted */}
+          <span
+            style={{
+              fontFamily: "'Courier New', Courier, monospace",
+              fontSize: "0.6rem",
+              color: "rgba(45,45,45,0.45)",
+              letterSpacing: "0.04em",
+              paddingLeft: "0.1rem",
+            }}
+          >
+            better media decisions.
+          </span>
+        </button>
+
+        {/* Desktop nav */}
+        <nav
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+          }}
+          className="hidden md:flex"
+        >
+          {NAV_LINKS.map((link) => (
             <button
-              onClick={() => scrollTo("booking")}
-              className="btn-primary mt-2"
-              style={{ alignSelf: "flex-start" }}
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: 0,
+                fontFamily: "'IBM Plex Sans', sans-serif",
+                fontSize: "0.9rem",
+                fontWeight: 400,
+                color: "#2D2D2D",
+                cursor: "pointer",
+                transition: "color 0.15s ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.color = "#2979FF";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLButtonElement).style.color = "#2D2D2D";
+              }}
             >
-              Book a Call →
+              {link.label}
             </button>
-          </div>
+          ))}
+
+          {/* CTA — Electric Blue, sharp corners */}
+          <button
+            onClick={() => scrollTo("booking")}
+            style={{
+              backgroundColor: "#2979FF",
+              color: "#FFFFFF",
+              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontSize: "0.9rem",
+              fontWeight: 500,
+              padding: "0.55rem 1.2rem",
+              border: "none",
+              borderRadius: 0,
+              cursor: "pointer",
+              transition: "background-color 0.2s ease",
+              whiteSpace: "nowrap",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#5B9BFF";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#2979FF";
+            }}
+          >
+            Book a Call →
+          </button>
+        </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden"
+          onClick={() => setMenuOpen(!menuOpen)}
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            padding: "0.5rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "5px",
+          }}
+          aria-label="Toggle menu"
+        >
+          <span
+            style={{
+              display: "block",
+              width: "22px",
+              height: "2px",
+              backgroundColor: "#2D2D2D",
+              transition: "transform 0.2s ease, opacity 0.2s ease",
+              transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: "22px",
+              height: "2px",
+              backgroundColor: "#2D2D2D",
+              opacity: menuOpen ? 0 : 1,
+              transition: "opacity 0.2s ease",
+            }}
+          />
+          <span
+            style={{
+              display: "block",
+              width: "22px",
+              height: "2px",
+              backgroundColor: "#2D2D2D",
+              transition: "transform 0.2s ease, opacity 0.2s ease",
+              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
+            }}
+          />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      {menuOpen && (
+        <div
+          style={{
+            backgroundColor: "#FFFFFF",
+            borderTop: "1px solid rgba(45,45,45,0.08)",
+            padding: "1.5rem",
+            display: "flex",
+            flexDirection: "column",
+            gap: "1.25rem",
+          }}
+        >
+          {NAV_LINKS.map((link) => (
+            <button
+              key={link.id}
+              onClick={() => scrollTo(link.id)}
+              style={{
+                background: "none",
+                border: "none",
+                padding: 0,
+                fontFamily: "'IBM Plex Sans', sans-serif",
+                fontSize: "1rem",
+                fontWeight: 400,
+                color: "#2D2D2D",
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              {link.label}
+            </button>
+          ))}
+          <button
+            onClick={() => scrollTo("booking")}
+            style={{
+              backgroundColor: "#2979FF",
+              color: "#FFFFFF",
+              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontSize: "1rem",
+              fontWeight: 500,
+              padding: "0.75rem 1.5rem",
+              border: "none",
+              borderRadius: 0,
+              cursor: "pointer",
+              textAlign: "center",
+            }}
+          >
+            Book a Call →
+          </button>
         </div>
       )}
-    </nav>
+    </header>
   );
 }

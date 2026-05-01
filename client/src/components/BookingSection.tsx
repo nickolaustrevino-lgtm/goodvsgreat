@@ -1,5 +1,10 @@
-/* BookingSection — GvG Dark Editorial Intelligence
-   Deep Navy background. Multi-step form with Electric Blue accents. */
+/* BookingSection — Good vs. Great Brand Guidelines Applied
+   Background: Charcoal Dark (#2D2D2D) — dark section
+   H2: Space Mono 700, 36px — white
+   Body: IBM Plex Sans 400, 16px — white/muted
+   Caption: IBM Plex Mono, Electric Blue
+   Form inputs: dark bg, white text, Electric Blue focus border
+   CTA: Electric Blue primary button */
 import { useState } from "react";
 
 const spendOptions = [
@@ -37,77 +42,71 @@ export default function BookingSection() {
   return (
     <section
       id="booking"
-      className="relative overflow-hidden"
-      style={{ backgroundColor: "#111120", padding: "6rem 0" }}
+      style={{
+        backgroundColor: "#2D2D2D",
+        padding: "5rem 0",
+      }}
     >
-      {/* Background pattern */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          backgroundImage: `url(https://d2xsxph8kpxj0f.cloudfront.net/310519663601301359/Zm5tL57jf4wPW4KuoqDKLS/gvg-pattern-bg-RzjKmotHrcSGXqvDyqJ5bf.webp)`,
-          backgroundSize: "400px 400px",
-          opacity: 0.3,
-        }}
-      />
-      <div className="absolute inset-0 pointer-events-none" style={{ background: "linear-gradient(135deg, rgba(17,17,32,0.95) 0%, rgba(17,17,32,0.85) 100%)" }} />
-
-      <div className="container relative z-10">
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
+      <div className="container">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gap: "4rem",
+            alignItems: "start",
+          }}
+        >
           {/* Left — copy */}
           <div>
-            <div className="fade-up mb-5">
-              <span className="section-label">Book a Free 30-Minute Diagnostic</span>
-            </div>
-            <h2 className="fade-up delay-100 section-heading mb-6">
-              If you've read this far,<br />
-              we should probably talk.
+            <span className="gvg-caption gvg-section-label">
+              Book a Free 30-Minute Diagnostic
+            </span>
+            <h2 className="gvg-h2" style={{ color: "#FFFFFF", marginBottom: "1.5rem" }}>
+              If you've read this far, we should probably talk.
             </h2>
-            <p className="fade-up delay-200" style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
-              fontSize: "1rem",
-              lineHeight: 1.75,
-              color: "rgba(255,255,255,0.6)",
-              marginBottom: "2.5rem",
-            }}>
+            <p className="gvg-body" style={{ color: "rgba(255,255,255,0.65)", marginBottom: "1rem" }}>
               I take on a small number of engagements at a time. If your media spend is $1M+ annually and you're not fully confident it's working as hard as it should, book 30 minutes and I'll give you a straight answer.
             </p>
-
-            <p className="fade-up delay-200" style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.75rem",
-              letterSpacing: "0.08em",
-              color: "rgba(255,255,255,0.35)",
-              marginBottom: "3rem",
-              fontStyle: "italic",
-            }}>
+            <p
+              className="gvg-caption"
+              style={{
+                color: "rgba(255,255,255,0.35)",
+                fontStyle: "italic",
+                marginBottom: "2.5rem",
+                letterSpacing: "0.04em",
+              }}
+            >
               No pitch. No deck. Just a straight answer.
             </p>
 
             {/* Steps */}
-            <div className="fade-up delay-300 flex flex-col gap-5">
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              <span
+                className="gvg-caption"
+                style={{ color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.12em" }}
+              >
+                What Happens Next
+              </span>
               {[
                 "Fill in the form — your answers help me prepare",
                 "Copy your summary and paste it into the booking notes",
                 "Pick a time on my calendar",
                 "30 minutes, no sales pitch — just a straight diagnosis",
               ].map((step, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <span style={{
-                    fontFamily: "'Space Mono', monospace",
-                    fontSize: "0.7rem",
-                    fontWeight: 700,
-                    color: "#2979FF",
-                    minWidth: "1.5rem",
-                    paddingTop: "0.1rem",
-                  }}>
+                <div key={i} style={{ display: "flex", gap: "1rem", alignItems: "flex-start" }}>
+                  <span
+                    style={{
+                      fontFamily: "'Space Mono', monospace",
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
+                      color: "#2979FF",
+                      flexShrink: 0,
+                      paddingTop: "0.1rem",
+                    }}
+                  >
                     0{i + 1}
                   </span>
-                  <p style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.9rem",
-                    lineHeight: 1.5,
-                    color: "rgba(255,255,255,0.6)",
-                  }}>
+                  <p className="gvg-body" style={{ color: "rgba(255,255,255,0.65)" }}>
                     {step}
                   </p>
                 </div>
@@ -116,59 +115,56 @@ export default function BookingSection() {
           </div>
 
           {/* Right — form */}
-          <div className="fade-up delay-200">
+          <div>
             {submitted ? (
-              <div style={{
-                backgroundColor: "rgba(41,121,255,0.08)",
-                border: "1px solid rgba(41,121,255,0.3)",
-                padding: "3rem",
-                textAlign: "center",
-              }}>
-                <div style={{
-                  width: "3rem",
-                  height: "3rem",
-                  backgroundColor: "#2979FF",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  margin: "0 auto 1.5rem",
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "1.2rem",
-                  color: "#FFFFFF",
-                }}>
+              <div
+                style={{
+                  backgroundColor: "#1C1C1E",
+                  borderTop: "3px solid #2979FF",
+                  padding: "3rem",
+                  textAlign: "center",
+                }}
+              >
+                <div
+                  style={{
+                    width: "3rem",
+                    height: "3rem",
+                    backgroundColor: "#2979FF",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    margin: "0 auto 1.5rem",
+                    fontFamily: "'Space Mono', monospace",
+                    fontSize: "1.2rem",
+                    color: "#FFFFFF",
+                  }}
+                >
                   ✓
                 </div>
-                <h3 style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "1.2rem",
-                  fontWeight: 700,
-                  color: "#FFFFFF",
-                  marginBottom: "1rem",
-                }}>
+                <h3 className="gvg-h3" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
                   Got it. Talk soon.
                 </h3>
-                <p style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
-                  fontSize: "0.9rem",
-                  color: "rgba(255,255,255,0.55)",
-                  lineHeight: 1.6,
-                }}>
+                <p className="gvg-body" style={{ color: "rgba(255,255,255,0.55)" }}>
                   I'll review your details and follow up to confirm a time. Expect a response within 24 hours.
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              <form
+                onSubmit={handleSubmit}
+                style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}
+              >
                 {/* Name */}
                 <div>
-                  <label style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
-                    display: "block",
-                    marginBottom: "0.5rem",
-                  }}>
+                  <label
+                    className="gvg-caption"
+                    style={{
+                      color: "rgba(255,255,255,0.45)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      display: "block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
                     Your Name
                   </label>
                   <input
@@ -183,15 +179,16 @@ export default function BookingSection() {
 
                 {/* Organization */}
                 <div>
-                  <label style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
-                    display: "block",
-                    marginBottom: "0.5rem",
-                  }}>
+                  <label
+                    className="gvg-caption"
+                    style={{
+                      color: "rgba(255,255,255,0.45)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      display: "block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
                     Organization
                   </label>
                   <input
@@ -206,15 +203,16 @@ export default function BookingSection() {
 
                 {/* Annual spend */}
                 <div>
-                  <label style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
-                    display: "block",
-                    marginBottom: "0.5rem",
-                  }}>
+                  <label
+                    className="gvg-caption"
+                    style={{
+                      color: "rgba(255,255,255,0.45)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      display: "block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
                     Annual Media Spend
                   </label>
                   <div style={{ position: "relative" }}>
@@ -229,15 +227,17 @@ export default function BookingSection() {
                         <option key={opt} value={opt}>{opt}</option>
                       ))}
                     </select>
-                    <span style={{
-                      position: "absolute",
-                      right: "1rem",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "rgba(255,255,255,0.4)",
-                      pointerEvents: "none",
-                      fontSize: "0.75rem",
-                    }}>
+                    <span
+                      style={{
+                        position: "absolute",
+                        right: "1rem",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "rgba(255,255,255,0.4)",
+                        pointerEvents: "none",
+                        fontSize: "0.75rem",
+                      }}
+                    >
                       ▾
                     </span>
                   </div>
@@ -245,15 +245,16 @@ export default function BookingSection() {
 
                 {/* Primary challenge */}
                 <div>
-                  <label style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
-                    display: "block",
-                    marginBottom: "0.5rem",
-                  }}>
+                  <label
+                    className="gvg-caption"
+                    style={{
+                      color: "rgba(255,255,255,0.45)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      display: "block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
                     Primary Challenge
                   </label>
                   <div style={{ position: "relative" }}>
@@ -268,15 +269,17 @@ export default function BookingSection() {
                         <option key={opt} value={opt}>{opt}</option>
                       ))}
                     </select>
-                    <span style={{
-                      position: "absolute",
-                      right: "1rem",
-                      top: "50%",
-                      transform: "translateY(-50%)",
-                      color: "rgba(255,255,255,0.4)",
-                      pointerEvents: "none",
-                      fontSize: "0.75rem",
-                    }}>
+                    <span
+                      style={{
+                        position: "absolute",
+                        right: "1rem",
+                        top: "50%",
+                        transform: "translateY(-50%)",
+                        color: "rgba(255,255,255,0.4)",
+                        pointerEvents: "none",
+                        fontSize: "0.75rem",
+                      }}
+                    >
                       ▾
                     </span>
                   </div>
@@ -284,16 +287,18 @@ export default function BookingSection() {
 
                 {/* Details */}
                 <div>
-                  <label style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.65rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "rgba(255,255,255,0.4)",
-                    display: "block",
-                    marginBottom: "0.5rem",
-                  }}>
-                    Anything else I should know? <span style={{ color: "rgba(255,255,255,0.2)" }}>(optional)</span>
+                  <label
+                    className="gvg-caption"
+                    style={{
+                      color: "rgba(255,255,255,0.45)",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.1em",
+                      display: "block",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    Anything else I should know?{" "}
+                    <span style={{ color: "rgba(255,255,255,0.2)", textTransform: "none", letterSpacing: 0 }}>(optional)</span>
                   </label>
                   <textarea
                     rows={4}
@@ -305,7 +310,11 @@ export default function BookingSection() {
                   />
                 </div>
 
-                <button type="submit" className="btn-primary" style={{ width: "100%", justifyContent: "center", marginTop: "0.5rem" }}>
+                <button
+                  type="submit"
+                  className="gvg-btn-primary"
+                  style={{ width: "100%", justifyContent: "center", marginTop: "0.5rem" }}
+                >
                   Submit & Book a Time →
                 </button>
               </form>
