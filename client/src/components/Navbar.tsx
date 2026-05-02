@@ -54,7 +54,7 @@ export default function Navbar() {
           height: "64px",
         }}
       >
-        {/* Logo */}
+        {/* Logo — Primary Dark Horizontal (brand asset) */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           style={{
@@ -63,41 +63,19 @@ export default function Navbar() {
             padding: 0,
             cursor: "pointer",
             display: "flex",
-            flexDirection: "column",
-            gap: "0.3rem",
-            alignItems: "flex-start",
+            alignItems: "center",
           }}
           aria-label="Good vs. Great — home"
         >
-          {/* Wordmark in Electric Blue rectangle — Space Mono per brand spec */}
-          <span
+          <img
+            src="/manus-storage/logo-primary-dark_3ef35a6a.png"
+            alt="good vs. Great — better media decisions"
             style={{
-              display: "inline-block",
-              backgroundColor: "#2979FF",
-              padding: "0.28rem 0.65rem",
-              fontFamily: "'Space Mono', monospace",
-              fontSize: "0.88rem",
-              fontWeight: 700,
-              color: "#FFFFFF",
-              letterSpacing: "0.01em",
-              lineHeight: 1.3,
-              whiteSpace: "nowrap",
+              height: "36px",
+              width: "auto",
+              display: "block",
             }}
-          >
-            good vs. Great
-          </span>
-          {/* Tagline lockup */}
-          <span
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.58rem",
-              color: "rgba(255,255,255,0.3)",
-              letterSpacing: "0.08em",
-              paddingLeft: "0.1rem",
-            }}
-          >
-            better media decisions.
-          </span>
+          />
         </button>
 
         {/* Desktop nav */}
