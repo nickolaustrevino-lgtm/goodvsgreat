@@ -1,8 +1,9 @@
-/* Navbar — Good vs. Great Brand Guidelines Applied
-   Logo: "good vs. Great" in Courier New inside #2979FF rectangle
-   Tagline: "better media decisions." in Courier New below
+/* Navbar — GvG Brand Guidelines v2
+   Background: --gvg-charcoal (oklch 16%)
+   Logo: "good vs. Great" in Space Mono inside #2979FF rect
    Nav: IBM Plex Sans 400
-   CTA: Electric Blue filled button, sharp corners */
+   CTA: Electric Blue, border-radius: 0 */
+
 import { useState, useEffect } from "react";
 
 const NAV_LINKS = [
@@ -17,7 +18,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 10);
+    const onScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -36,12 +37,12 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        backgroundColor: "#FFFFFF",
+        backgroundColor: "oklch(16% 0.005 285)",
         borderBottom: scrolled
-          ? "1px solid rgba(45,45,45,0.12)"
-          : "1px solid rgba(45,45,45,0.08)",
-        boxShadow: scrolled ? "0 2px 16px rgba(0,0,0,0.06)" : "none",
-        transition: "box-shadow 0.25s ease, border-color 0.25s ease",
+          ? "1px solid rgba(255,255,255,0.09)"
+          : "1px solid rgba(255,255,255,0.04)",
+        boxShadow: scrolled ? "0 2px 24px rgba(0,0,0,0.4)" : "none",
+        transition: "box-shadow 0.3s ease, border-color 0.3s ease",
       }}
     >
       <div
@@ -66,31 +67,32 @@ export default function Navbar() {
             gap: "0.3rem",
             alignItems: "flex-start",
           }}
+          aria-label="Good vs. Great — home"
         >
-          {/* Wordmark in Electric Blue rectangle — Courier New per brand spec */}
+          {/* Wordmark in Electric Blue rectangle — Space Mono per brand spec */}
           <span
             style={{
               display: "inline-block",
               backgroundColor: "#2979FF",
-              padding: "0.28rem 0.6rem",
-              fontFamily: "'Courier New', Courier, monospace",
-              fontSize: "0.95rem",
+              padding: "0.28rem 0.65rem",
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.88rem",
               fontWeight: 700,
               color: "#FFFFFF",
-              letterSpacing: "0.02em",
-              lineHeight: 1.25,
+              letterSpacing: "0.01em",
+              lineHeight: 1.3,
               whiteSpace: "nowrap",
             }}
           >
             good vs. Great
           </span>
-          {/* Tagline — Courier New, muted */}
+          {/* Tagline lockup */}
           <span
             style={{
-              fontFamily: "'Courier New', Courier, monospace",
-              fontSize: "0.6rem",
-              color: "rgba(45,45,45,0.45)",
-              letterSpacing: "0.04em",
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "0.58rem",
+              color: "rgba(255,255,255,0.3)",
+              letterSpacing: "0.08em",
               paddingLeft: "0.1rem",
             }}
           >
@@ -103,7 +105,7 @@ export default function Navbar() {
           style={{
             display: "flex",
             alignItems: "center",
-            gap: "2rem",
+            gap: "2.25rem",
           }}
           className="hidden md:flex"
         >
@@ -116,45 +118,28 @@ export default function Navbar() {
                 border: "none",
                 padding: 0,
                 fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "0.9rem",
+                fontSize: "0.875rem",
                 fontWeight: 400,
-                color: "#2D2D2D",
+                color: "rgba(255,255,255,0.6)",
                 cursor: "pointer",
                 transition: "color 0.15s ease",
+                letterSpacing: "0.01em",
               }}
               onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.color = "#2979FF";
+                (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.color = "#2D2D2D";
+                (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.6)";
               }}
             >
               {link.label}
             </button>
           ))}
 
-          {/* CTA — Electric Blue, sharp corners */}
           <button
             onClick={() => scrollTo("booking")}
-            style={{
-              backgroundColor: "#2979FF",
-              color: "#FFFFFF",
-              fontFamily: "'IBM Plex Sans', sans-serif",
-              fontSize: "0.9rem",
-              fontWeight: 500,
-              padding: "0.55rem 1.2rem",
-              border: "none",
-              borderRadius: 0,
-              cursor: "pointer",
-              transition: "background-color 0.2s ease",
-              whiteSpace: "nowrap",
-            }}
-            onMouseEnter={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#5B9BFF";
-            }}
-            onMouseLeave={(e) => {
-              (e.currentTarget as HTMLButtonElement).style.backgroundColor = "#2979FF";
-            }}
+            className="gvg-btn-primary"
+            style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
           >
             Book a Call →
           </button>
@@ -175,36 +160,25 @@ export default function Navbar() {
           }}
           aria-label="Toggle menu"
         >
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              backgroundColor: "#2D2D2D",
-              transition: "transform 0.2s ease, opacity 0.2s ease",
-              transform: menuOpen ? "translateY(7px) rotate(45deg)" : "none",
-            }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              backgroundColor: "#2D2D2D",
-              opacity: menuOpen ? 0 : 1,
-              transition: "opacity 0.2s ease",
-            }}
-          />
-          <span
-            style={{
-              display: "block",
-              width: "22px",
-              height: "2px",
-              backgroundColor: "#2D2D2D",
-              transition: "transform 0.2s ease, opacity 0.2s ease",
-              transform: menuOpen ? "translateY(-7px) rotate(-45deg)" : "none",
-            }}
-          />
+          {[0, 1, 2].map((i) => (
+            <span
+              key={i}
+              style={{
+                display: "block",
+                width: "22px",
+                height: "2px",
+                backgroundColor: "#FFFFFF",
+                transition: "transform 0.2s ease, opacity 0.2s ease",
+                transform:
+                  i === 0 && menuOpen
+                    ? "translateY(7px) rotate(45deg)"
+                    : i === 2 && menuOpen
+                    ? "translateY(-7px) rotate(-45deg)"
+                    : "none",
+                opacity: i === 1 && menuOpen ? 0 : 1,
+              }}
+            />
+          ))}
         </button>
       </div>
 
@@ -212,8 +186,8 @@ export default function Navbar() {
       {menuOpen && (
         <div
           style={{
-            backgroundColor: "#FFFFFF",
-            borderTop: "1px solid rgba(45,45,45,0.08)",
+            backgroundColor: "oklch(16% 0.005 285)",
+            borderTop: "1px solid rgba(255,255,255,0.09)",
             padding: "1.5rem",
             display: "flex",
             flexDirection: "column",
@@ -230,8 +204,7 @@ export default function Navbar() {
                 padding: 0,
                 fontFamily: "'IBM Plex Sans', sans-serif",
                 fontSize: "1rem",
-                fontWeight: 400,
-                color: "#2D2D2D",
+                color: "rgba(255,255,255,0.7)",
                 cursor: "pointer",
                 textAlign: "left",
               }}
@@ -241,18 +214,7 @@ export default function Navbar() {
           ))}
           <button
             onClick={() => scrollTo("booking")}
-            style={{
-              backgroundColor: "#2979FF",
-              color: "#FFFFFF",
-              fontFamily: "'IBM Plex Sans', sans-serif",
-              fontSize: "1rem",
-              fontWeight: 500,
-              padding: "0.75rem 1.5rem",
-              border: "none",
-              borderRadius: 0,
-              cursor: "pointer",
-              textAlign: "center",
-            }}
+            className="gvg-btn-primary"
           >
             Book a Call →
           </button>

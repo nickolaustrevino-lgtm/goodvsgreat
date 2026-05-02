@@ -1,31 +1,32 @@
-/* HeroSection — Good vs. Great Brand Guidelines Applied
-   Background: Off White (#F5F5F5)
-   Display heading: Space Mono 700
-   Sub-label: IBM Plex Sans italic, Body Large
-   Body: IBM Plex Sans 400, 18px
-   Stats: Space Mono 700 numbers, IBM Plex Mono captions
-   CTAs: Electric Blue (#2979FF) primary, outlined secondary */
+/* HeroSection — GvG Brand Guidelines v2
+   Background: --gvg-charcoal + scanline overlay
+   Headline: Space Mono 700, tight tracking
+   Sub: IBM Plex Sans 400 italic
+   Body: IBM Plex Sans 400
+   Stats: Space Mono numbers with blue glow, IBM Plex Mono labels
+   CTAs: Electric Blue primary, ghost secondary */
 
 import { useEffect, useState } from "react";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
-function useCountUp(target: number, duration = 1400) {
-  const [count, setCount] = useState(0);
+function useCountUp(target: number, duration = 1200) {
+  const [count, setCount] = useState(target); // Start at final value immediately
   useEffect(() => {
+    // Reset to 0 then animate up
+    setCount(0);
     let rafId: number;
-    const timer = setTimeout(() => {
-      let startTime: number | null = null;
-      const raf = (timestamp: number) => {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        setCount(Math.floor(eased * target));
-        if (progress < 1) rafId = requestAnimationFrame(raf);
-      };
-      rafId = requestAnimationFrame(raf);
-    }, 200);
-    return () => { clearTimeout(timer); cancelAnimationFrame(rafId); };
+    let startTime: number | null = null;
+    const raf = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.floor(eased * target));
+      if (progress < 1) rafId = requestAnimationFrame(raf);
+      else setCount(target); // Ensure final value is exact
+    };
+    rafId = requestAnimationFrame(raf);
+    return () => cancelAnimationFrame(rafId);
   }, [target, duration]);
   return count;
 }
@@ -43,58 +44,53 @@ export default function HeroSection() {
   return (
     <section
       id="hero"
+      className="gvg-scanline"
       style={{
-        backgroundColor: "#F5F5F5",
-        paddingTop: "calc(64px + 5rem)",
-        paddingBottom: "5rem",
+        backgroundColor: "oklch(16% 0.005 285)",
+        paddingTop: "calc(64px + 6rem)",
+        paddingBottom: "6rem",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
-        <div style={{ maxWidth: "760px" }}>
+      {/* Ghost section number */}
+      <span className="gvg-ghost-number">01</span>
 
-          {/* Caption label — IBM Plex Mono */}
-          <span
-            style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.75rem",
-              fontWeight: 400,
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              color: "#2979FF",
-              display: "block",
-              marginBottom: "1rem",
-            }}
-          >
-            Growth Decision Partner
-          </span>
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
+        <div style={{ maxWidth: "780px" }}>
 
-          {/* Display heading — Space Mono 700 */}
+          {/* Section label */}
+          <span className="gvg-section-label">Growth Decision Partner</span>
+          <span className="gvg-divider" />
+
+          {/* Display headline */}
           <h1
             style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: "clamp(2.5rem, 5.5vw, 4rem)",
+              fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
-              color: "#2D2D2D",
+              color: "#FFFFFF",
               marginBottom: "1.5rem",
             }}
           >
-            Better growth starts with better media decisions.
+            Good media looks busy.{" "}
+            <span style={{ color: "#2979FF" }}>Great media</span> makes decisions.
           </h1>
 
-          {/* Sub-label — IBM Plex Sans italic */}
+          {/* Subhead */}
           <p
             style={{
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1.125rem",
-              fontStyle: "italic",
-              color: "#2D2D2D",
-              marginBottom: "1.5rem",
-              lineHeight: 1.6,
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.7,
+              marginBottom: "2rem",
+              maxWidth: "620px",
             }}
           >
-            Your media is running. But is it working?
+            Good vs. Great helps brands turn paid media, analytics, and AI into clearer decisions, stronger systems, and measurable growth.
           </p>
 
           {/* Portrait + body copy */}
@@ -104,58 +100,57 @@ export default function HeroSection() {
               gap: "1.5rem",
               alignItems: "flex-start",
               marginBottom: "2.5rem",
+              paddingBottom: "2.5rem",
+              borderBottom: "1px solid rgba(255,255,255,0.09)",
             }}
           >
             <img
               src={PORTRAIT_URL}
               alt="Nickolaus Trevino"
               style={{
-                width: "80px",
-                height: "80px",
-                borderRadius: "50%",
+                width: "72px",
+                height: "72px",
                 objectFit: "cover",
+                objectPosition: "center top",
                 flexShrink: 0,
-                border: "2px solid rgba(45,45,45,0.12)",
               }}
             />
             <p
               style={{
                 fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "1.125rem",
-                color: "#2D2D2D",
-                lineHeight: 1.7,
+                fontSize: "1rem",
+                color: "rgba(255,255,255,0.6)",
+                lineHeight: 1.75,
               }}
             >
               I help companies spending $1M+ on paid media figure out what's actually driving revenue — and fix what isn't. Not with more dashboards. With the measurement, incrementality, and decision logic that tells you where your next dollar should go and why.
             </p>
           </div>
 
-          {/* Stats — Space Mono numbers, IBM Plex Mono labels */}
+          {/* Stats */}
           <div
             style={{
               display: "flex",
               gap: "3rem",
               flexWrap: "wrap",
               marginBottom: "2.5rem",
-              paddingBottom: "2.5rem",
-              borderBottom: "1px solid rgba(45,45,45,0.12)",
             }}
           >
             {[
-              { value: years, suffix: "", label: "Years", prefix: "" },
+              { value: years, suffix: "", label: "Years Experience", prefix: "" },
               { value: media, suffix: "M+", label: "Media Managed", prefix: "$" },
               { value: channels, suffix: "", label: "Channels", prefix: "" },
             ].map((stat, i) => (
-              <div key={i}>
+              <div key={i} className="gvg-stat-glow">
                 <div
                   style={{
                     fontFamily: "'Space Mono', monospace",
-                    fontSize: "2rem",
+                    fontSize: "2.25rem",
                     fontWeight: 700,
-                    color: "#2D2D2D",
+                    color: "#FFFFFF",
                     lineHeight: 1,
-                    marginBottom: "0.35rem",
-                    letterSpacing: "-0.02em",
+                    marginBottom: "0.4rem",
+                    letterSpacing: "-0.03em",
                   }}
                 >
                   {stat.prefix}{stat.value}{stat.suffix}
@@ -163,10 +158,10 @@ export default function HeroSection() {
                 <div
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.7rem",
-                    color: "rgba(45,45,45,0.5)",
+                    fontSize: "0.65rem",
+                    color: "rgba(255,255,255,0.35)",
                     textTransform: "uppercase",
-                    letterSpacing: "0.1em",
+                    letterSpacing: "0.12em",
                   }}
                 >
                   {stat.label}
@@ -181,13 +176,13 @@ export default function HeroSection() {
               onClick={() => scrollTo("booking")}
               className="gvg-btn-primary"
             >
-              Book a free 30-min diagnostic
+              Get better media decisions
             </button>
             <button
               onClick={() => scrollTo("services")}
-              className="gvg-btn-secondary-dark"
+              className="gvg-btn-secondary"
             >
-              See how I work
+              See how it works
             </button>
           </div>
         </div>

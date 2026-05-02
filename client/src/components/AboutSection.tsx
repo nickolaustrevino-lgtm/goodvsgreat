@@ -1,139 +1,185 @@
-/* AboutSection — Good vs. Great Brand Guidelines Applied
-   Background: Off White (#F5F5F5) — light section
-   H2: Space Mono 700, 36px — charcoal (name)
-   H3: IBM Plex Sans 600, 24px — sub-headings
-   Body: IBM Plex Sans 400, 16px
-   Caption: IBM Plex Mono
-   Portrait: circular, matches original site
-   Divider: Electric Blue */
+/* AboutSection — GvG Brand Guidelines v2
+   Background: --gvg-navy
+   Portrait: real photo, sharp corners, Electric Blue corner accent
+   H2: Space Mono 700
+   Body: IBM Plex Sans 400
+   Ghost number: 09 */
+
+import { useEffect, useRef } from "react";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
-const credentials = [
-  "12 Years Experience",
-  "$100M+ Media Managed",
-  "Search · Social · Programmatic · CTV",
-  "Retail · SaaS · Entertainment · Tech",
-  "MMM & Incrementality",
-  "AI Workflow Design",
-];
-
 export default function AboutSection() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="about"
+      ref={ref}
       style={{
-        backgroundColor: "#F5F5F5",
-        padding: "5rem 0",
+        backgroundColor: "#1A1A2E",
+        padding: "7rem 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
+      <span className="gvg-ghost-number">09</span>
+
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div
+          className="about-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "4rem",
+            gridTemplateColumns: "280px 1fr",
+            gap: "5rem",
             alignItems: "start",
           }}
         >
           {/* Portrait column */}
-          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-start", gap: "1rem" }}>
-            <img
-              src={PORTRAIT_URL}
-              alt="Nickolaus Trevino"
-              style={{
-                width: "160px",
-                height: "160px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                border: "3px solid #2979FF",
-              }}
-            />
-            <div>
-              <h2
-                className="gvg-h2"
-                style={{ color: "#2D2D2D", marginBottom: "0.25rem" }}
+          <div className="gvg-fadeup">
+            <div style={{ position: "relative", display: "inline-block", width: "100%" }}>
+              <img
+                src={PORTRAIT_URL}
+                alt="Nickolaus Trevino"
+                style={{
+                  width: "100%",
+                  aspectRatio: "3/4",
+                  objectFit: "cover",
+                  objectPosition: "center top",
+                  display: "block",
+                  filter: "grayscale(10%)",
+                }}
+              />
+              {/* Corner accent */}
+              <div
+                style={{
+                  position: "absolute",
+                  bottom: "-8px",
+                  right: "-8px",
+                  width: "40px",
+                  height: "40px",
+                  borderRight: "2px solid #2979FF",
+                  borderBottom: "2px solid #2979FF",
+                  pointerEvents: "none",
+                }}
+              />
+            </div>
+            <div style={{ marginTop: "1.25rem" }}>
+              <div
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "0.9375rem",
+                  fontWeight: 700,
+                  color: "#FFFFFF",
+                  marginBottom: "0.25rem",
+                }}
               >
                 Nickolaus Trevino
-              </h2>
-              <p
-                className="gvg-caption"
-                style={{ color: "rgba(45,45,45,0.5)", letterSpacing: "0.08em" }}
+              </div>
+              <div
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "#2979FF",
+                }}
               >
-                New York, NY · Remote
-              </p>
+                Founder, Good vs. Great
+              </div>
             </div>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "0.9rem",
-                color: "#2979FF",
-                textDecoration: "none",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.3rem",
-                transition: "color 0.15s ease",
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#5B9BFF"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#2979FF"; }}
-            >
-              LinkedIn →
-            </a>
           </div>
 
-          {/* Bio column */}
-          <div>
-            <span className="gvg-caption gvg-section-label">
-              Built and Led by Nickolaus Trevino
-            </span>
-
-            <div className="gvg-divider" />
-
-            <p className="gvg-body" style={{ color: "#2D2D2D", marginBottom: "1.25rem" }}>
-              Good vs Great exists because too many companies are deploying serious media budgets without the infrastructure to know whether those budgets are working.
-            </p>
-
-            <p className="gvg-body" style={{ color: "#2D2D2D", marginBottom: "1.25rem" }}>
-              Nickolaus Trevino has managed more than $100M in media budgets across global markets and worked across Search, Social, Programmatic, and CTV in retail, SaaS, entertainment, and technology.
-            </p>
-
-            <p className="gvg-body" style={{ color: "#2D2D2D", marginBottom: "2rem" }}>
-              This isn't about making campaigns look better in reports. It's about helping leadership make better calls with more confidence.
-            </p>
-
-            {/* Credentials grid */}
-            <div
+          {/* Content column */}
+          <div className="gvg-fadeup" style={{ transitionDelay: "120ms" }}>
+            <span className="gvg-section-label">About</span>
+            <span className="gvg-divider" />
+            <h2
               style={{
-                display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gap: "0.75rem",
+                fontFamily: "'Space Mono', monospace",
+                fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
+                fontWeight: 700,
+                lineHeight: 1.1,
+                letterSpacing: "-0.03em",
+                color: "#FFFFFF",
+                marginBottom: "1.75rem",
               }}
             >
-              {credentials.map((cred, i) => (
-                <div key={i} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <div
-                    style={{
-                      width: "5px",
-                      height: "5px",
-                      backgroundColor: "#2979FF",
-                      flexShrink: 0,
-                    }}
-                  />
-                  <span
-                    className="gvg-caption"
-                    style={{ color: "rgba(45,45,45,0.65)", letterSpacing: "0.04em" }}
-                  >
-                    {cred}
-                  </span>
-                </div>
+              I'm Nickolaus Trevino.
+            </h2>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+              {[
+                "I've spent 12 years building media systems for companies that needed more than performance reports — they needed better decision infrastructure. I've worked with Epic Games, Microsoft, Warner Bros., Walmart, Amazon, and a range of mid-market companies navigating the same challenge: they have channels, agencies, and dashboards, but they don't have clarity.",
+                "My background is in paid media strategy, measurement architecture, and AI-augmented workflow design. I've managed over $100M in media across gaming, retail, healthcare, and tech — and I've seen what separates the teams that scale well from the ones that just scale.",
+                "Good vs. Great is the practice I built to close that gap. I work with a small number of clients at a time, embedded at the strategic layer, helping them build the measurement, budget governance, and decision logic that makes media investment easier to trust.",
+                "I'm based in Austin, TX. I write about media, measurement, and the changing operating model of marketing on LinkedIn.",
+              ].map((para, i) => (
+                <p
+                  key={i}
+                  style={{
+                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.6)",
+                    lineHeight: 1.75,
+                    margin: 0,
+                  }}
+                >
+                  {para}
+                </p>
               ))}
+            </div>
+
+            <div
+              style={{
+                marginTop: "2.5rem",
+                paddingTop: "2rem",
+                borderTop: "1px solid rgba(255,255,255,0.09)",
+                display: "flex",
+                gap: "1rem",
+                flexWrap: "wrap",
+              }}
+            >
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="gvg-btn-secondary"
+                style={{ textDecoration: "none" }}
+              >
+                LinkedIn →
+              </a>
             </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 2.5rem !important;
+          }
+        }
+      `}</style>
     </section>
   );
 }

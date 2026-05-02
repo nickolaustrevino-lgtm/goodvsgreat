@@ -1,105 +1,167 @@
-/* ProofSection — Good vs. Great Brand Guidelines Applied
-   Background: Charcoal Dark (#2D2D2D) — dark section
-   H2: Space Mono 700, 36px — white
-   H3: IBM Plex Sans 600, 24px — card titles, white
-   Body: IBM Plex Sans 400, 16px — white/muted
-   Caption: IBM Plex Mono, Electric Blue
+/* ProofSection — GvG Brand Guidelines v2
+   Background: --gvg-charcoal
+   Cards: dark surface, Electric Blue top border
    Tags: IBM Plex Mono, bordered
-   Card top border: Electric Blue 3px */
+   Ghost number: 05 */
 
-const caseStudies = [
+import { useEffect, useRef } from "react";
+
+const CASE_STUDIES = [
   {
+    label: "Case Study",
     title: "Fab Marketplace: Privacy-First Measurement at Global Scale",
-    body: "When Epic Games launched Fab Marketplace into a category with a 12-year incumbent, the challenge wasn't awareness — it was building a measurement system that tied investment to revenue quality, respected creator data, and held up under scrutiny from finance and leadership. I led strategy, built the measurement foundation from the ground up, and ran paid media across 10 simultaneous global markets.",
+    desc: "When Epic Games launched Fab Marketplace into a category with a 12-year incumbent, the challenge wasn't awareness — it was building a measurement system that tied investment to revenue quality, respected creator data, and held up under scrutiny from finance and leadership. I led strategy, built the measurement foundation from the ground up, and ran paid media across 10 simultaneous global markets.",
     tags: ["Epic Games", "Measurement Infrastructure", "Incrementality", "Global Scale", "Privacy-First"],
   },
   {
+    label: "Case Study",
     title: "Walmart × Gaming Culture: A Discord-First Community Activation",
-    body: "A full case study on how a major retailer approached community infrastructure, cultural relevance, and performance through a nontraditional activation model.",
+    desc: "A full case study on how a major retailer approached community infrastructure, cultural relevance, and performance through a nontraditional activation model.",
     tags: ["Retail", "Community", "Brand Strategy", "Discord"],
   },
 ];
 
 export default function ProofSection() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="proof"
+      ref={ref}
       style={{
-        backgroundColor: "#2D2D2D",
-        padding: "5rem 0",
+        backgroundColor: "oklch(16% 0.005 285)",
+        padding: "7rem 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
+      <span className="gvg-ghost-number">05</span>
 
-        {/* Header */}
-        <div style={{ marginBottom: "3rem", maxWidth: "640px" }}>
-          <span className="gvg-caption gvg-section-label">
-            Proof, Not Performance Theater
-          </span>
-          <h2 className="gvg-h2" style={{ color: "#FFFFFF", marginBottom: "1.25rem" }}>
-            The kind of thinking I bring into the room.
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
+        <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
+          <span className="gvg-section-label">Proof, Not Performance Theater</span>
+          <span className="gvg-divider" />
+          <h2
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
+              color: "#FFFFFF",
+              marginBottom: "0.75rem",
+            }}
+          >
+            The kind of thinking{" "}
+            <span style={{ color: "#2979FF" }}>I bring into the room.</span>
           </h2>
-          <p className="gvg-body" style={{ color: "rgba(255,255,255,0.65)" }}>
+          <p
+            style={{
+              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontSize: "1rem",
+              color: "rgba(255,255,255,0.45)",
+              lineHeight: 1.7,
+              maxWidth: "560px",
+            }}
+          >
             I'm not interested in a bloated portfolio. I'd rather show you decision frameworks, working tools, and strategic systems that tie media to business outcomes.
           </p>
         </div>
 
-        {/* Case study cards */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
             gap: "1.5rem",
           }}
         >
-          {caseStudies.map((cs, i) => (
+          {CASE_STUDIES.map((cs, i) => (
             <div
               key={i}
+              className="gvg-fadeup gvg-card"
               style={{
-                backgroundColor: "#1C1C1E",
-                borderTop: "3px solid #2979FF",
-                padding: "2.5rem",
-                transition: "transform 0.2s ease",
-                cursor: "pointer",
+                transitionDelay: `${i * 120}ms`,
+                display: "flex",
+                flexDirection: "column",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
             >
-              {/* Caption label */}
-              <span className="gvg-caption gvg-section-label">Case Study</span>
-
-              {/* H3 — IBM Plex Sans 600, 24px */}
-              <h3 className="gvg-h3" style={{ color: "#FFFFFF", marginBottom: "1rem" }}>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "#2979FF",
+                  marginBottom: "1rem",
+                  display: "block",
+                }}
+              >
+                {cs.label}
+              </span>
+              <h3
+                style={{
+                  fontFamily: "'Space Mono', monospace",
+                  fontSize: "1.0625rem",
+                  fontWeight: 700,
+                  color: "#FFFFFF",
+                  lineHeight: 1.3,
+                  letterSpacing: "-0.02em",
+                  marginBottom: "1rem",
+                }}
+              >
                 {cs.title}
               </h3>
-
-              {/* Divider */}
-              <div className="gvg-divider" />
-
-              {/* Body */}
-              <p className="gvg-body" style={{ color: "rgba(255,255,255,0.65)", marginBottom: "1.5rem" }}>
-                {cs.body}
+              <p
+                style={{
+                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontSize: "0.9375rem",
+                  color: "rgba(255,255,255,0.55)",
+                  lineHeight: 1.7,
+                  marginBottom: "1.5rem",
+                  flex: 1,
+                }}
+              >
+                {cs.desc}
               </p>
-
-              {/* Tags */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.5rem" }}>
-                {cs.tags.map((tag, j) => (
-                  <span key={j} className="gvg-tag">{tag}</span>
+              <div
+                style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.5rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                {cs.tags.map((tag) => (
+                  <span key={tag} className="gvg-tag">{tag}</span>
                 ))}
               </div>
-
-              {/* Link — Electric Blue */}
               <a
                 href="#"
                 onClick={(e) => e.preventDefault()}
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
-                  fontSize: "0.9rem",
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.8rem",
                   color: "#2979FF",
                   textDecoration: "none",
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "0.35rem",
+                  letterSpacing: "0.04em",
                   transition: "color 0.15s ease",
                 }}
                 onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#5B9BFF"; }}

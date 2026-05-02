@@ -1,87 +1,158 @@
-/* ProblemSection — Good vs. Great Brand Guidelines Applied
-   Background: Charcoal Dark (#2D2D2D) — dark section
-   H2: Space Mono 700, 36px
-   Body: IBM Plex Sans 400, 16px — white on dark
-   Caption label: IBM Plex Mono, Electric Blue
-   Quote: IBM Plex Sans italic, bordered left with Electric Blue */
+/* ProblemSection — GvG Brand Guidelines v2
+   Background: --gvg-navy (#1A1A2E)
+   Ghost number: 02
+   Headline: Space Mono 700
+   Body: IBM Plex Sans 400
+   Cards: dark surface, Electric Blue top border */
+
+import { useEffect, useRef } from "react";
+
+const PROBLEMS = [
+  {
+    label: "Vanity Metrics",
+    text: "Your CPM can be good while your strategy is broken. Platform dashboards report what happened, not what it means.",
+  },
+  {
+    label: "Fragmented Channels",
+    text: "You have a Meta person, a Google person, a programmatic person — each optimizing their own lane, each reporting their own wins.",
+  },
+  {
+    label: "Unclear Attribution",
+    text: "Last-click attribution is attribution theater. It rewards the last touchpoint, not the one that actually drove the decision.",
+  },
+  {
+    label: "Wasted Spend",
+    text: "Without incrementality testing and budget governance, you are scaling what looks good in reports — not what is actually working.",
+  },
+];
 
 export default function ProblemSection() {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.08 }
+    );
+    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
       id="problem"
+      ref={ref}
       style={{
-        backgroundColor: "#2D2D2D",
-        padding: "5rem 0",
+        backgroundColor: "#1A1A2E",
+        padding: "7rem 0",
+        position: "relative",
+        overflow: "hidden",
       }}
     >
-      <div className="container">
-        <div style={{ maxWidth: "800px" }}>
+      <span className="gvg-ghost-number">02</span>
 
-          {/* Caption label */}
-          <span className="gvg-caption gvg-section-label">
-            The Problem I Solve
-          </span>
-
-          {/* H2 — Space Mono 700, 36px */}
+      <div className="container" style={{ position: "relative", zIndex: 2 }}>
+        <div className="gvg-fadeup" style={{ maxWidth: "680px", marginBottom: "3.5rem" }}>
+          <span className="gvg-section-label">The Problem I Solve</span>
+          <span className="gvg-divider" />
           <h2
-            className="gvg-h2"
             style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
               color: "#FFFFFF",
-              marginBottom: "2rem",
+              marginBottom: "1.25rem",
             }}
           >
-            Most companies don't have a channel problem.{" "}
-            They have a decision problem.
+            Good metrics.{" "}
+            <span style={{ color: "#2979FF" }}>Bad decisions.</span>
           </h2>
-
-          {/* Body — IBM Plex Sans 400, 16px */}
           <p
-            className="gvg-body"
-            style={{ color: "rgba(255,255,255,0.75)", marginBottom: "1.5rem" }}
-          >
-            They have a Meta person, a Google person, a programmatic person — each optimizing their own lane, each reporting on their own metrics, and nobody fully owning the answer to the question leadership actually cares about:
-          </p>
-
-          {/* Pull quote — IBM Plex Sans italic, Electric Blue left border */}
-          <blockquote
             style={{
-              borderLeft: "3px solid #2979FF",
-              paddingLeft: "1.5rem",
-              margin: "2rem 0",
               fontFamily: "'IBM Plex Sans', sans-serif",
-              fontSize: "1.125rem",
-              fontStyle: "italic",
-              color: "#FFFFFF",
-              lineHeight: 1.5,
+              fontSize: "1.0625rem",
+              color: "rgba(255,255,255,0.55)",
+              lineHeight: 1.75,
             }}
           >
-            "Is this spend creating real business value?"
-          </blockquote>
-
-          <p
-            className="gvg-body"
-            style={{ color: "rgba(255,255,255,0.75)", marginBottom: "1.5rem" }}
-          >
-            That's where I come in.
+            Most companies don't have a channel problem. They have a decision problem. Nobody fully owns the answer to the question leadership actually cares about:{" "}
+            <em style={{ color: "rgba(255,255,255,0.8)" }}>"Is this spend creating real business value?"</em>
           </p>
+        </div>
 
-          <p
-            className="gvg-body"
-            style={{ color: "rgba(255,255,255,0.75)", marginBottom: "1.5rem" }}
-          >
-            I operate as the strategic layer above the channel specialists. I build the measurement and operating infrastructure that connects media investment to commercial outcomes, so leadership can make better decisions about what to scale, what to cut, and what to trust.
-          </p>
+        {/* Problem cards */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "1.5rem",
+          }}
+        >
+          {PROBLEMS.map((p, i) => (
+            <div
+              key={i}
+              className="gvg-fadeup gvg-card"
+              style={{ transitionDelay: `${i * 80}ms` }}
+            >
+              <div
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "#2979FF",
+                  marginBottom: "0.75rem",
+                }}
+              >
+                {p.label}
+              </div>
+              <p
+                style={{
+                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontSize: "0.9375rem",
+                  color: "rgba(255,255,255,0.6)",
+                  lineHeight: 1.7,
+                  margin: 0,
+                }}
+              >
+                {p.text}
+              </p>
+            </div>
+          ))}
+        </div>
 
-          {/* Closing line — IBM Plex Mono caption */}
+        {/* Closing line */}
+        <div
+          className="gvg-fadeup"
+          style={{
+            marginTop: "3rem",
+            paddingTop: "2rem",
+            borderTop: "1px solid rgba(255,255,255,0.09)",
+          }}
+        >
           <p
-            className="gvg-caption"
             style={{
-              color: "rgba(255,255,255,0.45)",
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "0.9375rem",
+              color: "rgba(255,255,255,0.4)",
+              lineHeight: 1.6,
               fontStyle: "italic",
-              letterSpacing: "0.04em",
+              maxWidth: "600px",
             }}
           >
-            Not attribution theater. Not platform spin. Better decision logic.
+            Not attribution theater. Not platform spin.{" "}
+            <span style={{ color: "#FFFFFF" }}>Better decision logic.</span>
           </p>
         </div>
       </div>
