@@ -1,18 +1,15 @@
 /* ClientsSection — GvG Brand Guidelines v2
    Background: --gvg-navy
-   Client names: Space Mono, muted white
-   Label: IBM Plex Mono, Electric Blue
-   Marquee: CSS animation */
+   Static 5×2 grid (desktop) / 2×5 (mobile) — no animation
+   Client names: IBM Plex Mono, muted white, hover to full opacity
+   Label: IBM Plex Mono, Electric Blue */
 
 const CLIENTS = [
-  "Epic Games", "Microsoft", "Warner Bros.", "Walmart",
-  "Amazon", "2K Games", "Razer", "Turtle Beach",
-  "RiverSpring Living", "Wonderlic",
+  "Epic Games", "Microsoft", "Warner Bros.", "Walmart", "Amazon",
+  "2K Games", "Razer", "Turtle Beach", "RiverSpring Living", "Wonderlic",
 ];
 
 export default function ClientsSection() {
-  const tripled = [...CLIENTS, ...CLIENTS, ...CLIENTS];
-
   return (
     <section
       style={{
@@ -20,73 +17,59 @@ export default function ClientsSection() {
         padding: "4rem 0",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
-        overflow: "hidden",
       }}
     >
-      <style>{`
-        @keyframes gvg-marquee-scroll {
-          0% { transform: translateX(0); }
-          100% { transform: translateX(-33.333%); }
-        }
-        .gvg-marquee-inner {
-          display: flex;
-          width: max-content;
-          animation: gvg-marquee-scroll 28s linear infinite;
-        }
-        .gvg-marquee-inner:hover {
-          animation-play-state: paused;
-        }
-      `}</style>
-
-      <div className="container" style={{ marginBottom: "1.5rem" }}>
-        <span
+      <div className="container">
+        <p
           style={{
             fontFamily: "'IBM Plex Mono', monospace",
             fontSize: "0.65rem",
             textTransform: "uppercase",
             letterSpacing: "0.14em",
             color: "rgba(255,255,255,0.25)",
+            marginBottom: "1.75rem",
           }}
         >
           Clients I've Done This For
-        </span>
-      </div>
+        </p>
 
-      <div style={{ overflow: "hidden", position: "relative" }}>
-        <div className="gvg-marquee-inner">
-          {tripled.map((client, i) => (
-            <span
-              key={i}
+        {/* 5-col × 2-row desktop / 2-col × 5-row mobile */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(5, 1fr)",
+            gap: "0.5rem",
+          }}
+          className="gvg-clients-grid"
+        >
+          {CLIENTS.map((client) => (
+            <div
+              key={client}
               style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "0.875rem",
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: "0.75rem",
                 fontWeight: 700,
-                color: "rgba(255,255,255,0.22)",
-                letterSpacing: "0.04em",
-                whiteSpace: "nowrap",
-                padding: "0 2.5rem",
-                transition: "color 0.2s ease",
+                letterSpacing: "0.06em",
+                textTransform: "uppercase",
+                color: "rgba(255,255,255,0.28)",
+                padding: "0.75rem 0.5rem",
+                textAlign: "center",
+                border: "1px solid rgba(255,255,255,0.05)",
+                transition: "color 0.2s ease, border-color 0.2s ease",
                 cursor: "default",
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "2.5rem",
+                userSelect: "none",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLSpanElement).style.color = "rgba(255,255,255,0.7)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLSpanElement).style.color = "rgba(255,255,255,0.22)"; }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLDivElement).style.color = "rgba(255,255,255,0.85)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(41,121,255,0.3)";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLDivElement).style.color = "rgba(255,255,255,0.28)";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "rgba(255,255,255,0.05)";
+              }}
             >
               {client}
-              <span
-                style={{
-                  display: "inline-block",
-                  width: "3px",
-                  height: "3px",
-                  backgroundColor: "#2979FF",
-                  borderRadius: "50%",
-                  opacity: 0.5,
-                  flexShrink: 0,
-                }}
-              />
-            </span>
+            </div>
           ))}
         </div>
       </div>
