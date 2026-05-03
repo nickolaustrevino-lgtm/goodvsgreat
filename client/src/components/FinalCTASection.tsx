@@ -5,6 +5,7 @@
    Background: --gvg-navy with scanline overlay */
 
 import { useEffect, useRef } from "react";
+import DotMatrixCanvas from "./DotMatrixCanvas";
 
 export default function FinalCTASection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -45,6 +46,9 @@ export default function FinalCTASection() {
         textAlign: "center",
       }}
     >
+      {/* Dot-matrix parallax background */}
+      <DotMatrixCanvas opacity={0.9} parallaxFactor={0.4} />
+
       {/* Ghost number */}
       <span className="gvg-ghost-number" style={{ left: "50%", transform: "translateX(-50%)" }}>11</span>
 

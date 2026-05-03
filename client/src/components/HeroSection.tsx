@@ -7,6 +7,7 @@
    CTAs: Electric Blue primary, ghost secondary */
 
 import { useEffect, useState } from "react";
+import DotMatrixCanvas from "./DotMatrixCanvas";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
@@ -53,6 +54,9 @@ export default function HeroSection() {
         overflow: "hidden",
       }}
     >
+      {/* Dot-matrix parallax background */}
+      <DotMatrixCanvas opacity={0.7} parallaxFactor={0.3} />
+
       {/* Ghost section number */}
       <span className="gvg-ghost-number">01</span>
 

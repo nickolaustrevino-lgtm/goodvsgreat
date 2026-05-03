@@ -5,6 +5,7 @@
    Ghost number: 10 */
 
 import { useEffect, useRef, useState } from "react";
+import DotMatrixCanvas from "./DotMatrixCanvas";
 
 const SPEND_OPTIONS = [
   "Under $1M annually",
@@ -97,6 +98,9 @@ export default function BookingSection() {
         overflow: "hidden",
       }}
     >
+      {/* Dot-matrix parallax background */}
+      <DotMatrixCanvas opacity={0.45} parallaxFactor={0.2} />
+
       <span className="gvg-ghost-number">10</span>
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>

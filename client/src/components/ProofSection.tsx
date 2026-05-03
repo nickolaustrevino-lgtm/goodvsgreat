@@ -5,6 +5,7 @@
    Ghost number: 05 */
 
 import { useEffect, useRef } from "react";
+import DotMatrixCanvas from "./DotMatrixCanvas";
 
 const CASE_STUDIES = [
   {
@@ -55,6 +56,9 @@ export default function ProofSection() {
         overflow: "hidden",
       }}
     >
+      {/* Dot-matrix parallax background */}
+      <DotMatrixCanvas opacity={0.5} parallaxFactor={0.25} />
+
       <span className="gvg-ghost-number">05</span>
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
