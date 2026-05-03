@@ -128,10 +128,10 @@ export default function AboutSection() {
 
             <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
               {[
-                "I've spent 12 years building media systems for companies that needed more than performance reports — they needed better decision infrastructure. I've worked with Epic Games, Microsoft, Warner Bros., Walmart, Amazon, and a range of mid-market companies navigating the same challenge: they have channels, agencies, and dashboards, but they don't have clarity.",
-                "My background is in paid media strategy, measurement architecture, and AI-augmented workflow design. I've managed over $100M in media across gaming, retail, healthcare, and tech — and I've seen what separates the teams that scale well from the ones that just scale.",
-                "Good vs. Great is the practice I built to close that gap. I work with a small number of clients at a time, embedded at the strategic layer, helping them build the measurement, budget governance, and decision logic that makes media investment easier to trust.",
-                "I'm based in Austin, TX. I write about media, measurement, and the changing operating model of marketing on LinkedIn.",
+                "For 12 years, I've built the decision infrastructure behind media investment for companies that had plenty of dashboards but no clarity. Epic Games. Microsoft. Warner Bros. Walmart. Amazon. Mid-market brands scaling past their first agency. The pattern is always the same: channels are live, spend is moving, but no one can explain what's actually working or why.",
+                "My background sits at the intersection of paid media strategy, measurement architecture, and AI-augmented workflow design. I've governed over $100M in media across gaming, retail, entertainment, healthcare, and tech — and the thing I keep seeing is that the gap between good teams and great ones is never the budget. It's the operating logic underneath it.",
+                "Good vs. Great is the practice I built around that insight. I work with a small number of clients at a time, embedded at the strategic layer — designing the measurement frameworks, budget governance systems, and capital allocation logic that make media investment defensible to a CFO and legible to a team.",
+                "I'm based in New York, NY. I write about media, measurement, and the shifting operating model of modern marketing on LinkedIn.",
               ].map((para, i) => (
                 <p
                   key={i}
