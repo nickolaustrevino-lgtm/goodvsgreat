@@ -1,33 +1,30 @@
 /* WritingSection — GvG Brand Guidelines v2
    Background: --gvg-navy
-   Post feed: 3 cards with title, date, excerpt, linked
-   Email capture: "Get the Decision Layer Audit Checklist" with single input + button
+   Article cards: dark surface, Electric Blue top border on hover
+   Label: IBM Plex Mono
    Ghost number: 07 */
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const ARTICLES = [
   {
     label: "Essay",
     title: "The Advertiser Has Been Demoted",
-    date: "2024",
-    desc: "The platforms have taken the wheel. The real job for marketing leaders is now systems architecture and signal design — not campaign management.",
+    desc: "The platforms have taken the wheel. The real job for marketing leaders is now systems architecture and signal design — not campaign management. A reframing of what modern media leadership actually looks like in a world where automation handles execution.",
     link: "https://goodversusgreat.substack.com/p/the-advertiser-has-been-demoted-your",
     cta: "Read on Substack →",
   },
   {
     label: "Framework",
     title: "From Clicks to Citations",
-    date: "2024",
-    desc: "Traffic metrics don't tell you whether AI systems are recommending your brand. This framework replaces volume-based thinking with a more useful model for measuring visibility in the age of AI search.",
+    desc: "Traffic metrics don't tell you whether AI systems are recommending your brand. This framework replaces volume-based thinking with a more useful model for measuring visibility and value in the age of AI search — and what to actually optimize for.",
     link: "https://goodversusgreat.substack.com/p/from-clicks-to-citations-redesigning",
     cta: "Read on Substack →",
   },
   {
     label: "Essay",
     title: "Why Modern Marketers Need to Build, Not Just Buy",
-    date: "2024",
-    desc: "The most effective marketing leaders aren't just buyers of tools and media — they're builders. A case for why strategic leaders increasingly need to ship working infrastructure.",
+    desc: "The most effective marketing leaders aren't just buyers of tools and media — they're builders. A case for why strategic leaders increasingly need to ship working infrastructure, not just recommendations, and what that shift means for how teams are structured.",
     link: "https://www.linkedin.com/pulse/why-modern-marketers-need-build-just-buy-nickolaus-trevi%C3%B1o-ukuxe/?trackingId=mBWGArwjT%2B688WX8bOESzw%3D%3D",
     cta: "Read on LinkedIn →",
   },
@@ -35,8 +32,6 @@ const ARTICLES = [
 
 export default function WritingSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const [email, setEmail] = useState("");
-  const [submitted, setSubmitted] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -55,18 +50,6 @@ export default function WritingSection() {
     el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
     return () => observer.disconnect();
   }, []);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      // Opens Substack subscribe with pre-filled email
-      window.open(
-        `https://goodversusgreat.substack.com/subscribe?email=${encodeURIComponent(email)}`,
-        "_blank"
-      );
-      setSubmitted(true);
-    }
-  };
 
   return (
     <section
@@ -111,13 +94,11 @@ export default function WritingSection() {
           </p>
         </div>
 
-        {/* ── Post feed cards ── */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
             gap: "1.5rem",
-            marginBottom: "3rem",
           }}
         >
           {ARTICLES.map((article, i) => (
@@ -148,30 +129,19 @@ export default function WritingSection() {
                 el.style.transform = "translateY(0)";
               }}
             >
-              {/* Label + date row */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.875rem" }}>
-                <span
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.65rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.12em",
-                    color: "#2979FF",
-                  }}
-                >
-                  {article.label}
-                </span>
-                <span
-                  style={{
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.6rem",
-                    color: "rgba(255,255,255,0.25)",
-                    letterSpacing: "0.06em",
-                  }}
-                >
-                  {article.date}
-                </span>
-              </div>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.12em",
+                  color: "#2979FF",
+                  marginBottom: "0.875rem",
+                  display: "block",
+                }}
+              >
+                {article.label}
+              </span>
               <h3
                 style={{
                   fontFamily: "'Space Mono', monospace",
@@ -211,97 +181,54 @@ export default function WritingSection() {
           ))}
         </div>
 
-        {/* ── Email capture: Checklist offer ── */}
+        {/* Newsletter CTA */}
         <div
           className="gvg-fadeup"
           style={{
-            padding: "2.5rem",
-            border: "1px solid rgba(41,121,255,0.25)",
-            backgroundColor: "rgba(41,121,255,0.04)",
+            marginTop: "3rem",
+            padding: "2rem",
+            border: "1px solid rgba(255,255,255,0.09)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "1.5rem",
+            backgroundColor: "#252530",
           }}
         >
-          <div style={{ maxWidth: "560px" }}>
-            <h3
+          <div>
+            <div
               style={{
                 fontFamily: "'Space Mono', monospace",
-                fontSize: "1.125rem",
+                fontSize: "1rem",
                 fontWeight: 700,
                 color: "#FFFFFF",
-                lineHeight: 1.25,
-                letterSpacing: "-0.02em",
-                marginBottom: "0.5rem",
+                marginBottom: "0.35rem",
               }}
             >
-              Get the Decision Layer Audit Checklist
-            </h3>
+              Get the newsletter.
+            </div>
             <p
               style={{
                 fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "0.9rem",
-                color: "rgba(255,255,255,0.5)",
-                lineHeight: 1.65,
-                marginBottom: "1.5rem",
+                fontSize: "0.875rem",
+                color: "rgba(255,255,255,0.45)",
+                lineHeight: 1.6,
+                margin: 0,
               }}
             >
-              A 12-point self-assessment used with Fortune 500 measurement teams. Free download, plus the newsletter.
-            </p>
-
-            {submitted ? (
-              <p
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.8rem",
-                  color: "#2979FF",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                ✓ Opening Substack — complete your subscription there.
-              </p>
-            ) : (
-              <form
-                onSubmit={handleSubmit}
-                style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}
-              >
-                <input
-                  type="email"
-                  required
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  style={{
-                    flex: "1 1 220px",
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.875rem",
-                    backgroundColor: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    color: "#FFFFFF",
-                    padding: "0.625rem 1rem",
-                    outline: "none",
-                    letterSpacing: "0.02em",
-                  }}
-                />
-                <button
-                  type="submit"
-                  className="gvg-btn-primary"
-                  style={{ flexShrink: 0, cursor: "pointer" }}
-                >
-                  Send me the checklist
-                </button>
-              </form>
-            )}
-
-            <p
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
-                color: "rgba(255,255,255,0.25)",
-                letterSpacing: "0.06em",
-                marginTop: "0.875rem",
-              }}
-            >
-              No pitch sequences. No nurture tracks. Unsubscribe anytime.
+              I write when there's something worth saying. No pitch sequences. No nurture tracks.
             </p>
           </div>
+          <a
+            href="https://goodversusgreat.substack.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gvg-btn-primary"
+            style={{ textDecoration: "none", flexShrink: 0 }}
+          >
+            Subscribe on Substack →
+          </a>
         </div>
       </div>
     </section>

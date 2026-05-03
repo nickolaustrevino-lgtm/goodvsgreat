@@ -18,7 +18,6 @@ import AboutSection from "@/components/AboutSection";
 import BookingSection from "@/components/BookingSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
-import StickyNewsletterBar from "@/components/StickyNewsletterBar";
 
 export default function Home() {
   return (
@@ -37,7 +36,6 @@ export default function Home() {
       <BookingSection />
       <FinalCTASection />
       <Footer />
-      <StickyNewsletterBar />
     </div>
   );
 }

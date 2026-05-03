@@ -1,15 +1,10 @@
 /* PricingSection — GvG Brand Guidelines v2
    Background: --gvg-charcoal
    Cards: dark surface, featured card has Electric Blue border
-   Tiers renamed: Strategy+Build → The Decision Layer Buildout, Full Engagement → Embedded Decision Leadership
-   Exclusions: italic muted line per card
-   Founder avatar: 60px circular beside heading
    Label: IBM Plex Mono
    Ghost number: 06 */
 
 import { useEffect, useRef } from "react";
-
-const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
 const TIERS = [
   {
@@ -19,28 +14,25 @@ const TIERS = [
     desc: "A two-week audit of your current media decision system.",
     body: "I review your channel mix, measurement stack, attribution logic, and budget allocation approach. You get a written report with observations, recommendations, and a prioritized fix list.",
     bestFor: '"We think something\'s off, but we can\'t pinpoint it."',
-    doesNotInclude: "Does NOT include: implementation, ongoing oversight, or hands-on team support.",
     featured: false,
   },
   {
-    name: "The Decision Layer Buildout",
+    name: "Strategy + Build",
     price: "$7,500",
     period: "per month · 3-month minimum",
     desc: "Everything in the Diagnostic, plus I help build the solution.",
     body: "That can include measurement design, MMM and incrementality frameworks, budget governance logic, AI workflow integration, and ongoing strategic oversight. I join team calls, pressure-test assumptions, and help own the investment narrative to leadership.",
     bestFor: '"We need someone to own the strategic decision layer."',
-    doesNotInclude: "Does NOT include: day-to-day campaign execution, creative production, or replacing your media buyer.",
     featured: true,
     badge: "Most Popular",
   },
   {
-    name: "Embedded Decision Leadership",
+    name: "Full Engagement",
     price: "$15,000",
     period: "per month · 6-month minimum",
     desc: "Embedded strategic leadership.",
     body: "I operate as a fractional VP-level media and measurement partner — helping govern cross-channel investment, mentor the team, improve executive reporting, manage vendor logic, and build the infrastructure needed to improve ROI at the system level.",
     bestFor: '"We need senior media decision leadership, but not a full-time hire yet."',
-    doesNotInclude: "Does NOT include: a full-time hire, agency-of-record services, or media buying execution.",
     featured: false,
   },
 ];
@@ -66,6 +58,11 @@ export default function PricingSection() {
     return () => observer.disconnect();
   }, []);
 
+  const scrollTo = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <section
       id="pricing"
@@ -83,37 +80,19 @@ export default function PricingSection() {
         <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
           <span className="gvg-section-label">Three Ways to Work Together</span>
           <span className="gvg-divider" />
-
-          {/* Heading with founder avatar */}
-          <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexWrap: "wrap", marginBottom: "0.75rem" }}>
-            <img
-              src={PORTRAIT_URL}
-              alt="Nickolaus Trevino"
-              style={{
-                width: "52px",
-                height: "52px",
-                borderRadius: "50%",
-                objectFit: "cover",
-                objectPosition: "center top",
-                border: "1.5px solid rgba(41,121,255,0.4)",
-                flexShrink: 0,
-              }}
-            />
-            <h2
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
-                fontWeight: 700,
-                lineHeight: 1.1,
-                letterSpacing: "-0.03em",
-                color: "#FFFFFF",
-                margin: 0,
-              }}
-            >
-              The work is the same at the core.
-            </h2>
-          </div>
-
+          <h2
+            style={{
+              fontFamily: "'Space Mono', monospace",
+              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.03em",
+              color: "#FFFFFF",
+              marginBottom: "0.75rem",
+            }}
+          >
+            The work is the same at the core.
+          </h2>
           <p
             style={{
               fontFamily: "'IBM Plex Sans', sans-serif",
@@ -238,12 +217,11 @@ export default function PricingSection() {
                 {tier.body}
               </p>
 
-              {/* Best For */}
               <div
                 style={{
                   borderTop: "1px solid rgba(255,255,255,0.09)",
                   paddingTop: "1.25rem",
-                  marginBottom: "0.75rem",
+                  marginBottom: "1.5rem",
                 }}
               >
                 <div
@@ -269,28 +247,6 @@ export default function PricingSection() {
                   }}
                 >
                   {tier.bestFor}
-                </p>
-              </div>
-
-              {/* Does NOT Include */}
-              <div
-                style={{
-                  borderTop: "1px solid rgba(255,255,255,0.05)",
-                  paddingTop: "0.75rem",
-                  marginBottom: "1.5rem",
-                }}
-              >
-                <p
-                  style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.775rem",
-                    color: "rgba(255,255,255,0.28)",
-                    fontStyle: "italic",
-                    lineHeight: 1.55,
-                    margin: 0,
-                  }}
-                >
-                  {tier.doesNotInclude}
                 </p>
               </div>
 

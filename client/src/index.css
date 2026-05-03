@@ -341,34 +341,3 @@
     text-shadow: 0 0 20px rgba(41, 121, 255, 0.5);
   }
 }
-
-/* ── Logo grid responsive ── */
-@media (max-width: 640px) {
-  .gvg-logo-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-@media (min-width: 641px) and (max-width: 900px) {
-  .gvg-logo-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* ── Clients grid responsive ── */
-@media (max-width: 640px) {
-  .gvg-clients-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-}
-@media (min-width: 641px) and (max-width: 900px) {
-  .gvg-clients-grid {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-/* ── Sticky newsletter bar: desktop only ── */
-@media (max-width: 767px) {
-  .gvg-sticky-bar {
-    display: none !important;
-  }
-}

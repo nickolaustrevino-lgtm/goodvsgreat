@@ -117,21 +117,7 @@ export default function BookingSection() {
           <div className="gvg-fadeup">
             <span className="gvg-section-label">Start Here</span>
             <span className="gvg-divider" />
-            {/* Founder photo + heading row */}
-            <div style={{ display: "flex", alignItems: "flex-start", gap: "1.25rem", marginBottom: "1.5rem", flexWrap: "wrap" }}>
-              <img
-                src="/manus-storage/portrait_7d6c2a03.jpg"
-                alt="Nickolaus Trevino"
-                style={{
-                  width: "120px",
-                  height: "120px",
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  border: "1.5px solid rgba(41,121,255,0.4)",
-                  flexShrink: 0,
-                }}
-              />
-              <h2
+            <h2
               style={{
                 fontFamily: "'Space Mono', monospace",
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
@@ -145,7 +131,6 @@ export default function BookingSection() {
               Book a free{" "}
               <span style={{ color: "#2979FF" }}>30-minute diagnostic call.</span>
             </h2>
-            </div>
             <p
               style={{
                 fontFamily: "'IBM Plex Sans', sans-serif",
