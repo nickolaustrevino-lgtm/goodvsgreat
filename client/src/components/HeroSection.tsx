@@ -112,8 +112,8 @@ export default function HeroSection() {
               src={PORTRAIT_URL}
               alt="Nickolaus Trevino"
               style={{
-                width: "72px",
-                height: "72px",
+                width: "144px",
+                height: "144px",
                 objectFit: "cover",
                 objectPosition: "center top",
                 flexShrink: 0,

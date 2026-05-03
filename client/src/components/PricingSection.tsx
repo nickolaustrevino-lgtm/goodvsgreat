@@ -6,6 +6,8 @@
 
 import { useEffect, useRef } from "react";
 
+const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
+
 const TIERS = [
   {
     name: "Diagnostic",
@@ -14,25 +16,28 @@ const TIERS = [
     desc: "A two-week audit of your current media decision system.",
     body: "I review your channel mix, measurement stack, attribution logic, and budget allocation approach. You get a written report with observations, recommendations, and a prioritized fix list.",
     bestFor: '"We think something\'s off, but we can\'t pinpoint it."',
+    doesNotInclude: "Ongoing strategy, system builds, or implementation support.",
     featured: false,
   },
   {
-    name: "Strategy + Build",
+    name: "The Decision Layer Buildout",
     price: "$7,500",
     period: "per month · 3-month minimum",
     desc: "Everything in the Diagnostic, plus I help build the solution.",
     body: "That can include measurement design, MMM and incrementality frameworks, budget governance logic, AI workflow integration, and ongoing strategic oversight. I join team calls, pressure-test assumptions, and help own the investment narrative to leadership.",
     bestFor: '"We need someone to own the strategic decision layer."',
+    doesNotInclude: "Day-to-day campaign management, media buying, or creative production.",
     featured: true,
     badge: "Most Popular",
   },
   {
-    name: "Full Engagement",
+    name: "Embedded Decision Leadership",
     price: "$15,000",
     period: "per month · 6-month minimum",
     desc: "Embedded strategic leadership.",
     body: "I operate as a fractional VP-level media and measurement partner — helping govern cross-channel investment, mentor the team, improve executive reporting, manage vendor logic, and build the infrastructure needed to improve ROI at the system level.",
     bestFor: '"We need senior media decision leadership, but not a full-time hire yet."',
+    doesNotInclude: "Hands-on campaign execution, creative development, or platform ad management.",
     featured: false,
   },
 ];
@@ -58,11 +63,6 @@ export default function PricingSection() {
     return () => observer.disconnect();
   }, []);
 
-  const scrollTo = (id: string) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <section
       id="pricing"
@@ -78,6 +78,23 @@ export default function PricingSection() {
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
+          {/* Founder avatar */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
+            <img
+              src={PORTRAIT_URL}
+              alt="Nickolaus Trevino"
+              style={{
+                width: "48px",
+                height: "48px",
+                objectFit: "cover",
+                objectPosition: "center top",
+                flexShrink: 0,
+                filter: "grayscale(15%)",
+              }}
+            />
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em" }}>Nickolaus Trevino</span>
+          </div>
+
           <span className="gvg-section-label">Three Ways to Work Together</span>
           <span className="gvg-divider" />
           <h2
@@ -151,6 +168,7 @@ export default function PricingSection() {
                 </div>
               )}
 
+              {/* Tier name */}
               <div
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
@@ -164,6 +182,7 @@ export default function PricingSection() {
                 {tier.name}
               </div>
 
+              {/* Price */}
               <div style={{ marginBottom: "1.25rem" }}>
                 <span
                   style={{
@@ -191,6 +210,7 @@ export default function PricingSection() {
                 </span>
               </div>
 
+              {/* Short desc */}
               <p
                 style={{
                   fontFamily: "'IBM Plex Sans', sans-serif",
@@ -204,6 +224,7 @@ export default function PricingSection() {
                 {tier.desc}
               </p>
 
+              {/* Body copy */}
               <p
                 style={{
                   fontFamily: "'IBM Plex Sans', sans-serif",
@@ -217,11 +238,12 @@ export default function PricingSection() {
                 {tier.body}
               </p>
 
+              {/* Best For */}
               <div
                 style={{
                   borderTop: "1px solid rgba(255,255,255,0.09)",
                   paddingTop: "1.25rem",
-                  marginBottom: "1.5rem",
+                  marginBottom: "1rem",
                 }}
               >
                 <div
@@ -250,6 +272,41 @@ export default function PricingSection() {
                 </p>
               </div>
 
+              {/* Does NOT Include */}
+              <div
+                style={{
+                  borderTop: "1px solid rgba(255,255,255,0.06)",
+                  paddingTop: "1rem",
+                  marginBottom: "1.5rem",
+                }}
+              >
+                <div
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: "0.6rem",
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: "rgba(255,80,80,0.5)",
+                    marginBottom: "0.4rem",
+                  }}
+                >
+                  Does NOT Include
+                </div>
+                <p
+                  style={{
+                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontSize: "0.8125rem",
+                    color: "rgba(255,255,255,0.32)",
+                    fontStyle: "italic",
+                    lineHeight: 1.5,
+                    margin: 0,
+                  }}
+                >
+                  {tier.doesNotInclude}
+                </p>
+              </div>
+
+              {/* CTA */}
               <a
                 href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
                 target="_blank"

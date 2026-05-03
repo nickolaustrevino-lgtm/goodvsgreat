@@ -7,6 +7,8 @@
 
 import { useEffect, useRef } from "react";
 
+const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
+
 const SERVICES = [
   {
     num: "01",
@@ -84,6 +86,22 @@ export default function ServicesSection() {
 
         {/* ── Section heading ── */}
         <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
+          {/* Founder avatar */}
+          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
+            <img
+              src={PORTRAIT_URL}
+              alt="Nickolaus Trevino"
+              style={{
+                width: "48px",
+                height: "48px",
+                objectFit: "cover",
+                objectPosition: "center top",
+                flexShrink: 0,
+                filter: "grayscale(15%)",
+              }}
+            />
+            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em" }}>Nickolaus Trevino</span>
+          </div>
           <span className="gvg-section-label">What I Actually Help Clients Do</span>
           <span className="gvg-divider" />
           <h2
