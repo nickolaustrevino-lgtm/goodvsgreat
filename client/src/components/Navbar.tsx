@@ -9,9 +9,13 @@ const LOGO_URL = "/manus-storage/logo-banner_353f07ff.png";
 
 const NAV_LINKS = [
   { label: "What I Do", id: "services" },
+  { label: "The Distinction", id: "contrast" },
   { label: "Proof", id: "proof" },
-  { label: "How It Works", id: "pricing" },
+  { label: "Pricing", id: "pricing" },
   { label: "Writing", id: "writing" },
+  { label: "Is This a Fit?", id: "fit" },
+  { label: "About", id: "about" },
+  { label: "Book a Call", id: "booking" },
 ];
 
 const SOCIAL_LINKS = [
@@ -72,7 +76,7 @@ export default function Navbar() {
   const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
     checkDesktop();
     window.addEventListener("resize", checkDesktop);
     return () => window.removeEventListener("resize", checkDesktop);
@@ -154,7 +158,7 @@ export default function Navbar() {
               style={{
                 display: "flex",
                 alignItems: "center",
-                gap: "2rem",
+                gap: "1.1rem",
                 flex: 1,
                 justifyContent: "center",
               }}
@@ -168,7 +172,7 @@ export default function Navbar() {
                     border: "none",
                     padding: 0,
                     fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.875rem",
+                    fontSize: "0.8rem",
                     fontWeight: 400,
                     color: "rgba(255,255,255,0.6)",
                     cursor: "pointer",
