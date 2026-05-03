@@ -307,60 +307,6 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        {/* ── Capability cards ── */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: "1.5rem",
-          }}
-        >
-          {SERVICES.map((s, i) => (
-            <div
-              key={i}
-              className="gvg-fadeup gvg-card"
-              style={{ transitionDelay: `${i * 100}ms` }}
-            >
-              <div
-                style={{
-                  fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.75rem",
-                  fontWeight: 400,
-                  color: "#2979FF",
-                  letterSpacing: "0.1em",
-                  marginBottom: "1rem",
-                }}
-              >
-                {s.num}
-              </div>
-              <h3
-                style={{
-                  fontFamily: "'Space Mono', monospace",
-                  fontSize: "1.0625rem",
-                  fontWeight: 700,
-                  color: "#FFFFFF",
-                  lineHeight: 1.3,
-                  letterSpacing: "-0.02em",
-                  marginBottom: "0.875rem",
-                }}
-              >
-                {s.title}
-              </h3>
-              <p
-                style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
-                  fontSize: "0.9375rem",
-                  color: "rgba(255,255,255,0.55)",
-                  lineHeight: 1.7,
-                  margin: 0,
-                }}
-              >
-                {s.desc}
-              </p>
-            </div>
-          ))}
-        </div>
-
         {/* Bottom callout */}
         <div
           className="gvg-fadeup"
