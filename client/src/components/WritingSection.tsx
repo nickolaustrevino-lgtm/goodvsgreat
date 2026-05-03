@@ -221,7 +221,7 @@ export default function WritingSection() {
             </p>
           </div>
           <a
-            href="https://goodversusgreat.substack.com"
+            href="https://goodversusgreat.substack.com/"
             target="_blank"
             rel="noopener noreferrer"
             className="gvg-btn-primary"
