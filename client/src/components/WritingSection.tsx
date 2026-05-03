@@ -188,10 +188,15 @@ export default function WritingSection() {
             marginTop: "3rem",
             padding: "2rem",
             border: "1px solid rgba(255,255,255,0.09)",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "1.5rem",
             backgroundColor: "#252530",
           }}
         >
-          <div style={{ marginBottom: "1.25rem" }}>
+          <div>
             <div
               style={{
                 fontFamily: "'Space Mono', monospace",
@@ -215,28 +220,12 @@ export default function WritingSection() {
               I write when there's something worth saying. No pitch sequences. No nurture tracks.
             </p>
           </div>
-          <iframe
-            src="https://goodversusgreat.substack.com/embed"
-            width="480"
-            height="320"
-            style={{ border: "1px solid #EEE", background: "white", display: "block", maxWidth: "100%" }}
-            frameBorder={0}
-            scrolling="no"
-            title="Subscribe to Good vs. Great newsletter"
-          />
           <a
             href="https://goodversusgreat.substack.com"
             target="_blank"
             rel="noopener noreferrer"
-            style={{
-              display: "inline-block",
-              marginTop: "1rem",
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.75rem",
-              color: "#2979FF",
-              textDecoration: "none",
-              letterSpacing: "0.04em",
-            }}
+            className="gvg-btn-primary"
+            style={{ textDecoration: "none", flexShrink: 0 }}
           >
             Subscribe on Substack →
           </a>
