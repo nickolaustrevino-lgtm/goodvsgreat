@@ -159,7 +159,7 @@ export default function AboutSection() {
               }}
             >
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/nickolaustrevino/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="gvg-btn-secondary"
