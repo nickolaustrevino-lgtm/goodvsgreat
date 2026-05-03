@@ -259,6 +259,12 @@ export default function Footer() {
           >
             © {new Date().getFullYear()} Good vs. Great. All rights reserved.
           </span>
+          <img
+            src="/manus-storage/gvg-logo_7908b53b.png"
+            alt=""
+            aria-hidden="true"
+            style={{ width: "18px", height: "18px", objectFit: "contain", opacity: 0.22, borderRadius: "3px" }}
+          />
           <span
             style={{
               fontFamily: "'IBM Plex Mono', monospace",

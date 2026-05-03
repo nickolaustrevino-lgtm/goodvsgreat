@@ -8,6 +8,8 @@
 
 import { useEffect, useRef } from "react";
 
+const GVG_LOGO = "/manus-storage/gvg-logo_7908b53b.png";
+
 const COMPARISONS = [
   {
     good: "Good media reports performance.",
@@ -161,6 +163,12 @@ export default function GoodVsGreatBlock() {
                 gap: "0.75rem",
               }}
             >
+              <img
+                src={GVG_LOGO}
+                alt=""
+                aria-hidden="true"
+                style={{ width: "20px", height: "20px", objectFit: "contain", opacity: 0.9, borderRadius: "4px", flexShrink: 0 }}
+              />
               <span
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
@@ -263,13 +271,11 @@ export default function GoodVsGreatBlock() {
             gap: "1.5rem",
           }}
         >
-          <div
-            style={{
-              width: "2rem",
-              height: "2px",
-              backgroundColor: "#2979FF",
-              flexShrink: 0,
-            }}
+          <img
+            src={GVG_LOGO}
+            alt=""
+            aria-hidden="true"
+            style={{ width: "24px", height: "24px", objectFit: "contain", opacity: 0.6, borderRadius: "5px", flexShrink: 0 }}
           />
           <p
             style={{

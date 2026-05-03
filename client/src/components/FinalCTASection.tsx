@@ -66,6 +66,14 @@ export default function FinalCTASection() {
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="gvg-fadeup" style={{ maxWidth: "720px", margin: "0 auto" }}>
+          <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}>
+            <img
+              src="/manus-storage/gvg-logo_7908b53b.png"
+              alt=""
+              aria-hidden="true"
+              style={{ width: "36px", height: "36px", objectFit: "contain", opacity: 0.75, borderRadius: "7px" }}
+            />
+          </div>
           <span className="gvg-section-label" style={{ display: "block", textAlign: "center" }}>
             The Decision
           </span>

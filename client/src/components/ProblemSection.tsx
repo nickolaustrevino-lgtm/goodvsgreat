@@ -139,8 +139,17 @@ export default function ProblemSection() {
             marginTop: "3rem",
             paddingTop: "2rem",
             borderTop: "1px solid rgba(255,255,255,0.09)",
+            display: "flex",
+            alignItems: "center",
+            gap: "1rem",
           }}
         >
+          <img
+            src="/manus-storage/gvg-logo_7908b53b.png"
+            alt=""
+            aria-hidden="true"
+            style={{ width: "22px", height: "22px", objectFit: "contain", opacity: 0.45, borderRadius: "4px", flexShrink: 0 }}
+          />
           <p
             style={{
               fontFamily: "'Space Mono', monospace",

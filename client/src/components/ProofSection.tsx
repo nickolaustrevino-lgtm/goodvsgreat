@@ -63,7 +63,15 @@ export default function ProofSection() {
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
-          <span className="gvg-section-label">Proof, Not Performance Theater</span>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.5rem" }}>
+            <img
+              src="/manus-storage/gvg-logo_7908b53b.png"
+              alt=""
+              aria-hidden="true"
+              style={{ width: "18px", height: "18px", objectFit: "contain", opacity: 0.5, borderRadius: "3px", flexShrink: 0 }}
+            />
+            <span className="gvg-section-label" style={{ marginBottom: 0 }}>Proof, Not Performance Theater</span>
+          </div>
           <span className="gvg-divider" />
           <h2
             style={{
