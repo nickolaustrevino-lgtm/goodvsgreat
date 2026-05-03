@@ -169,8 +169,19 @@
     .container {
       padding-left: 3rem;
       padding-right: 3rem;
-      max-width: 1280px;
+      max-width: 1200px;
     }
+  }
+  /* ── Spacing system tokens ── */
+  /* Section padding: 120px top/bottom */
+  /* Inner spacing scale: 24 / 32 / 48 / 64px only */
+  .gvg-section {
+    padding-top: 7.5rem;   /* 120px */
+    padding-bottom: 7.5rem;
+  }
+  .gvg-section--sm {
+    padding-top: 5rem;     /* 80px */
+    padding-bottom: 5rem;
   }
 
   /* ── GvG Section Label ── IBM Plex Mono, uppercase, Electric Blue */
@@ -256,7 +267,7 @@
     }
   }
 
-  /* ── Primary CTA button ── */
+   /* ── Primary CTA button ── */
   .gvg-btn-primary {
     display: inline-block;
     background-color: #2979FF;
@@ -264,40 +275,44 @@
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 500;
-    padding: 0.8rem 1.75rem;
+    padding: 1.125rem 2.25rem;  /* 18px 36px — more authority */
     border: none;
-    border-radius: 0;
+    border-radius: 8px !important;
     cursor: pointer;
     text-decoration: none;
-    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
     white-space: nowrap;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
   }
   .gvg-btn-primary:hover {
-    background-color: #5B9BFF;
-    box-shadow: 0 0 20px rgba(41, 121, 255, 0.3);
+    background-color: #4A8FFF;
+    box-shadow: 0 4px 24px rgba(41, 121, 255, 0.4);
+    transform: scale(1.02);
   }
-
+  .gvg-btn-primary:active {
+    transform: scale(0.98);
+  }
   /* ── Secondary ghost CTA button ── */
   .gvg-btn-secondary {
     display: inline-block;
     background-color: transparent;
-    color: #FFFFFF;
+    color: rgba(255,255,255,0.85);
     font-family: 'IBM Plex Sans', sans-serif;
     font-size: 0.95rem;
     font-weight: 400;
-    padding: 0.8rem 1.75rem;
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    border-radius: 0;
+    padding: 1.125rem 2.25rem;  /* 18px 36px — matches primary */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px !important;
     cursor: pointer;
     text-decoration: none;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    transition: border-color 0.15s ease, color 0.15s ease, transform 0.15s ease;
     white-space: nowrap;
-    letter-spacing: 0.01em;
+    letter-spacing: 0.02em;
   }
   .gvg-btn-secondary:hover {
     border-color: #2979FF;
     color: #2979FF;
+    transform: scale(1.02);
   }
 
   /* ── Dark surface card ── */

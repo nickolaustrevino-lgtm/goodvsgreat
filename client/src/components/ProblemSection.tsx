@@ -53,7 +53,7 @@ export default function ProblemSection() {
       ref={ref}
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "7rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -69,7 +69,7 @@ export default function ProblemSection() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               letterSpacing: "-0.03em",
               color: "#FFFFFF",
               marginBottom: "1.25rem",
@@ -83,7 +83,7 @@ export default function ProblemSection() {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1.0625rem",
               color: "rgba(255,255,255,0.55)",
-              lineHeight: 1.75,
+              lineHeight: 1.65,
             }}
           >
             Most companies don't have a channel problem. They have a decision problem. Nobody fully owns the answer to the question leadership actually cares about:{" "}
@@ -122,7 +122,7 @@ export default function ProblemSection() {
                   fontFamily: "'IBM Plex Sans', sans-serif",
                   fontSize: "0.9375rem",
                   color: "rgba(255,255,255,0.6)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.65,
                   margin: 0,
                 }}
               >

@@ -69,7 +69,7 @@ export default function PricingSection() {
       ref={ref}
       style={{
         backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -102,7 +102,7 @@ export default function PricingSection() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               letterSpacing: "-0.03em",
               color: "#FFFFFF",
               marginBottom: "0.75rem",
@@ -115,8 +115,8 @@ export default function PricingSection() {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
-              lineHeight: 1.7,
-              maxWidth: "500px",
+              lineHeight: 1.65,
+              maxWidth: "55ch",
             }}
           >
             Helping your team make better media decisions. The difference is depth.
@@ -230,7 +230,7 @@ export default function PricingSection() {
                   fontFamily: "'IBM Plex Sans', sans-serif",
                   fontSize: "0.875rem",
                   color: "rgba(255,255,255,0.45)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.65,
                   marginBottom: "1.5rem",
                   flex: 1,
                 }}

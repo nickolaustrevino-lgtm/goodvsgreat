@@ -36,7 +36,7 @@ export default function AboutSection() {
       ref={ref}
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "7rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -117,7 +117,7 @@ export default function AboutSection() {
                 fontFamily: "'Space Mono', monospace",
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
                 fontWeight: 700,
-                lineHeight: 1.1,
+                lineHeight: 1.05,
                 letterSpacing: "-0.03em",
                 color: "#FFFFFF",
                 marginBottom: "1.75rem",
@@ -139,7 +139,7 @@ export default function AboutSection() {
                     fontFamily: "'IBM Plex Sans', sans-serif",
                     fontSize: "1rem",
                     color: "rgba(255,255,255,0.6)",
-                    lineHeight: 1.75,
+                    lineHeight: 1.65,
                     margin: 0,
                   }}
                 >

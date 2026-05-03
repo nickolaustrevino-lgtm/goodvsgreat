@@ -48,8 +48,8 @@ export default function HeroSection() {
       className="gvg-scanline"
       style={{
         backgroundColor: "oklch(16% 0.005 285)",
-        paddingTop: "calc(64px + 6rem)",
-        paddingBottom: "6rem",
+        paddingTop: "calc(64px + 7.5rem)",
+        paddingBottom: "7.5rem",
         position: "relative",
         overflow: "hidden",
       }}
@@ -71,7 +71,7 @@ export default function HeroSection() {
           <h1
             style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: "clamp(2.4rem, 5.5vw, 4rem)",
+              fontSize: "clamp(2.6rem, 5.8vw, 4.5rem)",
               fontWeight: 700,
               lineHeight: 1.05,
               letterSpacing: "-0.03em",
@@ -89,9 +89,9 @@ export default function HeroSection() {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1.125rem",
               color: "rgba(255,255,255,0.65)",
-              lineHeight: 1.7,
+              lineHeight: 1.65,
               marginBottom: "2rem",
-              maxWidth: "620px",
+              maxWidth: "60ch",
             }}
           >
             Good vs. Great helps brands turn paid media, analytics, and AI into clearer decisions, stronger systems, and measurable growth.

@@ -57,7 +57,7 @@ export default function WritingSection() {
       ref={ref}
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "7rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -73,7 +73,7 @@ export default function WritingSection() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               letterSpacing: "-0.03em",
               color: "#FFFFFF",
               marginBottom: "0.75rem",
@@ -86,7 +86,7 @@ export default function WritingSection() {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
-              lineHeight: 1.7,
+              lineHeight: 1.65,
               maxWidth: "540px",
             }}
           >

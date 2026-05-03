@@ -40,7 +40,7 @@ export default function FinalCTASection() {
       className="gvg-scanline"
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "8rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
         textAlign: "center",
@@ -82,9 +82,9 @@ export default function FinalCTASection() {
           <h2
             style={{
               fontFamily: "'Space Mono', monospace",
-              fontSize: "clamp(1.75rem, 4vw, 3rem)",
+              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               fontWeight: 700,
-              lineHeight: 1.05,
+              lineHeight: 1.02,
               letterSpacing: "-0.03em",
               color: "#FFFFFF",
               marginBottom: "1.5rem",
@@ -102,9 +102,9 @@ export default function FinalCTASection() {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1.0625rem",
               color: "rgba(255,255,255,0.5)",
-              lineHeight: 1.75,
+              lineHeight: 1.65,
               marginBottom: "2.5rem",
-              maxWidth: "520px",
+              maxWidth: "55ch",
               margin: "0 auto 2.5rem",
             }}
           >

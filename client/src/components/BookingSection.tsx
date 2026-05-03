@@ -93,7 +93,7 @@ export default function BookingSection() {
       ref={ref}
       style={{
         backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -138,7 +138,7 @@ export default function BookingSection() {
                 fontFamily: "'Space Mono', monospace",
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
                 fontWeight: 700,
-                lineHeight: 1.1,
+                lineHeight: 1.05,
                 letterSpacing: "-0.03em",
                 color: "#FFFFFF",
                 marginBottom: "1.5rem",
@@ -152,7 +152,7 @@ export default function BookingSection() {
                 fontFamily: "'IBM Plex Sans', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.55)",
-                lineHeight: 1.75,
+                lineHeight: 1.65,
                 marginBottom: "2rem",
               }}
             >
@@ -250,7 +250,7 @@ export default function BookingSection() {
                     fontFamily: "'IBM Plex Sans', sans-serif",
                     fontSize: "0.9375rem",
                     color: "rgba(255,255,255,0.5)",
-                    lineHeight: 1.7,
+                    lineHeight: 1.65,
                   }}
                 >
                   I'll review your details and follow up to confirm a time. Expect a response within 24 hours.

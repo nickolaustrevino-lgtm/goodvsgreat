@@ -60,7 +60,7 @@ export default function GoodVsGreatBlock() {
       ref={ref}
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "8rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}

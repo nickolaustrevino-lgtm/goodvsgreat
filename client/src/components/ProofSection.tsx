@@ -51,7 +51,7 @@ export default function ProofSection() {
       ref={ref}
       style={{
         backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7rem 0",
+        padding: "7.5rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -78,7 +78,7 @@ export default function ProofSection() {
               fontFamily: "'Space Mono', monospace",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
-              lineHeight: 1.1,
+              lineHeight: 1.05,
               letterSpacing: "-0.03em",
               color: "#FFFFFF",
               marginBottom: "0.75rem",
@@ -92,8 +92,8 @@ export default function ProofSection() {
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
-              lineHeight: 1.7,
-              maxWidth: "560px",
+              lineHeight: 1.65,
+              maxWidth: "60ch",
             }}
           >
             I'm not interested in a bloated portfolio. I'd rather show you decision frameworks, working tools, and strategic systems that tie media to business outcomes.
@@ -148,7 +148,7 @@ export default function ProofSection() {
                   fontFamily: "'IBM Plex Sans', sans-serif",
                   fontSize: "0.9375rem",
                   color: "rgba(255,255,255,0.55)",
-                  lineHeight: 1.7,
+                  lineHeight: 1.65,
                   marginBottom: "1.5rem",
                   flex: 1,
                 }}

@@ -17,7 +17,7 @@ export default function ClientsSection() {
     <section
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "4rem 0",
+        padding: "5rem 0",
         borderTop: "1px solid rgba(255,255,255,0.06)",
         borderBottom: "1px solid rgba(255,255,255,0.06)",
         overflow: "hidden",
