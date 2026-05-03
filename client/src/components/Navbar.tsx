@@ -1,9 +1,7 @@
 /* Navbar — GvG Brand Guidelines v2
-   Background: --gvg-charcoal (oklch 16%)
-   Logo: GoodvsGreatBlueBannerLogoOnly.png (uploaded brand asset)
-   Nav: IBM Plex Sans 400
-   Social icons: Instagram, Facebook, LinkedIn, TikTok, Threads
-   CTA: Electric Blue, border-radius: 0 */
+   Uses explicit CSS media queries (not Tailwind responsive classes) for reliable breakpoints.
+   Mobile (<768px): logo + hamburger only
+   Desktop (≥768px): logo + nav links + social icons + CTA */
 
 import { useState, useEffect } from "react";
 
@@ -71,6 +69,14 @@ const SOCIAL_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
+
+  useEffect(() => {
+    const checkDesktop = () => setIsDesktop(window.innerWidth >= 768);
+    checkDesktop();
+    window.addEventListener("resize", checkDesktop);
+    return () => window.removeEventListener("resize", checkDesktop);
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -78,11 +84,18 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu when switching to desktop
+  useEffect(() => {
+    if (isDesktop) setMenuOpen(false);
+  }, [isDesktop]);
+
   const scrollTo = (id: string) => {
     setMenuOpen(false);
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
+
+  const navBg = "oklch(16% 0.005 285)";
 
   return (
     <header
@@ -92,7 +105,7 @@ export default function Navbar() {
         left: 0,
         right: 0,
         zIndex: 100,
-        backgroundColor: "oklch(16% 0.005 285)",
+        backgroundColor: navBg,
         borderBottom: scrolled
           ? "1px solid rgba(255,255,255,0.09)"
           : "1px solid rgba(255,255,255,0.04)",
@@ -100,17 +113,20 @@ export default function Navbar() {
         transition: "box-shadow 0.3s ease, border-color 0.3s ease",
       }}
     >
+      {/* Main bar */}
       <div
-        className="container"
         style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 1rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
           height: "64px",
-          gap: "1.5rem",
+          gap: "1rem",
         }}
       >
-        {/* Logo — GoodvsGreatBlueBannerLogoOnly brand asset */}
+        {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
           style={{
@@ -127,147 +143,139 @@ export default function Navbar() {
           <img
             src={LOGO_URL}
             alt="good vs. Great"
-            style={{
-              height: "34px",
-              width: "auto",
-              display: "block",
-            }}
+            style={{ height: "34px", width: "auto", display: "block" }}
           />
         </button>
 
-        {/* Desktop nav */}
-        <nav
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "2rem",
-            flex: 1,
-            justifyContent: "center",
-          }}
-          className="hidden md:flex"
-        >
-          {NAV_LINKS.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
+        {/* Desktop: nav + social + CTA */}
+        {isDesktop && (
+          <>
+            <nav
               style={{
-                background: "none",
-                border: "none",
-                padding: 0,
-                fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "0.875rem",
-                fontWeight: 400,
-                color: "rgba(255,255,255,0.6)",
-                cursor: "pointer",
-                transition: "color 0.15s ease",
-                letterSpacing: "0.01em",
-                whiteSpace: "nowrap",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.6)";
+                display: "flex",
+                alignItems: "center",
+                gap: "2rem",
+                flex: 1,
+                justifyContent: "center",
               }}
             >
-              {link.label}
-            </button>
-          ))}
-        </nav>
+              {NAV_LINKS.map((link) => (
+                <button
+                  key={link.id}
+                  onClick={() => scrollTo(link.id)}
+                  style={{
+                    background: "none",
+                    border: "none",
+                    padding: 0,
+                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontSize: "0.875rem",
+                    fontWeight: 400,
+                    color: "rgba(255,255,255,0.6)",
+                    cursor: "pointer",
+                    transition: "color 0.15s ease",
+                    letterSpacing: "0.01em",
+                    whiteSpace: "nowrap",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.6)";
+                  }}
+                >
+                  {link.label}
+                </button>
+              ))}
+            </nav>
 
-        {/* Right side: social icons + CTA */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "1rem",
-            flexShrink: 0,
-          }}
-          className="hidden md:flex"
-        >
-          {/* Social icons */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            {SOCIAL_LINKS.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={s.label}
-                style={{
-                  color: "rgba(255,255,255,0.4)",
-                  display: "flex",
-                  alignItems: "center",
-                  transition: "color 0.15s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = "#2979FF";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.4)";
-                }}
+            <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0 }}>
+              {/* Social icons */}
+              <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                {SOCIAL_LINKS.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={s.label}
+                    style={{
+                      color: "rgba(255,255,255,0.4)",
+                      display: "flex",
+                      alignItems: "center",
+                      transition: "color 0.15s ease",
+                    }}
+                    onMouseEnter={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.color = "#2979FF";
+                    }}
+                    onMouseLeave={(e) => {
+                      (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.4)";
+                    }}
+                  >
+                    {s.icon}
+                  </a>
+                ))}
+              </div>
+
+              {/* Divider */}
+              <span style={{ width: "1px", height: "20px", backgroundColor: "rgba(255,255,255,0.12)", flexShrink: 0 }} />
+
+              <button
+                onClick={() => scrollTo("booking")}
+                className="gvg-btn-primary"
+                style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem", whiteSpace: "nowrap" }}
               >
-                {s.icon}
-              </a>
-            ))}
-          </div>
+                Book a Call →
+              </button>
+            </div>
+          </>
+        )}
 
-          {/* Divider */}
-          <span style={{ width: "1px", height: "20px", backgroundColor: "rgba(255,255,255,0.12)" }} />
-
+        {/* Mobile: hamburger only */}
+        {!isDesktop && (
           <button
-            onClick={() => scrollTo("booking")}
-            className="gvg-btn-primary"
-            style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem" }}
+            onClick={() => setMenuOpen(!menuOpen)}
+            style={{
+              background: "none",
+              border: "none",
+              cursor: "pointer",
+              padding: "0.5rem",
+              display: "flex",
+              flexDirection: "column",
+              gap: "5px",
+              flexShrink: 0,
+            }}
+            aria-label="Toggle menu"
           >
-            Book a Call →
+            {[0, 1, 2].map((i) => (
+              <span
+                key={i}
+                style={{
+                  display: "block",
+                  width: "22px",
+                  height: "2px",
+                  backgroundColor: "#FFFFFF",
+                  transition: "transform 0.2s ease, opacity 0.2s ease",
+                  transform:
+                    i === 0 && menuOpen
+                      ? "translateY(7px) rotate(45deg)"
+                      : i === 2 && menuOpen
+                      ? "translateY(-7px) rotate(-45deg)"
+                      : "none",
+                  opacity: i === 1 && menuOpen ? 0 : 1,
+                }}
+              />
+            ))}
           </button>
-        </div>
-
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden"
-          onClick={() => setMenuOpen(!menuOpen)}
-          style={{
-            background: "none",
-            border: "none",
-            cursor: "pointer",
-            padding: "0.5rem",
-            display: "flex",
-            flexDirection: "column",
-            gap: "5px",
-          }}
-          aria-label="Toggle menu"
-        >
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              style={{
-                display: "block",
-                width: "22px",
-                height: "2px",
-                backgroundColor: "#FFFFFF",
-                transition: "transform 0.2s ease, opacity 0.2s ease",
-                transform:
-                  i === 0 && menuOpen
-                    ? "translateY(7px) rotate(45deg)"
-                    : i === 2 && menuOpen
-                    ? "translateY(-7px) rotate(-45deg)"
-                    : "none",
-                opacity: i === 1 && menuOpen ? 0 : 1,
-              }}
-            />
-          ))}
-        </button>
+        )}
       </div>
 
-      {/* Mobile menu */}
-      {menuOpen && (
+      {/* Mobile dropdown menu */}
+      {!isDesktop && menuOpen && (
         <div
           style={{
-            backgroundColor: "oklch(16% 0.005 285)",
+            backgroundColor: navBg,
             borderTop: "1px solid rgba(255,255,255,0.09)",
-            padding: "1.5rem",
+            padding: "1.5rem 1rem 2rem",
             display: "flex",
             flexDirection: "column",
             gap: "1.25rem",
@@ -280,20 +288,21 @@ export default function Navbar() {
               style={{
                 background: "none",
                 border: "none",
-                padding: 0,
+                padding: "0.25rem 0",
                 fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "1rem",
-                color: "rgba(255,255,255,0.7)",
+                fontSize: "1.0625rem",
+                color: "rgba(255,255,255,0.75)",
                 cursor: "pointer",
                 textAlign: "left",
+                letterSpacing: "0.01em",
               }}
             >
               {link.label}
             </button>
           ))}
 
-          {/* Mobile social icons */}
-          <div style={{ display: "flex", gap: "1.25rem", paddingTop: "0.25rem" }}>
+          {/* Social icons row */}
+          <div style={{ display: "flex", gap: "1.25rem", paddingTop: "0.25rem", alignItems: "center" }}>
             {SOCIAL_LINKS.map((s) => (
               <a
                 key={s.label}
@@ -301,7 +310,12 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={s.label}
-                style={{ color: "rgba(255,255,255,0.5)", display: "flex", alignItems: "center" }}
+                style={{
+                  color: "rgba(255,255,255,0.45)",
+                  display: "flex",
+                  alignItems: "center",
+                  transition: "color 0.15s ease",
+                }}
               >
                 {s.icon}
               </a>
@@ -311,6 +325,7 @@ export default function Navbar() {
           <button
             onClick={() => scrollTo("booking")}
             className="gvg-btn-primary"
+            style={{ marginTop: "0.25rem" }}
           >
             Book a Call →
           </button>
