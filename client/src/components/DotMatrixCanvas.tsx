@@ -136,21 +136,25 @@ export default function DotMatrixCanvas({
         let radius: number;
 
         if (d.isHot) {
-          // Hot dots: slightly brighter, cyan-tinted — still subtle
-          alpha = d.baseAlpha * 0.5 + pulse * d.hotIntensity * 0.35;
-          r = Math.round(BASE_COLOR[0] + (HOT_COLOR[0] - BASE_COLOR[0]) * pulse);
-          g = Math.round(BASE_COLOR[1] + (HOT_COLOR[1] - BASE_COLOR[1]) * pulse);
-          b = Math.round(BASE_COLOR[2] + (HOT_COLOR[2] - BASE_COLOR[2]) * pulse);
-          radius = DOT_RADIUS + pulse * 0.8;
+          // Hot dots: pulse from dim base up to full 100% brightness at peak
+          alpha = Math.min(d.baseAlpha + pulse * d.hotIntensity, 1.0);
+          // Color shifts toward pure white-cyan at full brightness
+          const WHITE = [255, 255, 255] as const;
+          const blend = pulse * d.hotIntensity;
+          r = Math.round(BASE_COLOR[0] + (HOT_COLOR[0] - BASE_COLOR[0]) * pulse + (WHITE[0] - HOT_COLOR[0]) * Math.max(blend - 0.5, 0) * 2);
+          g = Math.round(BASE_COLOR[1] + (HOT_COLOR[1] - BASE_COLOR[1]) * pulse + (WHITE[1] - HOT_COLOR[1]) * Math.max(blend - 0.5, 0) * 2);
+          b = Math.round(BASE_COLOR[2] + (HOT_COLOR[2] - BASE_COLOR[2]) * pulse + (WHITE[2] - HOT_COLOR[2]) * Math.max(blend - 0.5, 0) * 2);
+          radius = DOT_RADIUS + pulse * 2.0; // expand more at peak
 
-          // Glow effect for hot dots
-          // Subtle glow — much smaller radius
-          const grd = ctx.createRadialGradient(x, y, 0, x, y, radius * 2.2);
-          grd.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.25})`);
+          // Glow halo — scales with pulse so it blooms at full brightness
+          const glowRadius = radius * (2.5 + pulse * 2.0);
+          const grd = ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
+          grd.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.6})`);
+          grd.addColorStop(0.4, `rgba(${r},${g},${b},${alpha * 0.2})`);
           grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
           ctx.fillStyle = grd;
           ctx.beginPath();
-          ctx.arc(x, y, radius * 2.2, 0, Math.PI * 2);
+          ctx.arc(x, y, glowRadius, 0, Math.PI * 2);
           ctx.fill();
         } else {
           alpha = d.baseAlpha * (0.6 + pulse * 0.4); // gentle pulse on regular dots
