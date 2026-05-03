@@ -1,32 +1,30 @@
 /* ClientsSection — GvG Brand Guidelines v2
    Background: --gvg-navy
    Label: IBM Plex Mono, muted white
-   Logos: #F5F5F5, uniform height on transparent bg
+   Logos: #F5F5F5, ~90px height, transparent bg
    Marquee: CSS animation, pauses on hover */
 
 interface ClientLogo {
   name: string;
   logo: string;
-  height: number; // rendered height in px
 }
 
 const CLIENTS: ClientLogo[] = [
-  { name: "Epic Games",          logo: "/manus-storage/epic_games_e8c4d78e.png",   height: 52  },
-  { name: "Microsoft",           logo: "/manus-storage/microsoft_75b5899a.png",    height: 52  },
-  { name: "Warner Bros.",        logo: "/manus-storage/warnerbros_a41618cc.png",   height: 48  },
-  { name: "Walmart",             logo: "/manus-storage/walmart_b04ca64f.png",      height: 40  },
-  { name: "Amazon",              logo: "/manus-storage/amazon_52f29857.png",       height: 40  },
-  { name: "2K Games",            logo: "/manus-storage/2k_games_2e4d48bb.png",     height: 44  },
-  { name: "Razer",               logo: "/manus-storage/razer_072f8a59.png",        height: 36  },
-  { name: "Turtle Beach",        logo: "/manus-storage/turtlebeach_7093de44.png",  height: 44  },
-  { name: "Samsung",             logo: "/manus-storage/samsung_739a98f7.png",      height: 52  },
-  { name: "Scopely",             logo: "/manus-storage/scopely_ced0610d.png",      height: 52  },
-  { name: "FlatRate Moving",     logo: "/manus-storage/flatrate_6923ecf5.png",     height: 44  },
-  { name: "Charter Schools USA", logo: "/manus-storage/charterusa_01a54216.png",   height: 40  },
+  { name: "Epic Games",          logo: "/manus-storage/epic_games_f60f1c01.png"   },
+  { name: "Microsoft",           logo: "/manus-storage/microsoft_940eb498.png"    },
+  { name: "Warner Bros.",        logo: "/manus-storage/warnerbros_e8e50a85.png"   },
+  { name: "Walmart",             logo: "/manus-storage/walmart_d6aa680f.png"      },
+  { name: "Amazon",              logo: "/manus-storage/amazon_7fece456.png"       },
+  { name: "2K Games",            logo: "/manus-storage/2k_games_d1045906.png"     },
+  { name: "Razer",               logo: "/manus-storage/razer_991f2868.png"        },
+  { name: "Turtle Beach",        logo: "/manus-storage/turtlebeach_71e38bf3.png"  },
+  { name: "Samsung",             logo: "/manus-storage/samsung_381aa17f.png"      },
+  { name: "Scopely",             logo: "/manus-storage/scopely_09b65381.png"      },
+  { name: "FlatRate Moving",     logo: "/manus-storage/flatrate_6ac3b3ff.png"     },
+  { name: "Charter Schools USA", logo: "/manus-storage/charterusa_111cf7f8.png"   },
 ];
 
 export default function ClientsSection() {
-  // Triple the list so the marquee loops seamlessly
   const tripled = [...CLIENTS, ...CLIENTS, ...CLIENTS];
 
   return (
@@ -48,7 +46,7 @@ export default function ClientsSection() {
           display: flex;
           align-items: center;
           width: max-content;
-          animation: gvg-marquee-scroll 40s linear infinite;
+          animation: gvg-marquee-scroll 44s linear infinite;
         }
         .gvg-marquee-inner:hover {
           animation-play-state: paused;
@@ -80,30 +78,16 @@ export default function ClientsSection() {
       {/* Scrolling logo strip */}
       <div style={{ overflow: "hidden", position: "relative" }}>
         {/* Fade edges */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            top: 0,
-            bottom: 0,
-            width: "120px",
-            background: "linear-gradient(to right, #1A1A2E, transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: "120px",
-            background: "linear-gradient(to left, #1A1A2E, transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
+        <div style={{
+          position: "absolute", left: 0, top: 0, bottom: 0, width: "120px",
+          background: "linear-gradient(to right, #1A1A2E, transparent)",
+          zIndex: 2, pointerEvents: "none",
+        }} />
+        <div style={{
+          position: "absolute", right: 0, top: 0, bottom: 0, width: "120px",
+          background: "linear-gradient(to left, #1A1A2E, transparent)",
+          zIndex: 2, pointerEvents: "none",
+        }} />
 
         <div className="gvg-marquee-inner">
           {tripled.map((client, i) => (
@@ -112,9 +96,9 @@ export default function ClientsSection() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                padding: "0 3rem",
+                padding: "0 3.5rem",
                 flexShrink: 0,
-                height: "64px",
+                height: "110px",
               }}
             >
               <img
@@ -122,7 +106,7 @@ export default function ClientsSection() {
                 alt={client.name}
                 className="gvg-client-logo"
                 style={{
-                  height: `${client.height}px`,
+                  height: "90px",
                   width: "auto",
                   objectFit: "contain",
                   display: "block",
