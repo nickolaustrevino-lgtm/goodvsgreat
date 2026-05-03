@@ -1,52 +1,11 @@
 /* ServicesSection — GvG Brand Guidelines v2
    Background: --gvg-charcoal
-   Decision Layer diagram: 3-tier stacked HTML/CSS, Electric Blue borders + arrows
-   Cards: dark surface, Electric Blue top border accent
-   Numbers: IBM Plex Mono, Electric Blue
+   Decision Layer diagram: inline HTML/CSS, class names from spec (decision-layer, dl-block, etc.)
    Ghost number: 03 */
 
 import { useEffect, useRef } from "react";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
-
-const SERVICES = [
-  {
-    num: "01",
-    title: "Measurement Infrastructure",
-    desc: "I build the systems that make paid media easier to trust: MMM, incrementality testing, brand lift frameworks, and decision-ready measurement models that go beyond last-click reporting.",
-  },
-  {
-    num: "02",
-    title: "Cross-Channel Budget Strategy",
-    desc: "I help govern investment across the full system. Where should the next dollar go? What is overstated? What should be reallocated? Where are you hitting diminishing returns? That's the layer most teams are missing.",
-  },
-  {
-    num: "03",
-    title: "AI-Native Decision Tools",
-    desc: "I build tools clients actually use — calculators, planning systems, market intelligence workflows, and decision-support dashboards. Not AI theater. Working infrastructure that helps teams make faster, better calls.",
-  },
-];
-
-const DIAGRAM_TIERS = [
-  {
-    label: "Tier 1",
-    title: "MEASUREMENT INFRASTRUCTURE",
-    desc: "Clean data, attribution models, and incrementality frameworks that can actually be trusted.",
-    connector: "feeds",
-  },
-  {
-    label: "Tier 2",
-    title: "CROSS-CHANNEL BUDGET STRATEGY",
-    desc: "Investment allocation logic that spans channels, accounts for diminishing returns, and governs spend.",
-    connector: "governs",
-  },
-  {
-    label: "Tier 3",
-    title: "AI-NATIVE DECISION TOOLS",
-    desc: "Calculators, planning systems, and dashboards that turn data into a decision your leadership can act on.",
-    connector: "enables",
-  },
-];
 
 export default function ServicesSection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -133,195 +92,76 @@ export default function ServicesSection() {
 
         {/* ══════════════════════════════════════════
             THE DECISION LAYER — Methodology Diagram
+            Inline HTML per spec — class names unchanged
             ══════════════════════════════════════════ */}
-        <div
-          className="gvg-fadeup"
-          style={{
-            marginBottom: "4.5rem",
-            maxWidth: "680px",
-          }}
-        >
-          {/* Diagram header */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              marginBottom: "1.75rem",
-            }}
-          >
-            <div
-              style={{
-                width: "2px",
-                height: "1.25rem",
-                backgroundColor: "#2979FF",
-                flexShrink: 0,
-              }}
-            />
-            <span
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
-                color: "rgba(255,255,255,0.35)",
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-              }}
-            >
-              The Decision Layer — Framework
-            </span>
-          </div>
+        <div className="gvg-fadeup" style={{ marginBottom: "4.5rem" }}>
+          {/* ============================================== */}
+          {/* THE DECISION LAYER — METHODOLOGY DIAGRAM      */}
+          {/* ============================================== */}
+          <div className="decision-layer">
+            <p className="decision-layer__eyebrow">THE DECISION LAYER</p>
+            <p className="decision-layer__intro">The operating model behind every engagement.</p>
 
-          {/* Tier boxes + connectors */}
-          {DIAGRAM_TIERS.map((tier, i) => (
-            <div key={i}>
-              {/* Tier box */}
-              <div
-                style={{
-                  border: "1px solid rgba(41,121,255,0.4)",
-                  borderLeft: "3px solid #2979FF",
-                  backgroundColor: "rgba(41,121,255,0.05)",
-                  padding: "1.125rem 1.5rem",
-                  position: "relative",
-                  transition: "background-color 0.2s ease",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.backgroundColor = "rgba(41,121,255,0.1)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLDivElement).style.backgroundColor = "rgba(41,121,255,0.05)";
-                }}
-              >
-                {/* Tier label badge */}
-                <span
-                  style={{
-                    position: "absolute",
-                    top: "0.75rem",
-                    right: "1rem",
-                    fontFamily: "'IBM Plex Mono', monospace",
-                    fontSize: "0.55rem",
-                    color: "rgba(41,121,255,0.6)",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  {tier.label}
-                </span>
+            <div className="decision-layer__stack">
 
-                <p
-                  style={{
-                    fontFamily: "'Space Mono', monospace",
-                    fontSize: "0.8125rem",
-                    fontWeight: 700,
-                    color: "#FFFFFF",
-                    letterSpacing: "0.05em",
-                    margin: "0 0 0.3rem 0",
-                    paddingRight: "3rem",
-                  }}
-                >
-                  {tier.title}
-                </p>
-                <p
-                  style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.8125rem",
-                    color: "rgba(255,255,255,0.42)",
-                    lineHeight: 1.55,
-                    margin: 0,
-                  }}
-                >
-                  {tier.desc}
-                </p>
-              </div>
-
-              {/* Arrow connector */}
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  alignItems: "flex-start",
-                  paddingLeft: "1.5rem",
-                  paddingTop: "0.3rem",
-                  paddingBottom: "0.3rem",
-                  gap: "0",
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                  }}
-                >
-                  <div
-                    style={{
-                      width: "1px",
-                      height: "18px",
-                      backgroundColor: "#2979FF",
-                      opacity: 0.55,
-                    }}
-                  />
-                  <span
-                    style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: "0.6rem",
-                      color: "rgba(41,121,255,0.65)",
-                      letterSpacing: "0.1em",
-                      textTransform: "uppercase",
-                    }}
-                  >
-                    ↓ {tier.connector} ↓
-                  </span>
+              {/* TIER 01 */}
+              <div className="dl-block dl-block--tier">
+                <div className="dl-block__number">TIER 01</div>
+                <div className="dl-block__content">
+                  <h3 className="dl-block__title">Measurement Infrastructure</h3>
+                  <p className="dl-block__desc">MMM, incrementality testing, and brand-lift logic that go beyond last-click reporting.</p>
                 </div>
               </div>
-            </div>
-          ))}
 
-          {/* Outcome box */}
-          <div
-            style={{
-              border: "1.5px solid #2979FF",
-              backgroundColor: "rgba(41,121,255,0.1)",
-              padding: "1.25rem 1.5rem",
-              textAlign: "center",
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            {/* Subtle glow */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "radial-gradient(ellipse at 50% 100%, rgba(41,121,255,0.12) 0%, transparent 70%)",
-                pointerEvents: "none",
-              }}
-            />
-            <span
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.55rem",
-                color: "rgba(255,255,255,0.3)",
-                letterSpacing: "0.14em",
-                textTransform: "uppercase",
-                display: "block",
-                marginBottom: "0.4rem",
-              }}
-            >
-              Outcome
-            </span>
-            <p
-              style={{
-                fontFamily: "'Space Mono', monospace",
-                fontSize: "1rem",
-                fontWeight: 700,
-                color: "#FFFFFF",
-                margin: 0,
-                letterSpacing: "0.02em",
-                position: "relative",
-              }}
-            >
-              Decisions Leadership Can Trust
-            </p>
+              {/* CONNECTOR */}
+              <div className="dl-connector">
+                <div className="dl-connector__line"></div>
+                <div className="dl-connector__chevron"></div>
+                <span className="dl-connector__label">feeds</span>
+              </div>
+
+              {/* TIER 02 */}
+              <div className="dl-block dl-block--tier">
+                <div className="dl-block__number">TIER 02</div>
+                <div className="dl-block__content">
+                  <h3 className="dl-block__title">Cross-Channel Budget Strategy</h3>
+                  <p className="dl-block__desc">Where the next dollar goes, what is overstated, where you are hitting diminishing returns.</p>
+                </div>
+              </div>
+
+              {/* CONNECTOR */}
+              <div className="dl-connector">
+                <div className="dl-connector__line"></div>
+                <div className="dl-connector__chevron"></div>
+                <span className="dl-connector__label">governs</span>
+              </div>
+
+              {/* TIER 03 */}
+              <div className="dl-block dl-block--tier">
+                <div className="dl-block__number">TIER 03</div>
+                <div className="dl-block__content">
+                  <h3 className="dl-block__title">AI-Native Decision Tools</h3>
+                  <p className="dl-block__desc">Calculators, planning systems, and decision dashboards your team will actually use.</p>
+                </div>
+              </div>
+
+              {/* CONNECTOR */}
+              <div className="dl-connector">
+                <div className="dl-connector__line"></div>
+                <div className="dl-connector__chevron"></div>
+                <span className="dl-connector__label">enables</span>
+              </div>
+
+              {/* OUTCOME */}
+              <div className="dl-block dl-block--outcome">
+                <div className="dl-block__number">OUTCOME</div>
+                <div className="dl-block__content">
+                  <h3 className="dl-block__title">Decisions Leadership Can Trust</h3>
+                  <p className="dl-block__desc">One defensible answer to: is this spend creating real business value?</p>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
 
