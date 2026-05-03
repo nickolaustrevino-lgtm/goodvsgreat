@@ -12,12 +12,14 @@ const CASE_STUDIES = [
     title: "Fab Marketplace: Privacy-First Measurement at Global Scale",
     desc: "When Epic Games launched Fab Marketplace into a category with a 12-year incumbent, the challenge wasn't awareness — it was building a measurement system that tied investment to revenue quality, respected creator data, and held up under scrutiny from finance and leadership. I led strategy, built the measurement foundation from the ground up, and ran paid media across 10 simultaneous global markets.",
     tags: ["Epic Games", "Measurement Infrastructure", "Incrementality", "Global Scale", "Privacy-First"],
+    href: "https://nickolaustrevino-lgtm.github.io/fab-marketplace-case-study/",
   },
   {
     label: "Case Study",
     title: "Walmart × Gaming Culture: A Discord-First Community Activation",
     desc: "A full case study on how a major retailer approached community infrastructure, cultural relevance, and performance through a nontraditional activation model.",
     tags: ["Retail", "Community", "Brand Strategy", "Discord"],
+    href: "https://nickolaustrevino-lgtm.github.io/walmart-case-study/",
   },
 ];
 
@@ -154,8 +156,9 @@ export default function ProofSection() {
                 ))}
               </div>
               <a
-                href="#"
-                onClick={(e) => e.preventDefault()}
+                href={cs.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
                   fontSize: "0.8rem",

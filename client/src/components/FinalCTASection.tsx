@@ -107,13 +107,15 @@ export default function FinalCTASection() {
               flexWrap: "wrap",
             }}
           >
-            <button
-              onClick={() => scrollTo("booking")}
+            <a
+              href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+              target="_blank"
+              rel="noopener noreferrer"
               className="gvg-btn-primary"
-              style={{ fontSize: "1rem", padding: "0.9rem 2rem" }}
+              style={{ fontSize: "1rem", padding: "0.9rem 2rem", textDecoration: "none", display: "inline-block" }}
             >
               Book a Diagnostic Call →
-            </button>
+            </a>
             <button
               onClick={() => scrollTo("services")}
               className="gvg-btn-secondary"

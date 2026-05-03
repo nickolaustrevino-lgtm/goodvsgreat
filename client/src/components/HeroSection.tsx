@@ -172,12 +172,15 @@ export default function HeroSection() {
 
           {/* CTAs */}
           <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-            <button
-              onClick={() => scrollTo("booking")}
+            <a
+              href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+              target="_blank"
+              rel="noopener noreferrer"
               className="gvg-btn-primary"
+              style={{ textDecoration: "none", display: "inline-block" }}
             >
               Get better media decisions
-            </button>
+            </a>
             <button
               onClick={() => scrollTo("services")}
               className="gvg-btn-secondary"

@@ -52,9 +52,15 @@ export default function BookingSection() {
     return () => observer.disconnect();
   }, []);
 
+  const BOOKING_URL = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // Redirect to booking calendar after a short delay
+    setTimeout(() => {
+      window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+    }, 800);
   };
 
   const inputStyle: React.CSSProperties = {

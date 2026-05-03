@@ -250,13 +250,15 @@ export default function PricingSection() {
                 </p>
               </div>
 
-              <button
-                onClick={() => scrollTo("booking")}
+              <a
+                href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={tier.featured ? "gvg-btn-primary" : "gvg-btn-secondary"}
-                style={{ width: "100%", textAlign: "center" }}
+                style={{ width: "100%", textAlign: "center", textDecoration: "none", display: "block" }}
               >
                 Book a Diagnostic Call →
-              </button>
+              </a>
             </div>
           ))}
         </div>
@@ -265,13 +267,15 @@ export default function PricingSection() {
           className="gvg-fadeup"
           style={{ marginTop: "3rem", textAlign: "center" }}
         >
-          <button
-            onClick={() => scrollTo("booking")}
+          <a
+            href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+            target="_blank"
+            rel="noopener noreferrer"
             className="gvg-btn-secondary"
-            style={{ fontSize: "0.875rem" }}
+            style={{ fontSize: "0.875rem", textDecoration: "none", display: "inline-block" }}
           >
             Book a free 30-minute diagnostic call
-          </button>
+          </a>
         </div>
       </div>
     </section>

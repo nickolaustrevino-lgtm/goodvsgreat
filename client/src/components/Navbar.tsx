@@ -219,13 +219,15 @@ export default function Navbar() {
               {/* Divider */}
               <span style={{ width: "1px", height: "20px", backgroundColor: "rgba(255,255,255,0.12)", flexShrink: 0 }} />
 
-              <button
-                onClick={() => scrollTo("booking")}
+              <a
+                href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="gvg-btn-primary"
-                style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem", whiteSpace: "nowrap" }}
+                style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem", whiteSpace: "nowrap", textDecoration: "none", display: "inline-block" }}
               >
                 Book a Call →
-              </button>
+              </a>
             </div>
           </>
         )}
@@ -322,13 +324,15 @@ export default function Navbar() {
             ))}
           </div>
 
-          <button
-            onClick={() => scrollTo("booking")}
+          <a
+            href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+            target="_blank"
+            rel="noopener noreferrer"
             className="gvg-btn-primary"
-            style={{ marginTop: "0.25rem" }}
+            style={{ marginTop: "0.25rem", textDecoration: "none", display: "block", textAlign: "center" }}
           >
             Book a Call →
-          </button>
+          </a>
         </div>
       )}
     </header>
