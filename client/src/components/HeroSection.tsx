@@ -55,7 +55,7 @@ export default function HeroSection() {
       }}
     >
       {/* Dot-matrix parallax background */}
-      <DotMatrixCanvas opacity={0.7} parallaxFactor={0.3} />
+      <DotMatrixCanvas opacity={0.45} parallaxFactor={0.3} />
 
       {/* Ghost section number */}
       <span className="gvg-ghost-number">01</span>

@@ -34,7 +34,7 @@ interface Dot {
 }
 
 const DOT_SPACING = 22; // px between dot centres
-const DOT_RADIUS = 4.5; // base dot radius in px
+const DOT_RADIUS = 3.5; // base dot radius in px — reduced for subtlety
 const BASE_COLOR = [41, 121, 255] as const; // Electric Blue #2979FF
 const HOT_COLOR = [100, 200, 255] as const; // Cyan highlight for "hot" dots
 const BG_COLOR = "#0d1b2a"; // Deep navy
@@ -76,11 +76,11 @@ export default function DotMatrixCanvas({
       const dots: Dot[] = [];
       for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
-          const isHot = Math.random() < 0.012;
+          const isHot = Math.random() < 0.008; // fewer hot dots for subtlety
           dots.push({
             col,
             row,
-            baseAlpha: 0.18 + Math.random() * 0.55,
+            baseAlpha: 0.06 + Math.random() * 0.18, // much lower base alpha — subtle noise
             pulsePhase: Math.random() * Math.PI * 2,
             pulseSpeed: 0.008 + Math.random() * 0.018,
             isHot,
@@ -136,23 +136,24 @@ export default function DotMatrixCanvas({
         let radius: number;
 
         if (d.isHot) {
-          // Hot dots: brighter, cyan-tinted, slightly larger
-          alpha = d.baseAlpha * 0.6 + pulse * d.hotIntensity;
+          // Hot dots: slightly brighter, cyan-tinted — still subtle
+          alpha = d.baseAlpha * 0.5 + pulse * d.hotIntensity * 0.35;
           r = Math.round(BASE_COLOR[0] + (HOT_COLOR[0] - BASE_COLOR[0]) * pulse);
           g = Math.round(BASE_COLOR[1] + (HOT_COLOR[1] - BASE_COLOR[1]) * pulse);
           b = Math.round(BASE_COLOR[2] + (HOT_COLOR[2] - BASE_COLOR[2]) * pulse);
-          radius = DOT_RADIUS + pulse * 1.5;
+          radius = DOT_RADIUS + pulse * 0.8;
 
           // Glow effect for hot dots
-          const grd = ctx.createRadialGradient(x, y, 0, x, y, radius * 3.5);
-          grd.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.5})`);
+          // Subtle glow — much smaller radius
+          const grd = ctx.createRadialGradient(x, y, 0, x, y, radius * 2.2);
+          grd.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.25})`);
           grd.addColorStop(1, `rgba(${r},${g},${b},0)`);
           ctx.fillStyle = grd;
           ctx.beginPath();
-          ctx.arc(x, y, radius * 3.5, 0, Math.PI * 2);
+          ctx.arc(x, y, radius * 2.2, 0, Math.PI * 2);
           ctx.fill();
         } else {
-          alpha = d.baseAlpha * (0.5 + pulse * 0.5);
+          alpha = d.baseAlpha * (0.6 + pulse * 0.4); // gentle pulse on regular dots
           r = BASE_COLOR[0];
           g = BASE_COLOR[1];
           b = BASE_COLOR[2];

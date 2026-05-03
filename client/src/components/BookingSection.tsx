@@ -99,7 +99,7 @@ export default function BookingSection() {
       }}
     >
       {/* Dot-matrix parallax background */}
-      <DotMatrixCanvas opacity={0.45} parallaxFactor={0.2} />
+      <DotMatrixCanvas opacity={0.3} parallaxFactor={0.2} />
 
       <span className="gvg-ghost-number">10</span>
 

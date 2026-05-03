@@ -47,7 +47,7 @@ export default function FinalCTASection() {
       }}
     >
       {/* Dot-matrix parallax background */}
-      <DotMatrixCanvas opacity={0.9} parallaxFactor={0.4} />
+      <DotMatrixCanvas opacity={0.55} parallaxFactor={0.4} />
 
       {/* Ghost number */}
       <span className="gvg-ghost-number" style={{ left: "50%", transform: "translateX(-50%)" }}>11</span>

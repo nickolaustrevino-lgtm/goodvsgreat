@@ -57,7 +57,7 @@ export default function ProofSection() {
       }}
     >
       {/* Dot-matrix parallax background */}
-      <DotMatrixCanvas opacity={0.5} parallaxFactor={0.25} />
+      <DotMatrixCanvas opacity={0.35} parallaxFactor={0.25} />
 
       <span className="gvg-ghost-number">05</span>
 
