@@ -6,6 +6,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import DotMatrixCanvas from "./DotMatrixCanvas";
+import { trackEvent } from "../lib/pixel";
 
 const SPEND_OPTIONS = [
   "Under $1M annually",
@@ -58,6 +59,8 @@ export default function BookingSection() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
+    // Fire Meta Pixel Lead event on form submission
+    trackEvent("Lead", { content_name: "Booking Form Submission" });
     // Redirect to booking calendar after a short delay
     setTimeout(() => {
       window.open(BOOKING_URL, "_blank", "noopener,noreferrer");

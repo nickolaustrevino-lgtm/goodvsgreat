@@ -6,6 +6,7 @@
 
 import { useEffect, useRef } from "react";
 import DotMatrixCanvas from "./DotMatrixCanvas";
+import { trackEvent } from "../lib/pixel";
 
 export default function FinalCTASection() {
   const ref = useRef<HTMLDivElement>(null);
@@ -125,6 +126,7 @@ export default function FinalCTASection() {
               rel="noopener noreferrer"
               className="gvg-btn-primary"
               style={{ fontSize: "1rem", padding: "0.9rem 2rem", textDecoration: "none" }}
+              onClick={() => trackEvent("Lead", { content_name: "Final CTA — Book Diagnostic Call" })}
             >
               Book a Diagnostic Call →
             </a>

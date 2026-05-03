@@ -5,6 +5,7 @@
    Ghost number: 06 */
 
 import { useEffect, useRef } from "react";
+import { trackEvent } from "../lib/pixel";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
@@ -313,6 +314,7 @@ export default function PricingSection() {
                 rel="noopener noreferrer"
                 className={tier.featured ? "gvg-btn-primary" : "gvg-btn-secondary"}
                 style={{ width: "100%", textDecoration: "none", display: "inline-flex", justifyContent: "center" }}
+                onClick={() => trackEvent("Contact", { content_name: `Pricing CTA — ${tier.name}` })}
               >
                 Book a Diagnostic Call →
               </a>
@@ -330,6 +332,7 @@ export default function PricingSection() {
             rel="noopener noreferrer"
             className="gvg-btn-secondary"
             style={{ fontSize: "0.875rem", textDecoration: "none" }}
+            onClick={() => trackEvent("Lead", { content_name: "Pricing — Free Diagnostic Call" })}
           >
             Book a free 30-minute diagnostic call
           </a>

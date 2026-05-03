@@ -6,6 +6,7 @@
 
 import { useState, useEffect } from "react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
+import { trackEvent } from "../lib/pixel";
 
 const LOGO_URL = "/manus-storage/logo-banner_353f07ff.png";
 const LOGO_ICON_URL = "/manus-storage/gvg-logo_7908b53b.png";
@@ -261,6 +262,7 @@ export default function Navbar() {
                 rel="noopener noreferrer"
                 className="gvg-btn-primary"
                 style={{ fontSize: "0.875rem", padding: "0.625rem 1.25rem", whiteSpace: "nowrap", textDecoration: "none", height: "auto" }}
+                onClick={() => trackEvent("Contact", { content_name: "Navbar CTA" })}
               >
                 Book a Call →
               </a>
@@ -374,6 +376,7 @@ export default function Navbar() {
             rel="noopener noreferrer"
             className="gvg-btn-primary"
             style={{ marginTop: "0.25rem", textDecoration: "none", display: "inline-flex", width: "100%", justifyContent: "center" }}
+            onClick={() => trackEvent("Contact", { content_name: "Navbar Mobile CTA" })}
           >
             Book a Call →
           </a>
