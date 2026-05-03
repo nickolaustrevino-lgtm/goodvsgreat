@@ -479,28 +479,49 @@ div.decision-layer .dl-block--outcome p.dl-block__desc {
 }
 
 /* ---------- CONNECTORS ---------- */
-
 div.decision-layer .dl-connector {
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   position: relative !important;
-  height: 48px !important;
+  height: 56px !important;
   margin: 0 !important;
+  overflow: visible !important;
 }
 
+/* The line itself — overflow hidden so the pulse travels downward */
 div.decision-layer .dl-connector__line {
   width: 2px !important;
-  height: 32px !important;
-  background: #3B82F6 !important;
+  height: 36px !important;
+  background: rgba(59, 130, 246, 0.25) !important;
   position: relative !important;
   flex-shrink: 0 !important;
+  overflow: hidden !important;
+  border-radius: 1px !important;
 }
+
+/* Travelling pulse — a bright segment that slides down the line */
+div.decision-layer .dl-connector__line::after {
+  content: '' !important;
+  position: absolute !important;
+  top: -100% !important;
+  left: 0 !important;
+  width: 100% !important;
+  height: 50% !important;
+  background: linear-gradient(to bottom, transparent, #3B82F6, #93C5FD, transparent) !important;
+  animation: dl-flow 1.6s ease-in-out infinite !important;
+  border-radius: 1px !important;
+}
+
+/* Stagger the pulse on each connector so they don't all fire at once */
+div.decision-layer .dl-connector:nth-of-type(2) .dl-connector__line::after { animation-delay: 0s !important; }
+div.decision-layer .dl-connector:nth-of-type(4) .dl-connector__line::after { animation-delay: 0.5s !important; }
+div.decision-layer .dl-connector:nth-of-type(6) .dl-connector__line::after { animation-delay: 1.0s !important; }
 
 div.decision-layer .dl-connector__chevron {
   position: absolute !important;
   left: 50% !important;
-  bottom: 8px !important;
+  bottom: 6px !important;
   transform: translateX(-50%) rotate(45deg) !important;
   width: 8px !important;
   height: 8px !important;
@@ -511,7 +532,13 @@ div.decision-layer .dl-connector__chevron {
   border-radius: 0 !important;
   background: transparent !important;
   display: block !important;
+  animation: dl-chevron-pulse 1.6s ease-in-out infinite !important;
 }
+
+/* Stagger chevron pulse to match line */
+div.decision-layer .dl-connector:nth-of-type(2) .dl-connector__chevron { animation-delay: 0s !important; }
+div.decision-layer .dl-connector:nth-of-type(4) .dl-connector__chevron { animation-delay: 0.5s !important; }
+div.decision-layer .dl-connector:nth-of-type(6) .dl-connector__chevron { animation-delay: 1.0s !important; }
 
 div.decision-layer .dl-connector__label {
   position: absolute !important;
@@ -529,6 +556,7 @@ div.decision-layer .dl-connector__label {
 
 /* ---------- ANIMATIONS ---------- */
 
+/* Tier block entrance */
 @keyframes dl-fade-in {
   from {
     opacity: 0;
@@ -538,6 +566,21 @@ div.decision-layer .dl-connector__label {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Pulse travelling down the connector line */
+@keyframes dl-flow {
+  0%   { top: -100%; opacity: 0; }
+  15%  { opacity: 1; }
+  85%  { opacity: 1; }
+  100% { top: 150%; opacity: 0; }
+}
+
+/* Chevron brightens as the pulse arrives */
+@keyframes dl-chevron-pulse {
+  0%, 60%  { border-color: rgba(59, 130, 246, 0.4); }
+  80%      { border-color: #93C5FD; filter: drop-shadow(0 0 4px rgba(147, 197, 253, 0.8)); }
+  100%     { border-color: rgba(59, 130, 246, 0.4); }
 }
 
 /* ---------- RESPONSIVE — TABLET (≤900px) ---------- */
