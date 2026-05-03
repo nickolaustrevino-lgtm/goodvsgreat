@@ -124,7 +124,7 @@ export default function FinalCTASection() {
               target="_blank"
               rel="noopener noreferrer"
               className="gvg-btn-primary"
-              style={{ fontSize: "1rem", padding: "0.9rem 2rem", textDecoration: "none", display: "inline-block" }}
+              style={{ fontSize: "1rem", padding: "0.9rem 2rem", textDecoration: "none" }}
             >
               Book a Diagnostic Call →
             </a>

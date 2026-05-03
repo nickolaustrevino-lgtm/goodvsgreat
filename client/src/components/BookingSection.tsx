@@ -344,7 +344,7 @@ export default function BookingSection() {
                 <button
                   type="submit"
                   className="gvg-btn-primary"
-                  style={{ width: "100%", textAlign: "center", marginTop: "0.5rem" }}
+                  style={{ width: "100%", marginTop: "0.5rem", justifyContent: "center" }}
                 >
                   Submit & Book a Time →
                 </button>

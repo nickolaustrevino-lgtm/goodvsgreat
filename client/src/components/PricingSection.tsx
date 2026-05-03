@@ -306,13 +306,13 @@ export default function PricingSection() {
                 </p>
               </div>
 
-              {/* CTA */}
+              {/* CTA — display:inline-flex + justifyContent:center so align-items:center from .gvg-btn-* works */}
               <a
                 href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={tier.featured ? "gvg-btn-primary" : "gvg-btn-secondary"}
-                style={{ width: "100%", textAlign: "center", textDecoration: "none", display: "block" }}
+                style={{ width: "100%", textDecoration: "none", display: "inline-flex", justifyContent: "center" }}
               >
                 Book a Diagnostic Call →
               </a>
@@ -329,7 +329,7 @@ export default function PricingSection() {
             target="_blank"
             rel="noopener noreferrer"
             className="gvg-btn-secondary"
-            style={{ fontSize: "0.875rem", textDecoration: "none", display: "inline-block" }}
+            style={{ fontSize: "0.875rem", textDecoration: "none" }}
           >
             Book a free 30-minute diagnostic call
           </a>

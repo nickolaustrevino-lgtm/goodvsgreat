@@ -260,7 +260,7 @@ export default function Navbar() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="gvg-btn-primary"
-                style={{ fontSize: "0.875rem", padding: "0.5rem 1.25rem", whiteSpace: "nowrap", textDecoration: "none", display: "inline-block" }}
+                style={{ fontSize: "0.875rem", padding: "0.625rem 1.25rem", whiteSpace: "nowrap", textDecoration: "none", height: "auto" }}
               >
                 Book a Call →
               </a>
@@ -373,7 +373,7 @@ export default function Navbar() {
             target="_blank"
             rel="noopener noreferrer"
             className="gvg-btn-primary"
-            style={{ marginTop: "0.25rem", textDecoration: "none", display: "block", textAlign: "center" }}
+            style={{ marginTop: "0.25rem", textDecoration: "none", display: "inline-flex", width: "100%", justifyContent: "center" }}
           >
             Book a Call →
           </a>
