@@ -1,23 +1,28 @@
 /* ClientsSection — GvG Brand Guidelines v2
    Background: --gvg-navy
    Label: IBM Plex Mono, muted white
-   Logos: #F5F5F5, 48px height, transparent bg
+   Logos: #F5F5F5, uniform height on transparent bg
    Marquee: CSS animation, pauses on hover */
 
-const CLIENTS: { name: string; logo: string; width: number }[] = [
-  { name: "Epic Games",        logo: "/manus-storage/epic_games_7414249d.png",   width: 48  },
-  { name: "Microsoft",         logo: "/manus-storage/microsoft_8e135769.png",    width: 46  },
-  { name: "Warner Bros.",      logo: "/manus-storage/warnerbros_a41618cc.png",   width: 48  },
-  { name: "Walmart",           logo: "/manus-storage/walmart_b04ca64f.png",      width: 166 },
-  { name: "Amazon",            logo: "/manus-storage/amazon_2fa8362c.png",       width: 127 },
-  { name: "2K Games",          logo: "/manus-storage/2k_games_2e4d48bb.png",     width: 85  },
-  { name: "Razer",             logo: "/manus-storage/razer_2eaf85c5.png",        width: 48  },
-  { name: "Turtle Beach",      logo: "/manus-storage/turtlebeach_7093de44.png",  width: 53  },
-  { name: "Samsung",           logo: "/manus-storage/samsung_f71a6dc7.png",      width: 48  },
-  { name: "Scopely",           logo: "/manus-storage/scopely_40ea3e0c.png",      width: 48  },
-  { name: "FlatRate Moving",   logo: "/manus-storage/flatrate_6923ecf5.png",     width: 56  },
-  { name: "U.S. Army",         logo: "/manus-storage/army_6f314350.png",         width: 34  },
-  { name: "Charter Schools USA", logo: "/manus-storage/charterusa_01a54216.png", width: 114 },
+interface ClientLogo {
+  name: string;
+  logo: string;
+  height: number; // rendered height in px
+}
+
+const CLIENTS: ClientLogo[] = [
+  { name: "Epic Games",          logo: "/manus-storage/epic_games_e8c4d78e.png",   height: 52  },
+  { name: "Microsoft",           logo: "/manus-storage/microsoft_75b5899a.png",    height: 52  },
+  { name: "Warner Bros.",        logo: "/manus-storage/warnerbros_a41618cc.png",   height: 48  },
+  { name: "Walmart",             logo: "/manus-storage/walmart_b04ca64f.png",      height: 40  },
+  { name: "Amazon",              logo: "/manus-storage/amazon_52f29857.png",       height: 40  },
+  { name: "2K Games",            logo: "/manus-storage/2k_games_2e4d48bb.png",     height: 44  },
+  { name: "Razer",               logo: "/manus-storage/razer_072f8a59.png",        height: 36  },
+  { name: "Turtle Beach",        logo: "/manus-storage/turtlebeach_7093de44.png",  height: 44  },
+  { name: "Samsung",             logo: "/manus-storage/samsung_739a98f7.png",      height: 52  },
+  { name: "Scopely",             logo: "/manus-storage/scopely_ced0610d.png",      height: 52  },
+  { name: "FlatRate Moving",     logo: "/manus-storage/flatrate_6923ecf5.png",     height: 44  },
+  { name: "Charter Schools USA", logo: "/manus-storage/charterusa_01a54216.png",   height: 40  },
 ];
 
 export default function ClientsSection() {
@@ -51,7 +56,6 @@ export default function ClientsSection() {
         .gvg-client-logo {
           opacity: 0.45;
           transition: opacity 0.25s ease;
-          filter: brightness(1);
         }
         .gvg-client-logo:hover {
           opacity: 0.85;
@@ -108,8 +112,9 @@ export default function ClientsSection() {
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                padding: "0 2.75rem",
+                padding: "0 3rem",
                 flexShrink: 0,
+                height: "64px",
               }}
             >
               <img
@@ -117,9 +122,8 @@ export default function ClientsSection() {
                 alt={client.name}
                 className="gvg-client-logo"
                 style={{
-                  height: "48px",
+                  height: `${client.height}px`,
                   width: "auto",
-                  maxWidth: `${client.width + 20}px`,
                   objectFit: "contain",
                   display: "block",
                 }}
