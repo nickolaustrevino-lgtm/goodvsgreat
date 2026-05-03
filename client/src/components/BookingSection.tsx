@@ -1,10 +1,10 @@
 /* BookingSection — GvG Brand Guidelines v2
    Background: --gvg-charcoal
-   Form: dark surface, Electric Blue focus borders
+   Form: submits to Formspree → nick@goodvsgreat.ai
    CTA: Electric Blue primary button
    Ghost number: 10 */
 
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 const SPEND_OPTIONS = [
   "Under $1M annually",
@@ -23,44 +23,72 @@ const CHALLENGE_OPTIONS = [
   "Other",
 ];
 
+// Formspree endpoint — uses nick@goodvsgreat.ai as the recipient.
+// After first submission, Formspree will send a confirmation email to nick@goodvsgreat.ai
+// to activate the form. Replace the endpoint ID below with your own from formspree.io if needed.
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xpwzgvqn";
+
+type Status = "idle" | "loading" | "success" | "error";
+
 export default function BookingSection() {
   const ref = useRef<HTMLDivElement>(null);
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
   const [form, setForm] = useState({
     name: "",
+    email: "",
     org: "",
     spend: "",
     challenge: "",
     details: "",
   });
 
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
-  }, []);
-
   const BOOKING_URL = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    // Redirect to booking calendar after a short delay
-    setTimeout(() => {
-      window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
-    }, 800);
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          organization: form.org,
+          annual_media_spend: form.spend,
+          primary_challenge: form.challenge,
+          additional_details: form.details || "(none)",
+          _subject: `New inquiry from ${form.name} — ${form.org}`,
+          _replyto: form.email,
+        }),
+      });
+
+      if (res.ok) {
+        setStatus("success");
+        // Open the booking calendar in a new tab after successful submission
+        setTimeout(() => {
+          window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+        }, 1200);
+      } else {
+        const data = await res.json().catch(() => ({}));
+        setErrorMsg(
+          (data as { error?: string }).error ||
+            "Something went wrong. Please try again or email nick@goodvsgreat.ai directly."
+        );
+        setStatus("error");
+      }
+    } catch {
+      setErrorMsg(
+        "Network error. Please check your connection or email nick@goodvsgreat.ai directly."
+      );
+      setStatus("error");
+    }
   };
 
   const inputStyle: React.CSSProperties = {
@@ -84,6 +112,13 @@ export default function BookingSection() {
     color: "rgba(255,255,255,0.4)",
     display: "block",
     marginBottom: "0.5rem",
+  };
+
+  const onFocus = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.borderColor = "#2979FF";
+  };
+  const onBlur = (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
   };
 
   return (
@@ -187,7 +222,7 @@ export default function BookingSection() {
 
           {/* Right: form */}
           <div className="gvg-fadeup" style={{ transitionDelay: "120ms" }}>
-            {submitted ? (
+            {status === "success" ? (
               <div
                 style={{
                   backgroundColor: "#252530",
@@ -231,9 +266,19 @@ export default function BookingSection() {
                     fontSize: "0.9375rem",
                     color: "rgba(255,255,255,0.5)",
                     lineHeight: 1.7,
+                    marginBottom: "1.5rem",
                   }}
                 >
-                  I'll review your details and follow up to confirm a time. Expect a response within 24 hours.
+                  Your message has been sent to nick@goodvsgreat.ai. Opening the calendar so you can pick a time — or{" "}
+                  <a
+                    href={BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ color: "#2979FF", textDecoration: "none" }}
+                  >
+                    click here
+                  </a>{" "}
+                  if it didn't open automatically.
                 </p>
               </div>
             ) : (
@@ -248,6 +293,7 @@ export default function BookingSection() {
                   gap: "1.25rem",
                 }}
               >
+                {/* Name */}
                 <div>
                   <label style={labelStyle}>Your Name</label>
                   <input
@@ -257,10 +303,27 @@ export default function BookingSection() {
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     style={inputStyle}
-                    onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                   />
                 </div>
+
+                {/* Email */}
+                <div>
+                  <label style={labelStyle}>Email Address</label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="you@company.com"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
+                    style={inputStyle}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                  />
+                </div>
+
+                {/* Organization */}
                 <div>
                   <label style={labelStyle}>Organization</label>
                   <input
@@ -270,10 +333,12 @@ export default function BookingSection() {
                     value={form.org}
                     onChange={(e) => setForm({ ...form, org: e.target.value })}
                     style={inputStyle}
-                    onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                   />
                 </div>
+
+                {/* Spend */}
                 <div>
                   <label style={labelStyle}>Annual Media Spend</label>
                   <select
@@ -281,8 +346,8 @@ export default function BookingSection() {
                     value={form.spend}
                     onChange={(e) => setForm({ ...form, spend: e.target.value })}
                     style={{ ...inputStyle, cursor: "pointer" }}
-                    onFocus={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                   >
                     <option value="" disabled style={{ backgroundColor: "#1A1A2E" }}>Select range</option>
                     {SPEND_OPTIONS.map((opt) => (
@@ -290,6 +355,8 @@ export default function BookingSection() {
                     ))}
                   </select>
                 </div>
+
+                {/* Challenge */}
                 <div>
                   <label style={labelStyle}>Primary Challenge</label>
                   <select
@@ -297,8 +364,8 @@ export default function BookingSection() {
                     value={form.challenge}
                     onChange={(e) => setForm({ ...form, challenge: e.target.value })}
                     style={{ ...inputStyle, cursor: "pointer" }}
-                    onFocus={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                   >
                     <option value="" disabled style={{ backgroundColor: "#1A1A2E" }}>Select area</option>
                     {CHALLENGE_OPTIONS.map((opt) => (
@@ -306,6 +373,8 @@ export default function BookingSection() {
                     ))}
                   </select>
                 </div>
+
+                {/* Details */}
                 <div>
                   <label style={labelStyle}>
                     Anything else I should know?{" "}
@@ -317,17 +386,43 @@ export default function BookingSection() {
                     value={form.details}
                     onChange={(e) => setForm({ ...form, details: e.target.value })}
                     style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
-                    onFocus={(e) => { (e.currentTarget as HTMLTextAreaElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLTextAreaElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
                   />
                 </div>
+
+                {/* Error message */}
+                {status === "error" && (
+                  <p
+                    style={{
+                      fontFamily: "'IBM Plex Sans', sans-serif",
+                      fontSize: "0.875rem",
+                      color: "#ff6b6b",
+                      margin: 0,
+                      padding: "0.75rem 1rem",
+                      backgroundColor: "rgba(255,107,107,0.1)",
+                      border: "1px solid rgba(255,107,107,0.3)",
+                    }}
+                  >
+                    {errorMsg}
+                  </p>
+                )}
+
                 <button
                   type="submit"
+                  disabled={status === "loading"}
                   className="gvg-btn-primary"
-                  style={{ width: "100%", textAlign: "center", marginTop: "0.5rem" }}
+                  style={{
+                    width: "100%",
+                    textAlign: "center",
+                    marginTop: "0.5rem",
+                    opacity: status === "loading" ? 0.7 : 1,
+                    cursor: status === "loading" ? "not-allowed" : "pointer",
+                  }}
                 >
-                  Submit & Book a Time →
+                  {status === "loading" ? "Sending..." : "Submit & Book a Time →"}
                 </button>
+
                 <p
                   style={{
                     fontFamily: "'IBM Plex Mono', monospace",
@@ -338,7 +433,7 @@ export default function BookingSection() {
                     margin: 0,
                   }}
                 >
-                  I'll respond within 24 hours.
+                  I'll respond within 24 hours. Your info is never shared.
                 </p>
               </form>
             )}
