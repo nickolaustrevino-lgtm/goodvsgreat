@@ -1,9 +1,11 @@
 /* Navbar — GvG Brand Guidelines v2
    Uses explicit CSS media queries (not Tailwind responsive classes) for reliable breakpoints.
-   Mobile (<768px): logo + hamburger only
-   Desktop (≥768px): logo + nav links + social icons + CTA */
+   Mobile (<1024px): logo + hamburger only
+   Desktop (≥1024px): logo + nav links + social icons + CTA
+   Scroll-spy: active section link highlighted in Electric Blue (#2979FF) */
 
 import { useState, useEffect } from "react";
+import { useScrollSpy } from "../hooks/useScrollSpy";
 
 const LOGO_URL = "/manus-storage/logo-banner_353f07ff.png";
 
@@ -17,6 +19,8 @@ const NAV_LINKS = [
   { label: "About", id: "about" },
   { label: "Book a Call", id: "booking" },
 ];
+
+const SECTION_IDS = NAV_LINKS.map((l) => l.id);
 
 const SOCIAL_LINKS = [
   {
@@ -75,6 +79,9 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
 
+  // Scroll-spy: track active section
+  const activeId = useScrollSpy(SECTION_IDS, 80);
+
   useEffect(() => {
     const checkDesktop = () => setIsDesktop(window.innerWidth >= 1024);
     checkDesktop();
@@ -100,6 +107,12 @@ export default function Navbar() {
   };
 
   const navBg = "oklch(16% 0.005 285)";
+
+  // Returns the color for a nav link based on active state and hover
+  const getLinkColor = (id: string, isActive: boolean) => {
+    if (isActive) return "#2979FF";
+    return "rgba(255,255,255,0.6)";
+  };
 
   return (
     <header
@@ -163,33 +176,45 @@ export default function Navbar() {
                 justifyContent: "center",
               }}
             >
-              {NAV_LINKS.map((link) => (
-                <button
-                  key={link.id}
-                  onClick={() => scrollTo(link.id)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    padding: 0,
-                    fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.8rem",
-                    fontWeight: 400,
-                    color: "rgba(255,255,255,0.6)",
-                    cursor: "pointer",
-                    transition: "color 0.15s ease",
-                    letterSpacing: "0.01em",
-                    whiteSpace: "nowrap",
-                  }}
-                  onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
-                  }}
-                  onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.6)";
-                  }}
-                >
-                  {link.label}
-                </button>
-              ))}
+              {NAV_LINKS.map((link) => {
+                const isActive = activeId === link.id;
+                return (
+                  <button
+                    key={link.id}
+                    onClick={() => scrollTo(link.id)}
+                    style={{
+                      background: "none",
+                      border: "none",
+                      padding: "0 0 2px 0",
+                      fontFamily: "'IBM Plex Sans', sans-serif",
+                      fontSize: "0.8rem",
+                      fontWeight: isActive ? 500 : 400,
+                      color: getLinkColor(link.id, isActive),
+                      cursor: "pointer",
+                      transition: "color 0.2s ease, font-weight 0.2s ease",
+                      letterSpacing: "0.01em",
+                      whiteSpace: "nowrap",
+                      // Active underline indicator
+                      borderBottom: isActive
+                        ? "1.5px solid #2979FF"
+                        : "1.5px solid transparent",
+                      lineHeight: "1.4",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!isActive) {
+                        (e.currentTarget as HTMLButtonElement).style.color = "#FFFFFF";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!isActive) {
+                        (e.currentTarget as HTMLButtonElement).style.color = "rgba(255,255,255,0.6)";
+                      }
+                    }}
+                  >
+                    {link.label}
+                  </button>
+                );
+              })}
             </nav>
 
             <div style={{ display: "flex", alignItems: "center", gap: "1rem", flexShrink: 0 }}>
@@ -287,25 +312,33 @@ export default function Navbar() {
             gap: "1.25rem",
           }}
         >
-          {NAV_LINKS.map((link) => (
-            <button
-              key={link.id}
-              onClick={() => scrollTo(link.id)}
-              style={{
-                background: "none",
-                border: "none",
-                padding: "0.25rem 0",
-                fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "1.0625rem",
-                color: "rgba(255,255,255,0.75)",
-                cursor: "pointer",
-                textAlign: "left",
-                letterSpacing: "0.01em",
-              }}
-            >
-              {link.label}
-            </button>
-          ))}
+          {NAV_LINKS.map((link) => {
+            const isActive = activeId === link.id;
+            return (
+              <button
+                key={link.id}
+                onClick={() => scrollTo(link.id)}
+                style={{
+                  background: "none",
+                  border: "none",
+                  padding: "0.25rem 0",
+                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontSize: "1.0625rem",
+                  fontWeight: isActive ? 500 : 400,
+                  color: isActive ? "#2979FF" : "rgba(255,255,255,0.75)",
+                  cursor: "pointer",
+                  textAlign: "left",
+                  letterSpacing: "0.01em",
+                  transition: "color 0.2s ease",
+                  // Left accent bar for active mobile item
+                  borderLeft: isActive ? "2px solid #2979FF" : "2px solid transparent",
+                  paddingLeft: "0.75rem",
+                }}
+              >
+                {link.label}
+              </button>
+            );
+          })}
 
           {/* Social icons row */}
           <div style={{ display: "flex", gap: "1.25rem", paddingTop: "0.25rem", alignItems: "center" }}>
