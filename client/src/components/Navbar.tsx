@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 
 const LOGO_URL = "/manus-storage/logo-banner_353f07ff.png";
+const LOGO_ICON_URL = "/manus-storage/gvg-logo_7908b53b.png";
 
 const NAV_LINKS = [
   { label: "What I Do", id: "services" },
@@ -157,10 +158,16 @@ export default function Navbar() {
           }}
           aria-label="Good vs. Great — home"
         >
+          {/* Banner on desktop, square icon on mobile */}
           <img
             src={LOGO_URL}
             alt="good vs. Great"
-            style={{ height: "34px", width: "auto", display: "block" }}
+            style={{ height: "34px", width: "auto", display: isDesktop ? "block" : "none" }}
+          />
+          <img
+            src={LOGO_ICON_URL}
+            alt="good vs. Great"
+            style={{ height: "34px", width: "34px", objectFit: "contain", borderRadius: "7px", display: isDesktop ? "none" : "block" }}
           />
         </button>
 
