@@ -10,20 +10,23 @@ const ARTICLES = [
   {
     label: "Essay",
     title: "The Advertiser Has Been Demoted",
-    desc: "The real job now is systems architecture and signal design. A reframing of what modern marketing leadership actually looks like.",
-    link: "https://linkedin.com",
+    desc: "The platforms have taken the wheel. The real job for marketing leaders is now systems architecture and signal design — not campaign management. A reframing of what modern media leadership actually looks like in a world where automation handles execution.",
+    link: "https://goodversusgreat.substack.com/p/the-advertiser-has-been-demoted-your",
+    cta: "Read on Substack →",
   },
   {
     label: "Framework",
     title: "From Clicks to Citations",
-    desc: "A measurement framework for AI search that replaces traffic-volume thinking with a more useful model for visibility and value.",
-    link: "https://linkedin.com",
+    desc: "Traffic metrics don't tell you whether AI systems are recommending your brand. This framework replaces volume-based thinking with a more useful model for measuring visibility and value in the age of AI search — and what to actually optimize for.",
+    link: "https://goodversusgreat.substack.com/p/from-clicks-to-citations-redesigning",
+    cta: "Read on Substack →",
   },
   {
     label: "Essay",
     title: "Why Modern Marketers Need to Build, Not Just Buy",
-    desc: "Why strategic leaders increasingly need to ship tools, not just recommendations.",
-    link: "https://linkedin.com",
+    desc: "The most effective marketing leaders aren't just buyers of tools and media — they're builders. A case for why strategic leaders increasingly need to ship working infrastructure, not just recommendations, and what that shift means for how teams are structured.",
+    link: "https://www.linkedin.com/pulse/why-modern-marketers-need-build-just-buy-nickolaus-trevi%C3%B1o-ukuxe/?trackingId=mBWGArwjT%2B688WX8bOESzw%3D%3D",
+    cta: "Read on LinkedIn →",
   },
 ];
 
@@ -172,7 +175,7 @@ export default function WritingSection() {
                   letterSpacing: "0.04em",
                 }}
               >
-                Read on LinkedIn →
+                {article.cta}
               </span>
             </a>
           ))}
@@ -218,13 +221,13 @@ export default function WritingSection() {
             </p>
           </div>
           <a
-            href="https://linkedin.com"
+            href="https://goodversusgreat.substack.com"
             target="_blank"
             rel="noopener noreferrer"
             className="gvg-btn-primary"
             style={{ textDecoration: "none", flexShrink: 0 }}
           >
-            Follow on LinkedIn →
+            Subscribe on Substack →
           </a>
         </div>
       </div>
