@@ -24,11 +24,11 @@ export default function Home() {
     <div style={{ backgroundColor: "oklch(16% 0.005 285)", minHeight: "100vh" }}>
       <Navbar />
       <HeroSection />
-      <ClientsSection />
       <ProblemSection />
       <ServicesSection />
       <GoodVsGreatBlock />
       <ProofSection />
+      <ClientsSection />
       <PricingSection />
       <WritingSection />
       <FitSection />
