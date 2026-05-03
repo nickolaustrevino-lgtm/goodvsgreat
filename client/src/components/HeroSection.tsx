@@ -119,16 +119,17 @@ export default function HeroSection() {
                 flexShrink: 0,
               }}
             />
-            <p
-              style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
-                fontSize: "1rem",
-                color: "rgba(255,255,255,0.6)",
-                lineHeight: 1.75,
-              }}
-            >
-              I help companies spending $1M+ on paid media figure out what's actually driving revenue — and fix what isn't. Not with more dashboards. With the measurement, incrementality, and decision logic that tells you where your next dollar should go and why.
-            </p>
+            <div style={{ fontFamily: "'IBM Plex Sans', sans-serif", fontSize: "1rem", lineHeight: 1.75 }}>
+              <p style={{ marginBottom: "0.75rem", fontWeight: 600, color: "rgba(255,255,255,0.9)" }}>
+                You're spending $1M+ on paid media. You can't prove what's working.
+              </p>
+              <p style={{ marginBottom: "0.75rem", color: "rgba(255,255,255,0.7)" }}>
+                I'm the decision layer between your dashboards and your CFO. Measurement infrastructure, incrementality, and budget logic that turns $100M+ in media spend into defensible growth, not attribution theater.
+              </p>
+              <p style={{ fontSize: "0.875rem", color: "rgba(255,255,255,0.4)", fontStyle: "italic" }}>
+                Trusted by Epic Games, Microsoft, Warner Bros., Walmart, Amazon.
+              </p>
+            </div>
           </div>
 
           {/* Stats */}
