@@ -1,8 +1,9 @@
 /* GoodVsGreatBlock — GvG Brand Guidelines v2
-   The core brand device: two-column comparison
-   Left = "Good" (muted, what happened)
-   Right = "Great" (Electric Blue accent, what to do next)
-   Background: --gvg-navy
+   THE signature brand moment.
+   True two-column comparison table.
+   Left = "Good" (muted, quieter, what happened)
+   Right = "Great" (Electric Blue accent, emphasized, what to do next)
+   Background: --gvg-navy (#1A1A2E)
    Ghost number: 04 */
 
 import { useEffect, useRef } from "react";
@@ -45,7 +46,7 @@ export default function GoodVsGreatBlock() {
           }
         });
       },
-      { threshold: 0.08 }
+      { threshold: 0.06, rootMargin: "0px 0px -60px 0px" }
     );
     el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
     return () => observer.disconnect();
@@ -57,7 +58,7 @@ export default function GoodVsGreatBlock() {
       ref={ref}
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "7rem 0",
+        padding: "8rem 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -65,7 +66,9 @@ export default function GoodVsGreatBlock() {
       <span className="gvg-ghost-number">04</span>
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
-        <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
+
+        {/* Section header */}
+        <div className="gvg-fadeup" style={{ marginBottom: "4rem" }}>
           <span className="gvg-section-label">The Distinction</span>
           <span className="gvg-divider" />
           <h2
@@ -76,11 +79,11 @@ export default function GoodVsGreatBlock() {
               lineHeight: 1.1,
               letterSpacing: "-0.03em",
               color: "#FFFFFF",
-              marginBottom: "0.75rem",
+              marginBottom: "0.875rem",
             }}
           >
             The difference between{" "}
-            <span style={{ color: "rgba(255,255,255,0.4)" }}>good</span>{" "}
+            <span style={{ color: "rgba(255,255,255,0.35)" }}>good</span>{" "}
             and{" "}
             <span style={{ color: "#2979FF" }}>great.</span>
           </h2>
@@ -88,100 +91,102 @@ export default function GoodVsGreatBlock() {
             style={{
               fontFamily: "'IBM Plex Sans', sans-serif",
               fontSize: "1rem",
-              color: "rgba(255,255,255,0.45)",
+              color: "rgba(255,255,255,0.4)",
               lineHeight: 1.7,
-              maxWidth: "520px",
+              maxWidth: "480px",
+              margin: 0,
             }}
           >
             Good is table stakes. Great is a competitive advantage.
           </p>
         </div>
 
-        {/* Column headers */}
+        {/* Table wrapper */}
         <div
           className="gvg-fadeup"
-          style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "1px",
-            marginBottom: "1px",
-            backgroundColor: "rgba(255,255,255,0.09)",
-          }}
+          style={{ transitionDelay: "80ms" }}
         >
+          {/* Column header row */}
           <div
             style={{
-              backgroundColor: "#252530",
-              padding: "1rem 1.5rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              marginBottom: "0",
             }}
           >
-            <span
+            {/* Good header */}
+            <div
               style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.7rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.14em",
-                color: "rgba(255,255,255,0.3)",
+                padding: "1rem 2rem",
+                backgroundColor: "rgba(255,255,255,0.03)",
+                borderBottom: "1px solid rgba(255,255,255,0.08)",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
               }}
             >
-              Good
-            </span>
-            <span
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.6rem",
-                color: "rgba(255,255,255,0.2)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              — reports what happened
-            </span>
-          </div>
-          <div
-            style={{
-              backgroundColor: "#252530",
-              padding: "1rem 1.5rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "0.75rem",
-              borderLeft: "2px solid #2979FF",
-            }}
-          >
-            <span
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.7rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.14em",
-                color: "#2979FF",
-              }}
-            >
-              Great
-            </span>
-            <span
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.6rem",
-                color: "rgba(41,121,255,0.6)",
-                letterSpacing: "0.06em",
-              }}
-            >
-              — tells you what to do next
-            </span>
-          </div>
-        </div>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.18em",
+                  color: "rgba(255,255,255,0.25)",
+                  fontWeight: 400,
+                }}
+              >
+                Good
+              </span>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.6rem",
+                  color: "rgba(255,255,255,0.15)",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                — reports what happened
+              </span>
+            </div>
 
-        {/* Comparison rows */}
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: "1px",
-            backgroundColor: "rgba(255,255,255,0.09)",
-          }}
-        >
+            {/* Great header */}
+            <div
+              style={{
+                padding: "1rem 2rem",
+                backgroundColor: "rgba(41,121,255,0.06)",
+                borderBottom: "2px solid #2979FF",
+                borderLeft: "1px solid rgba(41,121,255,0.2)",
+                display: "flex",
+                alignItems: "center",
+                gap: "0.75rem",
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.65rem",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.18em",
+                  color: "#2979FF",
+                  fontWeight: 700,
+                }}
+              >
+                Great
+              </span>
+              <span
+                style={{
+                  fontFamily: "'IBM Plex Mono', monospace",
+                  fontSize: "0.6rem",
+                  color: "rgba(41,121,255,0.55)",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                — tells you what to do next
+              </span>
+            </div>
+          </div>
+
+          {/* Comparison rows */}
           {COMPARISONS.map((row, i) => (
             <div
               key={i}
@@ -189,45 +194,55 @@ export default function GoodVsGreatBlock() {
               style={{
                 display: "grid",
                 gridTemplateColumns: "1fr 1fr",
-                gap: "1px",
-                backgroundColor: "rgba(255,255,255,0.09)",
-                transitionDelay: `${i * 60}ms`,
+                transitionDelay: `${(i + 2) * 70}ms`,
+                borderBottom: i < COMPARISONS.length - 1
+                  ? "1px solid rgba(255,255,255,0.06)"
+                  : "none",
               }}
             >
-              {/* Good side */}
+              {/* Good cell */}
               <div
                 style={{
-                  backgroundColor: "#1e1e2a",
-                  padding: "1.5rem",
+                  padding: "2rem 2rem",
+                  backgroundColor: i % 2 === 0 ? "rgba(255,255,255,0.015)" : "transparent",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 <p
                   style={{
                     fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.9375rem",
-                    color: "rgba(255,255,255,0.4)",
-                    lineHeight: 1.6,
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.32)",
+                    lineHeight: 1.65,
                     margin: 0,
+                    fontStyle: "italic",
                   }}
                 >
                   {row.good}
                 </p>
               </div>
-              {/* Great side */}
+
+              {/* Great cell */}
               <div
                 style={{
-                  backgroundColor: "#1e1e2a",
-                  padding: "1.5rem",
-                  borderLeft: "2px solid rgba(41,121,255,0.3)",
+                  padding: "2rem 2rem",
+                  backgroundColor: i % 2 === 0
+                    ? "rgba(41,121,255,0.05)"
+                    : "rgba(41,121,255,0.03)",
+                  borderLeft: "2px solid rgba(41,121,255,0.25)",
+                  display: "flex",
+                  alignItems: "center",
                 }}
               >
                 <p
                   style={{
                     fontFamily: "'IBM Plex Sans', sans-serif",
-                    fontSize: "0.9375rem",
-                    color: "rgba(255,255,255,0.85)",
-                    lineHeight: 1.6,
+                    fontSize: "1rem",
+                    color: "rgba(255,255,255,0.88)",
+                    lineHeight: 1.65,
                     margin: 0,
+                    fontWeight: 500,
                   }}
                 >
                   {row.great}
@@ -235,6 +250,40 @@ export default function GoodVsGreatBlock() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Bottom tagline */}
+        <div
+          className="gvg-fadeup"
+          style={{
+            marginTop: "3.5rem",
+            transitionDelay: `${(COMPARISONS.length + 3) * 70}ms`,
+            display: "flex",
+            alignItems: "center",
+            gap: "1.5rem",
+          }}
+        >
+          <div
+            style={{
+              width: "2rem",
+              height: "2px",
+              backgroundColor: "#2979FF",
+              flexShrink: 0,
+            }}
+          />
+          <p
+            style={{
+              fontFamily: "'IBM Plex Mono', monospace",
+              fontSize: "0.75rem",
+              color: "rgba(255,255,255,0.3)",
+              letterSpacing: "0.1em",
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
+            Good media looks busy.{" "}
+            <span style={{ color: "#2979FF" }}>Great media makes decisions.</span>
+          </p>
         </div>
       </div>
     </section>

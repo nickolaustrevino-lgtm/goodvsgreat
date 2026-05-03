@@ -229,19 +229,27 @@
   }
 
   /* ── Fade-up animation ── */
+  /* Elements start visible by default. JS adds 'gvg-anim-ready' to body
+     to opt-in to the animation. This ensures content is always visible
+     even if the IntersectionObserver doesn't fire. */
   .gvg-fadeup {
-    opacity: 0;
-    transform: translateY(20px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .gvg-fadeup.visible,
-  .gvg-fadeup-done {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
+  /* When JS is ready, hide elements that haven't been observed yet */
+  body.gvg-anim-ready .gvg-fadeup:not(.visible) {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  body.gvg-anim-ready .gvg-fadeup.visible {
+    opacity: 1;
+    transform: translateY(0);
   }
   /* Fallback: if JS fails or observer doesn't fire, show content */
   @media (prefers-reduced-motion: reduce) {
-    .gvg-fadeup {
+    .gvg-fadeup,
+    body.gvg-anim-ready .gvg-fadeup:not(.visible) {
       opacity: 1;
       transform: none;
       transition: none;
