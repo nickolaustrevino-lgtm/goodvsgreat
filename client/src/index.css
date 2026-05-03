@@ -382,16 +382,46 @@ div.decision-layer .decision-layer__stack {
 }
 
 /* ---------- BLOCKS ---------- */
-
 div.decision-layer .dl-block {
   display: flex !important;
   align-items: center !important;
   gap: 24px !important;
   padding: 24px 32px !important;
   border-radius: 8px !important;
-  transition: border-color 200ms ease, transform 200ms ease;
+  transition:
+    border-color 250ms ease,
+    transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 250ms ease,
+    background 250ms ease !important;
   opacity: 0;
   animation: dl-fade-in 600ms ease forwards;
+  cursor: default;
+  position: relative;
+  overflow: hidden !important;
+}
+
+/* Shimmer sweep pseudo-element */
+div.decision-layer .dl-block::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 60% !important;
+  height: 100% !important;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(147, 197, 253, 0.08) 50%,
+    transparent 60%
+  ) !important;
+  transition: left 0ms !important;
+  pointer-events: none !important;
+  border-radius: inherit !important;
+}
+
+div.decision-layer .dl-block:hover::before {
+  left: 160% !important;
+  transition: left 550ms ease !important;
 }
 
 div.decision-layer .dl-block--tier {
@@ -403,16 +433,62 @@ div.decision-layer .dl-block--tier {
 }
 
 div.decision-layer .dl-block--tier:hover {
-  border-color: rgba(59, 130, 246, 0.8) !important;
-  transform: translateY(-1px);
+  background: rgba(15, 23, 42, 0.85) !important;
+  border-color: rgba(59, 130, 246, 1) !important;
+  box-shadow:
+    0 0 0 1px rgba(59, 130, 246, 0.35),
+    0 0 24px rgba(59, 130, 246, 0.2),
+    0 8px 32px rgba(0, 0, 0, 0.35) !important;
+  transform: translateY(-3px) scale(1.005) !important;
+}
+
+/* Tier number brightens on hover */
+div.decision-layer .dl-block--tier:hover .dl-block__number {
+  color: #93C5FD !important;
+  text-shadow: 0 0 12px rgba(147, 197, 253, 0.6) !important;
+  transition: color 250ms ease, text-shadow 250ms ease !important;
+}
+
+/* Title brightens slightly on hover */
+div.decision-layer .dl-block--tier:hover h3.dl-block__title {
+  color: #FFFFFF !important;
+  letter-spacing: 0.055em !important;
+  transition: letter-spacing 250ms ease !important;
+}
+
+/* Description becomes more legible on hover */
+div.decision-layer .dl-block--tier:hover p.dl-block__desc {
+  color: rgba(255, 255, 255, 0.9) !important;
+  transition: color 250ms ease !important;
 }
 
 div.decision-layer .dl-block--outcome {
   background: #3B82F6 !important;
   border: 1px solid #3B82F6 !important;
   box-shadow: 0 8px 32px rgba(59, 130, 246, 0.3) !important;
+  transition:
+    transform 250ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    box-shadow 250ms ease,
+    background 250ms ease !important;
 }
 
+div.decision-layer .dl-block--outcome:hover {
+  background: #2563EB !important;
+  box-shadow:
+    0 0 0 2px rgba(147, 197, 253, 0.5),
+    0 12px 40px rgba(59, 130, 246, 0.55) !important;
+  transform: translateY(-3px) scale(1.008) !important;
+}
+
+div.decision-layer .dl-block--outcome:hover .dl-block__number {
+  letter-spacing: 0.2em !important;
+  transition: letter-spacing 300ms ease !important;
+}
+
+div.decision-layer .dl-block--outcome:hover h3.dl-block__title {
+  letter-spacing: 0.055em !important;
+  transition: letter-spacing 250ms ease !important;
+}
 /* Stagger animation delays */
 div.decision-layer .dl-block:nth-of-type(1) { animation-delay: 0ms; }
 div.decision-layer .dl-block:nth-of-type(3) { animation-delay: 150ms; }
