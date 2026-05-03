@@ -85,7 +85,7 @@ export default function AboutSection() {
             <div style={{ marginTop: "1.25rem" }}>
               <div
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.9375rem",
                   fontWeight: 700,
                   color: "#FFFFFF",
@@ -114,7 +114,7 @@ export default function AboutSection() {
             <span className="gvg-divider" />
             <h2
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
                 fontWeight: 700,
                 lineHeight: 1.05,
@@ -136,7 +136,7 @@ export default function AboutSection() {
                 <p
                   key={i}
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1rem",
                     color: "rgba(255,255,255,0.6)",
                     lineHeight: 1.65,

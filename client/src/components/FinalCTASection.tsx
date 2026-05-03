@@ -81,7 +81,7 @@ export default function FinalCTASection() {
 
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
               fontWeight: 700,
               lineHeight: 1.02,
@@ -99,7 +99,7 @@ export default function FinalCTASection() {
 
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.0625rem",
               color: "rgba(255,255,255,0.5)",
               lineHeight: 1.65,

@@ -70,7 +70,7 @@ export default function WritingSection() {
           <span className="gvg-divider" />
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
               lineHeight: 1.05,
@@ -83,7 +83,7 @@ export default function WritingSection() {
           </h2>
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
               lineHeight: 1.65,
@@ -144,7 +144,7 @@ export default function WritingSection() {
               </span>
               <h3
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1rem",
                   fontWeight: 700,
                   color: "#FFFFFF",
@@ -157,7 +157,7 @@ export default function WritingSection() {
               </h3>
               <p
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.875rem",
                   color: "rgba(255,255,255,0.5)",
                   lineHeight: 1.7,
@@ -199,7 +199,7 @@ export default function WritingSection() {
           <div>
             <div
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 fontWeight: 700,
                 color: "#FFFFFF",
@@ -210,7 +210,7 @@ export default function WritingSection() {
             </div>
             <p
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",
                 color: "rgba(255,255,255,0.45)",
                 lineHeight: 1.6,

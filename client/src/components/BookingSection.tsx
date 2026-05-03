@@ -69,7 +69,7 @@ export default function BookingSection() {
     backgroundColor: "#1A1A2E",
     border: "1px solid rgba(255,255,255,0.12)",
     padding: "0.875rem 1rem",
-    fontFamily: "'IBM Plex Sans', sans-serif",
+    fontFamily: "'Inter', sans-serif",
     fontSize: "0.9375rem",
     color: "#FFFFFF",
     outline: "none",
@@ -135,7 +135,7 @@ export default function BookingSection() {
             <span className="gvg-divider" />
             <h2
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
                 fontWeight: 700,
                 lineHeight: 1.05,
@@ -149,7 +149,7 @@ export default function BookingSection() {
             </h2>
             <p
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "1rem",
                 color: "rgba(255,255,255,0.55)",
                 lineHeight: 1.65,
@@ -180,7 +180,7 @@ export default function BookingSection() {
                 >
                   <span
                     style={{
-                      fontFamily: "'Space Mono', monospace",
+                      fontFamily: "'IBM Plex Mono', monospace",
                       fontSize: "0.7rem",
                       fontWeight: 700,
                       color: "#2979FF",
@@ -192,7 +192,7 @@ export default function BookingSection() {
                   </span>
                   <span
                     style={{
-                      fontFamily: "'IBM Plex Sans', sans-serif",
+                      fontFamily: "'Inter', sans-serif",
                       fontSize: "0.9375rem",
                       color: "rgba(255,255,255,0.55)",
                       lineHeight: 1.6,
@@ -226,7 +226,7 @@ export default function BookingSection() {
                     alignItems: "center",
                     justifyContent: "center",
                     margin: "0 auto 1.5rem",
-                    fontFamily: "'Space Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "1.2rem",
                     color: "#FFFFFF",
                   }}
@@ -235,7 +235,7 @@ export default function BookingSection() {
                 </div>
                 <h3
                   style={{
-                    fontFamily: "'Space Mono', monospace",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1.25rem",
                     fontWeight: 700,
                     color: "#FFFFFF",
@@ -247,7 +247,7 @@ export default function BookingSection() {
                 </h3>
                 <p
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.9375rem",
                     color: "rgba(255,255,255,0.5)",
                     lineHeight: 1.65,

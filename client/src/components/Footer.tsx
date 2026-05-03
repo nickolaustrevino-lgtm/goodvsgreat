@@ -118,7 +118,7 @@ export default function Footer() {
             </button>
             <p
               style={{
-                fontFamily: "'IBM Plex Sans', sans-serif",
+                fontFamily: "'Inter', sans-serif",
                 fontSize: "0.875rem",
                 color: "rgba(255,255,255,0.35)",
                 lineHeight: 1.6,
@@ -185,7 +185,7 @@ export default function Footer() {
                   background: "none",
                   border: "none",
                   padding: 0,
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.875rem",
                   color: "rgba(255,255,255,0.4)",
                   cursor: "pointer",
@@ -220,7 +220,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.875rem",
                   color: "rgba(255,255,255,0.4)",
                   textDecoration: "none",

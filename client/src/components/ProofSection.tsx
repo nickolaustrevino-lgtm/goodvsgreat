@@ -75,7 +75,7 @@ export default function ProofSection() {
           <span className="gvg-divider" />
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
               lineHeight: 1.05,
@@ -89,7 +89,7 @@ export default function ProofSection() {
           </h2>
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
               lineHeight: 1.65,
@@ -132,7 +132,7 @@ export default function ProofSection() {
               </span>
               <h3
                 style={{
-                  fontFamily: "'Space Mono', monospace",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "1.0625rem",
                   fontWeight: 700,
                   color: "#FFFFFF",
@@ -145,7 +145,7 @@ export default function ProofSection() {
               </h3>
               <p
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.9375rem",
                   color: "rgba(255,255,255,0.55)",
                   lineHeight: 1.65,

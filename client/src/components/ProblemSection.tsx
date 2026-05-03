@@ -66,11 +66,11 @@ export default function ProblemSection() {
           <span className="gvg-divider" />
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
-              fontWeight: 700,
+              fontWeight: 800,
               lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.04em",
               color: "#FFFFFF",
               marginBottom: "1.25rem",
             }}
@@ -80,7 +80,7 @@ export default function ProblemSection() {
           </h2>
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1.0625rem",
               color: "rgba(255,255,255,0.55)",
               lineHeight: 1.65,
@@ -91,26 +91,26 @@ export default function ProblemSection() {
           </p>
         </div>
 
-        {/* Problem cards */}
+        {/* Problem cards — strict 2×2 grid */}
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "1.5rem",
+            gridTemplateColumns: "repeat(2, 1fr)",
+            gap: "1.25rem",
           }}
         >
           {PROBLEMS.map((p, i) => (
             <div
               key={i}
-              className="gvg-fadeup gvg-card"
+              className="gvg-fadeup gvg-card gvg-card--accent"
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <div
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.65rem",
+                  fontSize: "0.6rem",
                   textTransform: "uppercase",
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.1em",
                   color: "#2979FF",
                   marginBottom: "0.75rem",
                 }}
@@ -119,7 +119,7 @@ export default function ProblemSection() {
               </div>
               <p
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.9375rem",
                   color: "rgba(255,255,255,0.6)",
                   lineHeight: 1.65,
@@ -152,7 +152,7 @@ export default function ProblemSection() {
           />
           <p
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "0.9375rem",
               color: "rgba(255,255,255,0.4)",
               lineHeight: 1.6,

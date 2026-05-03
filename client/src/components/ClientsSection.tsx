@@ -58,7 +58,7 @@ export default function ClientsSection() {
             <span
               key={i}
               style={{
-                fontFamily: "'Space Mono', monospace",
+                fontFamily: "'IBM Plex Mono', monospace",
                 fontSize: "0.875rem",
                 fontWeight: 700,
                 color: "rgba(255,255,255,0.22)",

@@ -65,7 +65,7 @@ export default function ServicesSection() {
           <span className="gvg-divider" />
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
               lineHeight: 1.05,
@@ -79,7 +79,7 @@ export default function ServicesSection() {
           </h2>
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
               lineHeight: 1.65,
@@ -177,7 +177,7 @@ export default function ServicesSection() {
         >
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.6)",
               lineHeight: 1.65,

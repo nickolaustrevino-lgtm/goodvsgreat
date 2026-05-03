@@ -99,7 +99,7 @@ export default function PricingSection() {
           <span className="gvg-divider" />
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
               lineHeight: 1.05,
@@ -112,7 +112,7 @@ export default function PricingSection() {
           </h2>
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.45)",
               lineHeight: 1.65,
@@ -186,7 +186,7 @@ export default function PricingSection() {
               <div style={{ marginBottom: "1.25rem" }}>
                 <span
                   style={{
-                    fontFamily: "'Space Mono', monospace",
+                    fontFamily: "'IBM Plex Mono', monospace",
                     fontSize: "2rem",
                     fontWeight: 700,
                     color: "#FFFFFF",
@@ -213,7 +213,7 @@ export default function PricingSection() {
               {/* Short desc */}
               <p
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.9375rem",
                   color: "rgba(255,255,255,0.7)",
                   lineHeight: 1.6,
@@ -227,7 +227,7 @@ export default function PricingSection() {
               {/* Body copy */}
               <p
                 style={{
-                  fontFamily: "'IBM Plex Sans', sans-serif",
+                  fontFamily: "'Inter', sans-serif",
                   fontSize: "0.875rem",
                   color: "rgba(255,255,255,0.45)",
                   lineHeight: 1.65,
@@ -260,7 +260,7 @@ export default function PricingSection() {
                 </div>
                 <p
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.875rem",
                     color: "rgba(255,255,255,0.55)",
                     fontStyle: "italic",
@@ -294,7 +294,7 @@ export default function PricingSection() {
                 </div>
                 <p
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "0.8125rem",
                     color: "rgba(255,255,255,0.32)",
                     fontStyle: "italic",

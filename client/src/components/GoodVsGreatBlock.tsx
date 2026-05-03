@@ -75,7 +75,7 @@ export default function GoodVsGreatBlock() {
           <span className="gvg-divider" />
           <h2
             style={{
-              fontFamily: "'Space Mono', monospace",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
               fontWeight: 700,
               lineHeight: 1.1,
@@ -91,7 +91,7 @@ export default function GoodVsGreatBlock() {
           </h2>
           <p
             style={{
-              fontFamily: "'IBM Plex Sans', sans-serif",
+              fontFamily: "'Inter', sans-serif",
               fontSize: "1rem",
               color: "rgba(255,255,255,0.4)",
               lineHeight: 1.7,
@@ -219,7 +219,7 @@ export default function GoodVsGreatBlock() {
               >
                 <p
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1rem",
                     color: "rgba(255,255,255,0.32)",
                     lineHeight: 1.65,
@@ -245,7 +245,7 @@ export default function GoodVsGreatBlock() {
               >
                 <p
                   style={{
-                    fontFamily: "'IBM Plex Sans', sans-serif",
+                    fontFamily: "'Inter', sans-serif",
                     fontSize: "1rem",
                     color: "rgba(255,255,255,0.88)",
                     lineHeight: 1.65,
