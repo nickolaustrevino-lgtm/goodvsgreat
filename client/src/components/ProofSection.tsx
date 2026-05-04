@@ -6,7 +6,6 @@
 
 import { useEffect, useRef } from "react";
 import DotMatrixCanvas from "./DotMatrixCanvas";
-import CaseStudyDashboard from "./CaseStudyDashboard";
 
 const CASE_STUDIES = [
   {
@@ -189,10 +188,6 @@ export default function ProofSection() {
           ))}
         </div>
 
-        {/* Case Study Dashboard — brand signature visual */}
-        <div className="gvg-fadeup" style={{ marginTop: "4rem" }}>
-          <CaseStudyDashboard />
-        </div>
       </div>
     </section>
   );

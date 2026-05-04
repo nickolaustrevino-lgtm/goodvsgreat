@@ -4,7 +4,6 @@
    Ghost number: 03 */
 
 import { useEffect, useRef } from "react";
-import DecisionLayerDashboard from "./DecisionLayerDashboard";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
@@ -164,11 +163,6 @@ export default function ServicesSection() {
 
             </div>
           </div>
-        </div>
-
-        {/* Decision Layer Dashboard — brand signature visual */}
-        <div className="gvg-fadeup" style={{ marginTop: "3.5rem", marginBottom: "3.5rem" }}>
-          <DecisionLayerDashboard />
         </div>
 
         {/* Bottom callout */}
