@@ -7,6 +7,7 @@
    Ghost number: 04 */
 
 import { useEffect, useRef } from "react";
+import GoodVsGreatDashboard from "./GoodVsGreatDashboard";
 
 const GVG_LOGO = "/manus-storage/gvg-logo_7908b53b.png";
 
@@ -258,6 +259,11 @@ export default function GoodVsGreatBlock() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Good vs Great Dashboard — brand signature visual */}
+        <div className="gvg-fadeup" style={{ marginTop: "4rem", marginBottom: "1rem" }}>
+          <GoodVsGreatDashboard />
         </div>
 
         {/* Bottom tagline */}
