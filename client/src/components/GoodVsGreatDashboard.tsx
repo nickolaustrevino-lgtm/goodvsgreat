@@ -1,33 +1,46 @@
-/* GoodVsGreatDashboard — GvG Brand Dashboard Variant 02
+/* GoodVsGreatDashboard — GvG Brand Dashboard Variant 02 (v2)
    Section 04 (GoodVsGreatBlock) visual artifact
-   Split-screen: LEFT = "Good" (attribution theater, last-click, busy charts)
-                 RIGHT = "Great" (incremental truth, clean decision signal)
-   Design: matches hero dashboard — IBM Plex Mono, Electric Blue, animated */
+   Design critique v2 — all fixes applied:
+   - Headline stats obnoxiously large (64–72px)
+   - Color discipline: 4 tokens only (amber, blue, purple accent, green)
+   - Pill bars (6px, border-radius 999)
+   - Animated bar re-allocation: right bars start at left bar widths, animate to true values
+   - Vertical 1px hairline divider between columns
+   - Dashed empty-state with lock icon on left
+   - Breathing Decision Signal (opacity loop)
+   - "What you'd do next" closing row on both sides
+   - Counters animate on viewport entry
+   - Toggle pills with accent border + inner highlight */
 
 import { useEffect, useRef, useState } from "react";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
-const BLUE = "#2979FF";
-const GREEN = "#4ADE80";
-const RED = "#F87171";
-const AMBER = "#FBBF24";
-const DIM = "rgba(255,255,255,0.28)";
-const MID = "rgba(255,255,255,0.5)";
 
-function AnimBar({ pct, color, delay = 0, active }: { pct: number; color: string; delay?: number; active: boolean }) {
-  const [w, setW] = useState(0);
-  useEffect(() => {
-    if (!active) return;
-    const t = setTimeout(() => setW(pct), delay);
-    return () => clearTimeout(t);
-  }, [active, pct, delay]);
-  return (
-    <div style={{ height: "3px", background: "rgba(255,255,255,0.06)", borderRadius: "2px", overflow: "hidden" }}>
-      <div style={{ height: "100%", width: `${w}%`, background: color, borderRadius: "2px", transition: "width 1s cubic-bezier(0.4,0,0.2,1)", boxShadow: `0 0 5px ${color}44` }} />
-    </div>
-  );
-}
+// 4 color tokens only
+const AMBER = "#FBBF24";       // warning — left/last-click
+const BLUE = "#2979FF";        // signal — right/incremental primary
+const PURPLE = "#9C7CFF";      // accent — Decision Signal + Email
+const GREEN = "#4ADE80";       // success — footnote ✓ only
+const DIM = "rgba(255,255,255,0.28)";
+const MID = "rgba(255,255,255,0.55)";
+const HIGH = "rgba(255,255,255,0.9)";
+
+// Left-side channel data (last-click)
+const LEFT_CHANNELS = [
+  { ch: "Paid Social",  pct: 38 },
+  { ch: "Paid Search",  pct: 34 },
+  { ch: "Display",      pct: 18 },
+  { ch: "Email",        pct: 10 },
+];
+
+// Right-side channel data (incremental truth)
+const RIGHT_CHANNELS = [
+  { ch: "Paid Social",  pct: 52, color: BLUE },
+  { ch: "Paid Search",  pct: 18, color: BLUE },
+  { ch: "Display",      pct:  8, color: BLUE },
+  { ch: "Email",        pct: 22, color: PURPLE },  // purple = newly-discovered
+];
 
 function useCounter(target: number, duration = 1200, active = false, delay = 0) {
   const [val, setVal] = useState(0);
@@ -38,7 +51,8 @@ function useCounter(target: number, duration = 1200, active = false, delay = 0) 
       const step = (ts: number) => {
         if (!start) start = ts;
         const p = Math.min((ts - start) / duration, 1);
-        setVal(Math.round(p * target));
+        const eased = 1 - Math.pow(1 - p, 3);
+        setVal(Math.round(eased * target));
         if (p < 1) requestAnimationFrame(step);
       };
       requestAnimationFrame(step);
@@ -48,168 +62,83 @@ function useCounter(target: number, duration = 1200, active = false, delay = 0) 
   return val;
 }
 
-// Sparkline — fake waveform path
-function Sparkline({ color, noisy = false }: { color: string; noisy?: boolean }) {
-  const points = noisy
-    ? "0,18 8,6 16,22 24,4 32,20 40,8 48,24 56,10 64,18 72,5 80,22 88,12 96,20 104,8 112,16"
-    : "0,22 16,20 32,16 48,12 64,10 80,7 96,5 112,4";
+// Pill bar — starts at `from` width, animates to `to` width
+function PillBar({ from, to, color, delay = 0, active }: {
+  from: number; to: number; color: string; delay?: number; active: boolean;
+}) {
+  const [w, setW] = useState(from); // start at the "from" position
+  useEffect(() => {
+    if (!active) return;
+    // First render at `from` immediately, then after delay animate to `to`
+    setW(from);
+    const t = setTimeout(() => setW(to), delay);
+    return () => clearTimeout(t);
+  }, [active, from, to, delay]);
   return (
-    <svg width="112" height="28" viewBox="0 0 112 28" fill="none" style={{ display: "block" }}>
-      <polyline points={points} stroke={color} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round" opacity={0.8} />
+    <div style={{ height: "7px", background: "rgba(255,255,255,0.07)", borderRadius: "999px", overflow: "hidden" }}>
+      <div style={{
+        height: "100%", width: `${w}%`, background: color, borderRadius: "999px",
+        transition: "width 1.1s cubic-bezier(0.4,0,0.2,1)",
+        boxShadow: `0 0 8px ${color}55`,
+      }} />
+    </div>
+  );
+}
+
+// Sparkline — noisy (left) or smooth ascending (right)
+function Sparkline({ noisy = false, color }: { noisy?: boolean; color: string }) {
+  const pts = noisy
+    ? "0,18 10,5 20,22 30,3 40,19 50,7 60,23 70,9 80,17 90,4 100,20 110,10 120,16"
+    : "0,22 20,19 40,15 60,11 80,7 100,5 120,3";
+  return (
+    <svg width="120" height="26" viewBox="0 0 120 26" fill="none" style={{ display: "block", marginTop: "0.25rem" }}>
+      <polyline points={pts} stroke={color} strokeWidth="1.5" fill="none" strokeLinejoin="round" strokeLinecap="round" opacity={0.75} />
     </svg>
   );
 }
 
-// Panel: "Good" side — attribution theater
-function GoodPanel({ active }: { active: boolean }) {
-  const roas = useCounter(4.2, 900, active, 100);
+// Column header pill
+function TogglePill({ label, color, active: on }: { label: string; color: string; active: boolean }) {
   return (
-    <div style={{
-      flex: 1,
-      background: "rgba(255,255,255,0.02)",
-      borderRight: "1px solid rgba(255,255,255,0.06)",
-      padding: "0.875rem",
-      display: "flex",
-      flexDirection: "column",
-      gap: "0.625rem",
-    }}>
-      {/* Panel header */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.3)" }}>Good</span>
-        <span style={{
-          fontFamily: MONO, fontSize: "0.44rem", textTransform: "uppercase", letterSpacing: "0.08em",
-          color: AMBER, background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.2)",
-          borderRadius: "3px", padding: "0.1rem 0.35rem",
-        }}>Last-Click</span>
-      </div>
-
-      {/* Big vanity ROAS */}
-      <div style={{ padding: "0.625rem", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "6px" }}>
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", textTransform: "uppercase", letterSpacing: "0.08em", color: DIM, marginBottom: "0.2rem" }}>Reported ROAS</div>
-        <div style={{ fontFamily: MONO, fontSize: "1.4rem", fontWeight: 700, color: "#FFFFFF", lineHeight: 1 }}>{roas.toFixed(1)}×</div>
-        <div style={{ fontFamily: MONO, fontSize: "0.52rem", color: GREEN, marginTop: "0.15rem" }}>↑ looks great</div>
-        <Sparkline color={GREEN} noisy />
-      </div>
-
-      {/* Channel breakdown — all channels claim credit */}
-      <div>
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", textTransform: "uppercase", letterSpacing: "0.08em", color: DIM, marginBottom: "0.4rem" }}>Channel Attribution</div>
-        {[
-          { ch: "Paid Social", pct: 38, color: AMBER },
-          { ch: "Paid Search", pct: 34, color: AMBER },
-          { ch: "Display", pct: 18, color: AMBER },
-          { ch: "Email", pct: 10, color: AMBER },
-        ].map((c, i) => (
-          <div key={c.ch} style={{ marginBottom: "0.35rem" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.12rem" }}>
-              <span style={{ fontFamily: SANS, fontSize: "0.6rem", color: MID }}>{c.ch}</span>
-              <span style={{ fontFamily: MONO, fontSize: "0.56rem", color: AMBER }}>{c.pct}%</span>
-            </div>
-            <AnimBar pct={c.pct} color={AMBER} delay={i * 100 + 300} active={active} />
-          </div>
-        ))}
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", color: "rgba(251,191,36,0.5)", marginTop: "0.3rem" }}>⚠ Total: 100% — every channel claims full credit</div>
-      </div>
-
-      {/* No decision signal */}
-      <div style={{ padding: "0.5rem 0.625rem", background: "rgba(255,255,255,0.02)", border: "1px solid rgba(255,255,255,0.05)", borderRadius: "6px" }}>
-        <div style={{ fontFamily: MONO, fontSize: "0.52rem", color: "rgba(255,255,255,0.2)" }}>No decision signal available.</div>
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", color: "rgba(255,255,255,0.12)", marginTop: "0.15rem" }}>Optimize for reported ROAS.</div>
-      </div>
-    </div>
-  );
-}
-
-// Panel: "Great" side — incremental truth
-function GreatPanel({ active }: { active: boolean }) {
-  const incr = useCounter(68, 1100, active, 200);
-  const wasted = useCounter(41, 900, active, 300);
-  const [signalOn, setSignalOn] = useState(false);
-  useEffect(() => {
-    if (!active) return;
-    const t = setTimeout(() => setSignalOn(true), 1200);
-    return () => clearTimeout(t);
-  }, [active]);
-  return (
-    <div style={{
-      flex: 1,
-      background: "rgba(41,121,255,0.03)",
-      padding: "0.875rem",
-      display: "flex",
-      flexDirection: "column",
-      gap: "0.625rem",
-    }}>
-      {/* Panel header */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <span style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: BLUE }}>Great</span>
-        <span style={{
-          fontFamily: MONO, fontSize: "0.44rem", textTransform: "uppercase", letterSpacing: "0.08em",
-          color: GREEN, background: "rgba(74,222,128,0.1)", border: "1px solid rgba(74,222,128,0.2)",
-          borderRadius: "3px", padding: "0.1rem 0.35rem",
-        }}>Incremental</span>
-      </div>
-
-      {/* Incremental ROAS */}
-      <div style={{ padding: "0.625rem", background: "rgba(41,121,255,0.06)", border: "1px solid rgba(41,121,255,0.18)", borderRadius: "6px" }}>
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(41,121,255,0.6)", marginBottom: "0.2rem" }}>Incremental Lift</div>
-        <div style={{ fontFamily: MONO, fontSize: "1.4rem", fontWeight: 700, color: "#FFFFFF", lineHeight: 1 }}>{incr}%</div>
-        <div style={{ fontFamily: MONO, fontSize: "0.52rem", color: GREEN, marginTop: "0.15rem" }}>↑ proven causal</div>
-        <Sparkline color={BLUE} />
-      </div>
-
-      {/* True channel contribution */}
-      <div>
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", textTransform: "uppercase", letterSpacing: "0.08em", color: DIM, marginBottom: "0.4rem" }}>True Contribution</div>
-        {[
-          { ch: "Paid Social", pct: 52, color: BLUE },
-          { ch: "Paid Search", pct: 18, color: "#6366F1" },
-          { ch: "Display", pct: 8, color: "#8B5CF6" },
-          { ch: "Email", pct: 22, color: "#A78BFA" },
-        ].map((c, i) => (
-          <div key={c.ch} style={{ marginBottom: "0.35rem" }}>
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.12rem" }}>
-              <span style={{ fontFamily: SANS, fontSize: "0.6rem", color: MID }}>{c.ch}</span>
-              <span style={{ fontFamily: MONO, fontSize: "0.56rem", color: c.color }}>{c.pct}%</span>
-            </div>
-            <AnimBar pct={c.pct} color={c.color} delay={i * 100 + 300} active={active} />
-          </div>
-        ))}
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", color: "rgba(74,222,128,0.6)", marginTop: "0.3rem" }}>✓ Wasted spend identified: ${wasted}K</div>
-      </div>
-
-      {/* Decision signal */}
-      <div style={{
-        padding: "0.5rem 0.625rem",
-        background: signalOn ? "rgba(41,121,255,0.08)" : "rgba(255,255,255,0.02)",
-        border: `1px solid ${signalOn ? "rgba(41,121,255,0.25)" : "rgba(255,255,255,0.05)"}`,
-        borderRadius: "6px",
-        transition: "all 0.5s ease",
-      }}>
-        <div style={{ fontFamily: MONO, fontSize: "0.48rem", textTransform: "uppercase", letterSpacing: "0.08em", color: signalOn ? BLUE : DIM, marginBottom: "0.2rem" }}>⚡ Decision Signal</div>
-        <div style={{ fontFamily: SANS, fontSize: "0.62rem", color: signalOn ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.2)", lineHeight: 1.5, transition: "color 0.5s ease" }}>
-          Shift 14% from Search → CTV. Projected +0.4× true ROAS.
-        </div>
-      </div>
-    </div>
+    <span style={{
+      fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em",
+      color: on ? color : DIM,
+      background: on ? `rgba(${color === AMBER ? "251,191,36" : "41,121,255"},0.1)` : "transparent",
+      border: `1px solid ${on ? color : "rgba(255,255,255,0.1)"}`,
+      borderRadius: "4px", padding: "0.2rem 0.5rem",
+      boxShadow: on ? `inset 0 1px 0 rgba(255,255,255,0.08)` : "none",
+      transition: "all 0.3s ease",
+    }}>{label}</span>
   );
 }
 
 export default function GoodVsGreatDashboard() {
   const ref = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(false);
+  const [signalBreathing, setSignalBreathing] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) { setActive(true); obs.disconnect(); }
+        if (entry.isIntersecting) {
+          setActive(true);
+          setTimeout(() => setSignalBreathing(true), 1800);
+          obs.disconnect();
+        }
       },
       { threshold: 0.2 }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, []);
+
+  // Headline counters
+  const roasInt = useCounter(4, 900, active, 100);
+  const roasDec = useCounter(0, 900, active, 100); // will show 4.0
+  const incrPct = useCounter(68, 1100, active, 200);
+  const wasted = useCounter(41, 900, active, 400);
 
   return (
     <div
@@ -219,29 +148,201 @@ export default function GoodVsGreatDashboard() {
         border: "1px solid rgba(255,255,255,0.08)",
         borderRadius: "12px",
         overflow: "hidden",
-        boxShadow: "0 0 40px rgba(41,121,255,0.06), 0 20px 60px rgba(0,0,0,0.5)",
+        boxShadow: "0 0 50px rgba(41,121,255,0.06), 0 24px 64px rgba(0,0,0,0.55)",
       }}
     >
-      {/* Header */}
+      {/* ── Header bar ── */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "space-between",
-        padding: "0.625rem 0.875rem",
-        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        padding: "0.625rem 1rem",
+        borderBottom: "1px solid rgba(255,255,255,0.07)",
         background: "rgba(255,255,255,0.02)",
       }}>
-        <span style={{ fontFamily: MONO, fontSize: "0.58rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.4)" }}>Attribution Comparison · Same Campaign</span>
-        <div style={{ display: "flex", gap: "0.375rem", alignItems: "center" }}>
-          <span style={{ fontFamily: MONO, fontSize: "0.48rem", color: AMBER }}>Last-Click</span>
-          <span style={{ fontFamily: MONO, fontSize: "0.48rem", color: "rgba(255,255,255,0.2)" }}>vs</span>
-          <span style={{ fontFamily: MONO, fontSize: "0.48rem", color: GREEN }}>Incremental</span>
+        <span style={{ fontFamily: MONO, fontSize: "0.58rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM }}>
+          Attribution Comparison · Same Campaign
+        </span>
+        {/* Divider rule beneath header content */}
+        <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+          <TogglePill label="Last-Click" color={AMBER} active={true} />
+          <span style={{ fontFamily: MONO, fontSize: "0.48rem", color: "rgba(255,255,255,0.15)" }}>vs</span>
+          <TogglePill label="Incremental" color={BLUE} active={true} />
         </div>
       </div>
 
-      {/* Split panels */}
-      <div style={{ display: "flex" }}>
-        <GoodPanel active={active} />
-        <GreatPanel active={active} />
+      {/* ── Two-column body ── */}
+      <div style={{ display: "flex", position: "relative" }}>
+
+        {/* Vertical hairline divider */}
+        <div style={{
+          position: "absolute", left: "50%", top: "1rem", bottom: "1rem",
+          width: "1px", background: "rgba(255,255,255,0.07)", zIndex: 1,
+        }} />
+
+        {/* ══ LEFT — Good / Last-Click ══ */}
+        <div style={{ flex: 1, padding: "1.5rem 1.25rem 1.25rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
+
+          {/* Headline stat */}
+          <div>
+            <div style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(251,191,36,0.55)", marginBottom: "0.375rem" }}>
+              Reported ROAS
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: "clamp(3rem, 5vw, 4.5rem)", fontWeight: 600, color: "#FFFFFF", lineHeight: 1, letterSpacing: "-0.03em" }}>
+              {roasInt}.{roasDec}<span style={{ fontSize: "0.4em", color: AMBER, marginLeft: "0.15em" }}>×</span>
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: "0.65rem", fontStyle: "italic", color: "rgba(251,191,36,0.55)", marginTop: "0.25rem", opacity: 0.8 }}>
+              ↑ looks great
+            </div>
+            <Sparkline noisy color={AMBER} />
+          </div>
+
+          {/* Channel attribution bars */}
+          <div>
+            <div style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM, marginBottom: "0.75rem" }}>
+              Channel Attribution
+            </div>
+            {LEFT_CHANNELS.map((c, i) => (
+              <div key={c.ch} style={{ marginBottom: "0.625rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.25rem" }}>
+                  <span style={{ fontFamily: SANS, fontSize: "0.8125rem", fontWeight: 500, color: HIGH }}>{c.ch}</span>
+                  <span style={{ fontFamily: MONO, fontSize: "0.8125rem", fontWeight: 600, color: AMBER }}>{c.pct}%</span>
+                </div>
+                <PillBar from={0} to={c.pct} color={AMBER} delay={i * 100 + 300} active={active} />
+              </div>
+            ))}
+            <div style={{ fontFamily: MONO, fontSize: "0.6rem", color: "rgba(251,191,36,0.55)", marginTop: "0.5rem" }}>
+              ⚠ Total: 100% — every channel claims full credit
+            </div>
+          </div>
+
+          {/* Empty state — dashed, intentional */}
+          <div style={{
+            padding: "0.75rem 0.875rem",
+            border: "1px dashed rgba(255,255,255,0.15)",
+            borderRadius: "8px",
+            display: "flex", gap: "0.5rem", alignItems: "flex-start",
+          }}>
+            <span style={{ fontSize: "0.85rem", flexShrink: 0, opacity: 0.4, marginTop: "1px" }}>🔒</span>
+            <div>
+              <div style={{ fontFamily: MONO, fontSize: "0.6rem", color: "rgba(255,255,255,0.35)", marginBottom: "0.2rem" }}>No decision signal available.</div>
+              <div style={{ fontFamily: MONO, fontSize: "0.55rem", color: "rgba(255,255,255,0.2)" }}>Optimize for reported ROAS.</div>
+            </div>
+          </div>
+
+          {/* What you'd do next — wrong move */}
+          <div style={{
+            padding: "0.75rem 0.875rem",
+            background: "rgba(251,191,36,0.05)",
+            border: "1px solid rgba(251,191,36,0.15)",
+            borderRadius: "8px",
+          }}>
+            <div style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(251,191,36,0.5)", marginBottom: "0.35rem" }}>
+              What you'd do next
+            </div>
+            <div style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
+              Scale Paid Social. Cut Email.
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: "0.55rem", fontStyle: "italic", color: "rgba(251,191,36,0.4)", marginTop: "0.25rem" }}>
+              ← the wrong move
+            </div>
+          </div>
+        </div>
+
+        {/* ══ RIGHT — Great / Incremental ══ */}
+        <div style={{ flex: 1, padding: "1.5rem 1.25rem 1.25rem", display: "flex", flexDirection: "column", gap: "1.5rem", background: "rgba(41,121,255,0.02)" }}>
+
+          {/* Headline stat */}
+          <div>
+            <div style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(41,121,255,0.65)", marginBottom: "0.375rem" }}>
+              Incremental Lift
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: "clamp(3rem, 5vw, 4.5rem)", fontWeight: 600, color: "#FFFFFF", lineHeight: 1, letterSpacing: "-0.03em" }}>
+              {incrPct}<span style={{ fontSize: "0.4em", color: BLUE, marginLeft: "0.1em" }}>%</span>
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: "0.65rem", fontStyle: "italic", color: "rgba(41,121,255,0.55)", marginTop: "0.25rem", opacity: 0.8 }}>
+              ↑ proven causal
+            </div>
+            <Sparkline color={BLUE} />
+          </div>
+
+          {/* True contribution bars — animate from left bar widths */}
+          <div>
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
+              <span style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM }}>True Contribution</span>
+              {/* Inline legend */}
+              <div style={{ display: "flex", gap: "0.625rem", alignItems: "center" }}>
+                <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "2px", background: BLUE, display: "inline-block" }} />
+                  <span style={{ fontFamily: MONO, fontSize: "0.44rem", color: DIM }}>Tracked</span>
+                </span>
+                <span style={{ display: "flex", alignItems: "center", gap: "0.25rem" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "2px", background: PURPLE, display: "inline-block" }} />
+                  <span style={{ fontFamily: MONO, fontSize: "0.44rem", color: DIM }}>Newly-discovered</span>
+                </span>
+              </div>
+            </div>
+            {RIGHT_CHANNELS.map((c, i) => (
+              <div key={c.ch} style={{ marginBottom: "0.625rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.25rem" }}>
+                  <span style={{ fontFamily: SANS, fontSize: "0.8125rem", fontWeight: 500, color: HIGH }}>{c.ch}</span>
+                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
+                    <span style={{ fontFamily: MONO, fontSize: "0.65rem", color: "rgba(255,255,255,0.2)", textDecoration: "line-through" }}>{LEFT_CHANNELS[i].pct}%</span>
+                    <span style={{ fontFamily: MONO, fontSize: "0.8125rem", fontWeight: 600, color: c.color }}>{c.pct}%</span>
+                  </div>
+                </div>
+                {/* Starts at left bar width, re-allocates to true value */}
+                <PillBar from={LEFT_CHANNELS[i].pct} to={c.pct} color={c.color} delay={i * 120 + 600} active={active} />
+              </div>
+            ))}
+            <div style={{ fontFamily: MONO, fontSize: "0.6rem", color: "rgba(74,222,128,0.7)", marginTop: "0.5rem" }}>
+              ✓ Wasted spend identified: ${wasted}K
+            </div>
+          </div>
+
+          {/* Decision Signal — breathing glow */}
+          <div style={{
+            padding: "0.875rem",
+            background: "rgba(41,121,255,0.08)",
+            border: "1px solid rgba(156,124,255,0.3)",
+            borderRadius: "8px",
+            boxShadow: signalBreathing ? "0 0 24px rgba(156,124,255,0.16)" : "none",
+            animation: signalBreathing ? "gvg-breathe 4s ease-in-out infinite" : "none",
+            transition: "box-shadow 0.8s ease",
+          }}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginBottom: "0.35rem" }}>
+              <span style={{ fontSize: "0.75rem" }}>⚡</span>
+              <span style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: PURPLE }}>Decision Signal</span>
+            </div>
+            <div style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(255,255,255,0.7)", lineHeight: 1.55 }}>
+              Shift 14% from Search → CTV. Projected +0.4× true ROAS.
+            </div>
+          </div>
+
+          {/* What you'd do next — right move */}
+          <div style={{
+            padding: "0.75rem 0.875rem",
+            background: "rgba(41,121,255,0.07)",
+            border: "1px solid rgba(41,121,255,0.25)",
+            borderRadius: "8px",
+          }}>
+            <div style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(41,121,255,0.65)", marginBottom: "0.35rem" }}>
+              What you'd do next
+            </div>
+            <div style={{ fontFamily: SANS, fontSize: "0.8125rem", color: "rgba(255,255,255,0.75)", lineHeight: 1.5 }}>
+              Shift 14% from Search → CTV.
+            </div>
+            <div style={{ fontFamily: MONO, fontSize: "0.55rem", fontStyle: "italic", color: "rgba(41,121,255,0.5)", marginTop: "0.25rem" }}>
+              ← the right move
+            </div>
+          </div>
+        </div>
       </div>
+
+      <style>{`
+        @keyframes gvg-breathe {
+          0%, 100% { opacity: 0.92; }
+          50% { opacity: 1; }
+        }
+      `}</style>
     </div>
   );
 }
