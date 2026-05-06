@@ -4,6 +4,7 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { bookingRouter } from "./routers/booking";
 import { capiRouter } from "./routers/capi";
+import { leadsRouter } from "./routers/leads";
 import { filesRouter } from "./routers/files";
 import { postsRouter } from "./routers/posts";
 import { subscribersRouter } from "./routers/subscribers";
@@ -24,6 +25,7 @@ export const appRouter = router({
 
   booking: bookingRouter,
   capi: capiRouter,
+  leads: leadsRouter,
   files: filesRouter,
   posts: postsRouter,
   subscribers: subscribersRouter,

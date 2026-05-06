@@ -12,6 +12,7 @@ import AdminPosts from "./pages/AdminPosts";
 import AdminPostEditor from "./pages/AdminPostEditor";
 import AdminImport from "./pages/AdminImport";
 import AdminSubscribers from "./pages/AdminSubscribers";
+import AdminLeads from "./pages/AdminLeads";
 import WritingIndex from "./pages/WritingIndex";
 import WritingPost from "./pages/WritingPost";
 import SubscribeConfirm from "./pages/SubscribeConfirm";
@@ -71,6 +72,7 @@ function Router() {
       <Route path={"/admin/posts/new"} component={() => <AdminPostEditor />} />
       <Route path={"/admin/import"} component={AdminImport} />
       <Route path={"/admin/subscribers"} component={AdminSubscribers} />
+      <Route path={"/admin/leads"} component={AdminLeads} />
       <Route path={"/admin/posts/:id"} component={AdminPostEditorRoute} />
       {/* Subscription pages */}
       <Route path={"/subscribe"} component={Subscribe} />

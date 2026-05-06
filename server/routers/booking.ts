@@ -11,6 +11,7 @@ import { z } from "zod";
 import { publicProcedure, router } from "../_core/trpc";
 import { notifyOwner } from "../_core/notification";
 import { insertBookingRequest } from "../db";
+import { sendBookingConfirmation } from "../email";
 
 export const bookingRouter = router({
   notify: publicProcedure
@@ -39,7 +40,18 @@ export const bookingRouter = router({
         console.error("[booking.notify] DB insert error:", err);
       });
 
-      // 2. Build notification content
+      // 2. Send confirmation email to the visitor (fire-and-forget)
+      sendBookingConfirmation({
+        firstName: input.firstName,
+        lastName:  input.lastName,
+        email:     input.email,
+        org:       input.org,
+        challenge: input.challenge,
+      }).catch((err) => {
+        console.error("[booking.notify] Confirmation email error:", err);
+      });
+
+      // 3. Build notification content
       const content = [
         `👤 Name:        ${input.firstName} ${input.lastName}`,
         `📧 Email:       ${input.email}`,

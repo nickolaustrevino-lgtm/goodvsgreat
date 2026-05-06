@@ -1,0 +1,1 @@
+ALTER TABLE `booking_requests` ADD `status` enum('new','contacted','closed') DEFAULT 'new' NOT NULL;
