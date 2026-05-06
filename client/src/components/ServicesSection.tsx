@@ -1,4 +1,4 @@
-/* Section 03 — The Decision Layer (Solution Frame)
+/* Section 03 - The Decision Layer (Solution Frame)
    Horizontal flow diagram: 4 tiles + animated arrow connectors
    Surface: surface-0 (#0A1226) */
 

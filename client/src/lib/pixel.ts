@@ -1,5 +1,5 @@
 /**
- * Meta Pixel event helpers — GvG
+ * Meta Pixel event helpers - GvG
  * Pixel ID: 1170717808472225
  *
  * Wraps window.fbq calls with a safety guard so events are silently

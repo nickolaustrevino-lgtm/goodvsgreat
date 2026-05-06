@@ -86,7 +86,7 @@ export default function NotFound() {
             maxWidth: "480px",
           }}
         >
-          The page you're looking for doesn't exist — or the attribution model sent you somewhere it shouldn't have.
+          The page you're looking for doesn't exist - or the attribution model sent you somewhere it shouldn't have.
         </p>
 
         {/* CTA row */}

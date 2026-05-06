@@ -1,5 +1,5 @@
 /**
- * DotMatrixCanvas — GvG Brand Design Element
+ * DotMatrixCanvas - GvG Brand Design Element
  * Renders an animated LED dot-matrix parallax background using HTML5 Canvas.
  * Inspired by the pixel/dot-matrix aesthetic of the GvG logo and brand identity.
  *
@@ -34,7 +34,7 @@ interface Dot {
 }
 
 const DOT_SPACING = 22; // px between dot centres
-const DOT_RADIUS = 3.5; // base dot radius in px — reduced for subtlety
+const DOT_RADIUS = 3.5; // base dot radius in px - reduced for subtlety
 const BASE_COLOR = [41, 121, 255] as const; // Electric Blue #2979FF
 const HOT_COLOR = [100, 200, 255] as const; // Cyan highlight for "hot" dots
 const BG_COLOR = "#0d1b2a"; // Deep navy
@@ -80,7 +80,7 @@ export default function DotMatrixCanvas({
           dots.push({
             col,
             row,
-            baseAlpha: 0.06 + Math.random() * 0.18, // much lower base alpha — subtle noise
+            baseAlpha: 0.06 + Math.random() * 0.18, // much lower base alpha - subtle noise
             pulsePhase: Math.random() * Math.PI * 2,
             pulseSpeed: 0.008 + Math.random() * 0.018,
             isHot,
@@ -108,7 +108,7 @@ export default function DotMatrixCanvas({
       const w = canvas.width / window.devicePixelRatio;
       const h = canvas.height / window.devicePixelRatio;
 
-      // Parallax offset — the dot grid moves up slower than the page
+      // Parallax offset - the dot grid moves up slower than the page
       const parentTop = canvas.parentElement?.getBoundingClientRect().top ?? 0;
       const parallaxOffset = -parentTop * parallaxFactor;
 
@@ -146,7 +146,7 @@ export default function DotMatrixCanvas({
           b = Math.round(BASE_COLOR[2] + (HOT_COLOR[2] - BASE_COLOR[2]) * pulse + (WHITE[2] - HOT_COLOR[2]) * Math.max(blend - 0.5, 0) * 2);
           radius = DOT_RADIUS + pulse * 2.0; // expand more at peak
 
-          // Glow halo — scales with pulse so it blooms at full brightness
+          // Glow halo - scales with pulse so it blooms at full brightness
           const glowRadius = radius * (2.5 + pulse * 2.0);
           const grd = ctx.createRadialGradient(x, y, 0, x, y, glowRadius);
           grd.addColorStop(0, `rgba(${r},${g},${b},${alpha * 0.6})`);

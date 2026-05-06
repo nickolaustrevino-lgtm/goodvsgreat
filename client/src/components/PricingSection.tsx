@@ -1,4 +1,4 @@
-/* PricingSection — GvG Brand Guidelines v2
+/* PricingSection - GvG Brand Guidelines v2
    Background: --gvg-charcoal
    Cards: dark surface, featured card has Electric Blue border
    Label: IBM Plex Mono
@@ -40,7 +40,7 @@ const TIERS = [
     price: "$15,000",
     period: "per month · 6-month minimum",
     desc: "Embedded strategic leadership.",
-    body: "I operate as a fractional VP-level media and measurement partner — helping govern cross-channel investment, mentor the team, improve executive reporting, manage vendor logic, and build the infrastructure needed to improve ROI at the system level.",
+    body: "I operate as a fractional VP-level media and measurement partner - helping govern cross-channel investment, mentor the team, improve executive reporting, manage vendor logic, and build the infrastructure needed to improve ROI at the system level.",
     includes: ["Everything in Decision Layer Buildout", "Fractional VP-level leadership", "Cross-channel investment governance", "Team mentorship", "Executive reporting", "Vendor logic management"],
     excludes: "Hands-on campaign execution, creative development, or platform ad management.",
     bestFor: '"We need senior media decision leadership, but not a full-time hire yet."',
@@ -240,14 +240,14 @@ export default function PricingSection() {
                 <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.55)", fontStyle: "italic", lineHeight: 1.5, margin: 0 }}>{tier.bestFor}</p>
               </div>
 
-              {/* CTA — display:inline-flex + justifyContent:center so align-items:center from .gvg-btn-* works */}
+              {/* CTA - display:inline-flex + justifyContent:center so align-items:center from .gvg-btn-* works */}
               <a
                 href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={tier.featured ? "gvg-btn-primary" : "gvg-btn-secondary"}
                 style={{ width: "100%", textDecoration: "none", display: "inline-flex", justifyContent: "center" }}
-                onClick={() => trackEvent("Contact", { content_name: `Pricing CTA — ${tier.name}` })}
+                onClick={() => trackEvent("Contact", { content_name: `Pricing CTA - ${tier.name}` })}
               >
                 Book a Diagnostic Call →
               </a>
@@ -258,7 +258,7 @@ export default function PricingSection() {
         {/* Reassurance line */}
         <div className="gvg-fadeup" style={{ marginTop: "48px", textAlign: "center" }}>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.45)", lineHeight: 1.6, maxWidth: "560px", margin: "0 auto 16px" }}>
-            Not sure which tier fits? Start with a free 30-minute diagnostic call — no commitment, no pitch.
+            Not sure which tier fits? Start with a free 30-minute diagnostic call - no commitment, no pitch.
           </p>
           <a
             href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
@@ -288,7 +288,7 @@ export default function PricingSection() {
               (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.12)";
               (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)";
             }}
-            onClick={() => trackEvent("Lead", { content_name: "Pricing — Free Diagnostic Call" })}
+            onClick={() => trackEvent("Lead", { content_name: "Pricing - Free Diagnostic Call" })}
           >
             Book a free 30-min diagnostic call →
           </a>

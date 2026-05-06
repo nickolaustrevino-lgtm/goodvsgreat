@@ -1,5 +1,5 @@
 /* =====================================================
-   PUBLIC — Subscription Confirmation  /subscribe/confirm?token=xxx
+   PUBLIC - Subscription Confirmation  /subscribe/confirm?token=xxx
    GvG Design System v4 · Dark Editorial Intelligence
    ===================================================== */
 import { useEffect, useState } from "react";
@@ -97,7 +97,7 @@ export default function SubscribeConfirm() {
                 Already confirmed.
               </h1>
               <p style={{ fontFamily: SANS, fontSize: "1rem", color: "rgba(255,255,255,0.65)", lineHeight: 1.65, marginBottom: "2.5rem" }}>
-                You're already on the list — no action needed.
+                You're already on the list - no action needed.
               </p>
               <Link href="/writing" style={{ fontFamily: MONO, fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, color: "#fff", padding: "0.65rem 1.5rem", borderRadius: "8px", textDecoration: "none", display: "inline-block" }}>
                 Read the latest →

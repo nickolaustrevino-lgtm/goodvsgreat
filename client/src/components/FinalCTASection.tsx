@@ -1,4 +1,4 @@
-/* FinalCTASection — GvG Brand Guidelines v2
+/* FinalCTASection - GvG Brand Guidelines v2
    Full-bleed dark section with scanline texture
    Headline: "Stop optimizing what looks good. Start building what works."
    CTA: Electric Blue primary button
@@ -130,7 +130,7 @@ export default function FinalCTASection() {
               el.style.boxShadow = "0 0 40px rgba(47,111,255,0.35)";
               el.style.transform = "translateY(0)";
             }}
-            onClick={() => trackEvent("Lead", { content_name: "Final CTA — Book Diagnostic Call" })}
+            onClick={() => trackEvent("Lead", { content_name: "Final CTA - Book Diagnostic Call" })}
           >
             Book a Diagnostic Call →
           </a>

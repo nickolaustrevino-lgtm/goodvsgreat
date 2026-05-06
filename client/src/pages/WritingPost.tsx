@@ -1,5 +1,5 @@
 /* =====================================================
-   PUBLIC — Post Detail  /writing/:slug
+   PUBLIC - Post Detail  /writing/:slug
    GvG Design System v4 · Dark Editorial Intelligence
    ===================================================== */
 import { Link } from "wouter";
@@ -87,7 +87,7 @@ export default function WritingPost({ slug }: Props) {
           {/* Divider */}
           <div style={{ height: "1px", background: BORDER, marginBottom: "2.5rem" }} />
 
-          {/* Body — rendered as HTML with injected prose styles */}
+          {/* Body - rendered as HTML with injected prose styles */}
           <style>{`
             .prose-gvg p {
               margin: 0 0 1.5em 0;

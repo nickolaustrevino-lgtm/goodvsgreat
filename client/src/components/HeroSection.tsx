@@ -1,5 +1,5 @@
 /*
- * HeroSection — GvG Design System v5
+ * HeroSection - GvG Design System v5
  * CHANGELOG (v4 → v5):
  *   - H1: "Great media" emphasis changed from color swap to 4px cobalt underline rule,
  *     animating scaleX(0→1) on viewport entry (480ms cubic-bezier(0.16,1,0.3,1), 200ms delay)
@@ -7,11 +7,11 @@
  *   - CTA row: "Get a 30-min diagnosis" primary + "See the framework" secondary;
  *     both 52px height, 8px radius; primary has inset top highlight + glow on hover;
  *     secondary has transparent fill + border brightens on hover; trailing arrow animates
- *   - Stat row: replaced "4 CHANNELS" with "5 FORTUNE 500 BRANDS" — moved to credibility band
+ *   - Stat row: replaced "4 CHANNELS" with "5 FORTUNE 500 BRANDS" - moved to credibility band
  *   - Dashboard: colors aligned to spec tokens (#141A33 surface-1, #1B2240 surface-2);
  *     LIVE dot uses signal-green #5EE8B5; breathing animation on signal card
  *   - Section watermark "01": spec-accurate stroke-only treatment
- *   - Removed cursor-aware gradient (deprecated per spec — no particles/effects)
+ *   - Removed cursor-aware gradient (deprecated per spec - no particles/effects)
  *   - prefers-reduced-motion: all animations disabled, final state rendered immediately
  */
 
@@ -119,7 +119,7 @@ function LiveDot({ reduced }: { reduced: boolean }) {
 }
 
 // ── SVG Wordmarks ─────────────────────────────────────────────────────────────
-// Inline SVGs — greyscale, aria-hidden, role="presentation"
+// Inline SVGs - greyscale, aria-hidden, role="presentation"
 // Sourced from Simple Icons and brand guidelines; total payload < 12KB
 
 function EpicGamesLogo() {
@@ -147,7 +147,7 @@ function WarnerBrosLogo() {
 }
 
 function WalmartLogo() {
-  // Official 2025 Walmart wordmark — 7-path SVG, coordinate space ~642×114
+  // Official 2025 Walmart wordmark - 7-path SVG, coordinate space ~642×114
   return (
     <svg
       aria-hidden="true"
@@ -244,7 +244,7 @@ function AttributionDashboard({ reduced }: { reduced: boolean }) {
         Attribution Check
       </div>
 
-      {/* 2-stat tile row — both tiles use same unit (ROAS multiplier) for clean comparison */}
+      {/* 2-stat tile row - both tiles use same unit (ROAS multiplier) for clean comparison */}
       <div
         aria-live="polite"
         style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "16px" }}
@@ -282,10 +282,10 @@ function AttributionDashboard({ reduced }: { reduced: boolean }) {
         <span style={{ transition: "color 320ms ease", color: showTrue ? GREEN : "rgba(255,100,100,0.8)" }}>
           {showTrue ? "True attribution" : "Last-click attribution"}
         </span>
-        <span style={{ opacity: 0.4 }}>— hover to toggle</span>
+        <span style={{ opacity: 0.4 }}>- hover to toggle</span>
       </div>
 
-      {/* Budget allocation bars — last-click total = 159% (every channel claims credit) */}
+      {/* Budget allocation bars - last-click total = 159% (every channel claims credit) */}
       <div style={{ marginBottom: "8px" }}>
         {bars.map((bar, i) => (
           <div key={bar.label} style={{ marginBottom: i < bars.length - 1 ? "10px" : "0" }}>
@@ -298,19 +298,19 @@ function AttributionDashboard({ reduced }: { reduced: boolean }) {
         ))}
       </div>
 
-      {/* Over-100% footnote — explains why last-click totals exceed 100% */}
+      {/* Over-100% footnote - explains why last-click totals exceed 100% */}
       {!showTrue && (
         <div style={{ fontFamily: MONO, fontSize: "10px", color: "rgba(255,255,255,0.4)", marginBottom: "16px", letterSpacing: "0.04em" }}>
-          total: 159% — every channel claims full credit
+          total: 159% - every channel claims full credit
         </div>
       )}
       {showTrue && (
         <div style={{ fontFamily: MONO, fontSize: "10px", color: "rgba(94,232,181,0.5)", marginBottom: "16px", letterSpacing: "0.04em" }}>
-          total: 100% — incremental attribution
+          total: 100% - incremental attribution
         </div>
       )}
 
-      {/* Decision Signal — 20-24px padding, 8px eyebrow clearance */}
+      {/* Decision Signal - 20-24px padding, 8px eyebrow clearance */}
       <div style={{
         background: "rgba(140,108,255,0.08)",
         border: "1px solid rgba(156,124,255,0.32)",
@@ -443,7 +443,7 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Section watermark "01" — vertically centered against H1 baseline, not floating above */}
+        {/* Section watermark "01" - vertically centered against H1 baseline, not floating above */}
         <span
           aria-hidden="true"
           style={{
@@ -511,7 +511,7 @@ export default function HeroSection() {
               Good media looks busy.<br />
               <span style={{ position: "relative", display: "inline-block" }}>
                 <span>Great media</span>
-                {/* Animated cobalt underline rule — spans only "Great media", not the full line */}
+                {/* Animated cobalt underline rule - spans only "Great media", not the full line */}
                 <span
                   ref={underlineRef}
                   aria-hidden="true"
@@ -613,7 +613,7 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ── RIGHT: 5 cols — Attribution Check Dashboard (vertically centered) ── */}
+          {/* ── RIGHT: 5 cols - Attribution Check Dashboard (vertically centered) ── */}
           <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
             <AttributionDashboard reduced={reduced} />
           </div>
@@ -744,7 +744,7 @@ export default function HeroSection() {
                     {stat.label}
                   </div>
                 </div>
-                {/* Vertical hairline separator — 20% opacity for architectural feel */}
+                {/* Vertical hairline separator - 20% opacity for architectural feel */}
                 {i < arr.length - 1 && (
                   <span aria-hidden="true" style={{
                     display: "inline-block",

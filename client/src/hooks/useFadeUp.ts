@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 
 /**
- * useFadeUp — attaches IntersectionObserver to a ref and adds .visible class
+ * useFadeUp - attaches IntersectionObserver to a ref and adds .visible class
  * when the element enters the viewport.
  *
  * The animation system works as follows:

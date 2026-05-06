@@ -1,8 +1,8 @@
-/* DecisionLayerDashboard — GvG Brand Dashboard Variant 01
+/* DecisionLayerDashboard - GvG Brand Dashboard Variant 01
    Section 03 (ServicesSection) visual artifact
    Shows the three-tier pipeline as a live data flow:
    Measurement → Budget Logic → AI Tools → Decision Output
-   Design: matches hero dashboard — IBM Plex Mono, Electric Blue, dark surfaces, animated */
+   Design: matches hero dashboard - IBM Plex Mono, Electric Blue, dark surfaces, animated */
 
 import { useEffect, useRef, useState } from "react";
 

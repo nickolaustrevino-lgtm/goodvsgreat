@@ -1,5 +1,5 @@
 /* =====================================================
-   ADMIN — Post Editor  /admin/posts/new | /admin/posts/:id
+   ADMIN - Post Editor  /admin/posts/new | /admin/posts/:id
    GvG Design System v4 · Dark Editorial Intelligence
    ===================================================== */
 import { useEffect, useState } from "react";
@@ -45,7 +45,7 @@ export default function AdminPostEditor({ postId }: EditorProps) {
   const [slugTouched, setSlugTouched] = useState(false);
   const [saving, setSaving] = useState(false);
   const [showCoverPicker, setShowCoverPicker] = useState(false);
-  // Rich editor — no tab switching needed (WYSIWYG is always live)
+  // Rich editor - no tab switching needed (WYSIWYG is always live)
 
   // Load existing post for editing
   const { data: existingPost, isLoading: loadingPost } = trpc.posts.adminGetById.useQuery(
@@ -185,7 +185,7 @@ export default function AdminPostEditor({ postId }: EditorProps) {
           />
         </div>
 
-        {/* Sidebar — meta fields */}
+        {/* Sidebar - meta fields */}
         <div style={{ display: "flex", flexDirection: "column", gap: "1rem", position: "sticky", top: "1.5rem" }}>
           <MetaCard label="Slug">
             <input

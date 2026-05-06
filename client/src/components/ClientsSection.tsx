@@ -1,4 +1,4 @@
-/* ClientsSection — GvG Brand Guidelines v2
+/* ClientsSection - GvG Brand Guidelines v2
    Background: --gvg-navy
    Client names: Space Mono, muted white
    Label: IBM Plex Mono, Electric Blue

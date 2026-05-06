@@ -1,5 +1,5 @@
 /* =====================================================
-   ADMIN — Article Importer  /admin/import
+   ADMIN - Article Importer  /admin/import
    GvG Design System · Dark Editorial Intelligence
    ===================================================== */
 import { useState } from "react";
@@ -199,7 +199,7 @@ export default function AdminImport() {
             </span>
           )}
           <span style={{ fontFamily: MONO, fontSize: "0.65rem", color: DIM }}>
-            All imports saved as drafts — review and publish from the Posts list.
+            All imports saved as drafts - review and publish from the Posts list.
           </span>
         </div>
       )}

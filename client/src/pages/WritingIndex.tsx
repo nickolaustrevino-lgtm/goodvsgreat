@@ -1,5 +1,5 @@
 /* =====================================================
-   PUBLIC — Blog Index  /blog
+   PUBLIC - Blog Index  /blog
    GvG Design System v6 · Dark Editorial Intelligence
    ===================================================== */
 import { Link } from "wouter";
@@ -138,7 +138,7 @@ export default function WritingIndex() {
 
         {/* Post list */}
         {isLoading ? (
-          /* Loading skeleton — never show "Loading…" as terminal state */
+          /* Loading skeleton - never show "Loading…" as terminal state */
           <div style={{ display: "flex", flexDirection: "column", gap: "1px" }}>
             {[1, 2, 3].map((i) => (
               <div

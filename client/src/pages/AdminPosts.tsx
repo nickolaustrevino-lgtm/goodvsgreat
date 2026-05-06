@@ -1,5 +1,5 @@
 /* =====================================================
-   ADMIN — Blog Post Manager  /admin/posts
+   ADMIN - Blog Post Manager  /admin/posts
    GvG Design System v4 · Dark Editorial Intelligence
    ===================================================== */
 import { useState } from "react";
@@ -18,7 +18,7 @@ const DIM = "rgba(255,255,255,0.35)";
 const SURFACE = "#0F172A";
 
 function formatDate(d: Date | string | null) {
-  if (!d) return "—";
+  if (!d) return "-";
   return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
@@ -175,7 +175,7 @@ export default function AdminPosts() {
   );
 }
 
-// Shared admin shell layout — uses plain <a> tags (no nested Link+a)
+// Shared admin shell layout - uses plain <a> tags (no nested Link+a)
 export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ minHeight: "100vh", background: "oklch(16% 0.005 285)", color: "#fff", fontFamily: "'Inter', sans-serif" }}>

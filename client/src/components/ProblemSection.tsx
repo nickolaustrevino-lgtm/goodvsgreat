@@ -1,4 +1,4 @@
-/* ProblemSection — GvG Brand Guidelines v2
+/* ProblemSection - GvG Brand Guidelines v2
    Background: --gvg-navy (#1A1A2E)
    Ghost number: 02
    Headline: Space Mono 700
@@ -14,7 +14,7 @@ const PROBLEMS = [
   },
   {
     label: "Fragmented Channels",
-    text: "You have a Meta person, a Google person, a programmatic person — each optimizing their own lane, each reporting their own wins.",
+    text: "You have a Meta person, a Google person, a programmatic person - each optimizing their own lane, each reporting their own wins.",
   },
   {
     label: "Unclear Attribution",
@@ -22,7 +22,7 @@ const PROBLEMS = [
   },
   {
     label: "Leadership Pressure",
-    text: "Your CFO wants one number. Your CEO wants a story. Your dashboards give you neither — and the ask doesn't stop.",
+    text: "Your CFO wants one number. Your CEO wants a story. Your dashboards give you neither - and the ask doesn't stop.",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function ProblemSection() {
           </p>
         </div>
 
-        {/* Problem cards — strict 2×2 grid */}
+        {/* Problem cards - strict 2×2 grid */}
         <div
           style={{
             display: "grid",

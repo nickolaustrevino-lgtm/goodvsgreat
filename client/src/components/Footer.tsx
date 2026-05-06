@@ -1,4 +1,4 @@
-/* Footer — GvG Brand Guidelines v2
+/* Footer - GvG Brand Guidelines v2
    Background: #0D0D1A (deepest layer)
    Logo: GoodvsGreatBlueBannerLogoOnly.png brand asset
    Social: Instagram, Facebook, LinkedIn, TikTok, Threads
@@ -109,7 +109,7 @@ export default function Footer() {
                 display: "flex",
                 alignItems: "center",
               }}
-              aria-label="Good vs. Great — home"
+              aria-label="Good vs. Great - home"
             >
               <img
                 src={LOGO_URL}

@@ -1,4 +1,4 @@
-/* ProofSection — GvG Brand Guidelines v2
+/* ProofSection - GvG Brand Guidelines v2
    Background: --gvg-charcoal
    Cards: dark surface, Electric Blue top border
    Tags: IBM Plex Mono, bordered
@@ -12,7 +12,7 @@ const CASE_STUDIES = [
     label: "Case Study",
     title: "Fab Marketplace: Privacy-First Measurement at Global Scale",
     outcome: "+41% incremental ROAS vs. last-click baseline",
-    desc: "When Epic Games launched Fab Marketplace into a category with a 12-year incumbent, the challenge wasn't awareness — it was building a measurement system that tied investment to revenue quality, respected creator data, and held up under scrutiny from finance and leadership. I led strategy, built the measurement foundation from the ground up, and ran paid media across 10 simultaneous global markets.",
+    desc: "When Epic Games launched Fab Marketplace into a category with a 12-year incumbent, the challenge wasn't awareness - it was building a measurement system that tied investment to revenue quality, respected creator data, and held up under scrutiny from finance and leadership. I led strategy, built the measurement foundation from the ground up, and ran paid media across 10 simultaneous global markets.",
     tags: ["Epic Games", "Measurement Infrastructure", "Incrementality", "Global Scale", "Privacy-First"],
     href: "https://nickolaustrevino-lgtm.github.io/fab-marketplace-case-study/",
   },

@@ -1,4 +1,4 @@
-/* Section 09 — FAQ
+/* Section 09 - FAQ
    Background: #0D1117 (darkest surface)
    Accordion: 7 questions, single-open, animated expand
    Ghost number: 09 */
@@ -8,11 +8,11 @@ import { useEffect, useRef, useState } from "react";
 const FAQS = [
   {
     q: "What exactly does a 'Growth Decision Partner' do?",
-    a: "I sit at the intersection of your media investment, measurement infrastructure, and executive reporting. Concretely: I audit your current attribution model, identify where spend is misallocated, build the decision frameworks your team uses to govern budget, and translate all of it into language your CFO can act on. I don't run campaigns — I build the operating logic that makes campaigns defensible.",
+    a: "I sit at the intersection of your media investment, measurement infrastructure, and executive reporting. Concretely: I audit your current attribution model, identify where spend is misallocated, build the decision frameworks your team uses to govern budget, and translate all of it into language your CFO can act on. I don't run campaigns - I build the operating logic that makes campaigns defensible.",
   },
   {
     q: "How is this different from hiring a media agency?",
-    a: "Agencies are optimised for execution at scale — buying, trafficking, reporting. I'm optimised for the strategic layer above that: what should we be measuring, what does the data actually mean, and how do we make better capital allocation decisions? Most of my clients already have an agency. I work alongside them, not instead of them.",
+    a: "Agencies are optimised for execution at scale - buying, trafficking, reporting. I'm optimised for the strategic layer above that: what should we be measuring, what does the data actually mean, and how do we make better capital allocation decisions? Most of my clients already have an agency. I work alongside them, not instead of them.",
   },
   {
     q: "What's the minimum spend level where this makes sense?",
@@ -20,19 +20,19 @@ const FAQS = [
   },
   {
     q: "Do you work with in-house teams or replace them?",
-    a: "Always alongside, never instead of. My model is embedded partnership — I work with your existing media team, data team, and finance stakeholders. The goal is to make your team more effective, not to create a dependency on me. Part of the engagement deliverable is always a set of frameworks and processes your team can own after I'm gone.",
+    a: "Always alongside, never instead of. My model is embedded partnership - I work with your existing media team, data team, and finance stakeholders. The goal is to make your team more effective, not to create a dependency on me. Part of the engagement deliverable is always a set of frameworks and processes your team can own after I'm gone.",
   },
   {
     q: "What does the engagement process look like?",
-    a: "It starts with a 60-minute diagnostic call where I assess your current measurement stack, attribution model, and decision-making process. From there, most engagements begin with a 2-week audit that produces a clear picture of where your media investment is and isn't working. Ongoing retainer work typically runs 3–6 months and includes weekly working sessions, a monthly executive summary, and access to me for real-time decisions.",
+    a: "It starts with a 60-minute diagnostic call where I assess your current measurement stack, attribution model, and decision-making process. From there, most engagements begin with a 2-week audit that produces a clear picture of where your media investment is and isn't working. Ongoing retainer work typically runs 3-6 months and includes weekly working sessions, a monthly executive summary, and access to me for real-time decisions.",
   },
   {
     q: "How do you handle confidentiality?",
-    a: "Every engagement is covered by a mutual NDA before any data is shared. I work with a small number of clients at a time specifically so I can maintain clear separation between accounts. I don't share client data, methodologies, or outcomes without explicit permission — the case studies on this site are shared with client approval.",
+    a: "Every engagement is covered by a mutual NDA before any data is shared. I work with a small number of clients at a time specifically so I can maintain clear separation between accounts. I don't share client data, methodologies, or outcomes without explicit permission - the case studies on this site are shared with client approval.",
   },
   {
     q: "What if we're not ready for a full engagement?",
-    a: "Book a call anyway. Sometimes the most useful outcome of a first conversation is clarity on what you actually need — which might be a one-day workshop, a specific audit, or a referral to someone better suited to your situation. I'd rather give you an honest assessment than sell you an engagement that isn't the right fit.",
+    a: "Book a call anyway. Sometimes the most useful outcome of a first conversation is clarity on what you actually need - which might be a one-day workshop, a specific audit, or a referral to someone better suited to your situation. I'd rather give you an honest assessment than sell you an engagement that isn't the right fit.",
   },
 ];
 
@@ -90,7 +90,7 @@ export default function FAQSection() {
             Common questions.
           </h2>
           <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "18px", color: "rgba(255,255,255,0.5)", lineHeight: 1.6, maxWidth: "560px" }}>
-            If yours isn't here, book a call — I'll answer it directly.
+            If yours isn't here, book a call - I'll answer it directly.
           </p>
         </div>
 

@@ -1,4 +1,4 @@
-/* AboutSection — GvG Brand Guidelines v2
+/* AboutSection - GvG Brand Guidelines v2
    Background: --gvg-navy
    Portrait: real photo, sharp corners, Electric Blue corner accent
    H2: Space Mono 700
@@ -133,10 +133,10 @@ export default function AboutSection() {
                 For 12 years, I've built the decision infrastructure behind media investment for companies that had plenty of dashboards but no clarity. Epic Games. Microsoft. Warner Bros. Walmart. Amazon. Mid-market brands scaling past their first agency. The pattern is always the same: channels are live, spend is moving, but no one can explain what's actually working or why.
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0 }}>
-                My background sits at the intersection of paid media strategy, measurement architecture, and AI-augmented workflow design. I've governed over $100M in media across gaming, retail, entertainment, healthcare, and tech — and the thing I keep seeing is that the gap between good teams and great ones is never the budget. It's the operating logic underneath it.
+                My background sits at the intersection of paid media strategy, measurement architecture, and AI-augmented workflow design. I've governed over $100M in media across gaming, retail, entertainment, healthcare, and tech - and the thing I keep seeing is that the gap between good teams and great ones is never the budget. It's the operating logic underneath it.
               </p>
               <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0 }}>
-                Good vs. Great is the practice I built around that insight. I work with a small number of clients at a time, embedded at the strategic layer — designing the measurement frameworks, budget governance systems, and capital allocation logic that make media investment defensible to a CFO and legible to a team.
+                Good vs. Great is the practice I built around that insight. I work with a small number of clients at a time, embedded at the strategic layer - designing the measurement frameworks, budget governance systems, and capital allocation logic that make media investment defensible to a CFO and legible to a team.
               </p>
             </div>
 
@@ -161,20 +161,14 @@ export default function AboutSection() {
                   {
                     quote: "Nickolaus consistently operated as a true strategic business partner rather than a traditional media vendor. He took the time to deeply understand each brand's commercial objectives, customer dynamics, and operational realities, ensuring that strategy and execution were aligned to real business needs. His recommendations were grounded in business results, not simply vanity metrics.",
                     name: "Brad Jashinsky",
-                    title: "Gartner Analyst — Retail, Travel & Loyalty Marketing",
+                    title: "Gartner Analyst - Retail, Travel & Loyalty Marketing",
                     context: "Client at Razer & John's Incredible Pizza",
                   },
                   {
-                    quote: "Nick operates as a true strategic partner — focused on business objectives, not just media metrics. He connects marketing efforts directly to growth goals and consistently delivers thoughtful, outcome-driven strategies. He is also incredibly reliable when managing sensitive or high-stakes campaigns, bringing steady judgment and proactive communication when it matters most. Nick was a trusted advisor and a valued extension of my team.",
+                    quote: "Nick operates as a true strategic partner - focused on business objectives, not just media metrics. He connects marketing efforts directly to growth goals and consistently delivers thoughtful, outcome-driven strategies. He is also incredibly reliable when managing sensitive or high-stakes campaigns, bringing steady judgment and proactive communication when it matters most. Nick was a trusted advisor and a valued extension of my team.",
                     name: "Beth R. Grossfeld",
                     title: "Brand Positioning & Growth Marketing",
                     context: "Client",
-                  },
-                  {
-                    quote: "As a media planner, Nick is the perfect trifecta: agile, knowledgeable, and a keen listener. He understands precisely the tactics needed to bring in an audience, whether you're working on a custom content campaign including bespoke gaming experiences, Discords, and influencer collaborations or even regional targeting around experiential programs. I look forward to working with him again, as I know we certainly will.",
-                    name: "Anthony John Agnello",
-                    title: "Creative Director, Moonrock",
-                    context: "Colleague across two agencies",
                   },
                 ].map((rec, i) => (
                   <div key={i} style={{ padding: "20px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "8px" }}>

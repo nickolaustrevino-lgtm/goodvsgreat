@@ -1,4 +1,4 @@
-/* FitSection — GvG Brand Guidelines v2
+/* FitSection - GvG Brand Guidelines v2
    Background: --gvg-charcoal
    Two columns: Good Fit / Not a Fit
    Checkmarks: Electric Blue / muted
@@ -8,7 +8,7 @@ import { useEffect, useRef } from "react";
 
 const GOOD_FIT = [
   "You're spending $1M+ on paid media and questioning whether it's working",
-  "You need someone to own the measurement and decision layer — not just report on it",
+  "You need someone to own the measurement and decision layer - not just report on it",
   "You're scaling fast and want to build the right infrastructure before you waste more",
   "You want a strategic partner who can work with your existing team, not replace them",
   "You need to improve how media performance is communicated to leadership",
@@ -92,7 +92,7 @@ export default function FitSection() {
             gap: "1.5rem",
           }}
         >
-          {/* Good Fit — green tint */}
+          {/* Good Fit - green tint */}
           <div
             className="gvg-fadeup"
             style={{
@@ -116,7 +116,7 @@ export default function FitSection() {
             </ul>
           </div>
 
-          {/* Not a Fit — amber tint */}
+          {/* Not a Fit - amber tint */}
           <div
             className="gvg-fadeup"
             style={{

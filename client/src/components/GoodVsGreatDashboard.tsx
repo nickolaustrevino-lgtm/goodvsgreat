@@ -1,7 +1,7 @@
-/* GoodVsGreatDashboard — GvG Brand Dashboard Variant 02 (v2)
+/* GoodVsGreatDashboard - GvG Brand Dashboard Variant 02 (v2)
    Section 04 (GoodVsGreatBlock) visual artifact
-   Design critique v2 — all fixes applied:
-   - Headline stats obnoxiously large (64–72px)
+   Design critique v2 - all fixes applied:
+   - Headline stats obnoxiously large (64-72px)
    - Color discipline: 4 tokens only (amber, blue, purple accent, green)
    - Pill bars (6px, border-radius 999)
    - Animated bar re-allocation: right bars start at left bar widths, animate to true values
@@ -18,10 +18,10 @@ const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
 
 // 4 color tokens only
-const AMBER = "#FBBF24";       // warning — left/last-click
-const BLUE = "#2979FF";        // signal — right/incremental primary
-const PURPLE = "#9C7CFF";      // accent — Decision Signal + Email
-const GREEN = "#4ADE80";       // success — footnote ✓ only
+const AMBER = "#FBBF24";       // warning - left/last-click
+const BLUE = "#2979FF";        // signal - right/incremental primary
+const PURPLE = "#9C7CFF";      // accent - Decision Signal + Email
+const GREEN = "#4ADE80";       // success - footnote ✓ only
 const DIM = "rgba(255,255,255,0.28)";
 const MID = "rgba(255,255,255,0.55)";
 const HIGH = "rgba(255,255,255,0.9)";
@@ -62,7 +62,7 @@ function useCounter(target: number, duration = 1200, active = false, delay = 0) 
   return val;
 }
 
-// Pill bar — starts at `from` width, animates to `to` width
+// Pill bar - starts at `from` width, animates to `to` width
 function PillBar({ from, to, color, delay = 0, active }: {
   from: number; to: number; color: string; delay?: number; active: boolean;
 }) {
@@ -85,7 +85,7 @@ function PillBar({ from, to, color, delay = 0, active }: {
   );
 }
 
-// Sparkline — noisy (left) or smooth ascending (right)
+// Sparkline - noisy (left) or smooth ascending (right)
 function Sparkline({ noisy = false, color }: { noisy?: boolean; color: string }) {
   const pts = noisy
     ? "0,18 10,5 20,22 30,3 40,19 50,7 60,23 70,9 80,17 90,4 100,20 110,10 120,16"
@@ -178,7 +178,7 @@ export default function GoodVsGreatDashboard() {
           width: "1px", background: "rgba(255,255,255,0.07)", zIndex: 1,
         }} />
 
-        {/* ══ LEFT — Good / Last-Click ══ */}
+        {/* ══ LEFT - Good / Last-Click ══ */}
         <div style={{ flex: 1, padding: "1.5rem 1.25rem 1.25rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
 
           {/* Headline stat */}
@@ -210,11 +210,11 @@ export default function GoodVsGreatDashboard() {
               </div>
             ))}
             <div style={{ fontFamily: MONO, fontSize: "0.6rem", color: "rgba(251,191,36,0.55)", marginTop: "0.5rem" }}>
-              ⚠ Total: 100% — every channel claims full credit
+              ⚠ Total: 100% - every channel claims full credit
             </div>
           </div>
 
-          {/* Empty state — dashed, intentional */}
+          {/* Empty state - dashed, intentional */}
           <div style={{
             padding: "0.75rem 0.875rem",
             border: "1px dashed rgba(255,255,255,0.15)",
@@ -228,7 +228,7 @@ export default function GoodVsGreatDashboard() {
             </div>
           </div>
 
-          {/* What you'd do next — wrong move */}
+          {/* What you'd do next - wrong move */}
           <div style={{
             padding: "0.75rem 0.875rem",
             background: "rgba(251,191,36,0.05)",
@@ -247,7 +247,7 @@ export default function GoodVsGreatDashboard() {
           </div>
         </div>
 
-        {/* ══ RIGHT — Great / Incremental ══ */}
+        {/* ══ RIGHT - Great / Incremental ══ */}
         <div style={{ flex: 1, padding: "1.5rem 1.25rem 1.25rem", display: "flex", flexDirection: "column", gap: "1.5rem", background: "rgba(41,121,255,0.02)" }}>
 
           {/* Headline stat */}
@@ -264,7 +264,7 @@ export default function GoodVsGreatDashboard() {
             <Sparkline color={BLUE} />
           </div>
 
-          {/* True contribution bars — animate from left bar widths */}
+          {/* True contribution bars - animate from left bar widths */}
           <div>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "0.75rem" }}>
               <span style={{ fontFamily: MONO, fontSize: "0.52rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM }}>True Contribution</span>
@@ -298,7 +298,7 @@ export default function GoodVsGreatDashboard() {
             </div>
           </div>
 
-          {/* Decision Signal — breathing glow */}
+          {/* Decision Signal - breathing glow */}
           <div style={{
             padding: "0.875rem",
             background: "rgba(41,121,255,0.08)",
@@ -317,7 +317,7 @@ export default function GoodVsGreatDashboard() {
             </div>
           </div>
 
-          {/* What you'd do next — right move */}
+          {/* What you'd do next - right move */}
           <div style={{
             padding: "0.75rem 0.875rem",
             background: "rgba(41,121,255,0.07)",

@@ -1,5 +1,5 @@
 /**
- * useScrollSpy — GvG Brand Design
+ * useScrollSpy - GvG Brand Design
  * Tracks which section ID is currently in the viewport and returns it as `activeId`.
  * Uses IntersectionObserver with a top-biased rootMargin so the active section
  * switches as soon as its heading crosses the navbar (~64px from the top).

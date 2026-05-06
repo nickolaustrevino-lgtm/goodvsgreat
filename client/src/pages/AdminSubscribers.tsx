@@ -1,5 +1,5 @@
 /* =====================================================
-   ADMIN — Subscribers  /admin/subscribers
+   ADMIN - Subscribers  /admin/subscribers
    GvG Design System v4
    ===================================================== */
 import { useState } from "react";
@@ -37,7 +37,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
 }
 
 function formatDate(d: Date | string | null) {
-  if (!d) return "—";
+  if (!d) return "-";
   return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
@@ -181,7 +181,7 @@ export default function AdminSubscribers() {
 
                 {/* Name */}
                 <span style={{ fontFamily: SANS, fontSize: "0.875rem", color: DIM }}>
-                  {sub.name || "—"}
+                  {sub.name || "-"}
                 </span>
 
                 {/* Source */}

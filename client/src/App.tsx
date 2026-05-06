@@ -47,7 +47,7 @@ function Router() {
       <Route path={"/"} component={Home} />
       {/* File manager */}
       <Route path={"/files"} component={FileManager} />
-      {/* Public blog — canonical routes */}
+      {/* Public blog - canonical routes */}
       <Route path={"/blog"} component={WritingIndex} />
       <Route path={"/blog/:slug"} component={WritingPostRoute} />
       {/* Legacy /writing redirects → /blog (301-equivalent client-side) */}

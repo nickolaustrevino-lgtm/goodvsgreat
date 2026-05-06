@@ -1,4 +1,4 @@
-/* BookingSection — GvG Brand Guidelines v2
+/* BookingSection - GvG Brand Guidelines v2
    Background: --gvg-charcoal
    Form: dark surface, Electric Blue focus borders
    CTA: Electric Blue primary button
@@ -10,9 +10,9 @@ import { trackEvent } from "../lib/pixel";
 
 const SPEND_OPTIONS = [
   "Under $1M annually",
-  "$1M – $5M annually",
-  "$5M – $20M annually",
-  "$20M – $50M annually",
+  "$1M - $5M annually",
+  "$5M - $20M annually",
+  "$20M - $50M annually",
   "$50M+ annually",
 ];
 
@@ -152,7 +152,7 @@ export default function BookingSection() {
               {[
                 { step: "01", label: "Fill in the form", desc: "Your answers help me prepare a relevant diagnosis before we talk." },
                 { step: "02", label: "I review your setup", desc: "I'll look at your current measurement stack and spend allocation." },
-                { step: "03", label: "30-minute call", desc: "No sales pitch — just a straight read on what's working and what isn't." },
+                { step: "03", label: "30-minute call", desc: "No sales pitch - just a straight read on what's working and what isn't." },
                 { step: "04", label: "You leave with clarity", desc: "At minimum, one actionable observation you can act on immediately." },
               ].map((s, idx) => (
                 <div key={idx} style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
@@ -165,7 +165,7 @@ export default function BookingSection() {
               ))}
             </div>
 
-            {/* Dummy map for items — kept empty since we replaced the list */}
+            {/* Dummy map for items - kept empty since we replaced the list */}
             <div style={{ display: "none" }}>
               {[
                 "placeholder",

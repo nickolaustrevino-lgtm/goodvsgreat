@@ -1,7 +1,7 @@
 /*
- * Navbar — GvG Design System v5
+ * Navbar - GvG Design System v5
  * CHANGELOG (v4 → v5):
- *   - Removed all social icons (Instagram, Facebook, LinkedIn, TikTok, Threads) — migrated to footer
+ *   - Removed all social icons (Instagram, Facebook, LinkedIn, TikTok, Threads) - migrated to footer
  *   - Sticky blur: after 600px scroll, backdrop-filter: blur(12px) + rgba(10,18,38,0.8) fill
  *   - CTA upgraded to spec pill: 40px height, 8px radius, filled cobalt, 1px inner top highlight
  *   - Nav items: 14px humanist sans, weight 500, 80% opacity, 32px gap
@@ -98,7 +98,7 @@ export default function Navbar() {
             type="button"
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
             style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex", alignItems: "center", flexShrink: 0 }}
-            aria-label="Good vs. Great — home"
+            aria-label="Good vs. Great - home"
           >
             <img
               src={LOGO_URL}

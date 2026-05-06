@@ -1,4 +1,4 @@
-/* GoodVsGreatBlock — GvG Brand Guidelines v2
+/* GoodVsGreatBlock - GvG Brand Guidelines v2
    THE signature brand moment.
    True two-column comparison table.
    Left = "Good" (muted, quieter, what happened)
@@ -138,7 +138,7 @@ export default function GoodVsGreatBlock() {
                   letterSpacing: "0.05em",
                 }}
               >
-                — reports what happened
+                - reports what happened
               </span>
             </div>
 
@@ -180,7 +180,7 @@ export default function GoodVsGreatBlock() {
                   letterSpacing: "0.05em",
                 }}
               >
-                — tells you what to do next
+                - tells you what to do next
               </span>
             </div>
           </div>
@@ -251,7 +251,7 @@ export default function GoodVsGreatBlock() {
           ))}
         </div>
 
-        {/* Good vs Great Dashboard — brand signature visual */}
+        {/* Good vs Great Dashboard - brand signature visual */}
         <div className="gvg-fadeup" style={{ marginTop: "4rem", marginBottom: "1rem" }}>
           <GoodVsGreatDashboard />
         </div>

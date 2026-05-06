@@ -1,5 +1,5 @@
 /* =====================================================
-   FILE MANAGER — GvG Design System v4
+   FILE MANAGER - GvG Design System v4
    Full-stack S3 file storage management interface.
    Accessible via /files (admin/owner only in practice).
    ===================================================== */
@@ -303,7 +303,7 @@ export default function FileManager() {
         <div style={{ marginTop: "2.5rem", padding: "1rem", background: "rgba(41,121,255,0.05)", border: `1px solid rgba(41,121,255,0.12)`, borderRadius: "8px" }}>
           <span style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.08em", color: BLUE, marginRight: "0.5rem" }}>ℹ Storage</span>
           <span style={{ fontFamily: SANS, fontSize: "0.75rem", color: DIM }}>
-            Files are stored in S3 via the Manus built-in storage layer. URLs are served via signed redirect at <code style={{ fontFamily: MONO, color: "rgba(255,255,255,0.5)" }}>/manus-storage/…</code>. Deleting a record removes the metadata — the key becomes unreachable.
+            Files are stored in S3 via the Manus built-in storage layer. URLs are served via signed redirect at <code style={{ fontFamily: MONO, color: "rgba(255,255,255,0.5)" }}>/manus-storage/…</code>. Deleting a record removes the metadata - the key becomes unreachable.
           </span>
         </div>
       </div>

@@ -1,4 +1,4 @@
-/* Home — Good vs. Great
+/* Home - Good vs. Great
    Brand Guidelines v2: Dark Editorial Intelligence
    Section order:
    01 Hero → 02 Problem → 03 Decision Layer → 04 Distinction → 05 Proof

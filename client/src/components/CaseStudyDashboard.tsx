@@ -1,10 +1,10 @@
-/* CaseStudyDashboard — GvG Brand Dashboard Variant 03
+/* CaseStudyDashboard - GvG Brand Dashboard Variant 03
    Section 05 (ProofSection) visual artifact
    Shows Fab Marketplace case study results as a live metrics dashboard:
    - Measurement system built from scratch
    - 10 global markets, privacy-first
    - Incrementality proven, wasted spend recovered
-   Design: matches hero dashboard — IBM Plex Mono, Electric Blue, animated counters */
+   Design: matches hero dashboard - IBM Plex Mono, Electric Blue, animated counters */
 
 import { useEffect, useRef, useState } from "react";
 

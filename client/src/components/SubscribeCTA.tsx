@@ -1,5 +1,5 @@
 /* =====================================================
-   SubscribeCTA — email capture block for blog posts
+   SubscribeCTA - email capture block for blog posts
    GvG Design System v4 · Dark Editorial Intelligence
    ===================================================== */
 import { useState } from "react";
@@ -110,7 +110,7 @@ export default function SubscribeCTA({ source = "blog" }: SubscribeCTAProps) {
               Get the next piece in your inbox.
             </h3>
             <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: DIM, lineHeight: 1.65, margin: 0 }}>
-              Frameworks and case studies on measurement, attribution, and AI-era media strategy — no noise, no cadence pressure.
+              Frameworks and case studies on measurement, attribution, and AI-era media strategy - no noise, no cadence pressure.
             </p>
           </div>
 

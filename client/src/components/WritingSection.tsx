@@ -1,4 +1,4 @@
-/* WritingSection — GvG Brand Guidelines v2
+/* WritingSection - GvG Brand Guidelines v2
    Background: --gvg-navy
    Article cards: dark surface, Electric Blue top border on hover
    Label: IBM Plex Mono
@@ -10,21 +10,21 @@ const ARTICLES = [
   {
     label: "Essay",
     title: "The Advertiser Has Been Demoted",
-    desc: "The platforms have taken the wheel. The real job for marketing leaders is now systems architecture and signal design — not campaign management. A reframing of what modern media leadership actually looks like in a world where automation handles execution.",
+    desc: "The platforms have taken the wheel. The real job for marketing leaders is now systems architecture and signal design - not campaign management. A reframing of what modern media leadership actually looks like in a world where automation handles execution.",
     link: "https://goodversusgreat.substack.com/p/the-advertiser-has-been-demoted-your",
     cta: "Read on Substack →",
   },
   {
     label: "Framework",
     title: "From Clicks to Citations",
-    desc: "Traffic metrics don't tell you whether AI systems are recommending your brand. This framework replaces volume-based thinking with a more useful model for measuring visibility and value in the age of AI search — and what to actually optimize for.",
+    desc: "Traffic metrics don't tell you whether AI systems are recommending your brand. This framework replaces volume-based thinking with a more useful model for measuring visibility and value in the age of AI search - and what to actually optimize for.",
     link: "https://goodversusgreat.substack.com/p/from-clicks-to-citations-redesigning",
     cta: "Read on Substack →",
   },
   {
     label: "Essay",
     title: "Why Modern Marketers Need to Build, Not Just Buy",
-    desc: "The most effective marketing leaders aren't just buyers of tools and media — they're builders. A case for why strategic leaders increasingly need to ship working infrastructure, not just recommendations, and what that shift means for how teams are structured.",
+    desc: "The most effective marketing leaders aren't just buyers of tools and media - they're builders. A case for why strategic leaders increasingly need to ship working infrastructure, not just recommendations, and what that shift means for how teams are structured.",
     link: "https://www.linkedin.com/pulse/why-modern-marketers-need-build-just-buy-nickolaus-trevi%C3%B1o-ukuxe/?trackingId=mBWGArwjT%2B688WX8bOESzw%3D%3D",
     cta: "Read on LinkedIn →",
   },
@@ -90,7 +90,7 @@ export default function WritingSection() {
               maxWidth: "540px",
             }}
           >
-            I write publicly about measurement, AI, and the changing operating model of marketing — especially where old reporting models stop being useful.
+            I write publicly about measurement, AI, and the changing operating model of marketing - especially where old reporting models stop being useful.
           </p>
         </div>
 
