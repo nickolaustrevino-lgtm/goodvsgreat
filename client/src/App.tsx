@@ -14,6 +14,7 @@ import AdminSubscribers from "./pages/AdminSubscribers";
 import WritingIndex from "./pages/WritingIndex";
 import WritingPost from "./pages/WritingPost";
 import SubscribeConfirm from "./pages/SubscribeConfirm";
+import Subscribe from "./pages/Subscribe";
 
 // Legacy /writing → /blog redirect (preserves SEO equity)
 function WritingRedirect() {
@@ -59,7 +60,8 @@ function Router() {
       <Route path={"/admin/import"} component={AdminImport} />
       <Route path={"/admin/subscribers"} component={AdminSubscribers} />
       <Route path={"/admin/posts/:id"} component={AdminPostEditorRoute} />
-      {/* Subscription confirmation */}
+      {/* Subscription pages */}
+      <Route path={"/subscribe"} component={Subscribe} />
       <Route path={"/subscribe/confirm"} component={SubscribeConfirm} />
       {/* Fallbacks */}
       <Route path={"/404"} component={NotFound} />
