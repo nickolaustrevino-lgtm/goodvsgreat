@@ -481,7 +481,15 @@ export default function HeroSection() {
           {/* ── LEFT: 7 cols ─────────────────────────────────────────────── */}
           <div>
             {/* Eyebrow */}
-            <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "2rem" }}>
+            <div
+              style={{
+                display: "flex", alignItems: "center", gap: "8px", marginBottom: "2rem",
+                opacity: reduced ? 1 : heroVisible ? 1 : 0,
+                transform: reduced ? "none" : heroVisible ? "translateY(0)" : "translateY(16px)",
+                transition: reduced ? "none" : "opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: reduced ? "0ms" : "0ms",
+              }}
+            >
               <span aria-hidden="true" style={{ display: "inline-block", width: "24px", height: "1px", background: COBALT, flexShrink: 0 }} />
               <span style={{
                 fontFamily: MONO,
@@ -506,6 +514,10 @@ export default function HeroSection() {
                 color: "#FFFFFF",
                 marginBottom: "2rem",
                 maxWidth: "14ch",
+                opacity: reduced ? 1 : heroVisible ? 1 : 0,
+                transform: reduced ? "none" : heroVisible ? "translateY(0)" : "translateY(20px)",
+                transition: reduced ? "none" : "opacity 700ms cubic-bezier(0.16,1,0.3,1), transform 700ms cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: reduced ? "0ms" : "80ms",
               }}
             >
               Good media looks busy.<br />
@@ -541,13 +553,25 @@ export default function HeroSection() {
                 lineHeight: 1.6,
                 marginBottom: "2.5rem",
                 maxWidth: "480px",
+                opacity: reduced ? 1 : heroVisible ? 1 : 0,
+                transform: reduced ? "none" : heroVisible ? "translateY(0)" : "translateY(16px)",
+                transition: reduced ? "none" : "opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: reduced ? "0ms" : "220ms",
               }}
             >
               You're spending $1M+ on paid media. You can't prove what's working. I'm the decision layer between your dashboards and your CFO.
             </p>
 
             {/* CTA row */}
-            <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center" }}>
+            <div
+              style={{
+                display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center",
+                opacity: reduced ? 1 : heroVisible ? 1 : 0,
+                transform: reduced ? "none" : heroVisible ? "translateY(0)" : "translateY(12px)",
+                transition: reduced ? "none" : "opacity 600ms cubic-bezier(0.16,1,0.3,1), transform 600ms cubic-bezier(0.16,1,0.3,1)",
+                transitionDelay: reduced ? "0ms" : "360ms",
+              }}
+            >
               {/* Primary CTA */}
               <a
                 href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
@@ -614,7 +638,15 @@ export default function HeroSection() {
           </div>
 
           {/* ── RIGHT: 5 cols - Attribution Check Dashboard (vertically centered) ── */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+          <div
+            style={{
+              display: "flex", alignItems: "center", justifyContent: "center",
+              opacity: reduced ? 1 : heroVisible ? 1 : 0,
+              transform: reduced ? "none" : heroVisible ? "translateY(0)" : "translateY(24px)",
+              transition: reduced ? "none" : "opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1)",
+              transitionDelay: reduced ? "0ms" : "200ms",
+            }}
+          >
             <AttributionDashboard reduced={reduced} />
           </div>
         </div>
