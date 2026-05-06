@@ -4,7 +4,7 @@
    Label: IBM Plex Mono
    Ghost number: 06 */
 
-import { useEffect, useRef } from "react";
+import { useFadeUp } from "@/hooks/useFadeUp";
 import { trackEvent } from "../lib/pixel";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
@@ -50,25 +50,7 @@ const TIERS = [
 ];
 
 export default function PricingSection() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useFadeUp<HTMLElement>(0.08);
 
   return (
     <section

@@ -4,7 +4,7 @@
    Tags: IBM Plex Mono, bordered
    Ghost number: 05 */
 
-import { useEffect, useRef } from "react";
+import { useFadeUp } from "@/hooks/useFadeUp";
 import DotMatrixCanvas from "./DotMatrixCanvas";
 
 const CASE_STUDIES = [
@@ -27,25 +27,7 @@ const CASE_STUDIES = [
 ];
 
 export default function ProofSection() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useFadeUp<HTMLElement>(0.08);
 
   return (
     <section
