@@ -4,7 +4,7 @@
    Checkmarks: Electric Blue / muted
    Ghost number: 08 */
 
-import { useEffect, useRef } from "react";
+import { useFadeUp } from "@/hooks/useFadeUp";
 
 const GOOD_FIT = [
   "You're spending $1M+ on paid media and questioning whether it's working",
@@ -22,25 +22,7 @@ const NOT_FIT = [
 ];
 
 export default function FitSection() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useFadeUp<HTMLElement>(0.08);
 
   return (
     <section

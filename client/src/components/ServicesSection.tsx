@@ -3,6 +3,7 @@
    Surface: surface-0 (#0A1226) */
 
 import { useEffect, useRef, useState } from "react";
+import { useFadeUp } from "@/hooks/useFadeUp";
 
 const SURFACE_0 = "#0A1226";
 const SURFACE_1 = "#141A33";
@@ -43,7 +44,7 @@ const TIERS = [
 ];
 
 export default function ServicesSection() {
-  const sectionRef = useRef<HTMLElement>(null);
+  const sectionRef = useFadeUp<HTMLElement>(0.15);
   const [visible, setVisible] = useState(false);
   const [arrowsDrawn, setArrowsDrawn] = useState([false, false, false]);
 

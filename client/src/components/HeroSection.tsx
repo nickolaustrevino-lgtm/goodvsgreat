@@ -282,7 +282,9 @@ function AttributionDashboard({ reduced }: { reduced: boolean }) {
         <span style={{ transition: "color 320ms ease", color: showTrue ? GREEN : "rgba(255,100,100,0.8)" }}>
           {showTrue ? "True attribution" : "Last-click attribution"}
         </span>
-        <span style={{ opacity: 0.4 }}>- hover to toggle</span>
+        {/* Desktop: hover hint; Mobile: tap hint */}
+        <span className="attr-hint-hover" style={{ opacity: 0.4 }}>- hover to toggle</span>
+        <span className="attr-hint-tap" style={{ opacity: 0.4 }}>- tap to toggle</span>
       </div>
 
       {/* Budget allocation bars - last-click total = 159% (every channel claims credit) */}

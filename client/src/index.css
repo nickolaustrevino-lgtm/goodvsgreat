@@ -1242,3 +1242,13 @@ div.decision-layer .dl-connector__label {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* ── Attribution Check dashboard: responsive toggle hint ──────────────────────
+   Desktop (hover-capable): show "hover to toggle", hide "tap to toggle"
+   Mobile / touch (pointer:coarse or ≤768px): show "tap to toggle", hide "hover" */
+.attr-hint-hover { display: inline; }
+.attr-hint-tap   { display: none; }
+@media (pointer: coarse), (max-width: 768px) {
+  .attr-hint-hover { display: none; }
+  .attr-hint-tap   { display: inline; }
+}

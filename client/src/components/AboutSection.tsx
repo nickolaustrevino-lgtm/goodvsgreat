@@ -5,30 +5,12 @@
    Body: IBM Plex Sans 400
    Ghost number: 09 */
 
-import { useEffect, useRef } from "react";
+import { useFadeUp } from "@/hooks/useFadeUp";
 
 const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
 
 export default function AboutSection() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.08 }
-    );
-    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
-    return () => observer.disconnect();
-  }, []);
+  const ref = useFadeUp<HTMLElement>(0.08);
 
   return (
     <section
