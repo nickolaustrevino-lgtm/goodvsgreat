@@ -27,7 +27,10 @@ const postInput = z.object({
   title: z.string().min(1).max(512),
   excerpt: z.string().max(1000).optional(),
   content: z.string().min(1),
-  coverUrl: z.string().url().optional().or(z.literal("")),
+  coverUrl: z.string().optional().refine(
+    (v) => !v || v === "" || v.startsWith("/") || /^https?:\/\//.test(v),
+    { message: "Cover URL must be a valid URL or a relative path" }
+  ),
   status: z.enum(["draft", "published"]).default("draft"),
   slug: z.string().min(1).max(255).optional(), // auto-generated if omitted
 });
