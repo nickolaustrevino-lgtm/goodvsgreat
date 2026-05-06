@@ -15,6 +15,13 @@
       "when": 1777877876002,
       "tag": "0001_fat_princess_powerful",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1778032522779,
+      "tag": "0002_big_jack_flag",
+      "breakpoints": true
     }
   ]
 }

@@ -39,3 +39,21 @@ export const uploads = mysqlTable("uploads", {
 
 export type Upload = typeof uploads.$inferSelect;
 export type InsertUpload = typeof uploads.$inferInsert;
+
+// Blog posts table
+export const posts = mysqlTable("posts", {
+  id: int("id").autoincrement().primaryKey(),
+  authorId: int("authorId").notNull(),
+  slug: varchar("slug", { length: 255 }).notNull().unique(),
+  title: varchar("title", { length: 512 }).notNull(),
+  excerpt: text("excerpt"),
+  content: text("content").notNull(),
+  coverUrl: varchar("coverUrl", { length: 512 }),
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  publishedAt: timestamp("publishedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Post = typeof posts.$inferSelect;
+export type InsertPost = typeof posts.$inferInsert;
