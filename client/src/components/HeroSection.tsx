@@ -349,9 +349,9 @@ export default function HeroSection() {
                 maxWidth: "14ch",
               }}
             >
-              Good media looks busy.{" "}
+              Navigating complex decisions for{" "}
               <span style={{ position: "relative", display: "inline" }}>
-                <span>Great media</span>
+                <span>sustainable growth.</span>
                 {/* Animated cobalt underline rule */}
                 <span
                   ref={underlineRef}
@@ -370,7 +370,6 @@ export default function HeroSection() {
                   }}
                 />
               </span>{" "}
-              makes decisions.
             </h1>
 
             {/* Subhead */}
@@ -385,7 +384,7 @@ export default function HeroSection() {
                 maxWidth: "480px",
               }}
             >
-              You're spending $1M+ on paid media. You can't prove what's working. I'm the decision layer between your dashboards and your CFO.
+              I partner with ambitious founders and CEOs to clarify their vision, overcome obstacles, and accelerate growth using data-driven insights and a proven framework.
             </p>
 
             {/* CTA row */}
@@ -420,7 +419,7 @@ export default function HeroSection() {
                   outline: "none",
                 }}
               >
-                Get a 30-min diagnosis
+                Book Your Growth Strategy Call
                 <span style={{ display: "inline-block", transition: "transform var(--motion-base, 240ms) ease", transform: primaryHovered ? "translateX(4px)" : "translateX(0)" }}>→</span>
               </a>
 
@@ -450,96 +449,136 @@ export default function HeroSection() {
                   outline: "none",
                 }}
               >
-                See the framework
+                Read Client Success Stories →
               </button>
             </div>
           </div>
 
-          {/* ── RIGHT: 5 cols — Decision Layer Dashboard ─────────────────── */}
+          {/* ── RIGHT: 5 cols — Our Proven 3-Step Framework ──────────── */}
           <div>
             <div
               style={{
                 background: SURFACE_1,
                 border: `1px solid ${BORDER_STRONG}`,
                 borderRadius: "16px",
-                padding: "24px",
+                padding: "32px 28px",
                 boxShadow: "0 24px 48px rgba(0,0,0,0.32), inset 0 0 1px rgba(255,255,255,0.04)",
                 transition: "transform var(--motion-base, 240ms) ease",
               }}
               onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
             >
-              {/* Card header */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
-                <span style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: `rgba(47,111,255,0.7)` }}>
-                  The Decision Layer
-                </span>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
-                  <LiveDot reduced={reduced} />
-                  <span style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: GREEN }}>LIVE</span>
-                </span>
+              {/* Card title */}
+              <div style={{ textAlign: "center", marginBottom: "32px" }}>
+                <h3 style={{
+                  fontFamily: SANS,
+                  fontSize: "18px",
+                  fontWeight: 600,
+                  color: "#FFFFFF",
+                  margin: 0,
+                  letterSpacing: "-0.01em",
+                }}>
+                  Our Proven 3-Step Framework
+                </h3>
               </div>
-              <div style={{ height: "1px", background: BORDER_HAIRLINE, marginBottom: "16px" }} />
 
-              {/* Stat tile row */}
-              <div
-                aria-live="polite"
-                style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "8px", marginBottom: "16px" }}
-              >
+              {/* Step row: boxes + arrows */}
+              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "28px" }}>
                 {[
-                  { label: "TRUE ROAS",    value: `${Math.floor(roasVal / 10)}.${roasVal % 10}×`, delta: "+0.8× vs last qtr" },
-                  { label: "INCREMENTAL",  value: `${incrVal}%`,                                  delta: "+12% vs last qtr" },
-                  { label: "WASTED SPEND", value: `$${wastedVal}K`,                               delta: "−$18K recovered" },
-                ].map((tile) => (
-                  <div key={tile.label} style={{
-                    background: SURFACE_2,
-                    border: "1px solid rgba(255,255,255,0.04)",
-                    borderRadius: "8px",
-                    padding: "12px",
-                  }}>
-                    <div style={{ fontFamily: MONO, fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.12em", color: TEXT_MUTED, marginBottom: "6px" }}>{tile.label}</div>
-                    <div style={{ fontFamily: SANS, fontSize: "28px", fontWeight: 600, color: "#FFFFFF", lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: "4px" }}>{tile.value}</div>
-                    <div style={{ fontFamily: MONO, fontSize: "10px", color: GREEN, lineHeight: 1.3 }}>{tile.delta}</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Budget allocation */}
-              <div style={{ marginBottom: "16px" }}>
-                <div style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: TEXT_MUTED, marginBottom: "12px" }}>
-                  Budget Allocation
-                </div>
-                {bars.map((bar, i) => (
-                  <div key={bar.channel} style={{ marginBottom: i < bars.length - 1 ? "12px" : "0" }}>
-                    <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "6px" }}>
-                      <span style={{ fontFamily: SANS, fontSize: "12px", fontWeight: 500, color: TEXT_SECONDARY }}>{bar.channel}</span>
-                      <span style={{ fontFamily: MONO, fontSize: "12px", fontWeight: 600, color: bar.color }}>{bar.pct}%</span>
+                  {
+                    num: "1",
+                    label: "Diagnosis",
+                    desc: "Clarify with ambitious founders and CEOs to clarify their vision.",
+                    icon: (
+                      <svg viewBox="0 0 40 40" fill="none" style={{ width: "40px", height: "40px" }}>
+                        <rect width="40" height="40" rx="8" fill="rgba(47,111,255,0.1)"/>
+                        <path d="M12 20h6m0 0l-3-3m3 3l-3 3" stroke={COBALT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M22 14l4 6-4 6" stroke={COBALT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="28" cy="14" r="2" fill={COBALT}/>
+                        <path d="M20 28h8" stroke={COBALT} strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    ),
+                  },
+                  {
+                    num: "2",
+                    label: "Strategy",
+                    desc: "Elucidate the situations for niplium anables, and strategy croming analysis.",
+                    icon: (
+                      <svg viewBox="0 0 40 40" fill="none" style={{ width: "40px", height: "40px" }}>
+                        <rect width="40" height="40" rx="8" fill="rgba(156,124,255,0.1)"/>
+                        <circle cx="20" cy="20" r="7" stroke={PURPLE} strokeWidth="1.5"/>
+                        <circle cx="20" cy="20" r="3" fill={PURPLE}/>
+                        <path d="M20 10v3M20 27v3M10 20h3M27 20h3" stroke={PURPLE} strokeWidth="1.5" strokeLinecap="round"/>
+                      </svg>
+                    ),
+                  },
+                  {
+                    num: "3",
+                    label: "Execution",
+                    desc: "Executen a iniclerations to mutter eaccbrnet, and strategy execution.",
+                    icon: (
+                      <svg viewBox="0 0 40 40" fill="none" style={{ width: "40px", height: "40px" }}>
+                        <rect width="40" height="40" rx="8" fill="rgba(94,232,181,0.1)"/>
+                        <path d="M14 20l4 4 8-8" stroke={GREEN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <circle cx="20" cy="20" r="9" stroke={GREEN} strokeWidth="1.5"/>
+                      </svg>
+                    ),
+                  },
+                ].map((step, i, arr) => (
+                  <>
+                    {/* Step card */}
+                    <div
+                      key={step.num}
+                      style={{
+                        flex: 1,
+                        background: SURFACE_2,
+                        border: "1px solid rgba(255,255,255,0.06)",
+                        borderRadius: "10px",
+                        padding: "16px 12px",
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        gap: "10px",
+                        textAlign: "center",
+                      }}
+                    >
+                      {/* Icon */}
+                      {step.icon}
+                      {/* Step number + label */}
+                      <div>
+                        <div style={{ fontFamily: SANS, fontSize: "13px", fontWeight: 600, color: "#FFFFFF", marginBottom: "6px" }}>
+                          {step.num}. {step.label}
+                        </div>
+                        <div style={{ fontFamily: SANS, fontSize: "11px", color: TEXT_MUTED, lineHeight: 1.5 }}>
+                          {step.desc}
+                        </div>
+                      </div>
                     </div>
-                    <PillBar pct={bar.pct} color={bar.color} delay={i * 80 + 400} active={heroVisible} reduced={reduced} />
-                  </div>
+                    {/* Arrow connector */}
+                    {i < arr.length - 1 && (
+                      <div style={{ display: "flex", alignItems: "center", paddingTop: "20px", flexShrink: 0 }}>
+                        <svg viewBox="0 0 20 12" fill="none" style={{ width: "20px", height: "12px" }}>
+                          <path d="M0 6h16M12 2l4 4-4 4" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </div>
+                    )}
+                  </>
                 ))}
               </div>
 
-              {/* Decision Signal */}
+              {/* Bottom trust line */}
               <div style={{
-                background: "rgba(140,108,255,0.08)",
-                border: "1px solid rgba(156,124,255,0.32)",
-                borderRadius: "8px",
-                padding: "12px",
+                borderTop: `1px solid ${BORDER_HAIRLINE}`,
+                paddingTop: "16px",
                 display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 gap: "8px",
-                alignItems: "flex-start",
-                animation: signalBreathing && !reduced ? "gvg-signal-breathe 5s ease-in-out infinite" : "none",
               }}>
-                <span aria-hidden="true" style={{ fontSize: "12px", flexShrink: 0, marginTop: "1px" }}>⚡</span>
-                <div>
-                  <div style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: PURPLE, marginBottom: "4px" }}>
-                    Decision Signal
-                  </div>
-                  <div style={{ fontFamily: SANS, fontSize: "12px", fontWeight: 500, color: "rgba(255,255,255,0.9)", lineHeight: 1.5 }}>
-                    Shift 12% of Paid Search budget to Programmatic CTV. Projected +0.4× ROAS.
-                  </div>
-                </div>
+                <LiveDot reduced={reduced} />
+                <span style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.1em", color: TEXT_MUTED }}>
+                  Proven across $100M+ in media spend
+                </span>
               </div>
             </div>
           </div>

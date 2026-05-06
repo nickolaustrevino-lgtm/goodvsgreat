@@ -119,10 +119,25 @@ export default function Navbar() {
                 aria-label="Main navigation"
                 style={{ display: "flex", alignItems: "center", gap: "2rem", flex: 1, justifyContent: "center" }}
               >
-                {NAV_LINKS.map((link) => {
-                  const isActive = activeId === link.id;
-                  const isHovered = hoveredId === link.id;
-                  return (
+              {NAV_LINKS.map((link, i) => {
+                const isActive = activeId === link.id;
+                const isHovered = hoveredId === link.id;
+                return (
+                  <>
+                    {i > 0 && (
+                      <span
+                        key={`dot-${link.id}`}
+                        aria-hidden="true"
+                        style={{
+                          display: "inline-block",
+                          width: "3px",
+                          height: "3px",
+                          borderRadius: "50%",
+                          background: "rgba(255,255,255,0.22)",
+                          flexShrink: 0,
+                        }}
+                      />
+                    )}
                     <button
                       key={link.id}
                       type="button"
@@ -150,8 +165,9 @@ export default function Navbar() {
                     >
                       {link.label}
                     </button>
-                  );
-                })}
+                  </>
+                );
+              })}
               </nav>
 
               {/* CTA pill */}
