@@ -4,6 +4,7 @@
    ===================================================== */
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import SubscribeCTA from "@/components/SubscribeCTA";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
@@ -216,6 +217,9 @@ export default function WritingPost({ slug }: Props) {
             className="prose-gvg"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
+
+          {/* Subscribe CTA */}
+          <SubscribeCTA source={post.slug} />
 
           {/* Footer */}
           <div style={{ marginTop: "4rem", paddingTop: "2rem", borderTop: `1px solid ${BORDER}`, display: "flex", alignItems: "center", justifyContent: "space-between" }}>

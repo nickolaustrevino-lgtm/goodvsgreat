@@ -9,6 +9,7 @@ import FileManager from "./pages/FileManager";
 import AdminPosts from "./pages/AdminPosts";
 import AdminPostEditor from "./pages/AdminPostEditor";
 import AdminImport from "./pages/AdminImport";
+import AdminSubscribers from "./pages/AdminSubscribers";
 import WritingIndex from "./pages/WritingIndex";
 import WritingPost from "./pages/WritingPost";
 
@@ -38,6 +39,7 @@ function Router() {
       <Route path={"/admin/posts"} component={AdminPosts} />
       <Route path={"/admin/posts/new"} component={() => <AdminPostEditor />} />
       <Route path={"/admin/import"} component={AdminImport} />
+      <Route path={"/admin/subscribers"} component={AdminSubscribers} />
       <Route path={"/admin/posts/:id"} component={AdminPostEditorRoute} />
       {/* Fallbacks */}
       <Route path={"/404"} component={NotFound} />

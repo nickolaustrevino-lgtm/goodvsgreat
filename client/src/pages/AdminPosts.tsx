@@ -184,6 +184,7 @@ export function AdminShell({ children }: { children: React.ReactNode }) {
         <span style={{ color: BORDER }}>|</span>
         <a href="/admin/posts" style={linkStyle("rgba(255,255,255,0.5)")}>Posts</a>
         <a href="/admin/import" style={linkStyle("rgba(255,255,255,0.5)")}>Import</a>
+        <a href="/admin/subscribers" style={linkStyle("rgba(255,255,255,0.5)")}>Subscribers</a>
         <a href="/files" style={linkStyle("rgba(255,255,255,0.5)")}>Files</a>
       </div>
       <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "2.5rem 2rem" }}>
