@@ -95,8 +95,8 @@ export default function BookingSection() {
       id="booking"
       ref={ref}
       style={{
-        backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7.5rem 0",
+        backgroundColor: "#141A33",
+        padding: "160px 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -118,33 +118,18 @@ export default function BookingSection() {
         >
           {/* Left: copy */}
           <div className="gvg-fadeup">
-            {/* Founder avatar */}
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-              <img
-                src="/manus-storage/portrait_7d6c2a03.jpg"
-                alt="Nickolaus Trevino"
-                style={{
-                  width: "48px",
-                  height: "48px",
-                  objectFit: "cover",
-                  objectPosition: "center top",
-                  flexShrink: 0,
-                  filter: "grayscale(15%)",
-                }}
-              />
-              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em" }}>Nickolaus Trevino</span>
-            </div>
-            <span className="gvg-section-label">Start Here</span>
-            <span className="gvg-divider" />
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2F6FFF", opacity: 0.8, marginBottom: "16px" }}>
+              BOOK A CALL
+            </p>
             <h2
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
+                fontSize: "clamp(28px, 3.5vw, 48px)",
                 fontWeight: 700,
-                lineHeight: 1.05,
-                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+                letterSpacing: "-0.015em",
                 color: "#FFFFFF",
-                marginBottom: "1.5rem",
+                marginBottom: "16px",
               }}
             >
               Book a free{" "}
@@ -153,29 +138,37 @@ export default function BookingSection() {
             <p
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "1rem",
-                color: "rgba(255,255,255,0.55)",
+                fontSize: "18px",
+                color: "rgba(255,255,255,0.6)",
                 lineHeight: 1.65,
-                marginBottom: "2rem",
+                marginBottom: "40px",
               }}
             >
               I take on a small number of engagements at a time. If your media spend is $1M+ annually and you're not fully confident it's working as hard as it should, book 30 minutes and I'll give you a straight answer.
             </p>
 
-            <div
-              style={{
-                borderLeft: "2px solid #2979FF",
-                paddingLeft: "1.5rem",
-                display: "flex",
-                flexDirection: "column",
-                gap: "1rem",
-              }}
-            >
+            {/* 4-step process */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "16px", marginBottom: "40px" }}>
               {[
-                "Fill in the form — your answers help me prepare",
-                "I'll review your current setup before we talk",
-                "30 minutes, no sales pitch — just a straight diagnosis",
-                "You'll leave with at least one actionable observation",
+                { step: "01", label: "Fill in the form", desc: "Your answers help me prepare a relevant diagnosis before we talk." },
+                { step: "02", label: "I review your setup", desc: "I'll look at your current measurement stack and spend allocation." },
+                { step: "03", label: "30-minute call", desc: "No sales pitch — just a straight read on what's working and what isn't." },
+                { step: "04", label: "You leave with clarity", desc: "At minimum, one actionable observation you can act on immediately." },
+              ].map((s, idx) => (
+                <div key={idx} style={{ display: "flex", gap: "16px", alignItems: "flex-start" }}>
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "12px", color: "#2F6FFF", fontWeight: 600, flexShrink: 0, paddingTop: "2px", minWidth: "24px" }}>{s.step}</span>
+                  <div>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "15px", fontWeight: 600, color: "rgba(255,255,255,0.9)", margin: "0 0 4px" }}>{s.label}</p>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.5)", margin: 0, lineHeight: 1.5 }}>{s.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Dummy map for items — kept empty since we replaced the list */}
+            <div style={{ display: "none" }}>
+              {[
+                "placeholder",
               ].map((item, i) => (
                 <div
                   key={i}

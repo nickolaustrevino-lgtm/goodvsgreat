@@ -21,7 +21,7 @@ const NAV_LINKS = [
   { label: "The Distinction", id: "contrast" },
   { label: "Proof",           id: "proof" },
   { label: "Pricing",         id: "pricing" },
-  { label: "Writing",         id: "writing", href: "/writing" },
+  { label: "Blog",            id: "blog",    href: "/blog" },
   { label: "Is This a Fit?",  id: "fit" },
   { label: "About",           id: "about" },
 ];

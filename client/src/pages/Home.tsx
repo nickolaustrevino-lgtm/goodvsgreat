@@ -1,8 +1,9 @@
 /* Home — Good vs. Great
    Brand Guidelines v2: Dark Editorial Intelligence
-   Background: oklch(16% 0.005 285) — cool near-black charcoal
-   All headings: Space Mono 700. Body: IBM Plex Sans. Captions: IBM Plex Mono.
-   Accent: Electric Blue (#2979FF) for CTAs, links, accents ONLY. */
+   Section order:
+   01 Hero → 02 Problem → 03 Decision Layer → 04 Distinction → 05 Proof
+   → 06 Pricing → 07 Mutual Fit → 08 Founder Story → 09 FAQ → 10 Booking
+   → 11 Closing → Footer */
 
 import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
@@ -11,16 +12,16 @@ import ServicesSection from "@/components/ServicesSection";
 import GoodVsGreatBlock from "@/components/GoodVsGreatBlock";
 import ProofSection from "@/components/ProofSection";
 import PricingSection from "@/components/PricingSection";
-import WritingSection from "@/components/WritingSection";
 import FitSection from "@/components/FitSection";
 import AboutSection from "@/components/AboutSection";
+import FAQSection from "@/components/FAQSection";
 import BookingSection from "@/components/BookingSection";
 import FinalCTASection from "@/components/FinalCTASection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
-    <div style={{ backgroundColor: "oklch(16% 0.005 285)", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#0D1117", minHeight: "100vh" }}>
       <Navbar />
       <HeroSection />
       <ProblemSection />
@@ -28,9 +29,9 @@ export default function Home() {
       <GoodVsGreatBlock />
       <ProofSection />
       <PricingSection />
-      <WritingSection />
       <FitSection />
       <AboutSection />
+      <FAQSection />
       <BookingSection />
       <FinalCTASection />
       <Footer />

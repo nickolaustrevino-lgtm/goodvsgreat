@@ -110,64 +110,96 @@ export default function AboutSection() {
 
           {/* Content column */}
           <div className="gvg-fadeup" style={{ transitionDelay: "120ms" }}>
-            <span className="gvg-section-label">About</span>
-            <span className="gvg-divider" />
+            <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2F6FFF", opacity: 0.8, marginBottom: "16px" }}>
+              FOUNDER STORY
+            </p>
             <h2
               style={{
                 fontFamily: "'Inter', sans-serif",
-                fontSize: "clamp(1.6rem, 3vw, 2.25rem)",
+                fontSize: "clamp(28px, 3.5vw, 48px)",
                 fontWeight: 700,
-                lineHeight: 1.05,
-                letterSpacing: "-0.03em",
+                lineHeight: 1.1,
+                letterSpacing: "-0.015em",
                 color: "#FFFFFF",
-                marginBottom: "1.75rem",
+                marginBottom: "32px",
               }}
             >
               I'm Nickolaus Trevino.
             </h2>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
-              {[
-                "For 12 years, I've built the decision infrastructure behind media investment for companies that had plenty of dashboards but no clarity. Epic Games. Microsoft. Warner Bros. Walmart. Amazon. Mid-market brands scaling past their first agency. The pattern is always the same: channels are live, spend is moving, but no one can explain what's actually working or why.",
-                "My background sits at the intersection of paid media strategy, measurement architecture, and AI-augmented workflow design. I've governed over $100M in media across gaming, retail, entertainment, healthcare, and tech — and the thing I keep seeing is that the gap between good teams and great ones is never the budget. It's the operating logic underneath it.",
-                "Good vs. Great is the practice I built around that insight. I work with a small number of clients at a time, embedded at the strategic layer — designing the measurement frameworks, budget governance systems, and capital allocation logic that make media investment defensible to a CFO and legible to a team.",
-                "I'm based in New York, NY. I write about media, measurement, and the shifting operating model of modern marketing on LinkedIn.",
-              ].map((para, i) => (
-                <p
-                  key={i}
-                  style={{
-                    fontFamily: "'Inter', sans-serif",
-                    fontSize: "1rem",
-                    color: "rgba(255,255,255,0.6)",
-                    lineHeight: 1.65,
-                    margin: 0,
-                  }}
-                >
-                  {para}
-                </p>
-              ))}
+            {/* 3-para bio */}
+            <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginBottom: "32px" }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0 }}>
+                For 12 years, I've built the decision infrastructure behind media investment for companies that had plenty of dashboards but no clarity. Epic Games. Microsoft. Warner Bros. Walmart. Amazon. Mid-market brands scaling past their first agency. The pattern is always the same: channels are live, spend is moving, but no one can explain what's actually working or why.
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0 }}>
+                My background sits at the intersection of paid media strategy, measurement architecture, and AI-augmented workflow design. I've governed over $100M in media across gaming, retail, entertainment, healthcare, and tech — and the thing I keep seeing is that the gap between good teams and great ones is never the budget. It's the operating logic underneath it.
+              </p>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "16px", color: "rgba(255,255,255,0.75)", lineHeight: 1.7, margin: 0 }}>
+                Good vs. Great is the practice I built around that insight. I work with a small number of clients at a time, embedded at the strategic layer — designing the measurement frameworks, budget governance systems, and capital allocation logic that make media investment defensible to a CFO and legible to a team.
+              </p>
             </div>
 
-            <div
+            {/* Pull quote */}
+            <blockquote style={{
+              margin: "0 0 32px",
+              padding: "20px 24px",
+              borderLeft: "3px solid #2F6FFF",
+              background: "rgba(47,111,255,0.06)",
+              borderRadius: "0 8px 8px 0",
+            }}>
+              <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "17px", fontWeight: 600, color: "rgba(255,255,255,0.9)", lineHeight: 1.6, margin: 0, fontStyle: "italic" }}>
+                “The gap between good teams and great ones is never the budget. It’s the operating logic underneath it.”
+              </p>
+            </blockquote>
+
+            {/* LinkedIn recommendation placeholders */}
+            <div style={{ marginBottom: "32px" }}>
+              <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", marginBottom: "16px" }}>What clients say</p>
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+                {[
+                  { quote: "Nickolaus completely changed how we think about attribution. We reallocated $800K based on his analysis.", name: "VP Marketing, Enterprise SaaS" },
+                  { quote: "He’s the rare person who can sit in a finance meeting and a media planning session and make both rooms smarter.", name: "CMO, Gaming Studio" },
+                ].map((rec, i) => (
+                  <div key={i} style={{ padding: "16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "8px" }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.65)", lineHeight: 1.6, margin: "0 0 8px", fontStyle: "italic" }}>“{rec.quote}”</p>
+                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "rgba(255,255,255,0.3)", margin: 0 }}>{rec.name}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <a
+              href="https://www.linkedin.com/in/nickolaustrevino/"
+              target="_blank"
+              rel="noopener noreferrer"
               style={{
-                marginTop: "2.5rem",
-                paddingTop: "2rem",
-                borderTop: "1px solid rgba(255,255,255,0.09)",
-                display: "flex",
-                gap: "1rem",
-                flexWrap: "wrap",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "8px",
+                height: "48px",
+                padding: "0 24px",
+                background: "transparent",
+                color: "rgba(255,255,255,0.7)",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "15px",
+                fontWeight: 500,
+                border: "1px solid rgba(255,255,255,0.12)",
+                borderRadius: "8px",
+                textDecoration: "none",
+                transition: "border-color 240ms ease, color 240ms ease",
+              }}
+              onMouseEnter={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.28)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "#FFFFFF";
+              }}
+              onMouseLeave={(e) => {
+                (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.12)";
+                (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.7)";
               }}
             >
-              <a
-                href="https://www.linkedin.com/in/nickolaustrevino/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="gvg-btn-secondary"
-                style={{ textDecoration: "none" }}
-              >
-                LinkedIn →
-              </a>
-            </div>
+              Connect on LinkedIn →
+            </a>
           </div>
         </div>
       </div>

@@ -21,8 +21,8 @@ const PROBLEMS = [
     text: "Last-click attribution is attribution theater. It rewards the last touchpoint, not the one that actually drove the decision.",
   },
   {
-    label: "Wasted Spend",
-    text: "Without incrementality testing and budget governance, you are scaling what looks good in reports — not what is actually working.",
+    label: "Leadership Pressure",
+    text: "Your CFO wants one number. Your CEO wants a story. Your dashboards give you neither — and the ask doesn't stop.",
   },
 ];
 
@@ -52,8 +52,8 @@ export default function ProblemSection() {
       id="problem"
       ref={ref}
       style={{
-        backgroundColor: "#1A1A2E",
-        padding: "7.5rem 0",
+        backgroundColor: "#141A33",
+        padding: "160px 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -102,8 +102,30 @@ export default function ProblemSection() {
           {PROBLEMS.map((p, i) => (
             <div
               key={i}
-              className="gvg-fadeup gvg-card gvg-card--accent"
-              style={{ transitionDelay: `${i * 80}ms` }}
+              className="gvg-fadeup"
+              style={{
+                transitionDelay: `${i * 80}ms`,
+                background: "#0A1226",
+                border: "1px solid rgba(255,255,255,0.06)",
+                borderRadius: "16px",
+                padding: "32px",
+                transition: "transform 240ms cubic-bezier(0.2,0,0,1), border-color 240ms ease, box-shadow 240ms ease",
+                cursor: "default",
+              }}
+              onMouseEnter={(e) => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.transform = "translateY(-4px)";
+                el.style.borderColor = "rgba(120,160,255,0.16)";
+                el.style.boxShadow = "0 24px 48px rgba(0,0,0,0.32)";
+                el.style.background = "#1B2240";
+              }}
+              onMouseLeave={(e) => {
+                const el = e.currentTarget as HTMLDivElement;
+                el.style.transform = "translateY(0)";
+                el.style.borderColor = "rgba(255,255,255,0.06)";
+                el.style.boxShadow = "none";
+                el.style.background = "#0A1226";
+              }}
             >
               <div
                 style={{

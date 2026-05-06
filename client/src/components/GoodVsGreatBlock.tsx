@@ -17,20 +17,12 @@ const COMPARISONS = [
     great: "Great media changes decisions.",
   },
   {
-    good: "Good dashboards show what happened.",
-    great: "Great systems tell you what to do next.",
-  },
-  {
     good: "Good attribution tracks the last click.",
     great: "Great measurement proves incremental value.",
   },
   {
     good: "Good agencies optimize their channel.",
     great: "Great strategy governs the whole system.",
-  },
-  {
-    good: "Good reporting looks clean.",
-    great: "Great decision logic drives growth.",
   },
 ];
 
@@ -60,8 +52,8 @@ export default function GoodVsGreatBlock() {
       id="contrast"
       ref={ref}
       style={{
-        backgroundColor: "#1A1A2E",
-        padding: "7.5rem 0",
+        backgroundColor: "#141A33",
+        padding: "160px 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -72,35 +64,33 @@ export default function GoodVsGreatBlock() {
 
         {/* Section header */}
         <div className="gvg-fadeup" style={{ marginBottom: "4rem" }}>
-          <span className="gvg-section-label">The Distinction</span>
-          <span className="gvg-divider" />
+          <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2F6FFF", opacity: 0.8, marginBottom: "16px" }}>
+            THE DISTINCTION IN PRACTICE
+          </p>
           <h2
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              fontSize: "clamp(32px, 4vw, 56px)",
               fontWeight: 700,
               lineHeight: 1.1,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.015em",
               color: "#FFFFFF",
-              marginBottom: "0.875rem",
+              marginBottom: "16px",
             }}
           >
-            The difference between{" "}
-            <span style={{ color: "rgba(255,255,255,0.35)" }}>good</span>{" "}
-            and{" "}
-            <span style={{ color: "#2979FF" }}>great.</span>
+            Same campaign. Two truths.
           </h2>
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.4)",
-              lineHeight: 1.7,
-              maxWidth: "480px",
+              fontSize: "18px",
+              color: "rgba(255,255,255,0.8)",
+              lineHeight: 1.6,
+              maxWidth: "600px",
               margin: 0,
             }}
           >
-            Good is table stakes. Great is a competitive advantage.
+            What last-click reports vs. what actually drove revenue.
           </p>
         </div>
 
@@ -266,36 +256,38 @@ export default function GoodVsGreatBlock() {
           <GoodVsGreatDashboard />
         </div>
 
-        {/* Bottom tagline */}
-        <div
-          className="gvg-fadeup"
-          style={{
-            marginTop: "3.5rem",
-            transitionDelay: `${(COMPARISONS.length + 3) * 70}ms`,
-            display: "flex",
-            alignItems: "center",
-            gap: "1.5rem",
-          }}
-        >
-          <img
-            src={GVG_LOGO}
-            alt=""
-            aria-hidden="true"
-            style={{ width: "24px", height: "24px", objectFit: "contain", opacity: 0.6, borderRadius: "5px", flexShrink: 0 }}
-          />
-          <p
+        {/* Ghost CTA */}
+        <div className="gvg-fadeup" style={{ marginTop: "48px" }}>
+          <a
+            href="#proof"
+            onClick={(e) => { e.preventDefault(); document.getElementById("proof")?.scrollIntoView({ behavior: "smooth" }); }}
             style={{
-              fontFamily: "'IBM Plex Mono', monospace",
-              fontSize: "0.75rem",
-              color: "rgba(255,255,255,0.3)",
-              letterSpacing: "0.1em",
-              textTransform: "uppercase",
-              margin: 0,
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "8px",
+              height: "52px",
+              padding: "0 24px",
+              background: "transparent",
+              color: "#FFFFFF",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "15px",
+              fontWeight: 600,
+              border: "1px solid rgba(255,255,255,0.16)",
+              borderRadius: "8px",
+              textDecoration: "none",
+              transition: "border-color 240ms ease, background 240ms ease",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.32)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "rgba(255,255,255,0.04)";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.borderColor = "rgba(255,255,255,0.16)";
+              (e.currentTarget as HTMLAnchorElement).style.background = "transparent";
             }}
           >
-            Good media looks busy.{" "}
-            <span style={{ color: "#2979FF" }}>Great media makes decisions.</span>
-          </p>
+            See real client outcomes →
+          </a>
         </div>
       </div>
     </section>

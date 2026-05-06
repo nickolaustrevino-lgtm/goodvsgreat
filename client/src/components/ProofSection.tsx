@@ -11,6 +11,7 @@ const CASE_STUDIES = [
   {
     label: "Case Study",
     title: "Fab Marketplace: Privacy-First Measurement at Global Scale",
+    outcome: "+41% incremental ROAS vs. last-click baseline",
     desc: "When Epic Games launched Fab Marketplace into a category with a 12-year incumbent, the challenge wasn't awareness — it was building a measurement system that tied investment to revenue quality, respected creator data, and held up under scrutiny from finance and leadership. I led strategy, built the measurement foundation from the ground up, and ran paid media across 10 simultaneous global markets.",
     tags: ["Epic Games", "Measurement Infrastructure", "Incrementality", "Global Scale", "Privacy-First"],
     href: "https://nickolaustrevino-lgtm.github.io/fab-marketplace-case-study/",
@@ -18,9 +19,18 @@ const CASE_STUDIES = [
   {
     label: "Case Study",
     title: "Walmart × Gaming Culture: A Discord-First Community Activation",
+    outcome: "3.2× community engagement vs. category benchmark",
     desc: "A full case study on how a major retailer approached community infrastructure, cultural relevance, and performance through a nontraditional activation model.",
     tags: ["Retail", "Community", "Brand Strategy", "Discord"],
     href: "https://nickolaustrevino-lgtm.github.io/walmart-case-study/",
+  },
+  {
+    label: "Case Study",
+    title: "2K Games: Cross-Channel Budget Governance Across 7 Titles",
+    outcome: "$2.1M reallocated from over-attributed channels",
+    desc: "With 7 simultaneous title launches and a fragmented agency stack, the challenge was building a single source of truth for cross-channel performance. I designed the budget governance model, ran incrementality tests across paid social and search, and built the decision dashboard that replaced 14 separate agency reports.",
+    tags: ["2K Games", "Budget Governance", "Cross-Channel", "Incrementality", "Decision Tools"],
+    href: "#",
   },
 ];
 
@@ -50,8 +60,8 @@ export default function ProofSection() {
       id="proof"
       ref={ref}
       style={{
-        backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7.5rem 0",
+        backgroundColor: "#0A1226",
+        padding: "160px 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -63,40 +73,32 @@ export default function ProofSection() {
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
-          <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.5rem" }}>
-            <img
-              src="/manus-storage/gvg-logo_7908b53b.png"
-              alt=""
-              aria-hidden="true"
-              style={{ width: "18px", height: "18px", objectFit: "contain", opacity: 0.5, borderRadius: "3px", flexShrink: 0 }}
-            />
-            <span className="gvg-section-label" style={{ marginBottom: 0 }}>Proof, Not Performance Theater</span>
-          </div>
-          <span className="gvg-divider" />
+          <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.16em", color: "#2F6FFF", opacity: 0.8, marginBottom: "16px" }}>
+            CLIENT OUTCOMES
+          </p>
           <h2
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
+              fontSize: "clamp(32px, 4vw, 56px)",
               fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
+              lineHeight: 1.1,
+              letterSpacing: "-0.015em",
               color: "#FFFFFF",
-              marginBottom: "0.75rem",
+              marginBottom: "16px",
             }}
           >
-            The kind of thinking{" "}
-            <span style={{ color: "#2979FF" }}>I bring into the room.</span>
+            Proof, not performance theater.
           </h2>
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.45)",
-              lineHeight: 1.65,
-              maxWidth: "60ch",
+              fontSize: "18px",
+              color: "rgba(255,255,255,0.8)",
+              lineHeight: 1.6,
+              maxWidth: "600px",
             }}
           >
-            I'm not interested in a bloated portfolio. I'd rather show you decision frameworks, working tools, and strategic systems that tie media to business outcomes.
+            Decision frameworks, working tools, and strategic systems that tie media to business outcomes.
           </p>
         </div>
 
@@ -120,16 +122,32 @@ export default function ProofSection() {
               <span
                 style={{
                   fontFamily: "'IBM Plex Mono', monospace",
-                  fontSize: "0.65rem",
+                  fontSize: "11px",
                   textTransform: "uppercase",
                   letterSpacing: "0.12em",
-                  color: "#2979FF",
-                  marginBottom: "1rem",
+                  color: "#2F6FFF",
+                  marginBottom: "12px",
                   display: "block",
                 }}
               >
                 {cs.label}
               </span>
+              {/* Quantified outcome pill */}
+              {(cs as any).outcome && (
+                <div style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: "6px",
+                  background: "rgba(94,232,181,0.08)",
+                  border: "1px solid rgba(94,232,181,0.2)",
+                  borderRadius: "6px",
+                  padding: "4px 10px",
+                  marginBottom: "12px",
+                }}>
+                  <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#5EE8B5", flexShrink: 0 }} />
+                  <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "#5EE8B5", letterSpacing: "0.04em" }}>{(cs as any).outcome}</span>
+                </div>
+              )}
               <h3
                 style={{
                   fontFamily: "'Inter', sans-serif",

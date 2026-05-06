@@ -92,99 +92,50 @@ export default function FitSection() {
             gap: "1.5rem",
           }}
         >
-          {/* Good Fit */}
+          {/* Good Fit — green tint */}
           <div
-            className="gvg-fadeup gvg-card"
-            style={{ borderTopColor: "#2979FF" }}
+            className="gvg-fadeup"
+            style={{
+              background: "rgba(94,232,181,0.04)",
+              border: "1px solid rgba(94,232,181,0.15)",
+              borderRadius: "16px",
+              padding: "40px",
+            }}
           >
-            <div
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                color: "#2979FF",
-                marginBottom: "1.5rem",
-              }}
-            >
-              This Is Usually a Fit If
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px" }}>
+              <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#5EE8B5", flexShrink: 0 }} />
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#5EE8B5" }}>This is usually a fit if</span>
             </div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
               {GOOD_FIT.map((item, i) => (
-                <li
-                  key={i}
-                  style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}
-                >
-                  <span
-                    style={{
-                      color: "#2979FF",
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: "0.875rem",
-                      lineHeight: 1.6,
-                      flexShrink: 0,
-                    }}
-                  >
-                    ✓
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.9375rem",
-                      color: "rgba(255,255,255,0.65)",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {item}
-                  </span>
+                <li key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                  <span style={{ color: "#5EE8B5", fontFamily: "'IBM Plex Mono', monospace", fontSize: "14px", lineHeight: 1.6, flexShrink: 0 }}>✓</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.8)", lineHeight: 1.6 }}>{item}</span>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Not a Fit */}
+          {/* Not a Fit — amber tint */}
           <div
-            className="gvg-fadeup gvg-card"
-            style={{ transitionDelay: "100ms", borderTopColor: "rgba(255,255,255,0.12)" }}
+            className="gvg-fadeup"
+            style={{
+              transitionDelay: "100ms",
+              background: "rgba(255,171,64,0.04)",
+              border: "1px solid rgba(255,171,64,0.15)",
+              borderRadius: "16px",
+              padding: "40px",
+            }}
           >
-            <div
-              style={{
-                fontFamily: "'IBM Plex Mono', monospace",
-                fontSize: "0.65rem",
-                textTransform: "uppercase",
-                letterSpacing: "0.12em",
-                color: "rgba(255,255,255,0.3)",
-                marginBottom: "1.5rem",
-              }}
-            >
-              Probably Not the Right Fit If
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px" }}>
+              <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#FFAB40", flexShrink: 0 }} />
+              <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", textTransform: "uppercase", letterSpacing: "0.12em", color: "#FFAB40" }}>Probably not the right fit if</span>
             </div>
-            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "1rem" }}>
+            <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
               {NOT_FIT.map((item, i) => (
-                <li
-                  key={i}
-                  style={{ display: "flex", gap: "0.875rem", alignItems: "flex-start" }}
-                >
-                  <span
-                    style={{
-                      color: "rgba(255,255,255,0.2)",
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: "0.875rem",
-                      lineHeight: 1.6,
-                      flexShrink: 0,
-                    }}
-                  >
-                    ✕
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.9375rem",
-                      color: "rgba(255,255,255,0.35)",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {item}
-                  </span>
+                <li key={i} style={{ display: "flex", gap: "12px", alignItems: "flex-start" }}>
+                  <span style={{ color: "#FFAB40", fontFamily: "'IBM Plex Mono', monospace", fontSize: "14px", lineHeight: 1.6, flexShrink: 0 }}>✕</span>
+                  <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "15px", color: "rgba(255,255,255,0.5)", lineHeight: 1.6 }}>{item}</span>
                 </li>
               ))}
             </ul>

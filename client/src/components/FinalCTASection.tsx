@@ -40,8 +40,8 @@ export default function FinalCTASection() {
       ref={ref}
       className="gvg-scanline"
       style={{
-        backgroundColor: "#1A1A2E",
-        padding: "7.5rem 0",
+        backgroundColor: "#080D1A",
+        padding: "160px 0",
         position: "relative",
         overflow: "hidden",
         textAlign: "center",
@@ -67,32 +67,19 @@ export default function FinalCTASection() {
 
       <div className="container" style={{ position: "relative", zIndex: 2 }}>
         <div className="gvg-fadeup" style={{ maxWidth: "720px", margin: "0 auto" }}>
-          <div style={{ display: "flex", justifyContent: "center", marginBottom: "1.25rem" }}>
-            <img
-              src="/manus-storage/gvg-logo_7908b53b.png"
-              alt=""
-              aria-hidden="true"
-              style={{ width: "36px", height: "36px", objectFit: "contain", opacity: 0.75, borderRadius: "7px" }}
-            />
-          </div>
-          <span className="gvg-section-label" style={{ display: "block", textAlign: "center" }}>
-            The Decision
-          </span>
-          <span className="gvg-divider" style={{ margin: "0 auto 2rem" }} />
-
           <h2
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(2rem, 4.5vw, 3.5rem)",
+              fontSize: "clamp(40px, 6vw, 80px)",
               fontWeight: 700,
               lineHeight: 1.02,
-              letterSpacing: "-0.03em",
+              letterSpacing: "-0.025em",
               color: "#FFFFFF",
-              marginBottom: "1.5rem",
+              marginBottom: "24px",
             }}
           >
             Stop optimizing what{" "}
-            <span style={{ color: "rgba(255,255,255,0.35)" }}>looks good.</span>
+            <span style={{ color: "rgba(255,255,255,0.25)" }}>looks good.</span>
             <br />
             Start building what{" "}
             <span style={{ color: "#2979FF" }}>works.</span>
@@ -101,43 +88,52 @@ export default function FinalCTASection() {
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "1.0625rem",
+              fontSize: "20px",
               color: "rgba(255,255,255,0.5)",
               lineHeight: 1.65,
-              marginBottom: "2.5rem",
-              maxWidth: "55ch",
-              margin: "0 auto 2.5rem",
+              maxWidth: "560px",
+              margin: "0 auto 48px",
             }}
           >
-            Better dashboards do not matter if the decision is still unclear. Let's fix the decision layer.
+            Better dashboards don’t matter if the decision is still unclear. Let’s fix the decision layer.
           </p>
 
-          <div
+          <a
+            href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
-              display: "flex",
-              gap: "1rem",
-              justifyContent: "center",
-              flexWrap: "wrap",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "10px",
+              height: "60px",
+              padding: "0 40px",
+              background: "#2F6FFF",
+              color: "#FFFFFF",
+              fontFamily: "'Inter', sans-serif",
+              fontSize: "18px",
+              fontWeight: 600,
+              borderRadius: "8px",
+              textDecoration: "none",
+              boxShadow: "0 0 40px rgba(47,111,255,0.35)",
+              transition: "background 240ms ease, box-shadow 240ms ease, transform 160ms ease",
             }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.background = "#4080FF";
+              el.style.boxShadow = "0 0 60px rgba(47,111,255,0.5)";
+              el.style.transform = "translateY(-2px)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLAnchorElement;
+              el.style.background = "#2F6FFF";
+              el.style.boxShadow = "0 0 40px rgba(47,111,255,0.35)";
+              el.style.transform = "translateY(0)";
+            }}
+            onClick={() => trackEvent("Lead", { content_name: "Final CTA — Book Diagnostic Call" })}
           >
-            <a
-              href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="gvg-btn-primary"
-              style={{ fontSize: "1rem", padding: "0.9rem 2rem", textDecoration: "none" }}
-              onClick={() => trackEvent("Lead", { content_name: "Final CTA — Book Diagnostic Call" })}
-            >
-              Book a Diagnostic Call →
-            </a>
-            <button
-              onClick={() => scrollTo("services")}
-              className="gvg-btn-secondary"
-              style={{ fontSize: "1rem", padding: "0.9rem 2rem" }}
-            >
-              See what I do
-            </button>
-          </div>
+            Book a Diagnostic Call →
+          </a>
         </div>
       </div>
 

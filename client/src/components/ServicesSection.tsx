@@ -1,192 +1,337 @@
-/* ServicesSection — GvG Brand Guidelines v2
-   Background: --gvg-charcoal
-   Decision Layer diagram: inline HTML/CSS, class names from spec (decision-layer, dl-block, etc.)
-   Ghost number: 03 */
+/* Section 03 — The Decision Layer (Solution Frame)
+   Horizontal flow diagram: 4 tiles + animated arrow connectors
+   Surface: surface-0 (#0A1226) */
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
-const PORTRAIT_URL = "/manus-storage/portrait_7d6c2a03.jpg";
+const SURFACE_0 = "#0A1226";
+const SURFACE_1 = "#141A33";
+const BORDER_HAIRLINE = "rgba(255,255,255,0.06)";
+const BORDER_STRONG = "rgba(120,160,255,0.16)";
+const COBALT = "#2F6FFF";
+const SIGNAL_GREEN = "#5EE8B5";
+const MONO = "'IBM Plex Mono', 'Fira Code', monospace";
+const SANS = "'Inter', 'Helvetica Neue', Arial, sans-serif";
+const TEXT_SECONDARY = "rgba(255,255,255,0.8)";
+const TEXT_MUTED = "rgba(255,255,255,0.5)";
+
+const TIERS = [
+  {
+    number: "TIER 01",
+    title: "Measurement Infrastructure",
+    desc: "MMM, incrementality, and brand-lift logic that go beyond last-click reporting.",
+    isOutcome: false,
+  },
+  {
+    number: "TIER 02",
+    title: "Cross-Channel Budget Strategy",
+    desc: "Where the next dollar goes, what is overstated, where you hit diminishing returns.",
+    isOutcome: false,
+  },
+  {
+    number: "TIER 03",
+    title: "AI-Native Decision Tools",
+    desc: "Calculators, planning systems, and dashboards your team will actually use.",
+    isOutcome: false,
+  },
+  {
+    number: "OUTCOME",
+    title: "Decisions Leadership Can Trust",
+    desc: "One defensible answer to: is this spend creating real business value?",
+    isOutcome: true,
+  },
+];
 
 export default function ServicesSection() {
-  const ref = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const [visible, setVisible] = useState(false);
+  const [arrowsDrawn, setArrowsDrawn] = useState([false, false, false]);
 
   useEffect(() => {
-    const el = ref.current;
+    const el = sectionRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-            observer.unobserve(entry.target);
-          }
-        });
+        if (entries[0].isIntersecting) {
+          setVisible(true);
+          // Stagger arrow draw-ins after tiles fade in
+          setTimeout(() => setArrowsDrawn([true, false, false]), 600);
+          setTimeout(() => setArrowsDrawn([true, true, false]), 760);
+          setTimeout(() => setArrowsDrawn([true, true, true]), 920);
+          observer.disconnect();
+        }
       },
-      { threshold: 0.08 }
+      { threshold: 0.15 }
     );
-    el.querySelectorAll(".gvg-fadeup").forEach((t) => observer.observe(t));
+    observer.observe(el);
     return () => observer.disconnect();
   }, []);
 
   return (
     <section
       id="services"
-      ref={ref}
+      ref={sectionRef}
       style={{
-        backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7.5rem 0",
+        backgroundColor: SURFACE_0,
+        padding: "160px 0",
         position: "relative",
         overflow: "hidden",
       }}
     >
-      <span className="gvg-ghost-number">03</span>
+      {/* Section watermark */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "40px",
+          left: "clamp(16px, 4vw, 64px)",
+          fontFamily: SANS,
+          fontSize: "240px",
+          fontWeight: 200,
+          lineHeight: 1,
+          WebkitTextStroke: "1px rgba(255,255,255,0.05)",
+          color: "transparent",
+          userSelect: "none",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      >
+        03
+      </div>
 
-      <div className="container" style={{ position: "relative", zIndex: 2 }}>
-
-        {/* ── Section heading ── */}
-        <div className="gvg-fadeup" style={{ marginBottom: "3.5rem" }}>
-          {/* Founder avatar */}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "1.25rem" }}>
-            <img
-              src={PORTRAIT_URL}
-              alt="Nickolaus Trevino"
-              style={{
-                width: "48px",
-                height: "48px",
-                objectFit: "cover",
-                objectPosition: "center top",
-                flexShrink: 0,
-                filter: "grayscale(15%)",
-              }}
-            />
-            <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "0.7rem", color: "rgba(255,255,255,0.35)", letterSpacing: "0.08em" }}>Nickolaus Trevino</span>
-          </div>
-          <span className="gvg-section-label">What I Actually Help Clients Do</span>
-          <span className="gvg-divider" />
-          <h2
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "clamp(1.8rem, 3.5vw, 2.75rem)",
-              fontWeight: 700,
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-              color: "#FFFFFF",
-              marginBottom: "0.75rem",
-            }}
-          >
-            Three capabilities.{" "}
-            <span style={{ color: "#2979FF" }}>One outcome.</span>
-          </h2>
-          <p
-            style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.45)",
-              lineHeight: 1.65,
-              maxWidth: "60ch",
-            }}
-          >
-            Most teams already have reporting. Very few have real decision confidence.
-          </p>
-        </div>
-
-        {/* ══════════════════════════════════════════
-            THE DECISION LAYER — Methodology Diagram
-            Inline HTML per spec — class names unchanged
-            ══════════════════════════════════════════ */}
-        <div className="gvg-fadeup" style={{ marginBottom: "4.5rem" }}>
-          {/* ============================================== */}
-          {/* THE DECISION LAYER — METHODOLOGY DIAGRAM      */}
-          {/* ============================================== */}
-          <div className="decision-layer">
-            <p className="decision-layer__eyebrow">THE DECISION LAYER</p>
-            <p className="decision-layer__intro">The operating model behind every engagement.</p>
-
-            <div className="decision-layer__stack">
-
-              {/* TIER 01 */}
-              <div className="dl-block dl-block--tier">
-                <div className="dl-block__number">TIER 01</div>
-                <div className="dl-block__content">
-                  <h3 className="dl-block__title">Measurement Infrastructure</h3>
-                  <p className="dl-block__desc">MMM, incrementality testing, and brand-lift logic that go beyond last-click reporting.</p>
-                </div>
-              </div>
-
-              {/* CONNECTOR */}
-              <div className="dl-connector">
-                <div className="dl-connector__line"></div>
-                <div className="dl-connector__chevron"></div>
-                <span className="dl-connector__label">feeds</span>
-              </div>
-
-              {/* TIER 02 */}
-              <div className="dl-block dl-block--tier">
-                <div className="dl-block__number">TIER 02</div>
-                <div className="dl-block__content">
-                  <h3 className="dl-block__title">Cross-Channel Budget Strategy</h3>
-                  <p className="dl-block__desc">Where the next dollar goes, what is overstated, where you are hitting diminishing returns.</p>
-                </div>
-              </div>
-
-              {/* CONNECTOR */}
-              <div className="dl-connector">
-                <div className="dl-connector__line"></div>
-                <div className="dl-connector__chevron"></div>
-                <span className="dl-connector__label">governs</span>
-              </div>
-
-              {/* TIER 03 */}
-              <div className="dl-block dl-block--tier">
-                <div className="dl-block__number">TIER 03</div>
-                <div className="dl-block__content">
-                  <h3 className="dl-block__title">AI-Native Decision Tools</h3>
-                  <p className="dl-block__desc">Calculators, planning systems, and decision dashboards your team will actually use.</p>
-                </div>
-              </div>
-
-              {/* CONNECTOR */}
-              <div className="dl-connector">
-                <div className="dl-connector__line"></div>
-                <div className="dl-connector__chevron"></div>
-                <span className="dl-connector__label">enables</span>
-              </div>
-
-              {/* OUTCOME */}
-              <div className="dl-block dl-block--outcome">
-                <div className="dl-block__number">OUTCOME</div>
-                <div className="dl-block__content">
-                  <h3 className="dl-block__title">Decisions Leadership Can Trust</h3>
-                  <p className="dl-block__desc">One defensible answer to: is this spend creating real business value?</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom callout */}
+      <div
+        style={{
+          maxWidth: "1280px",
+          margin: "0 auto",
+          padding: "0 clamp(24px, 5vw, 64px)",
+          position: "relative",
+          zIndex: 1,
+        }}
+      >
+        {/* Section header */}
         <div
-          className="gvg-fadeup"
           style={{
-            marginTop: "3rem",
-            padding: "1.75rem 2rem",
-            borderLeft: "2px solid #2979FF",
-            backgroundColor: "rgba(41,121,255,0.05)",
+            maxWidth: "720px",
+            marginBottom: "64px",
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(24px)",
+            transition: "opacity 480ms cubic-bezier(0.16,1,0.3,1), transform 480ms cubic-bezier(0.16,1,0.3,1)",
           }}
         >
           <p
             style={{
-              fontFamily: "'Inter', sans-serif",
-              fontSize: "1rem",
-              color: "rgba(255,255,255,0.6)",
-              lineHeight: 1.65,
+              fontFamily: MONO,
+              fontSize: "11px",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              letterSpacing: "0.16em",
+              color: COBALT,
+              opacity: 0.8,
+              marginBottom: "16px",
+            }}
+          >
+            THE FRAMEWORK
+          </p>
+          <h2
+            style={{
+              fontFamily: SANS,
+              fontSize: "clamp(32px, 4vw, 56px)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: "-0.015em",
+              color: "#FFFFFF",
+              marginBottom: "16px",
+            }}
+          >
+            The Decision Layer.
+          </h2>
+          <p style={{ fontFamily: SANS, fontSize: "18px", color: TEXT_SECONDARY, lineHeight: 1.6, maxWidth: "600px" }}>
+            The operating model that sits between your media stack and your CFO.
+          </p>
+        </div>
+
+        {/* Horizontal flow diagram */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "stretch",
+            gap: "0",
+            overflowX: "auto",
+            paddingBottom: "8px",
+          }}
+        >
+          {TIERS.map((tier, i) => (
+            <div key={i} style={{ display: "flex", alignItems: "center", flex: tier.isOutcome ? "1.2" : "1", minWidth: "180px" }}>
+              {/* Tier tile */}
+              <div
+                style={{
+                  flex: 1,
+                  background: SURFACE_1,
+                  border: tier.isOutcome ? `1px solid rgba(47,111,255,0.4)` : `1px solid ${BORDER_HAIRLINE}`,
+                  borderRadius: "16px",
+                  padding: "28px 24px",
+                  transform: visible ? (tier.isOutcome ? "scale(1.04)" : "translateY(0)") : "translateY(20px)",
+                  opacity: visible ? 1 : 0,
+                  transition: `opacity 480ms cubic-bezier(0.16,1,0.3,1) ${i * 100}ms, transform 480ms cubic-bezier(0.16,1,0.3,1) ${i * 100}ms`,
+                  boxShadow: tier.isOutcome ? "0 0 48px rgba(47,111,255,0.16)" : "none",
+                  position: "relative",
+                }}
+              >
+                {/* Eyebrow number */}
+                <p
+                  style={{
+                    fontFamily: MONO,
+                    fontSize: "10px",
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.12em",
+                    color: tier.isOutcome ? SIGNAL_GREEN : COBALT,
+                    marginBottom: "12px",
+                  }}
+                >
+                  {tier.number}
+                </p>
+                {/* Title */}
+                <h3
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "16px",
+                    fontWeight: 700,
+                    color: "#FFFFFF",
+                    lineHeight: 1.3,
+                    marginBottom: "10px",
+                    letterSpacing: "-0.01em",
+                  }}
+                >
+                  {tier.title}
+                </h3>
+                {/* Description */}
+                <p
+                  style={{
+                    fontFamily: SANS,
+                    fontSize: "14px",
+                    color: TEXT_SECONDARY,
+                    lineHeight: 1.6,
+                    margin: 0,
+                  }}
+                >
+                  {tier.desc}
+                </p>
+              </div>
+
+              {/* Arrow connector (not after last tile) */}
+              {i < TIERS.length - 1 && (
+                <div
+                  aria-hidden="true"
+                  style={{
+                    flexShrink: 0,
+                    width: "40px",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    position: "relative",
+                    height: "2px",
+                  }}
+                >
+                  {/* Line */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: 0,
+                      top: "50%",
+                      height: "1px",
+                      width: arrowsDrawn[i] ? "100%" : "0%",
+                      background: `linear-gradient(90deg, ${COBALT}, #9C7CFF)`,
+                      transition: "width 160ms cubic-bezier(0.2,0,0,1)",
+                      transform: "translateY(-50%)",
+                    }}
+                  />
+                  {/* Arrowhead */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      right: "0",
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      width: 0,
+                      height: 0,
+                      borderTop: "5px solid transparent",
+                      borderBottom: "5px solid transparent",
+                      borderLeft: `6px solid ${arrowsDrawn[i] ? "#9C7CFF" : "transparent"}`,
+                      transition: "border-left-color 80ms ease 160ms",
+                    }}
+                  />
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
+
+        {/* Mobile vertical fallback label */}
+        <p
+          style={{
+            fontFamily: MONO,
+            fontSize: "10px",
+            color: TEXT_MUTED,
+            textAlign: "center",
+            marginTop: "8px",
+            display: "none",
+          }}
+          className="decision-layer-scroll-hint"
+        >
+          ← scroll to see full framework →
+        </p>
+
+        {/* Pull quote */}
+        <div
+          style={{
+            marginTop: "64px",
+            paddingLeft: "24px",
+            borderLeft: `2px solid ${COBALT}`,
+            opacity: visible ? 1 : 0,
+            transform: visible ? "translateY(0)" : "translateY(16px)",
+            transition: "opacity 480ms cubic-bezier(0.16,1,0.3,1) 500ms, transform 480ms cubic-bezier(0.16,1,0.3,1) 500ms",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: SANS,
+              fontSize: "18px",
+              fontStyle: "italic",
+              color: TEXT_SECONDARY,
+              lineHeight: 1.6,
+              maxWidth: "800px",
               margin: 0,
             }}
           >
-            If the measurement model is weak, the budget logic is weak. If the budget logic is weak,{" "}
-            <span style={{ color: "#FFFFFF" }}>optimization just makes the wrong system run faster.</span>
+            "If the measurement model is weak, the budget logic is weak. If the budget logic is weak, optimization just makes the wrong system run faster."
           </p>
+        </div>
+
+        {/* Tertiary text link */}
+        <div style={{ marginTop: "32px", opacity: visible ? 1 : 0, transition: "opacity 480ms ease 600ms" }}>
+          <a
+            href="#proof"
+            onClick={(e) => { e.preventDefault(); document.getElementById("proof")?.scrollIntoView({ behavior: "smooth" }); }}
+            style={{
+              fontFamily: SANS,
+              fontSize: "15px",
+              color: TEXT_MUTED,
+              textDecoration: "none",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: "4px",
+              transition: "color 120ms ease",
+            }}
+            onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#FFFFFF"; }}
+            onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = TEXT_MUTED; }}
+          >
+            See it applied below{" "}
+            <span style={{ display: "inline-block", transition: "transform 120ms ease" }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLSpanElement).style.transform = "translateX(4px)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLSpanElement).style.transform = "translateX(0)"; }}
+            >↓</span>
+          </a>
         </div>
       </div>
     </section>

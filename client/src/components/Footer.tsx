@@ -11,8 +11,9 @@ const NAV_LINKS = [
   { label: "What I Do", id: "services" },
   { label: "Proof", id: "proof" },
   { label: "Pricing", id: "pricing" },
-  { label: "Writing", id: "writing" },
+  { label: "Fit", id: "fit" },
   { label: "About", id: "about" },
+  { label: "FAQ", id: "faq" },
   { label: "Book a Call", id: "booking" },
 ];
 
@@ -199,6 +200,42 @@ export default function Footer() {
               </button>
             ))}
           </nav>
+
+          {/* Subscribe column */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", maxWidth: "260px" }}>
+            <span
+              style={{
+                fontFamily: "'IBM Plex Mono', monospace",
+                fontSize: "0.6rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.12em",
+                color: "rgba(255,255,255,0.2)",
+              }}
+            >
+              Stay in the loop
+            </span>
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, margin: 0 }}>
+              Writing on media systems, attribution strategy, and growth decisions.
+            </p>
+            <a
+              href="/subscribe"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "6px",
+                fontFamily: "'Inter', sans-serif",
+                fontSize: "0.8125rem",
+                fontWeight: 600,
+                color: "#2979FF",
+                textDecoration: "none",
+                transition: "opacity 0.15s ease",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.75"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
+            >
+              Subscribe to the blog →
+            </a>
+          </div>
 
           {/* Connect column */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
