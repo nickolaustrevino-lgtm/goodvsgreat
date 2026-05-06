@@ -53,7 +53,7 @@ export default function GoodVsGreatBlock() {
       ref={ref}
       style={{
         backgroundColor: "#141A33",
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -94,11 +94,12 @@ export default function GoodVsGreatBlock() {
           </p>
         </div>
 
-        {/* Table wrapper */}
+        {/* Table wrapper - horizontally scrollable on mobile */}
         <div
           className="gvg-fadeup"
-          style={{ transitionDelay: "80ms" }}
+          style={{ transitionDelay: "80ms", overflowX: "auto", WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"] }}
         >
+          <div style={{ minWidth: "480px" }}>
           {/* Column header row */}
           <div
             style={{
@@ -249,6 +250,7 @@ export default function GoodVsGreatBlock() {
               </div>
             </div>
           ))}
+          </div>
         </div>
 
         {/* Good vs Great Dashboard - brand signature visual */}

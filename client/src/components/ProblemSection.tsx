@@ -53,7 +53,7 @@ export default function ProblemSection() {
       ref={ref}
       style={{
         backgroundColor: "#141A33",
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -93,9 +93,10 @@ export default function ProblemSection() {
 
         {/* Problem cards - strict 2×2 grid */}
         <div
+          className="gvg-grid-2col"
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(2, 1fr)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(280px, 100%), 1fr))",
             gap: "1.25rem",
           }}
         >

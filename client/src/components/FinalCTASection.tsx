@@ -41,7 +41,7 @@ export default function FinalCTASection() {
       className="gvg-scanline"
       style={{
         backgroundColor: "#080D1A",
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
         textAlign: "center",
@@ -88,7 +88,7 @@ export default function FinalCTASection() {
           <p
             style={{
               fontFamily: "'Inter', sans-serif",
-              fontSize: "20px",
+              fontSize: "clamp(1rem, 3vw, 1.25rem)",
               color: "rgba(255,255,255,0.5)",
               lineHeight: 1.65,
               maxWidth: "560px",
@@ -107,7 +107,7 @@ export default function FinalCTASection() {
               alignItems: "center",
               gap: "10px",
               height: "60px",
-              padding: "0 40px",
+              padding: "0 clamp(1.5rem, 5vw, 2.5rem)",
               background: "#2F6FFF",
               color: "#FFFFFF",
               fontFamily: "'Inter', sans-serif",

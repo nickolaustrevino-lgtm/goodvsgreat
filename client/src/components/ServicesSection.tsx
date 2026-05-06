@@ -73,7 +73,7 @@ export default function ServicesSection() {
       ref={sectionRef}
       style={{
         backgroundColor: SURFACE_0,
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -153,15 +153,17 @@ export default function ServicesSection() {
         {/* Horizontal flow diagram */}
         <div
           style={{
-            display: "flex",
-            alignItems: "stretch",
-            gap: "0",
-            overflowX: "auto",
-            paddingBottom: "8px",
+          display: "flex",
+          alignItems: "stretch",
+          gap: "0",
+          overflowX: "auto",
+          WebkitOverflowScrolling: "touch" as React.CSSProperties["WebkitOverflowScrolling"],
+          paddingBottom: "8px",
+          scrollSnapType: "x mandatory",
           }}
         >
           {TIERS.map((tier, i) => (
-            <div key={i} style={{ display: "flex", alignItems: "center", flex: tier.isOutcome ? "1.2" : "1", minWidth: "180px" }}>
+            <div key={i} style={{ display: "flex", alignItems: "center", flex: tier.isOutcome ? "1.2" : "1", minWidth: "clamp(160px, 40vw, 220px)", scrollSnapAlign: "start" }}>
               {/* Tier tile */}
               <div
                 style={{

@@ -96,7 +96,7 @@ export default function BookingSection() {
       ref={ref}
       style={{
         backgroundColor: "#141A33",
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -111,8 +111,8 @@ export default function BookingSection() {
           className="booking-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "5rem",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 400px), 1fr))",
+            gap: "clamp(2.5rem, 5vw, 5rem)",
             alignItems: "start",
           }}
         >

@@ -48,7 +48,7 @@ export default function FitSection() {
       ref={ref}
       style={{
         backgroundColor: "oklch(16% 0.005 285)",
-        padding: "7.5rem 0",
+        padding: "clamp(5rem, 10vw, 7.5rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -88,7 +88,7 @@ export default function FitSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(320px, 100%), 1fr))",
             gap: "1.5rem",
           }}
         >

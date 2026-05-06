@@ -910,3 +910,328 @@ div.decision-layer .dl-connector__label {
     transition: none;
   }
 }
+
+
+/* ============================================================
+   MOBILE-FIRST RESPONSIVE SYSTEM
+   Breakpoints: 767px (phone), 1023px (tablet)
+   Philosophy: compose for mobile, enhance for desktop
+   ============================================================ */
+
+/* ── Section padding: reduce 160px → 80px on mobile ── */
+@media (max-width: 767px) {
+  .gvg-section {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .gvg-section--sm {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+}
+
+/* ── Global section padding override for inline-styled sections ── */
+@media (max-width: 767px) {
+  .gvg-mobile-section {
+    padding-top: 5rem !important;
+    padding-bottom: 5rem !important;
+  }
+}
+
+/* ── 2-column grids → single column on mobile ── */
+@media (max-width: 767px) {
+  .gvg-grid-2col {
+    grid-template-columns: 1fr !important;
+  }
+  .gvg-grid-auto {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── About section: portrait + content stacked ── */
+@media (max-width: 767px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .about-portrait {
+    width: 160px !important;
+    margin: 0 auto 2rem !important;
+  }
+}
+
+/* ── Booking section: stacked on mobile ── */
+@media (max-width: 767px) {
+  .booking-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .booking-calendar {
+    height: 480px !important;
+  }
+}
+
+/* ── Proof section: cards full width on mobile ── */
+@media (max-width: 767px) {
+  .proof-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Pricing section: cards full width on mobile ── */
+@media (max-width: 767px) {
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Fit section: cards full width on mobile ── */
+@media (max-width: 767px) {
+  .fit-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── GoodVsGreat comparison: stacked on mobile ── */
+@media (max-width: 767px) {
+  .gvg-comparison-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Services flow: vertical on mobile ── */
+@media (max-width: 767px) {
+  .services-flow {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .services-flow-arrow {
+    transform: rotate(90deg) !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ── Logo wall: wrap on mobile ── */
+@media (max-width: 767px) {
+  .logo-wall {
+    gap: 1.5rem !important;
+    justify-content: center !important;
+  }
+  .logo-wall-item {
+    flex: 0 0 calc(33.333% - 1rem) !important;
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Credential bar: 2×2 grid on mobile ── */
+@media (max-width: 767px) {
+  .gvg-cred-bar {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 2rem !important;
+    justify-items: center !important;
+  }
+  .gvg-cred-bar > div > span[aria-hidden] {
+    display: none !important;
+  }
+}
+
+/* ── CTA rows: stack on mobile ── */
+@media (max-width: 480px) {
+  .gvg-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .gvg-cta-row a,
+  .gvg-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Touch targets: minimum 44px on mobile ── */
+@media (max-width: 767px) {
+  .gvg-btn-primary,
+  .gvg-btn-secondary {
+    min-height: 48px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+  }
+}
+
+/* ── Container horizontal padding on mobile ── */
+@media (max-width: 480px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ── Blog post page: mobile-native ── */
+@media (max-width: 767px) {
+  .blog-post-nav {
+    padding: 1rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.75rem !important;
+  }
+  .blog-post-article {
+    padding: 2rem 1.25rem 4rem !important;
+  }
+  .blog-post-footer {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  .prose-gvg table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+/* ── Subscribe CTA: stack on mobile ── */
+@media (max-width: 480px) {
+  .subscribe-cta-row {
+    flex-direction: column !important;
+  }
+  .subscribe-cta-row input,
+  .subscribe-cta-row button {
+    width: 100% !important;
+    flex: none !important;
+  }
+}
+
+/* ── FAQ accordion: tighter on mobile ── */
+@media (max-width: 767px) {
+  .faq-question {
+    padding: 1.25rem 0 !important;
+    font-size: 1rem !important;
+  }
+  .faq-answer {
+    font-size: 0.9375rem !important;
+  }
+}
+
+/* ── Hero section: mobile-native ── */
+@media (max-width: 767px) {
+  #hero {
+    padding-top: calc(64px + 2.5rem) !important;
+    padding-bottom: 4rem !important;
+  }
+  .gvg-hero-grid {
+    grid-template-columns: 1fr !important;
+    padding: 0 1.25rem !important;
+    gap: 2.5rem !important;
+  }
+  /* Show dashboard on mobile but below the fold */
+  .gvg-hero-grid > div:last-child {
+    display: block !important;
+  }
+  .gvg-hero-cta-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .gvg-hero-cta-row a,
+  .gvg-hero-cta-row button {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+}
+
+/* ── Mobile bottom bar clearance: add padding above fixed bottom CTA ── */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 56px;
+  }
+}
+
+/* ── Ghost section numbers: hide on mobile ── */
+@media (max-width: 767px) {
+  .gvg-ghost-number {
+    display: none !important;
+  }
+}
+
+/* ── Tablet: moderate adjustments ── */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .gvg-section {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  .about-grid {
+    grid-template-columns: 220px 1fr !important;
+  }
+}
+
+/* ── About section: stack portrait above content on mobile ── */
+@media (max-width: 767px) {
+  .about-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2rem !important;
+  }
+  .about-grid > div:first-child img {
+    max-width: 200px !important;
+    margin: 0 auto !important;
+  }
+}
+
+/* ── Booking section: stack on mobile ── */
+@media (max-width: 767px) {
+  .booking-grid {
+    grid-template-columns: 1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+/* ── Proof cards: single column on small mobile ── */
+@media (max-width: 480px) {
+  .proof-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Pricing cards: single column on mobile ── */
+@media (max-width: 640px) {
+  .pricing-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Fit section cards: single column on mobile ── */
+@media (max-width: 640px) {
+  .fit-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ── Services section: horizontal scroll on mobile ── */
+@media (max-width: 767px) {
+  .services-flow {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    padding-bottom: 1rem !important;
+  }
+}
+
+/* ── GoodVsGreat comparison table: horizontal scroll on mobile ── */
+@media (max-width: 767px) {
+  .gvg-comparison-scroll {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+
+/* ── Final CTA: tighter on mobile ── */
+@media (max-width: 767px) {
+  .final-cta-section {
+    padding: 4rem 0 !important;
+  }
+  .final-cta-section h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem) !important;
+  }
+}
+
+/* ── ProblemSection cards: single column on mobile ── */
+@media (max-width: 640px) {
+  .problem-card-grid {
+    grid-template-columns: 1fr !important;
+  }
+}

@@ -470,7 +470,7 @@ export default function HeroSection() {
             zIndex: 2,
             maxWidth: "1280px",
             margin: "0 auto",
-            padding: "0 4rem",
+            padding: "0 clamp(1.5rem, 4vw, 4rem)",
             display: "grid",
             gridTemplateColumns: "7fr 5fr",
             gap: "4rem",
@@ -630,14 +630,14 @@ export default function HeroSection() {
         }}
       >
         {/* Logo wall */}
-        <div style={{ padding: "48px 4rem", maxWidth: "1280px", margin: "0 auto" }}>
+        <div style={{ padding: "clamp(2rem, 5vw, 3rem) clamp(1.5rem, 4vw, 4rem)", maxWidth: "1280px", margin: "0 auto" }}>
           <div
             style={{
               display: "flex",
-              justifyContent: "space-between",
+              justifyContent: "center",
               alignItems: "center",
               flexWrap: "wrap",
-              gap: "2rem",
+              gap: "clamp(1.5rem, 4vw, 2rem)",
             }}
           >
             {logos.map((logo) => (
@@ -689,7 +689,7 @@ export default function HeroSection() {
         <div
           style={{
             borderTop: `1px solid ${BORDER_HAIRLINE}`,
-            padding: "40px 4rem 80px",
+            padding: "clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 4vw, 4rem) clamp(3rem, 6vw, 5rem)",
             maxWidth: "1280px",
             margin: "0 auto",
           }}
@@ -697,13 +697,13 @@ export default function HeroSection() {
           <div
             aria-live="polite"
             style={{
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              flexWrap: "wrap",
-              gap: "2rem",
-            }}
-            className="gvg-cred-bar"
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: "clamp(1.5rem, 4vw, 2rem)",
+          }}
+          className="gvg-cred-bar"
           >
             {[
               { value: `$${mediaVal}M+`, label: "Media Governed" },

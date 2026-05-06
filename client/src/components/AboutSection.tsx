@@ -36,7 +36,7 @@ export default function AboutSection() {
       ref={ref}
       style={{
         backgroundColor: "#1A1A2E",
-        padding: "7.5rem 0",
+        padding: "clamp(5rem, 10vw, 7.5rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -48,8 +48,8 @@ export default function AboutSection() {
           className="about-grid"
           style={{
             display: "grid",
-            gridTemplateColumns: "280px 1fr",
-            gap: "5rem",
+            gridTemplateColumns: "clamp(200px, 22vw, 280px) 1fr",
+            gap: "clamp(2rem, 5vw, 5rem)",
             alignItems: "start",
           }}
         >

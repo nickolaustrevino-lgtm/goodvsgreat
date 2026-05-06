@@ -53,7 +53,7 @@ export default function ProofSection() {
       ref={ref}
       style={{
         backgroundColor: "#0A1226",
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
@@ -97,7 +97,7 @@ export default function ProofSection() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(340px, 100%), 1fr))",
             gap: "1.5rem",
           }}
         >

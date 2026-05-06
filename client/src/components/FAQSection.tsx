@@ -64,7 +64,7 @@ export default function FAQSection() {
       ref={ref}
       style={{
         backgroundColor: "#0D1117",
-        padding: "160px 0",
+        padding: "clamp(5rem, 10vw, 10rem) 0",
         position: "relative",
         overflow: "hidden",
       }}
