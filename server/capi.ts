@@ -68,6 +68,7 @@ export async function sendCapiEvent(data: CapiEventData): Promise<CapiResult> {
         ...(data.customData ? { custom_data: data.customData } : {}),
       },
     ],
+    test_event_code: "TEST96121",  // ⚠️ REMOVE after verification
   };
 
   try {
