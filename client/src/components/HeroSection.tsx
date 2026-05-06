@@ -178,6 +178,138 @@ function RazerLogo() {
   );
 }
 
+// ── Attribution Check Dashboard (2-state hover toggle) ──────────────────────
+function AttributionDashboard({ reduced }: { reduced: boolean }) {
+  const [hovered, setHovered] = useState(false);
+  // true = "True" state (clean incremental), false = "Last-Click" state (chaotic)
+  const showTrue = hovered;
+
+  const lastClickBars = [
+    { label: "Paid Social",  pct: 62, color: COBALT },
+    { label: "Paid Search",  pct: 48, color: "#5C7FFF" },
+    { label: "Programmatic", pct: 31, color: "#8B6FFF" },
+    { label: "Streaming",    pct: 18, color: "#9C7CFF" },
+  ];
+  const trueBars = [
+    { label: "Paid Social",  pct: 38, color: COBALT },
+    { label: "Paid Search",  pct: 28, color: "#5C7FFF" },
+    { label: "Programmatic", pct: 20, color: "#8B6FFF" },
+    { label: "Streaming",    pct: 14, color: "#9C7CFF" },
+  ];
+  const bars = showTrue ? trueBars : lastClickBars;
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        background: SURFACE_1,
+        border: `1px solid ${BORDER_STRONG}`,
+        borderRadius: "16px",
+        padding: "24px",
+        boxShadow: "0 24px 48px rgba(0,0,0,0.32), inset 0 0 1px rgba(255,255,255,0.04)",
+        transition: "transform var(--motion-base, 240ms) ease",
+        transform: hovered ? "translateY(-2px)" : "translateY(0)",
+        cursor: "default",
+      }}
+    >
+      {/* Card header */}
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "16px" }}>
+        <span style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: `rgba(47,111,255,0.7)` }}>
+          The Decision Layer
+        </span>
+        <span style={{ display: "inline-flex", alignItems: "center", gap: "6px" }}>
+          <LiveDot reduced={reduced} />
+          <span style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: GREEN }}>LIVE</span>
+        </span>
+      </div>
+      <div style={{ height: "1px", background: BORDER_HAIRLINE, marginBottom: "16px" }} />
+
+      {/* Section label */}
+      <div style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: TEXT_MUTED, marginBottom: "12px" }}>
+        Attribution Check
+      </div>
+
+      {/* 2-stat tile row */}
+      <div
+        aria-live="polite"
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "8px", marginBottom: "16px" }}
+      >
+        {[
+          {
+            label: "Reported ROAS",
+            value: showTrue ? "4.0×" : "6.8×",
+            sub: showTrue ? "True signal" : "Last-click",
+            accent: showTrue ? GREEN : "rgba(255,100,100,0.9)",
+          },
+          {
+            label: "Incremental Lift",
+            value: showTrue ? "68%" : "41%",
+            sub: showTrue ? "Measured" : "Overstated",
+            accent: showTrue ? GREEN : "rgba(255,180,50,0.9)",
+          },
+        ].map((tile) => (
+          <div key={tile.label} style={{
+            background: SURFACE_2,
+            border: "1px solid rgba(255,255,255,0.04)",
+            borderRadius: "8px",
+            padding: "12px",
+            transition: "all 320ms ease",
+          }}>
+            <div style={{ fontFamily: MONO, fontSize: "9px", textTransform: "uppercase", letterSpacing: "0.12em", color: TEXT_MUTED, marginBottom: "6px" }}>{tile.label}</div>
+            <div style={{ fontFamily: SANS, fontSize: "28px", fontWeight: 600, color: tile.accent, lineHeight: 1.1, letterSpacing: "-0.01em", marginBottom: "4px", transition: "color 320ms ease" }}>{tile.value}</div>
+            <div style={{ fontFamily: MONO, fontSize: "10px", color: tile.accent, lineHeight: 1.3, opacity: 0.8, transition: "color 320ms ease" }}>{tile.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* State label */}
+      <div style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: TEXT_MUTED, marginBottom: "12px", display: "flex", alignItems: "center", gap: "8px" }}>
+        <span style={{ transition: "color 320ms ease", color: showTrue ? GREEN : "rgba(255,100,100,0.8)" }}>
+          {showTrue ? "True attribution" : "Last-click attribution"}
+        </span>
+        <span style={{ opacity: 0.4 }}>— hover to toggle</span>
+      </div>
+
+      {/* Budget allocation bars */}
+      <div style={{ marginBottom: "16px" }}>
+        {bars.map((bar, i) => (
+          <div key={bar.label} style={{ marginBottom: i < bars.length - 1 ? "10px" : "0" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "5px" }}>
+              <span style={{ fontFamily: SANS, fontSize: "12px", fontWeight: 500, color: TEXT_SECONDARY }}>{bar.label}</span>
+              <span style={{ fontFamily: MONO, fontSize: "12px", fontWeight: 600, color: bar.color, transition: "color 320ms ease" }}>{bar.pct}%</span>
+            </div>
+            <PillBar pct={bar.pct} color={bar.color} delay={i * 60} active={true} reduced={reduced} />
+          </div>
+        ))}
+      </div>
+
+      {/* Decision Signal */}
+      <div style={{
+        background: "rgba(140,108,255,0.08)",
+        border: "1px solid rgba(156,124,255,0.32)",
+        borderRadius: "8px",
+        padding: "12px",
+        display: "flex",
+        gap: "8px",
+        alignItems: "flex-start",
+      }}>
+        <span aria-hidden="true" style={{ fontSize: "12px", flexShrink: 0, marginTop: "1px" }}>⚡</span>
+        <div>
+          <div style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.08em", color: PURPLE, marginBottom: "4px" }}>
+            Decision Signal
+          </div>
+          <div style={{ fontFamily: SANS, fontSize: "12px", fontWeight: 500, color: "rgba(255,255,255,0.9)", lineHeight: 1.5, transition: "opacity 320ms ease" }}>
+            {showTrue
+              ? "Shift 12% of Paid Search budget to Programmatic CTV. Projected +0.4× ROAS."
+              : "Shift 14% of Search budget to CTV. Last-click overstates Search by 2.8×."}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Main component ────────────────────────────────────────────────────────────
 export default function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -349,9 +481,9 @@ export default function HeroSection() {
                 maxWidth: "14ch",
               }}
             >
-              Navigating complex decisions for{" "}
+              Good media looks busy.{" "}
               <span style={{ position: "relative", display: "inline" }}>
-                <span>sustainable growth.</span>
+                <span>Great media</span>
                 {/* Animated cobalt underline rule */}
                 <span
                   ref={underlineRef}
@@ -370,6 +502,7 @@ export default function HeroSection() {
                   }}
                 />
               </span>{" "}
+              makes decisions.
             </h1>
 
             {/* Subhead */}
@@ -384,7 +517,7 @@ export default function HeroSection() {
                 maxWidth: "480px",
               }}
             >
-              I partner with ambitious founders and CEOs to clarify their vision, overcome obstacles, and accelerate growth using data-driven insights and a proven framework.
+              You're spending $1M+ on paid media. You can't prove what's working. I'm the decision layer between your dashboards and your CFO.
             </p>
 
             {/* CTA row */}
@@ -419,7 +552,7 @@ export default function HeroSection() {
                   outline: "none",
                 }}
               >
-                Book Your Growth Strategy Call
+                Get a 30-min diagnosis
                 <span style={{ display: "inline-block", transition: "transform var(--motion-base, 240ms) ease", transform: primaryHovered ? "translateX(4px)" : "translateX(0)" }}>→</span>
               </a>
 
@@ -449,139 +582,13 @@ export default function HeroSection() {
                   outline: "none",
                 }}
               >
-                Read Client Success Stories →
+                See the framework
               </button>
             </div>
           </div>
 
-          {/* ── RIGHT: 5 cols — Our Proven 3-Step Framework ──────────── */}
-          <div>
-            <div
-              style={{
-                background: SURFACE_1,
-                border: `1px solid ${BORDER_STRONG}`,
-                borderRadius: "16px",
-                padding: "32px 28px",
-                boxShadow: "0 24px 48px rgba(0,0,0,0.32), inset 0 0 1px rgba(255,255,255,0.04)",
-                transition: "transform var(--motion-base, 240ms) ease",
-              }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(-2px)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)"; }}
-            >
-              {/* Card title */}
-              <div style={{ textAlign: "center", marginBottom: "32px" }}>
-                <h3 style={{
-                  fontFamily: SANS,
-                  fontSize: "18px",
-                  fontWeight: 600,
-                  color: "#FFFFFF",
-                  margin: 0,
-                  letterSpacing: "-0.01em",
-                }}>
-                  Our Proven 3-Step Framework
-                </h3>
-              </div>
-
-              {/* Step row: boxes + arrows */}
-              <div style={{ display: "flex", alignItems: "flex-start", gap: "8px", marginBottom: "28px" }}>
-                {[
-                  {
-                    num: "1",
-                    label: "Diagnosis",
-                    desc: "Clarify with ambitious founders and CEOs to clarify their vision.",
-                    icon: (
-                      <svg viewBox="0 0 40 40" fill="none" style={{ width: "40px", height: "40px" }}>
-                        <rect width="40" height="40" rx="8" fill="rgba(47,111,255,0.1)"/>
-                        <path d="M12 20h6m0 0l-3-3m3 3l-3 3" stroke={COBALT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M22 14l4 6-4 6" stroke={COBALT} strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        <circle cx="28" cy="14" r="2" fill={COBALT}/>
-                        <path d="M20 28h8" stroke={COBALT} strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                    ),
-                  },
-                  {
-                    num: "2",
-                    label: "Strategy",
-                    desc: "Elucidate the situations for niplium anables, and strategy croming analysis.",
-                    icon: (
-                      <svg viewBox="0 0 40 40" fill="none" style={{ width: "40px", height: "40px" }}>
-                        <rect width="40" height="40" rx="8" fill="rgba(156,124,255,0.1)"/>
-                        <circle cx="20" cy="20" r="7" stroke={PURPLE} strokeWidth="1.5"/>
-                        <circle cx="20" cy="20" r="3" fill={PURPLE}/>
-                        <path d="M20 10v3M20 27v3M10 20h3M27 20h3" stroke={PURPLE} strokeWidth="1.5" strokeLinecap="round"/>
-                      </svg>
-                    ),
-                  },
-                  {
-                    num: "3",
-                    label: "Execution",
-                    desc: "Executen a iniclerations to mutter eaccbrnet, and strategy execution.",
-                    icon: (
-                      <svg viewBox="0 0 40 40" fill="none" style={{ width: "40px", height: "40px" }}>
-                        <rect width="40" height="40" rx="8" fill="rgba(94,232,181,0.1)"/>
-                        <path d="M14 20l4 4 8-8" stroke={GREEN} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <circle cx="20" cy="20" r="9" stroke={GREEN} strokeWidth="1.5"/>
-                      </svg>
-                    ),
-                  },
-                ].map((step, i, arr) => (
-                  <>
-                    {/* Step card */}
-                    <div
-                      key={step.num}
-                      style={{
-                        flex: 1,
-                        background: SURFACE_2,
-                        border: "1px solid rgba(255,255,255,0.06)",
-                        borderRadius: "10px",
-                        padding: "16px 12px",
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        gap: "10px",
-                        textAlign: "center",
-                      }}
-                    >
-                      {/* Icon */}
-                      {step.icon}
-                      {/* Step number + label */}
-                      <div>
-                        <div style={{ fontFamily: SANS, fontSize: "13px", fontWeight: 600, color: "#FFFFFF", marginBottom: "6px" }}>
-                          {step.num}. {step.label}
-                        </div>
-                        <div style={{ fontFamily: SANS, fontSize: "11px", color: TEXT_MUTED, lineHeight: 1.5 }}>
-                          {step.desc}
-                        </div>
-                      </div>
-                    </div>
-                    {/* Arrow connector */}
-                    {i < arr.length - 1 && (
-                      <div style={{ display: "flex", alignItems: "center", paddingTop: "20px", flexShrink: 0 }}>
-                        <svg viewBox="0 0 20 12" fill="none" style={{ width: "20px", height: "12px" }}>
-                          <path d="M0 6h16M12 2l4 4-4 4" stroke="rgba(255,255,255,0.25)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </div>
-                    )}
-                  </>
-                ))}
-              </div>
-
-              {/* Bottom trust line */}
-              <div style={{
-                borderTop: `1px solid ${BORDER_HAIRLINE}`,
-                paddingTop: "16px",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-              }}>
-                <LiveDot reduced={reduced} />
-                <span style={{ fontFamily: MONO, fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.1em", color: TEXT_MUTED }}>
-                  Proven across $100M+ in media spend
-                </span>
-              </div>
-            </div>
-          </div>
+          {/* ── RIGHT: 5 cols — Attribution Check Dashboard ──────────── */}
+          <AttributionDashboard reduced={reduced} />
         </div>
       </section>
 
