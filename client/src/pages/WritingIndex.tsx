@@ -23,7 +23,7 @@ export default function WritingIndex() {
     <div style={{ minHeight: "100vh", background: "oklch(16% 0.005 285)", color: "#fff", fontFamily: SANS }}>
       {/* Nav */}
       <div style={{ borderBottom: `1px solid ${BORDER}`, padding: "1.25rem 2rem", display: "flex", alignItems: "center", gap: "1.5rem" }}>
-        <Link href="/"><a style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM, textDecoration: "none" }}>← Good vs. Great</a></Link>
+        <Link href="/" style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM, textDecoration: "none" }}>← Good vs. Great</Link>
       </div>
 
       <div style={{ maxWidth: "760px", margin: "0 auto", padding: "4rem 2rem" }}>
@@ -48,8 +48,7 @@ export default function WritingIndex() {
         ) : (
           <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
             {posts.map((post, i) => (
-              <Link key={post.id} href={`/writing/${post.slug}`}>
-                <a style={{ textDecoration: "none", display: "block" }}>
+              <Link key={post.id} href={`/writing/${post.slug}`} style={{ textDecoration: "none", display: "block" }}>
                   <article
                     style={{
                       padding: "2rem 0",
@@ -81,7 +80,6 @@ export default function WritingIndex() {
                     )}
                     <span style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: BLUE }}>Read →</span>
                   </article>
-                </a>
               </Link>
             ))}
           </div>
