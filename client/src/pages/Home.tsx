@@ -10,7 +10,6 @@ import ProblemSection from "@/components/ProblemSection";
 import ServicesSection from "@/components/ServicesSection";
 import GoodVsGreatBlock from "@/components/GoodVsGreatBlock";
 import ProofSection from "@/components/ProofSection";
-import ClientsSection from "@/components/ClientsSection";
 import PricingSection from "@/components/PricingSection";
 import WritingSection from "@/components/WritingSection";
 import FitSection from "@/components/FitSection";
@@ -28,7 +27,6 @@ export default function Home() {
       <ServicesSection />
       <GoodVsGreatBlock />
       <ProofSection />
-      <ClientsSection />
       <PricingSection />
       <WritingSection />
       <FitSection />
