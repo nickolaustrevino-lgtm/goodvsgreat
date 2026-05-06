@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { adminProcedure, publicProcedure, router } from "../_core/trpc";
-import { addSubscriber, getAllSubscribers, getSubscriberByEmail } from "../db.subscribers";
+import { addSubscriber, getAllSubscribers, getSubscriberByEmail, getSubscriberByToken, confirmSubscriber } from "../db.subscribers";
 import { notifyOwner } from "../_core/notification";
 
 export const subscribersRouter = router({
@@ -33,6 +33,17 @@ export const subscribersRouter = router({
       }).catch(() => {}); // non-blocking
 
       return { success: true, alreadySubscribed: false };
+    }),
+
+  /** Public: confirm subscription via one-time token */
+  confirm: publicProcedure
+    .input(z.object({ token: z.string().min(1) }))
+    .mutation(async ({ input }) => {
+      const sub = await getSubscriberByToken(input.token);
+      if (!sub) return { success: false, message: "Invalid or expired confirmation link." };
+      if (sub.confirmedAt) return { success: true, alreadyConfirmed: true };
+      await confirmSubscriber(sub.id);
+      return { success: true, alreadyConfirmed: false };
     }),
 
   /** Admin: list all subscribers */

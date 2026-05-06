@@ -64,6 +64,8 @@ export const subscribers = mysqlTable("subscribers", {
   email: varchar("email", { length: 320 }).notNull().unique(),
   name: varchar("name", { length: 255 }),
   source: varchar("source", { length: 255 }).default("blog"), // e.g. post slug
+  confirmToken: varchar("confirmToken", { length: 128 }), // one-time token for email confirmation
+  confirmedAt: timestamp("confirmedAt"), // null = unconfirmed, set = confirmed opt-in
   createdAt: timestamp("createdAt").defaultNow().notNull(),
 });
 

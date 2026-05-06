@@ -12,6 +12,7 @@ import AdminImport from "./pages/AdminImport";
 import AdminSubscribers from "./pages/AdminSubscribers";
 import WritingIndex from "./pages/WritingIndex";
 import WritingPost from "./pages/WritingPost";
+import SubscribeConfirm from "./pages/SubscribeConfirm";
 
 // Wrapper to extract :slug param for WritingPost
 function WritingPostRoute() {
@@ -41,6 +42,8 @@ function Router() {
       <Route path={"/admin/import"} component={AdminImport} />
       <Route path={"/admin/subscribers"} component={AdminSubscribers} />
       <Route path={"/admin/posts/:id"} component={AdminPostEditorRoute} />
+      {/* Subscription confirmation */}
+      <Route path={"/subscribe/confirm"} component={SubscribeConfirm} />
       {/* Fallbacks */}
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
