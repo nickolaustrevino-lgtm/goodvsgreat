@@ -83,13 +83,17 @@ export default function AdminPostEditor({ postId }: EditorProps) {
   });
 
   const handleSave = (targetStatus?: "draft" | "published") => {
+    const trimmedTitle = title.trim();
+    const trimmedContent = content.trim();
+    if (!trimmedTitle) { toast.error("Please add a title before saving."); return; }
+    if (!trimmedContent) { toast.error("Please add some content before saving."); return; }
     const finalStatus = targetStatus ?? status;
     setSaving(true);
     const payload = {
-      title: title.trim(),
-      slug: slug.trim(),
+      title: trimmedTitle,
+      slug: slug.trim() || slugify(trimmedTitle),
       excerpt: excerpt.trim() || undefined,
-      content: content.trim(),
+      content: trimmedContent,
       coverUrl: coverUrl.trim() || undefined,
       status: finalStatus,
     };
@@ -100,6 +104,8 @@ export default function AdminPostEditor({ postId }: EditorProps) {
       createMutation.mutate({ ...payload, status: finalStatus });
     }
   };
+
+  const canSave = title.trim().length > 0 && content.trim().length > 0;
 
   if (authLoading || (postId && loadingPost)) {
     return <AdminShell><span style={{ fontFamily: MONO, fontSize: "0.7rem", color: DIM }}>Loading…</span></AdminShell>;
@@ -136,16 +142,16 @@ export default function AdminPostEditor({ postId }: EditorProps) {
             {status}
           </span>
           <button
-            disabled={saving}
+            disabled={saving || !canSave}
             onClick={() => handleSave("draft")}
-            style={{ fontFamily: MONO, fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", background: "rgba(255,255,255,0.06)", border: `1px solid ${BORDER}`, color: "rgba(255,255,255,0.7)", borderRadius: "8px", padding: "0.55rem 1rem", cursor: "pointer" }}
+            style={{ fontFamily: MONO, fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", background: "rgba(255,255,255,0.06)", border: `1px solid ${BORDER}`, color: canSave ? "rgba(255,255,255,0.7)" : DIM, borderRadius: "8px", padding: "0.55rem 1rem", cursor: canSave ? "pointer" : "not-allowed", opacity: canSave ? 1 : 0.5 }}
           >
             Save Draft
           </button>
           <button
-            disabled={saving}
+            disabled={saving || !canSave}
             onClick={() => handleSave("published")}
-            style={{ fontFamily: MONO, fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, border: "none", color: "#fff", borderRadius: "8px", padding: "0.55rem 1.1rem", cursor: "pointer" }}
+            style={{ fontFamily: MONO, fontSize: "0.62rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, border: "none", color: "#fff", borderRadius: "8px", padding: "0.55rem 1.1rem", cursor: canSave ? "pointer" : "not-allowed", opacity: canSave ? 1 : 0.5 }}
           >
             {saving ? "Saving…" : status === "published" ? "Update" : "Publish"}
           </button>

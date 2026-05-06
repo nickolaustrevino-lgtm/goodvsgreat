@@ -3,7 +3,7 @@
    GvG Design System v4 · Dark Editorial Intelligence
    ===================================================== */
 import { useState } from "react";
-import { Link } from "wouter";
+import { useLocation } from "wouter";
 import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { getLoginUrl } from "@/const";
@@ -22,8 +22,22 @@ function formatDate(d: Date | string | null) {
   return new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
 }
 
+const linkStyle = (color = DIM): React.CSSProperties => ({
+  fontFamily: MONO,
+  fontSize: "0.6rem",
+  textTransform: "uppercase",
+  letterSpacing: "0.1em",
+  color,
+  textDecoration: "none",
+  cursor: "pointer",
+  background: "none",
+  border: "none",
+  padding: 0,
+});
+
 export default function AdminPosts() {
   const { user, loading: authLoading } = useAuth();
+  const [, navigate] = useLocation();
   const [deletingId, setDeletingId] = useState<number | null>(null);
 
   const { data: posts, isLoading, refetch } = trpc.posts.adminList.useQuery(undefined, {
@@ -68,11 +82,12 @@ export default function AdminPosts() {
           <h1 style={{ fontFamily: MONO, fontSize: "1.2rem", fontWeight: 700, color: "#fff", letterSpacing: "-0.02em", marginBottom: "0.25rem" }}>Blog Posts</h1>
           <p style={{ fontFamily: SANS, fontSize: "0.8rem", color: DIM }}>{posts?.length ?? 0} total posts</p>
         </div>
-        <Link href="/admin/posts/new">
-          <a style={{ fontFamily: MONO, fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, color: "#fff", border: "none", borderRadius: "8px", padding: "0.6rem 1.25rem", cursor: "pointer", textDecoration: "none", display: "inline-block" }}>
-            + New Post
-          </a>
-        </Link>
+        <button
+          onClick={() => navigate("/admin/posts/new")}
+          style={{ fontFamily: MONO, fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, color: "#fff", border: "none", borderRadius: "8px", padding: "0.6rem 1.25rem", cursor: "pointer" }}
+        >
+          + New Post
+        </button>
       </div>
 
       {/* Posts table */}
@@ -82,11 +97,12 @@ export default function AdminPosts() {
         <div style={{ border: `1px dashed ${BORDER}`, borderRadius: "12px", padding: "4rem", textAlign: "center" }}>
           <div style={{ fontFamily: MONO, fontSize: "2rem", marginBottom: "1rem", opacity: 0.3 }}>✍</div>
           <p style={{ fontFamily: SANS, fontSize: "0.9rem", color: DIM, marginBottom: "1.5rem" }}>No posts yet. Create your first article.</p>
-          <Link href="/admin/posts/new">
-            <a style={{ fontFamily: MONO, fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, color: "#fff", borderRadius: "8px", padding: "0.6rem 1.25rem", textDecoration: "none" }}>
-              + New Post
-            </a>
-          </Link>
+          <button
+            onClick={() => navigate("/admin/posts/new")}
+            style={{ fontFamily: MONO, fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, color: "#fff", border: "none", borderRadius: "8px", padding: "0.6rem 1.25rem", cursor: "pointer" }}
+          >
+            + New Post
+          </button>
         </div>
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -122,13 +138,21 @@ export default function AdminPosts() {
 
               {/* Actions */}
               <div style={{ display: "flex", gap: "0.4rem" }}>
-                <Link href={`/admin/posts/${post.id}`}>
-                  <a style={{ fontFamily: MONO, fontSize: "0.55rem", textTransform: "uppercase", letterSpacing: "0.06em", background: "rgba(41,121,255,0.1)", border: `1px solid rgba(41,121,255,0.25)`, color: BLUE, borderRadius: "6px", padding: "0.3rem 0.6rem", textDecoration: "none" }}>Edit</a>
-                </Link>
+                <button
+                  onClick={() => navigate(`/admin/posts/${post.id}`)}
+                  style={{ fontFamily: MONO, fontSize: "0.55rem", textTransform: "uppercase", letterSpacing: "0.06em", background: "rgba(41,121,255,0.1)", border: `1px solid rgba(41,121,255,0.25)`, color: BLUE, borderRadius: "6px", padding: "0.3rem 0.6rem", cursor: "pointer" }}
+                >
+                  Edit
+                </button>
                 {post.status === "published" && (
-                  <Link href={`/writing/${post.slug}`}>
-                    <a target="_blank" style={{ fontFamily: MONO, fontSize: "0.55rem", textTransform: "uppercase", letterSpacing: "0.06em", background: "rgba(255,255,255,0.04)", border: `1px solid ${BORDER}`, color: "rgba(255,255,255,0.5)", borderRadius: "6px", padding: "0.3rem 0.6rem", textDecoration: "none" }}>View</a>
-                  </Link>
+                  <a
+                    href={`/writing/${post.slug}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    style={{ fontFamily: MONO, fontSize: "0.55rem", textTransform: "uppercase", letterSpacing: "0.06em", background: "rgba(255,255,255,0.04)", border: `1px solid ${BORDER}`, color: "rgba(255,255,255,0.5)", borderRadius: "6px", padding: "0.3rem 0.6rem", textDecoration: "none", display: "inline-block" }}
+                  >
+                    View
+                  </a>
                 )}
                 <button
                   disabled={deletingId === post.id}
@@ -151,15 +175,15 @@ export default function AdminPosts() {
   );
 }
 
-// Shared admin shell layout
+// Shared admin shell layout — uses plain <a> tags (no nested Link+a)
 export function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ minHeight: "100vh", background: "oklch(16% 0.005 285)", color: "#fff", fontFamily: "'Inter', sans-serif" }}>
       <div style={{ borderBottom: `1px solid ${BORDER}`, padding: "1rem 2rem", display: "flex", alignItems: "center", gap: "1.5rem" }}>
-        <Link href="/"><a style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM, textDecoration: "none" }}>← Site</a></Link>
+        <a href="/" style={linkStyle(DIM)}>← Site</a>
         <span style={{ color: BORDER }}>|</span>
-        <Link href="/admin/posts"><a style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Posts</a></Link>
-        <Link href="/files"><a style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: "rgba(255,255,255,0.5)", textDecoration: "none" }}>Files</a></Link>
+        <a href="/admin/posts" style={linkStyle("rgba(255,255,255,0.5)")}>Posts</a>
+        <a href="/files" style={linkStyle("rgba(255,255,255,0.5)")}>Files</a>
       </div>
       <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "2.5rem 2rem" }}>
         {children}
