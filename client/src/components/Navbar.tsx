@@ -16,7 +16,7 @@ const NAV_LINKS = [
   { label: "The Distinction", id: "contrast" },
   { label: "Proof", id: "proof" },
   { label: "Pricing", id: "pricing" },
-  { label: "Writing", id: "writing" },
+  { label: "Blog", id: "writing", href: "/writing" },
   { label: "Is This a Fit?", id: "fit" },
   { label: "About", id: "about" },
   { label: "Book a Call", id: "booking" },
@@ -102,9 +102,13 @@ export default function Navbar() {
     if (isDesktop) setMenuOpen(false);
   }, [isDesktop]);
 
-  const scrollTo = (id: string) => {
+  const scrollTo = (link: { id: string; href?: string }) => {
     setMenuOpen(false);
-    const el = document.getElementById(id);
+    if (link.href) {
+      window.location.href = link.href;
+      return;
+    }
+    const el = document.getElementById(link.id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -189,7 +193,7 @@ export default function Navbar() {
                 return (
                   <button
                     key={link.id}
-                    onClick={() => scrollTo(link.id)}
+                    onClick={() => scrollTo(link)}
                     style={{
                       background: "none",
                       border: "none",
@@ -326,7 +330,7 @@ export default function Navbar() {
             return (
               <button
                 key={link.id}
-                onClick={() => scrollTo(link.id)}
+                onClick={() => scrollTo(link)}
                 style={{
                   background: "none",
                   border: "none",
