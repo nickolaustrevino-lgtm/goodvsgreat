@@ -79,7 +79,8 @@ export async function sendBookingConfirmation(params: {
   <style>
     body { margin: 0; padding: 0; background: #0D0D1A; font-family: 'Inter', Arial, sans-serif; color: #E8E8F0; }
     .container { max-width: 560px; margin: 40px auto; padding: 40px 32px; background: #12121F; border-radius: 12px; border: 1px solid rgba(255,255,255,0.06); }
-    .logo { font-family: monospace; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; color: #2F6FFF; text-transform: uppercase; margin-bottom: 32px; }
+    .logo { margin-bottom: 32px; }
+    .logo img { height: 40px; width: auto; display: block; border-radius: 4px; }
     h1 { font-size: 22px; font-weight: 700; color: #FFFFFF; margin: 0 0 16px; line-height: 1.3; }
     p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.65); margin: 0 0 16px; }
     .highlight { color: rgba(255,255,255,0.85); }
@@ -90,7 +91,7 @@ export async function sendBookingConfirmation(params: {
 </head>
 <body>
   <div class="container">
-    <div class="logo">good vs. Great</div>
+    <div class="logo"><img src="https://goodvsgreat.ai/manus-storage/GoodvsGreatBlueBannerLogoOnly_4fd6e606.png" alt="Good vs. Great" /></div>
     <h1>Thanks, ${params.firstName} — I'll be in touch shortly.</h1>
     <p>
       I've received your request and will review it within <span class="highlight">24 hours</span>.
