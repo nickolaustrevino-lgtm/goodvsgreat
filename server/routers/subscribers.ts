@@ -1,7 +1,17 @@
 import { z } from "zod";
 import { adminProcedure, publicProcedure, router } from "../_core/trpc";
-import { addSubscriber, getAllSubscribers, getSubscriberByEmail, getSubscriberByToken, confirmSubscriber } from "../db.subscribers";
+import {
+  addSubscriber,
+  getAllSubscribers,
+  getSubscriberByEmail,
+  getSubscriberByToken,
+  confirmSubscriber,
+  upsertSubscriberWithToken,
+} from "../db.subscribers";
 import { notifyOwner } from "../_core/notification";
+import { sendEmail } from "../mailer";
+import { buildConfirmationEmail } from "../emailTemplates";
+import { randomBytes } from "crypto";
 
 export const subscribersRouter = router({
   /** Public: subscribe with email (and optional name) */
@@ -50,4 +60,45 @@ export const subscribersRouter = router({
   list: adminProcedure.query(async () => {
     return getAllSubscribers();
   }),
+
+  /**
+   * Admin: send a branded HTML confirmation email to a single subscriber.
+   * Generates a fresh token, upserts it in the DB, then sends the email.
+   */
+  sendConfirmation: adminProcedure
+    .input(
+      z.object({
+        email: z.string().email(),
+        firstName: z.string().optional(),
+        /** Base URL for the confirm link — defaults to production site */
+        baseUrl: z.string().url().optional(),
+      })
+    )
+    .mutation(async ({ input }) => {
+      const token = randomBytes(24).toString("hex");
+      const base = input.baseUrl ?? "https://goodvsgreat.ai";
+      const confirmUrl = `${base}/subscribe/confirm?token=${token}`;
+
+      // Upsert subscriber row with fresh token
+      await upsertSubscriberWithToken({
+        email: input.email,
+        name: input.firstName ?? null,
+        source: "re-permission",
+        confirmToken: token,
+      });
+
+      const { html, text } = buildConfirmationEmail({
+        firstName: input.firstName,
+        confirmUrl,
+      });
+
+      await sendEmail({
+        to: input.email,
+        subject: "One quick step to stay connected — Good vs. Great",
+        html,
+        text,
+      });
+
+      return { success: true, confirmUrl };
+    }),
 });
