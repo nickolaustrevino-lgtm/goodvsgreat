@@ -24,14 +24,6 @@ const CASE_STUDIES = [
     tags: ["Retail", "Community", "Brand Strategy", "Discord"],
     href: "https://nickolaustrevino-lgtm.github.io/walmart-case-study/",
   },
-  {
-    label: "Case Study",
-    title: "2K Games: Cross-Channel Budget Governance Across 7 Titles",
-    outcome: "$2.1M reallocated from over-attributed channels",
-    desc: "With 7 simultaneous title launches and a fragmented agency stack, the challenge was building a single source of truth for cross-channel performance. I designed the budget governance model, ran incrementality tests across paid social and search, and built the decision dashboard that replaced 14 separate agency reports.",
-    tags: ["2K Games", "Budget Governance", "Cross-Channel", "Incrementality", "Decision Tools"],
-    href: "#",
-  },
 ];
 
 export default function ProofSection() {

@@ -153,17 +153,36 @@ export default function AboutSection() {
               </p>
             </blockquote>
 
-            {/* LinkedIn recommendation placeholders */}
+            {/* LinkedIn recommendations */}
             <div style={{ marginBottom: "32px" }}>
               <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", textTransform: "uppercase", letterSpacing: "0.12em", color: "rgba(255,255,255,0.3)", marginBottom: "16px" }}>What clients say</p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+              <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
                 {[
-                  { quote: "Nickolaus completely changed how we think about attribution. We reallocated $800K based on his analysis.", name: "VP Marketing, Enterprise SaaS" },
-                  { quote: "He’s the rare person who can sit in a finance meeting and a media planning session and make both rooms smarter.", name: "CMO, Gaming Studio" },
+                  {
+                    quote: "Nickolaus consistently operated as a true strategic business partner rather than a traditional media vendor. He took the time to deeply understand each brand's commercial objectives, customer dynamics, and operational realities, ensuring that strategy and execution were aligned to real business needs. His recommendations were grounded in business results, not simply vanity metrics.",
+                    name: "Brad Jashinsky",
+                    title: "Gartner Analyst — Retail, Travel & Loyalty Marketing",
+                    context: "Client at Razer & John's Incredible Pizza",
+                  },
+                  {
+                    quote: "Nick operates as a true strategic partner — focused on business objectives, not just media metrics. He connects marketing efforts directly to growth goals and consistently delivers thoughtful, outcome-driven strategies. He is also incredibly reliable when managing sensitive or high-stakes campaigns, bringing steady judgment and proactive communication when it matters most. Nick was a trusted advisor and a valued extension of my team.",
+                    name: "Beth R. Grossfeld",
+                    title: "Brand Positioning & Growth Marketing",
+                    context: "Client",
+                  },
+                  {
+                    quote: "As a media planner, Nick is the perfect trifecta: agile, knowledgeable, and a keen listener. He understands precisely the tactics needed to bring in an audience, whether you're working on a custom content campaign including bespoke gaming experiences, Discords, and influencer collaborations or even regional targeting around experiential programs. I look forward to working with him again, as I know we certainly will.",
+                    name: "Anthony John Agnello",
+                    title: "Creative Director, Moonrock",
+                    context: "Colleague across two agencies",
+                  },
                 ].map((rec, i) => (
-                  <div key={i} style={{ padding: "16px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)", borderRadius: "8px" }}>
-                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.65)", lineHeight: 1.6, margin: "0 0 8px", fontStyle: "italic" }}>“{rec.quote}”</p>
-                    <p style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "11px", color: "rgba(255,255,255,0.3)", margin: 0 }}>{rec.name}</p>
+                  <div key={i} style={{ padding: "20px", background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.07)", borderRadius: "8px" }}>
+                    <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "14px", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, margin: "0 0 12px", fontStyle: "italic" }}>"{rec.quote}"</p>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+                      <span style={{ fontFamily: "'Inter', sans-serif", fontSize: "13px", fontWeight: 600, color: "rgba(255,255,255,0.85)" }}>{rec.name}</span>
+                      <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: "10px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.04em" }}>{rec.title} · {rec.context}</span>
+                    </div>
                   </div>
                 ))}
               </div>
