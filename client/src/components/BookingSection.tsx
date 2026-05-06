@@ -7,6 +7,7 @@
 import { useEffect, useRef, useState } from "react";
 import DotMatrixCanvas from "./DotMatrixCanvas";
 import { trackEvent, sha256 } from "../lib/pixel";
+import { trpc } from "../lib/trpc";
 
 const SPEND_OPTIONS = [
   "Under $1M annually",
@@ -56,7 +57,9 @@ export default function BookingSection() {
     return () => observer.disconnect();
   }, []);
 
-  const BOOKING_CALENDAR_URL = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
+  const BOOKING_CALENDAR_BASE = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
+
+  const notifyMutation = trpc.booking.notify.useMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -64,9 +67,9 @@ export default function BookingSection() {
 
     // Hash identity fields client-side before sending to server (Meta spec: SHA-256, lowercase, trimmed)
     const [hashedEmail, hashedFirstName, hashedLastName] = await Promise.all([
-      form.email    ? sha256(form.email)     : Promise.resolve(undefined),
-      form.firstName ? sha256(form.firstName) : Promise.resolve(undefined),
-      form.lastName  ? sha256(form.lastName)  : Promise.resolve(undefined),
+      form.email     ? sha256(form.email)      : Promise.resolve(undefined),
+      form.firstName ? sha256(form.firstName)  : Promise.resolve(undefined),
+      form.lastName  ? sha256(form.lastName)   : Promise.resolve(undefined),
     ]);
 
     // Fire Meta Pixel Lead event + server-side CAPI with hashed identity
@@ -80,9 +83,26 @@ export default function BookingSection() {
       }
     );
 
-    // After form submission, open the calendar in a new tab so user can pick a time
+    // Send owner notification with full form details (fire-and-forget)
+    notifyMutation.mutate({
+      firstName: form.firstName,
+      lastName:  form.lastName,
+      email:     form.email,
+      org:       form.org,
+      spend:     form.spend,
+      challenge: form.challenge,
+      details:   form.details || undefined,
+    });
+
+    // Build prefilled Google Calendar URL
+    // Google Calendar supports ?name= and &email= query params for appointment links
+    const calendarUrl = new URL(BOOKING_CALENDAR_BASE);
+    calendarUrl.searchParams.set("name", `${form.firstName} ${form.lastName}`.trim());
+    if (form.email) calendarUrl.searchParams.set("email", form.email);
+
+    // Open the prefilled calendar in a new tab after a short delay
     setTimeout(() => {
-      window.open(BOOKING_CALENDAR_URL, "_blank", "noopener,noreferrer");
+      window.open(calendarUrl.toString(), "_blank", "noopener,noreferrer");
     }, 800);
   };
 
@@ -382,10 +402,22 @@ export default function BookingSection() {
                     color: "rgba(255,255,255,0.25)",
                     textAlign: "center",
                     letterSpacing: "0.06em",
-                    margin: 0,
+                    margin: "0 0 4px",
                   }}
                 >
                   I'll respond within 24 hours.
+                </p>
+                <p
+                  style={{
+                    fontFamily: "'IBM Plex Mono', monospace",
+                    fontSize: "0.55rem",
+                    color: "rgba(255,255,255,0.18)",
+                    textAlign: "center",
+                    letterSpacing: "0.06em",
+                    margin: 0,
+                  }}
+                >
+                  🔒 Your details are never shared or sold.
                 </p>
               </form>
             )}
