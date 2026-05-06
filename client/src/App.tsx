@@ -3,6 +3,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
 import { useEffect } from "react";
 import { Route, Switch, useLocation, useParams } from "wouter";
+import { trackEvent } from "./lib/pixel";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -42,9 +43,20 @@ function AdminPostEditorRoute() {
   return <AdminPostEditor postId={postId} />;
 }
 
+/** Fire a PageView event (browser Pixel + server CAPI) on every route change */
+function PageViewTracker() {
+  const [location] = useLocation();
+  useEffect(() => {
+    trackEvent("PageView", { content_name: location });
+  }, [location]);
+  return null;
+}
+
 function Router() {
   return (
-    <Switch>
+    <>
+      <PageViewTracker />
+      <Switch>
       <Route path={"/"} component={Home} />
       {/* File manager */}
       <Route path={"/files"} component={FileManager} />
@@ -67,6 +79,7 @@ function Router() {
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
+    </>
   );
 }
 

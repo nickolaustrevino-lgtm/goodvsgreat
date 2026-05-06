@@ -27,6 +27,10 @@ export interface CapiEventData {
   userAgent?: string;
   /** Hashed email (SHA-256 lowercase, no salt) — optional */
   hashedEmail?: string;
+  /** Hashed first name (SHA-256 lowercase, no salt) — optional */
+  hashedFirstName?: string;
+  /** Hashed last name (SHA-256 lowercase, no salt) — optional */
+  hashedLastName?: string;
   /** Arbitrary custom data payload */
   customData?: Record<string, unknown>;
 }
@@ -52,9 +56,11 @@ export async function sendCapiEvent(data: CapiEventData): Promise<CapiResult> {
 
   // Build user data object — only include fields that are present
   const userData: Record<string, string> = {};
-  if (data.clientIp)    userData["client_ip_address"] = data.clientIp;
-  if (data.userAgent)   userData["client_user_agent"] = data.userAgent;
-  if (data.hashedEmail) userData["em"] = data.hashedEmail;
+  if (data.clientIp)       userData["client_ip_address"] = data.clientIp;
+  if (data.userAgent)      userData["client_user_agent"] = data.userAgent;
+  if (data.hashedEmail)    userData["em"] = data.hashedEmail;
+  if (data.hashedFirstName) userData["fn"] = data.hashedFirstName;
+  if (data.hashedLastName)  userData["ln"] = data.hashedLastName;
 
   const payload = {
     data: [

@@ -10,6 +10,7 @@
  */
 
 import React, { useState, useEffect, useRef } from "react";
+import { Link } from "wouter";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import { trackEvent } from "../lib/pixel";
 
@@ -93,12 +94,11 @@ export default function Navbar() {
             gap: "1rem",
           }}
         >
-          {/* Logo */}
-          <button
-            type="button"
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            style={{ background: "none", border: "none", padding: 0, cursor: "pointer", display: "flex", alignItems: "center", flexShrink: 0 }}
+          {/* Logo — always navigates to home page */}
+          <Link
+            href="/"
             aria-label="Good vs. Great - home"
+            style={{ display: "flex", alignItems: "center", flexShrink: 0, textDecoration: "none" }}
           >
             <img
               src={LOGO_URL}
@@ -110,7 +110,7 @@ export default function Navbar() {
               alt="good vs. Great"
               style={{ height: "34px", width: "34px", objectFit: "contain", borderRadius: "7px", display: isDesktop ? "none" : "block" }}
             />
-          </button>
+          </Link>
 
           {/* Desktop: nav + CTA */}
           {isDesktop && (

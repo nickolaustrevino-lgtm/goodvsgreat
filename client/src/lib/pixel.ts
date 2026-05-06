@@ -26,6 +26,28 @@ function generateEventId(): string {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
+export interface CapiIdentity {
+  /** SHA-256 hashed email (lowercase, no salt) */
+  hashedEmail?: string;
+  /** SHA-256 hashed first name (lowercase, no salt) */
+  hashedFirstName?: string;
+  /** SHA-256 hashed last name (lowercase, no salt) */
+  hashedLastName?: string;
+}
+
+/**
+ * SHA-256 hash a string value for Meta match quality.
+ * Lowercases and trims the input before hashing, per Meta spec.
+ */
+export async function sha256(value: string): Promise<string> {
+  const normalized = value.trim().toLowerCase();
+  const encoded = new TextEncoder().encode(normalized);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", encoded);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map((b) => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
 /**
  * Forward an event to the server-side CAPI endpoint via tRPC.
  * Uses a plain fetch so this helper stays free of React hook constraints.
@@ -34,7 +56,8 @@ function generateEventId(): string {
 function forwardToCapi(
   eventName: string,
   eventId: string,
-  params?: Record<string, unknown>
+  params?: Record<string, unknown>,
+  identity?: CapiIdentity
 ): void {
   if (typeof window === "undefined") return;
 
@@ -42,6 +65,9 @@ function forwardToCapi(
     eventName,
     eventId,
     sourceUrl: window.location.href,
+    ...(identity?.hashedEmail    ? { hashedEmail: identity.hashedEmail }       : {}),
+    ...(identity?.hashedFirstName ? { hashedFirstName: identity.hashedFirstName } : {}),
+    ...(identity?.hashedLastName  ? { hashedLastName: identity.hashedLastName }   : {}),
     ...(params ? { customData: params } : {}),
   };
 
@@ -59,8 +85,15 @@ function forwardToCapi(
 /**
  * Fire a standard Meta Pixel event AND forward it server-side via CAPI.
  * Supported event names: 'Lead', 'Contact', 'PageView', etc.
+ *
+ * @param identity  Optional hashed identity fields (email, first name, last name)
+ *                  for improved match quality on Lead events.
  */
-export function trackEvent(eventName: string, params?: Record<string, unknown>) {
+export function trackEvent(
+  eventName: string,
+  params?: Record<string, unknown>,
+  identity?: CapiIdentity
+) {
   const eventId = generateEventId();
 
   // 1. Browser-side Pixel with shared event_id for deduplication
@@ -73,7 +106,7 @@ export function trackEvent(eventName: string, params?: Record<string, unknown>) 
   }
 
   // 2. Server-side CAPI (fire-and-forget)
-  forwardToCapi(eventName, eventId, params);
+  forwardToCapi(eventName, eventId, params, identity);
 }
 
 /** Fire a custom Meta Pixel event (browser-only; custom events are not forwarded via CAPI) */

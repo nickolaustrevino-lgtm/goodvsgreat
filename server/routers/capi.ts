@@ -23,6 +23,12 @@ export const capiRouter = router({
         eventId: z.string().optional(),
         /** Page URL where the event fired */
         sourceUrl: z.string().url().optional(),
+        /** SHA-256 hashed email for match quality */
+        hashedEmail: z.string().optional(),
+        /** SHA-256 hashed first name for match quality */
+        hashedFirstName: z.string().optional(),
+        /** SHA-256 hashed last name for match quality */
+        hashedLastName: z.string().optional(),
         /** Optional custom data (content_name, value, currency, etc.) */
         customData: z.record(z.string(), z.unknown()).optional(),
       })
@@ -44,6 +50,9 @@ export const capiRouter = router({
         sourceUrl: input.sourceUrl,
         clientIp,
         userAgent,
+        hashedEmail: input.hashedEmail,
+        hashedFirstName: input.hashedFirstName,
+        hashedLastName: input.hashedLastName,
         customData: input.customData,
       }).catch((err) => {
         console.error("[CAPI router] Unhandled error:", err);

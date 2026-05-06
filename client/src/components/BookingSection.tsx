@@ -6,7 +6,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import DotMatrixCanvas from "./DotMatrixCanvas";
-import { trackEvent } from "../lib/pixel";
+import { trackEvent, sha256 } from "../lib/pixel";
 
 const SPEND_OPTIONS = [
   "Under $1M annually",
@@ -29,7 +29,9 @@ export default function BookingSection() {
   const ref = useRef<HTMLDivElement>(null);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
+    email: "",
     org: "",
     spend: "",
     challenge: "",
@@ -56,11 +58,28 @@ export default function BookingSection() {
 
   const BOOKING_URL = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitted(true);
-    // Fire Meta Pixel Lead event on form submission
-    trackEvent("Lead", { content_name: "Booking Form Submission" });
+
+    // Hash identity fields client-side before sending to server (Meta spec: SHA-256, lowercase, trimmed)
+    const [hashedEmail, hashedFirstName, hashedLastName] = await Promise.all([
+      form.email    ? sha256(form.email)     : Promise.resolve(undefined),
+      form.firstName ? sha256(form.firstName) : Promise.resolve(undefined),
+      form.lastName  ? sha256(form.lastName)  : Promise.resolve(undefined),
+    ]);
+
+    // Fire Meta Pixel Lead event + server-side CAPI with hashed identity
+    trackEvent(
+      "Lead",
+      { content_name: "Booking Form Submission" },
+      {
+        hashedEmail:     hashedEmail     ?? undefined,
+        hashedFirstName: hashedFirstName ?? undefined,
+        hashedLastName:  hashedLastName  ?? undefined,
+      }
+    );
+
     // Redirect to booking calendar after a short delay
     setTimeout(() => {
       window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
@@ -88,6 +107,13 @@ export default function BookingSection() {
     color: "rgba(255,255,255,0.4)",
     display: "block",
     marginBottom: "0.5rem",
+  };
+
+  const focusOn = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = "#2979FF";
+  };
+  const focusOff = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    e.currentTarget.style.borderColor = "rgba(255,255,255,0.12)";
   };
 
   return (
@@ -164,41 +190,6 @@ export default function BookingSection() {
                 </div>
               ))}
             </div>
-
-            {/* Dummy map for items - kept empty since we replaced the list */}
-            <div style={{ display: "none" }}>
-              {[
-                "placeholder",
-              ].map((item, i) => (
-                <div
-                  key={i}
-                  style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "'IBM Plex Mono', monospace",
-                      fontSize: "0.7rem",
-                      fontWeight: 700,
-                      color: "#2979FF",
-                      flexShrink: 0,
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    0{i + 1}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "'Inter', sans-serif",
-                      fontSize: "0.9375rem",
-                      color: "rgba(255,255,255,0.55)",
-                      lineHeight: 1.6,
-                    }}
-                  >
-                    {item}
-                  </span>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Right: form */}
@@ -264,19 +255,52 @@ export default function BookingSection() {
                   gap: "1.25rem",
                 }}
               >
+                {/* First name + Last name side by side */}
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+                  <div>
+                    <label style={labelStyle}>First Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="First name"
+                      value={form.firstName}
+                      onChange={(e) => setForm({ ...form, firstName: e.target.value })}
+                      style={inputStyle}
+                      onFocus={focusOn}
+                      onBlur={focusOff}
+                    />
+                  </div>
+                  <div>
+                    <label style={labelStyle}>Last Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="Last name"
+                      value={form.lastName}
+                      onChange={(e) => setForm({ ...form, lastName: e.target.value })}
+                      style={inputStyle}
+                      onFocus={focusOn}
+                      onBlur={focusOff}
+                    />
+                  </div>
+                </div>
+
+                {/* Email */}
                 <div>
-                  <label style={labelStyle}>Your Name</label>
+                  <label style={labelStyle}>Email Address</label>
                   <input
-                    type="text"
+                    type="email"
                     required
-                    placeholder="Full name"
-                    value={form.name}
-                    onChange={(e) => setForm({ ...form, name: e.target.value })}
+                    placeholder="you@company.com"
+                    value={form.email}
+                    onChange={(e) => setForm({ ...form, email: e.target.value })}
                     style={inputStyle}
-                    onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={focusOn}
+                    onBlur={focusOff}
                   />
                 </div>
+
+                {/* Organization */}
                 <div>
                   <label style={labelStyle}>Organization</label>
                   <input
@@ -286,10 +310,12 @@ export default function BookingSection() {
                     value={form.org}
                     onChange={(e) => setForm({ ...form, org: e.target.value })}
                     style={inputStyle}
-                    onFocus={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLInputElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={focusOn}
+                    onBlur={focusOff}
                   />
                 </div>
+
+                {/* Annual spend */}
                 <div>
                   <label style={labelStyle}>Annual Media Spend</label>
                   <select
@@ -297,8 +323,8 @@ export default function BookingSection() {
                     value={form.spend}
                     onChange={(e) => setForm({ ...form, spend: e.target.value })}
                     style={{ ...inputStyle, cursor: "pointer" }}
-                    onFocus={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={focusOn}
+                    onBlur={focusOff}
                   >
                     <option value="" disabled style={{ backgroundColor: "#1A1A2E" }}>Select range</option>
                     {SPEND_OPTIONS.map((opt) => (
@@ -306,6 +332,8 @@ export default function BookingSection() {
                     ))}
                   </select>
                 </div>
+
+                {/* Primary challenge */}
                 <div>
                   <label style={labelStyle}>Primary Challenge</label>
                   <select
@@ -313,8 +341,8 @@ export default function BookingSection() {
                     value={form.challenge}
                     onChange={(e) => setForm({ ...form, challenge: e.target.value })}
                     style={{ ...inputStyle, cursor: "pointer" }}
-                    onFocus={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLSelectElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={focusOn}
+                    onBlur={focusOff}
                   >
                     <option value="" disabled style={{ backgroundColor: "#1A1A2E" }}>Select area</option>
                     {CHALLENGE_OPTIONS.map((opt) => (
@@ -322,6 +350,8 @@ export default function BookingSection() {
                     ))}
                   </select>
                 </div>
+
+                {/* Optional details */}
                 <div>
                   <label style={labelStyle}>
                     Anything else I should know?{" "}
@@ -333,10 +363,11 @@ export default function BookingSection() {
                     value={form.details}
                     onChange={(e) => setForm({ ...form, details: e.target.value })}
                     style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
-                    onFocus={(e) => { (e.currentTarget as HTMLTextAreaElement).style.borderColor = "#2979FF"; }}
-                    onBlur={(e) => { (e.currentTarget as HTMLTextAreaElement).style.borderColor = "rgba(255,255,255,0.12)"; }}
+                    onFocus={focusOn}
+                    onBlur={focusOff}
                   />
                 </div>
+
                 <button
                   type="submit"
                   className="gvg-btn-primary"
@@ -363,10 +394,13 @@ export default function BookingSection() {
       </div>
 
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 640px) {
           .booking-grid {
             grid-template-columns: 1fr !important;
             gap: 3rem !important;
+          }
+          .booking-name-row {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>
