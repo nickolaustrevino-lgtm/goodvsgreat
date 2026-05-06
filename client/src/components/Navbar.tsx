@@ -9,7 +9,7 @@
  *   - Mobile: hamburger with fixed bottom CTA bar (56px, above iOS safe area)
  */
 
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import { trackEvent } from "../lib/pixel";
 
@@ -123,10 +123,9 @@ export default function Navbar() {
                 const isActive = activeId === link.id;
                 const isHovered = hoveredId === link.id;
                 return (
-                  <>
+                  <React.Fragment key={link.id}>
                     {i > 0 && (
                       <span
-                        key={`dot-${link.id}`}
                         aria-hidden="true"
                         style={{
                           display: "inline-block",
@@ -139,7 +138,6 @@ export default function Navbar() {
                       />
                     )}
                     <button
-                      key={link.id}
                       type="button"
                       onClick={() => scrollTo(link)}
                       onMouseEnter={() => setHoveredId(link.id)}
@@ -165,7 +163,7 @@ export default function Navbar() {
                     >
                       {link.label}
                     </button>
-                  </>
+                  </React.Fragment>
                 );
               })}
               </nav>
