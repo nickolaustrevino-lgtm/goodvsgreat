@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { bookingRequests, InsertBookingRequest, InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -90,3 +90,26 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // TODO: add feature queries here as your schema grows.
+
+/**
+ * Persist a booking form submission to the booking_requests table.
+ * Returns the inserted row's auto-incremented id, or undefined if the DB is unavailable.
+ */
+export async function insertBookingRequest(
+  data: Omit<InsertBookingRequest, "id" | "createdAt">
+): Promise<number | undefined> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot insert booking request: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(bookingRequests).values(data);
+    // mysql2 returns insertId on the result object
+    return (result as unknown as { insertId: number }[])[0]?.insertId;
+  } catch (error) {
+    console.error("[Database] Failed to insert booking request:", error);
+    throw error;
+  }
+}

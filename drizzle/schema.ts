@@ -71,3 +71,19 @@ export const subscribers = mysqlTable("subscribers", {
 
 export type Subscriber = typeof subscribers.$inferSelect;
 export type InsertSubscriber = typeof subscribers.$inferInsert;
+
+// Booking requests table — persists every booking form submission as a lead record
+export const bookingRequests = mysqlTable("booking_requests", {
+  id:        int("id").autoincrement().primaryKey(),
+  firstName: varchar("firstName", { length: 128 }).notNull(),
+  lastName:  varchar("lastName",  { length: 128 }).notNull(),
+  email:     varchar("email",     { length: 320 }).notNull(),
+  org:       varchar("org",       { length: 255 }).notNull(),
+  spend:     varchar("spend",     { length: 64  }).notNull(),
+  challenge: varchar("challenge", { length: 128 }).notNull(),
+  details:   text("details"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type BookingRequest       = typeof bookingRequests.$inferSelect;
+export type InsertBookingRequest = typeof bookingRequests.$inferInsert;

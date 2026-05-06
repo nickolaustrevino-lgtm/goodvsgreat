@@ -10,6 +10,7 @@
 import { z } from "zod";
 import { publicProcedure, router } from "../_core/trpc";
 import { notifyOwner } from "../_core/notification";
+import { insertBookingRequest } from "../db";
 
 export const bookingRouter = router({
   notify: publicProcedure
@@ -25,6 +26,20 @@ export const bookingRouter = router({
       })
     )
     .mutation(async ({ input }) => {
+      // 1. Persist to database (fire-and-forget; notification still sends even if DB fails)
+      await insertBookingRequest({
+        firstName: input.firstName,
+        lastName:  input.lastName,
+        email:     input.email,
+        org:       input.org,
+        spend:     input.spend,
+        challenge: input.challenge,
+        details:   input.details ?? null,
+      }).catch((err) => {
+        console.error("[booking.notify] DB insert error:", err);
+      });
+
+      // 2. Build notification content
       const content = [
         `👤 Name:        ${input.firstName} ${input.lastName}`,
         `📧 Email:       ${input.email}`,
