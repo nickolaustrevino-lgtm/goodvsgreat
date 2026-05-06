@@ -68,7 +68,7 @@ export async function sendCapiEvent(data: CapiEventData): Promise<CapiResult> {
         ...(data.customData ? { custom_data: data.customData } : {}),
       },
     ],
-    // test_event_code: "TEST12345",  // Uncomment to test in Events Manager
+    test_event_code: "TEST96121",  // ⚠️ REMOVE before final production publish
   };
 
   try {
