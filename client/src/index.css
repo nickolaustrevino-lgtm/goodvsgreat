@@ -380,6 +380,13 @@
     box-shadow: 0 0 0 3px rgba(41,121,255,0.25), 0 8px 32px rgba(41,121,255,0.45);
     transform: scale(1.025);
   }
+  .gvg-btn-arrow {
+    display: inline-block;
+    transition: transform 0.2s cubic-bezier(0.16,1,0.3,1);
+  }
+  .gvg-btn-primary:hover .gvg-btn-arrow {
+    transform: translateX(5px);
+  }
   .gvg-btn-primary:active {
     transform: scale(0.975);
     box-shadow: 0 0 0 2px rgba(41,121,255,0.3);

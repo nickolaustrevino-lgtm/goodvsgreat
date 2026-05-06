@@ -344,9 +344,19 @@ export default function HeroSection() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [credVisible, setCredVisible] = useState(false);
   const [signalBreathing, setSignalBreathing] = useState(false);
-  const [primaryHovered, setPrimaryHovered] = useState(false);
-  const [secondaryHovered, setSecondaryHovered] = useState(false);
+  const [watermarkY, setWatermarkY] = useState(0);
   const reduced = useReducedMotion();
+
+  // Parallax scroll for watermark
+  useEffect(() => {
+    if (reduced) return;
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setWatermarkY(scrollY * 0.25);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [reduced]);
 
   // Dashboard KPI counters
   const roasVal   = useCountUp(42,  900, heroVisible, 200, reduced); // ÷10 → 4.2
@@ -443,7 +453,7 @@ export default function HeroSection() {
           }}
         />
 
-        {/* Section watermark "01" - vertically centered against H1 baseline, not floating above */}
+        {/* Section watermark "01" - parallax scroll at 0.25x rate */}
         <span
           aria-hidden="true"
           style={{
@@ -458,6 +468,8 @@ export default function HeroSection() {
             zIndex: 0,
             userSelect: "none",
             pointerEvents: "none",
+            transform: `translateY(${watermarkY}px)`,
+            willChange: reduced ? "auto" : "transform",
           }}
         >
           01
@@ -577,60 +589,18 @@ export default function HeroSection() {
                 href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
                 target="_blank"
                 rel="noopener noreferrer"
-                onMouseEnter={() => setPrimaryHovered(true)}
-                onMouseLeave={() => setPrimaryHovered(false)}
-                onFocus={(e) => { e.currentTarget.style.outline = "2px solid #2F6FFF"; e.currentTarget.style.outlineOffset = "4px"; }}
-                onBlur={(e) => { e.currentTarget.style.outline = "none"; }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  height: "52px",
-                  padding: "0 24px",
-                  background: COBALT,
-                  borderRadius: "8px",
-                  boxShadow: primaryHovered
-                    ? "inset 0 1px 0 rgba(255,255,255,0.18), 0 0 32px rgba(47,111,255,0.4)"
-                    : "inset 0 1px 0 rgba(255,255,255,0.18)",
-                  fontFamily: SANS,
-                  fontSize: "16px",
-                  fontWeight: 600,
-                  color: "#FFFFFF",
-                  textDecoration: "none",
-                  transition: "box-shadow var(--motion-base, 240ms) ease, transform var(--motion-base, 240ms) ease",
-                  transform: primaryHovered ? "translateY(-1px)" : "translateY(0)",
-                  outline: "none",
-                }}
+                className="gvg-btn-primary"
+                style={{ height: "52px", fontSize: "16px", padding: "0 28px", gap: "8px" }}
               >
-                Get a 30-min diagnosis
-                <span style={{ display: "inline-block", transition: "transform var(--motion-base, 240ms) ease", transform: primaryHovered ? "translateX(4px)" : "translateX(0)" }}>→</span>
+                Get a 30-min diagnosis <span className="gvg-btn-arrow">→</span>
               </a>
 
               {/* Secondary CTA */}
               <button
                 type="button"
                 onClick={scrollToServices}
-                onMouseEnter={() => setSecondaryHovered(true)}
-                onMouseLeave={() => setSecondaryHovered(false)}
-                onFocus={(e) => { e.currentTarget.style.outline = "2px solid #2F6FFF"; e.currentTarget.style.outlineOffset = "4px"; }}
-                onBlur={(e) => { e.currentTarget.style.outline = "none"; }}
-                style={{
-                  display: "inline-flex",
-                  alignItems: "center",
-                  gap: "6px",
-                  height: "52px",
-                  padding: "0 24px",
-                  background: secondaryHovered ? "rgba(255,255,255,0.04)" : "transparent",
-                  border: `1px solid ${secondaryHovered ? "rgba(255,255,255,0.32)" : "rgba(255,255,255,0.16)"}`,
-                  borderRadius: "8px",
-                  fontFamily: SANS,
-                  fontSize: "16px",
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.9)",
-                  cursor: "pointer",
-                  transition: "background var(--motion-base, 240ms) ease, border-color var(--motion-base, 240ms) ease",
-                  outline: "none",
-                }}
+                className="gvg-btn-secondary"
+                style={{ height: "52px", fontSize: "16px", padding: "0 28px" }}
               >
                 See the framework
               </button>
@@ -672,14 +642,16 @@ export default function HeroSection() {
               gap: "clamp(1.5rem, 4vw, 2rem)",
             }}
           >
-            {logos.map((logo) => (
+            {logos.map((logo, i) => (
               <div
                 key={logo.name}
                 role="img"
                 aria-label={logo.name}
                 style={{
-                  opacity: 1,
-                  transition: "opacity var(--motion-base, 240ms) ease",
+                  opacity: reduced ? 1 : credVisible ? 1 : 0,
+                  transform: reduced ? "none" : credVisible ? "translateY(0)" : "translateY(12px)",
+                  transition: reduced ? "none" : "opacity 500ms cubic-bezier(0.16,1,0.3,1), transform 500ms cubic-bezier(0.16,1,0.3,1)",
+                  transitionDelay: reduced ? "0ms" : `${i * 60}ms`,
                   cursor: "default",
                   display: "flex",
                   flexDirection: "column",
@@ -743,7 +715,18 @@ export default function HeroSection() {
               { value: `${f500Val}`,     label: "Fortune 500 Brands" },
               { value: `${vertsVal}`,    label: "Verticals Governed" },
             ].map((stat, i, arr) => (
-              <div key={stat.label} style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+              <div
+                key={stat.label}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "2rem",
+                  opacity: reduced ? 1 : credVisible ? 1 : 0,
+                  transform: reduced ? "none" : credVisible ? "translateY(0)" : "translateY(10px)",
+                  transition: reduced ? "none" : "opacity 500ms cubic-bezier(0.16,1,0.3,1), transform 500ms cubic-bezier(0.16,1,0.3,1)",
+                  transitionDelay: reduced ? "0ms" : `${420 + i * 80}ms`,
+                }}
+              >
                 {/* Fixed-height stat block keeps baseline locked */}
                 <div style={{ textAlign: "center", minWidth: "80px" }}>
                   <div style={{
