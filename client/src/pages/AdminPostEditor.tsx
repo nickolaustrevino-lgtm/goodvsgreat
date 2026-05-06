@@ -8,6 +8,7 @@ import { trpc } from "@/lib/trpc";
 import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import { AdminShell } from "./AdminPosts";
+import RichTextEditor from "@/components/RichTextEditor";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
@@ -42,7 +43,7 @@ export default function AdminPostEditor({ postId }: EditorProps) {
   const [status, setStatus] = useState<"draft" | "published">("draft");
   const [slugTouched, setSlugTouched] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [activeTab, setActiveTab] = useState<"write" | "preview">("write");
+  // Rich editor — no tab switching needed (WYSIWYG is always live)
 
   // Load existing post for editing
   const { data: existingPost, isLoading: loadingPost } = trpc.posts.adminGetById.useQuery(
@@ -173,48 +174,13 @@ export default function AdminPostEditor({ postId }: EditorProps) {
             }}
           />
 
-          {/* Write / Preview tabs */}
-          <div style={{ display: "flex", gap: "0", borderBottom: `1px solid ${BORDER}` }}>
-            {(["write", "preview"] as const).map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                style={{
-                  fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.08em",
-                  background: "transparent", border: "none", cursor: "pointer",
-                  padding: "0.5rem 1rem",
-                  color: activeTab === tab ? BLUE : DIM,
-                  borderBottom: activeTab === tab ? `2px solid ${BLUE}` : "2px solid transparent",
-                  marginBottom: "-1px",
-                }}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
-          {activeTab === "write" ? (
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              placeholder="Write your article in Markdown…"
-              style={{
-                fontFamily: MONO, fontSize: "0.875rem", lineHeight: 1.7, color: "rgba(255,255,255,0.85)",
-                background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: "10px",
-                padding: "1.25rem", outline: "none", resize: "vertical",
-                minHeight: "480px", width: "100%", boxSizing: "border-box",
-              }}
-            />
-          ) : (
-            <div
-              style={{
-                fontFamily: SANS, fontSize: "0.9rem", lineHeight: 1.8, color: "rgba(255,255,255,0.85)",
-                background: SURFACE, border: `1px solid ${BORDER}`, borderRadius: "10px",
-                padding: "1.5rem", minHeight: "480px",
-              }}
-              dangerouslySetInnerHTML={{ __html: renderMarkdown(content) }}
-            />
-          )}
+          {/* Rich text editor */}
+          <RichTextEditor
+            value={content}
+            onChange={setContent}
+            placeholder="Write your article…"
+            minHeight={480}
+          />
         </div>
 
         {/* Sidebar — meta fields */}
