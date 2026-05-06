@@ -132,7 +132,7 @@ function LinkDialog({
 
 // ─── Image picker modal ───────────────────────────────────────────────────────
 
-function ImagePickerModal({
+export function ImagePickerModal({
   onSelect,
   onClose,
 }: {

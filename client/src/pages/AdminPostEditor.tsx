@@ -9,6 +9,7 @@ import { useAuth } from "@/_core/hooks/useAuth";
 import { toast } from "sonner";
 import { AdminShell } from "./AdminPosts";
 import RichTextEditor from "@/components/RichTextEditor";
+import { ImagePickerModal } from "@/components/RichTextEditor";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
@@ -43,6 +44,7 @@ export default function AdminPostEditor({ postId }: EditorProps) {
   const [status, setStatus] = useState<"draft" | "published">("draft");
   const [slugTouched, setSlugTouched] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [showCoverPicker, setShowCoverPicker] = useState(false);
   // Rich editor — no tab switching needed (WYSIWYG is always live)
 
   // Load existing post for editing
@@ -212,6 +214,20 @@ export default function AdminPostEditor({ postId }: EditorProps) {
               placeholder="https://… or /manus-storage/…"
               style={inputStyle}
             />
+            <button
+              type="button"
+              onClick={() => setShowCoverPicker(true)}
+              style={{
+                marginTop: "0.5rem",
+                fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase",
+                letterSpacing: "0.08em", background: "rgba(41,121,255,0.1)",
+                border: "1px solid rgba(41,121,255,0.3)", color: BLUE,
+                borderRadius: "6px", padding: "0.4rem 0.75rem",
+                cursor: "pointer", width: "100%",
+              }}
+            >
+              📁 Pick from Files
+            </button>
             {coverUrl && (
               <img
                 src={coverUrl}
@@ -234,6 +250,14 @@ export default function AdminPostEditor({ postId }: EditorProps) {
           </MetaCard>
         </div>
       </div>
+
+      {/* Cover image picker modal */}
+      {showCoverPicker && (
+        <ImagePickerModal
+          onSelect={(url) => { setCoverUrl(url); setShowCoverPicker(false); }}
+          onClose={() => setShowCoverPicker(false)}
+        />
+      )}
     </AdminShell>
   );
 }
