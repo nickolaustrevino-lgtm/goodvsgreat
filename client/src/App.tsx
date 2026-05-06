@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import FileManager from "./pages/FileManager";
 import AdminPosts from "./pages/AdminPosts";
 import AdminPostEditor from "./pages/AdminPostEditor";
+import AdminImport from "./pages/AdminImport";
 import WritingIndex from "./pages/WritingIndex";
 import WritingPost from "./pages/WritingPost";
 
@@ -36,6 +37,7 @@ function Router() {
       {/* Admin CMS */}
       <Route path={"/admin/posts"} component={AdminPosts} />
       <Route path={"/admin/posts/new"} component={() => <AdminPostEditor />} />
+      <Route path={"/admin/import"} component={AdminImport} />
       <Route path={"/admin/posts/:id"} component={AdminPostEditorRoute} />
       {/* Fallbacks */}
       <Route path={"/404"} component={NotFound} />
