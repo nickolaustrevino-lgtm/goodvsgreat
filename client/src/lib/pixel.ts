@@ -1,10 +1,15 @@
 /**
- * Meta Pixel event helpers - GvG
+ * Meta Pixel + Conversions API (CAPI) event helpers — GvG
  * Pixel ID: 1170717808472225
  *
- * Wraps window.fbq calls with a safety guard so events are silently
- * dropped in environments where the pixel hasn't loaded (e.g. ad blockers,
- * server-side rendering, or test environments).
+ * Every `trackEvent` call:
+ *   1. Fires the browser-side Pixel (window.fbq) as before.
+ *   2. Generates a unique event_id and POSTs the same event to the
+ *      server-side CAPI endpoint so Meta can deduplicate and attribute
+ *      events that the browser Pixel missed (ad blockers, iOS ITP, etc.).
+ *
+ * The shared event_id is the deduplication key — Meta counts only one
+ * conversion when both the Pixel and CAPI report the same event_id.
  */
 
 declare global {
@@ -13,18 +18,65 @@ declare global {
   }
 }
 
-/** Fire a standard Meta Pixel event (e.g. 'Lead', 'Contact', 'PageView') */
-export function trackEvent(eventName: string, params?: Record<string, unknown>) {
-  if (typeof window !== "undefined" && typeof window.fbq === "function") {
-    if (params) {
-      window.fbq("track", eventName, params);
-    } else {
-      window.fbq("track", eventName);
-    }
+/** Generate a UUID-like event ID for Pixel / CAPI deduplication */
+function generateEventId(): string {
+  if (typeof crypto !== "undefined" && crypto.randomUUID) {
+    return crypto.randomUUID();
   }
+  return `${Date.now()}-${Math.random().toString(36).slice(2, 11)}`;
 }
 
-/** Fire a custom Meta Pixel event */
+/**
+ * Forward an event to the server-side CAPI endpoint via tRPC.
+ * Uses a plain fetch so this helper stays free of React hook constraints.
+ * Errors are silently swallowed — CAPI forwarding is best-effort.
+ */
+function forwardToCapi(
+  eventName: string,
+  eventId: string,
+  params?: Record<string, unknown>
+): void {
+  if (typeof window === "undefined") return;
+
+  const input = {
+    eventName,
+    eventId,
+    sourceUrl: window.location.href,
+    ...(params ? { customData: params } : {}),
+  };
+
+  // tRPC batch mutation endpoint — superjson-encoded
+  fetch("/api/trpc/capi.track", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    credentials: "include",
+    body: JSON.stringify({ json: input }),
+  }).catch(() => {
+    // Silently swallow — never break the UX for a tracking failure
+  });
+}
+
+/**
+ * Fire a standard Meta Pixel event AND forward it server-side via CAPI.
+ * Supported event names: 'Lead', 'Contact', 'PageView', etc.
+ */
+export function trackEvent(eventName: string, params?: Record<string, unknown>) {
+  const eventId = generateEventId();
+
+  // 1. Browser-side Pixel with shared event_id for deduplication
+  if (typeof window !== "undefined" && typeof window.fbq === "function") {
+    if (params) {
+      window.fbq("track", eventName, params, { eventID: eventId });
+    } else {
+      window.fbq("track", eventName, {}, { eventID: eventId });
+    }
+  }
+
+  // 2. Server-side CAPI (fire-and-forget)
+  forwardToCapi(eventName, eventId, params);
+}
+
+/** Fire a custom Meta Pixel event (browser-only; custom events are not forwarded via CAPI) */
 export function trackCustomEvent(eventName: string, params?: Record<string, unknown>) {
   if (typeof window !== "undefined" && typeof window.fbq === "function") {
     if (params) {

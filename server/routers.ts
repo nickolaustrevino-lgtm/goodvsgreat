@@ -2,6 +2,7 @@ import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
+import { capiRouter } from "./routers/capi";
 import { filesRouter } from "./routers/files";
 import { postsRouter } from "./routers/posts";
 import { subscribersRouter } from "./routers/subscribers";
@@ -20,6 +21,7 @@ export const appRouter = router({
     }),
   }),
 
+  capi: capiRouter,
   files: filesRouter,
   posts: postsRouter,
   subscribers: subscribersRouter,
