@@ -588,11 +588,13 @@ export default function HeroSection() {
             >
               {/* Primary CTA */}
               <a
-                href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/#booking"
                 className="gvg-btn-primary"
                 style={{ height: "52px", fontSize: "16px", padding: "0 28px", gap: "8px" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+                }}
               >
                 Get a 30-min diagnosis <span className="gvg-btn-arrow">→</span>
               </a>

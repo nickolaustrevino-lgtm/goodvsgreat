@@ -56,7 +56,7 @@ export default function BookingSection() {
     return () => observer.disconnect();
   }, []);
 
-  const BOOKING_URL = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
+  const BOOKING_CALENDAR_URL = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,9 +80,9 @@ export default function BookingSection() {
       }
     );
 
-    // Redirect to booking calendar after a short delay
+    // After form submission, open the calendar in a new tab so user can pick a time
     setTimeout(() => {
-      window.open(BOOKING_URL, "_blank", "noopener,noreferrer");
+      window.open(BOOKING_CALENDAR_URL, "_blank", "noopener,noreferrer");
     }, 800);
   };
 

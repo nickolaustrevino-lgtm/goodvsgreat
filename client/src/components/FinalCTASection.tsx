@@ -99,9 +99,7 @@ export default function FinalCTASection() {
           </p>
 
           <a
-            href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#booking"
             style={{
               display: "inline-flex",
               alignItems: "center",
@@ -130,7 +128,11 @@ export default function FinalCTASection() {
               el.style.boxShadow = "0 0 40px rgba(47,111,255,0.35)";
               el.style.transform = "translateY(0)";
             }}
-            onClick={() => trackEvent("Lead", { content_name: "Final CTA - Book Diagnostic Call" })}
+            onClick={(e) => {
+              e.preventDefault();
+              trackEvent("Lead", { content_name: "Final CTA - Book Diagnostic Call" });
+              document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+            }}
           >
             Book a Diagnostic Call →
           </a>

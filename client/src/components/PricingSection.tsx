@@ -224,12 +224,14 @@ export default function PricingSection() {
 
               {/* CTA - display:inline-flex + justifyContent:center so align-items:center from .gvg-btn-* works */}
               <a
-                href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/#booking"
                 className={tier.featured ? "gvg-btn-primary" : "gvg-btn-secondary"}
                 style={{ width: "100%", textDecoration: "none", display: "inline-flex", justifyContent: "center" }}
-                onClick={() => trackEvent("Contact", { content_name: `Pricing CTA - ${tier.name}` })}
+                onClick={(e) => {
+                  e.preventDefault();
+                  trackEvent("Contact", { content_name: `Pricing CTA - ${tier.name}` });
+                  document.getElementById("booking")?.scrollIntoView({ behavior: "smooth" });
+                }}
               >
                 Book a Diagnostic Call →
               </a>
@@ -243,9 +245,7 @@ export default function PricingSection() {
             Not sure which tier fits? Start with a free 30-minute diagnostic call - no commitment, no pitch.
           </p>
           <a
-            href="https://calendar.app.google/b3ctixpS5tVRxYVJ9"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/#booking"
             style={{
               display: "inline-flex",
               alignItems: "center",

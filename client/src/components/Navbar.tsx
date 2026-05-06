@@ -62,7 +62,16 @@ export default function Navbar() {
     document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const bookingHref = "https://calendar.app.google/b3ctixpS5tVRxYVJ9";
+  const scrollToBooking = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const el = document.getElementById("booking");
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    } else {
+      // On non-home pages, navigate to home and then scroll
+      window.location.href = "/#booking";
+    }
+  };
 
   return (
     <>
@@ -170,10 +179,8 @@ export default function Navbar() {
 
               {/* CTA pill */}
               <a
-                href={bookingHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => trackEvent("Contact", { content_name: "Navbar CTA" })}
+                href="/#booking"
+                onClick={(e) => { trackEvent("Contact", { content_name: "Navbar CTA" }); scrollToBooking(e); }}
                 style={{
                   display: "inline-flex",
                   alignItems: "center",
@@ -287,10 +294,8 @@ export default function Navbar() {
           }}
         >
           <a
-            href={bookingHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => trackEvent("Contact", { content_name: "Mobile Bottom CTA" })}
+            href="/#booking"
+            onClick={(e) => { trackEvent("Contact", { content_name: "Mobile Bottom CTA" }); scrollToBooking(e); }}
             style={{
               fontFamily: "'Inter', sans-serif",
               fontSize: "15px",
