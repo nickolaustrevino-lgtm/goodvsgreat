@@ -396,14 +396,15 @@ export default function HeroSection() {
     { channel: "Streaming",     pct: 14, color: "#9C7CFF" },
   ];
 
+  // Credibility cascade: lead with universally recognized enterprise brands
   const logos = [
-    { name: "Epic Games",   el: <EpicGamesLogo /> },
-    { name: "Microsoft",    el: <MicrosoftLogo /> },
-    { name: "Warner Bros.", el: <WarnerBrosLogo /> },
-    { name: "Walmart",      el: <WalmartLogo /> },
-    { name: "Amazon",       el: <AmazonLogo /> },
-    { name: "2K",           el: <TwoKLogo /> },
-    { name: "Razer",        el: <RazerLogo /> },
+    { name: "Microsoft",    el: <MicrosoftLogo />,    label: null },
+    { name: "Amazon",       el: <AmazonLogo />,        label: null },
+    { name: "Warner Bros.", el: <WarnerBrosLogo />,    label: null },
+    { name: "Walmart",      el: <WalmartLogo />,       label: "Walmart" },
+    { name: "Epic Games",   el: <EpicGamesLogo />,     label: null },
+    { name: "2K",           el: <TwoKLogo />,          label: "2K Games" },
+    { name: "Razer",        el: <RazerLogo />,         label: null },
   ];
 
   return (
@@ -495,7 +496,7 @@ export default function HeroSection() {
                 maxWidth: "14ch",
               }}
             >
-              Good media looks busy.{" "}
+              Good media looks busy.<br />
               <span style={{ position: "relative", display: "inline-block" }}>
                 <span>Great media</span>
                 {/* Animated cobalt underline rule — spans only "Great media", not the full line */}
@@ -515,8 +516,7 @@ export default function HeroSection() {
                     transition: reduced ? "none" : "transform 480ms cubic-bezier(0.16,1,0.3,1)",
                   }}
                 />
-              </span>{" "}
-              makes decisions.
+              </span>{" "}makes decisions.
             </h1>
 
             {/* Subhead */}
@@ -601,8 +601,10 @@ export default function HeroSection() {
             </div>
           </div>
 
-          {/* ── RIGHT: 5 cols — Attribution Check Dashboard ──────────── */}
-          <AttributionDashboard reduced={reduced} />
+          {/* ── RIGHT: 5 cols — Attribution Check Dashboard (vertically centered) ── */}
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            <AttributionDashboard reduced={reduced} />
+          </div>
         </div>
       </section>
 
@@ -636,18 +638,36 @@ export default function HeroSection() {
                   transition: "opacity var(--motion-base, 240ms) ease",
                   cursor: "default",
                   display: "flex",
+                  flexDirection: "column",
                   alignItems: "center",
+                  gap: "6px",
                 }}
                 onMouseEnter={(e) => {
                   const svgs = (e.currentTarget as HTMLDivElement).querySelectorAll("svg");
                   svgs.forEach((s) => (s.style.fill = "rgba(255,255,255,0.9)"));
+                  const labels = (e.currentTarget as HTMLDivElement).querySelectorAll("span");
+                  labels.forEach((l) => (l.style.color = "rgba(255,255,255,0.7)"));
                 }}
                 onMouseLeave={(e) => {
                   const svgs = (e.currentTarget as HTMLDivElement).querySelectorAll("svg");
                   svgs.forEach((s) => (s.style.fill = "rgba(255,255,255,0.5)"));
+                  const labels = (e.currentTarget as HTMLDivElement).querySelectorAll("span");
+                  labels.forEach((l) => (l.style.color = "rgba(255,255,255,0.35)"));
                 }}
               >
                 {logo.el}
+                {logo.label && (
+                  <span style={{
+                    fontFamily: MONO,
+                    fontSize: "9px",
+                    fontWeight: 500,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.1em",
+                    color: "rgba(255,255,255,0.35)",
+                    transition: "color 240ms ease",
+                    whiteSpace: "nowrap",
+                  }}>{logo.label}</span>
+                )}
               </div>
             ))}
           </div>
@@ -674,10 +694,10 @@ export default function HeroSection() {
             className="gvg-cred-bar"
           >
             {[
-              { value: `$${mediaVal}M+`, label: "Media Governed",    shortLabel: "MEDIA" },
-              { value: `${yrsVal}`,      label: "Years Experience",  shortLabel: "YRS" },
-              { value: `${f500Val}`,     label: "Fortune 500 Brands", shortLabel: "F500" },
-              { value: `${vertsVal}`,    label: "Verticals",          shortLabel: "VERTICALS" },
+              { value: `$${mediaVal}M+`, label: "Media Governed" },
+              { value: `${yrsVal}`,      label: "Years Experience" },
+              { value: `${f500Val}`,     label: "Fortune 500 Brands" },
+              { value: `${vertsVal}`,    label: "Verticals Governed" },
             ].map((stat, i, arr) => (
               <div key={stat.label} style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
                 {/* Fixed-height stat block keeps baseline locked */}
