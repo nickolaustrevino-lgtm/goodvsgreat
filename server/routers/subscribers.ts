@@ -99,6 +99,17 @@ export const subscribersRouter = router({
         text,
       });
 
+      // Notify owner that a confirmation email was dispatched
+      await notifyOwner({
+        title: `Confirmation email sent — ${input.email}`,
+        content: [
+          `📧 To:      ${input.email}`,
+          ...(input.firstName ? [`👤 Name:    ${input.firstName}`] : []),
+          `🔗 Link:    ${confirmUrl}`,
+          `📅 Sent at: ${new Date().toUTCString()}`,
+        ].join("\n"),
+      }).catch(() => {}); // non-blocking
+
       return { success: true, confirmUrl };
     }),
 });
