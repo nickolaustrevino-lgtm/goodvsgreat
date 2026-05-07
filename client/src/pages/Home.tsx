@@ -17,7 +17,6 @@ import AboutSection from "@/components/AboutSection";
 import FAQSection from "@/components/FAQSection";
 import BookingSection from "@/components/BookingSection";
 import FinalCTASection from "@/components/FinalCTASection";
-import InstagramFeedSection from "@/components/InstagramFeedSection";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -35,7 +34,6 @@ export default function Home() {
       <FAQSection />
       <BookingSection />
       <FinalCTASection />
-      <InstagramFeedSection />
       <Footer />
     </div>
   );
