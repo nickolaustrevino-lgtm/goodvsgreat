@@ -4,6 +4,8 @@ import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { bookingRouter } from "./routers/booking";
 import { followupRouter } from "./routers/followup";
+import { instagramRouter } from "./routers/instagram";
+import { instagramSyncRouter } from "./routers/instagramSync";
 import { capiRouter } from "./routers/capi";
 import { leadsRouter } from "./routers/leads";
 import { filesRouter } from "./routers/files";
@@ -26,6 +28,8 @@ export const appRouter = router({
 
   booking: bookingRouter,
   followup: followupRouter,
+  instagram: instagramRouter,
+  instagramSync: instagramSyncRouter,
   capi: capiRouter,
   leads: leadsRouter,
   files: filesRouter,

@@ -1,7 +1,7 @@
 /* Footer - GvG Brand Guidelines v2
    Background: #0D0D1A (deepest layer)
    Logo: GoodvsGreatBlueBannerLogoOnly.png brand asset
-   Social: Instagram, Facebook, LinkedIn, TikTok, Threads
+   Social: Instagram, Facebook, LinkedIn, TikTok, Threads, Reddit
    Nav: IBM Plex Sans 400
    Copyright: IBM Plex Mono, very muted */
 
@@ -21,8 +21,9 @@ const SOCIAL_LINKS = [
   {
     label: "Instagram",
     href: "https://www.instagram.com/goodvsgreat.ai/",
+    color: "#E1306C",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <circle cx="12" cy="12" r="4"/>
         <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
@@ -32,8 +33,9 @@ const SOCIAL_LINKS = [
   {
     label: "Facebook",
     href: "https://www.facebook.com/goodversusgreat",
+    color: "#1877F2",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
       </svg>
     ),
@@ -41,8 +43,9 @@ const SOCIAL_LINKS = [
   {
     label: "LinkedIn",
     href: "https://www.linkedin.com/company/goodvsgreat/",
+    color: "#0A66C2",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
         <rect x="2" y="9" width="4" height="12"/>
         <circle cx="4" cy="4" r="2"/>
@@ -52,8 +55,9 @@ const SOCIAL_LINKS = [
   {
     label: "TikTok",
     href: "https://www.tiktok.com/@goodvsgreat.ai",
+    color: "#FFFFFF",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.76a4.85 4.85 0 0 1-1.01-.07z"/>
       </svg>
     ),
@@ -61,9 +65,21 @@ const SOCIAL_LINKS = [
   {
     label: "Threads",
     href: "https://www.threads.com/@goodvsgreat.ai",
+    color: "#FFFFFF",
     icon: (
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
         <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.473 12.01v-.017c.027-3.579.877-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.594 12c.022 3.086.713 5.496 2.051 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.964-.065-1.19.408-2.285 1.33-3.082.88-.76 2.119-1.207 3.583-1.291a13.853 13.853 0 0 1 3.02.142c-.126-.742-.375-1.332-.75-1.757-.513-.583-1.313-.879-2.378-.885h-.053c-.842 0-1.95.22-2.67 1.177l-1.677-1.21C8.56 5.925 9.874 5.197 12.02 5.197h.073c3.773.03 5.965 2.317 6.07 6.3.046.016.09.033.135.05 1.178.44 2.083 1.157 2.692 2.133.824 1.33.99 3.056.47 4.82-.54 1.836-1.72 3.35-3.33 4.27C16.63 23.51 14.6 24 12.186 24z"/>
+      </svg>
+    ),
+  },
+  {
+    label: "Reddit",
+    href: "https://www.reddit.com/user/goodversusgreat/",
+    color: "#FF4500",
+    icon: (
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="12" r="10"/>
+        <path fill="#0D0D1A" d="M20 12a1.65 1.65 0 0 0-1.65-1.65c-.44 0-.84.17-1.13.45a8.1 8.1 0 0 0-4.37-1.38l.74-3.48 2.4.51a1.17 1.17 0 1 0 .12-.56l-2.68-.57a.28.28 0 0 0-.33.21l-.83 3.9a8.12 8.12 0 0 0-4.4 1.37 1.65 1.65 0 1 0-1.8 2.67 3.23 3.23 0 0 0-.03.44c0 2.24 2.61 4.06 5.83 4.06s5.83-1.82 5.83-4.06c0-.15-.01-.29-.03-.43A1.65 1.65 0 0 0 20 12zm-11.5 1a1 1 0 1 1 2 0 1 1 0 0 1-2 0zm5.58 2.65c-.72.72-2.1.77-2.08.77s-1.37-.05-2.08-.77a.28.28 0 0 1 .4-.4c.46.46 1.43.62 1.68.62s1.22-.16 1.68-.62a.28.28 0 0 1 .4.4zm-.16-1.65a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
       </svg>
     ),
   },
@@ -97,8 +113,8 @@ export default function Footer() {
             borderBottom: "1px solid rgba(255,255,255,0.06)",
           }}
         >
-          {/* Logo + tagline + social */}
-          <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+          {/* Logo + tagline + social icons */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }}>
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               style={{
@@ -130,8 +146,8 @@ export default function Footer() {
               Measurement infrastructure, budget strategy, and AI-augmented workflow design for companies spending $1M+ on paid media.
             </p>
 
-            {/* Social icons */}
-            <div style={{ display: "flex", gap: "1rem", alignItems: "center" }}>
+            {/* Prominent social icon row */}
+            <div style={{ display: "flex", gap: "0.625rem", alignItems: "center", flexWrap: "wrap" }}>
               {SOCIAL_LINKS.map((s) => (
                 <a
                   key={s.label}
@@ -139,17 +155,34 @@ export default function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={s.label}
+                  title={s.label}
                   style={{
-                    color: "rgba(255,255,255,0.3)",
+                    width: "42px",
+                    height: "42px",
+                    borderRadius: "10px",
+                    background: "rgba(255,255,255,0.06)",
+                    border: "1px solid rgba(255,255,255,0.08)",
                     display: "flex",
                     alignItems: "center",
-                    transition: "color 0.15s ease",
+                    justifyContent: "center",
+                    color: "rgba(255,255,255,0.55)",
+                    transition: "background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease",
+                    textDecoration: "none",
+                    flexShrink: 0,
                   }}
                   onMouseEnter={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = "#2979FF";
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.background = `${s.color}22`;
+                    el.style.borderColor = `${s.color}55`;
+                    el.style.color = s.color;
+                    el.style.transform = "translateY(-2px)";
                   }}
                   onMouseLeave={(e) => {
-                    (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.3)";
+                    const el = e.currentTarget as HTMLAnchorElement;
+                    el.style.background = "rgba(255,255,255,0.06)";
+                    el.style.borderColor = "rgba(255,255,255,0.08)";
+                    el.style.color = "rgba(255,255,255,0.55)";
+                    el.style.transform = "translateY(0)";
                   }}
                 >
                   {s.icon}
@@ -237,7 +270,7 @@ export default function Footer() {
             </a>
           </div>
 
-          {/* Connect column */}
+          {/* Follow column — text links */}
           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             <span
               style={{
@@ -266,10 +299,10 @@ export default function Footer() {
                   gap: "0.5rem",
                   transition: "color 0.15s ease",
                 }}
-                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "#2979FF"; }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = s.color; }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.color = "rgba(255,255,255,0.4)"; }}
               >
-                <span style={{ opacity: 0.6 }}>{s.icon}</span>
+                <span style={{ opacity: 0.7, display: "flex", alignItems: "center" }}>{s.icon}</span>
                 {s.label}
               </a>
             ))}

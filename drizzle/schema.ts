@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { datetime, int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -90,3 +90,19 @@ export const bookingRequests = mysqlTable("booking_requests", {
 
 export type BookingRequest       = typeof bookingRequests.$inferSelect;
 export type InsertBookingRequest = typeof bookingRequests.$inferInsert;
+
+// Instagram posts cache — populated by the scheduled sync task
+export const instagramPosts = mysqlTable('instagram_posts', {
+  id:           varchar('id', { length: 64 }).primaryKey(),
+  postType:     mysqlEnum('post_type', ['IMAGE', 'VIDEO', 'CAROUSEL_ALBUM']).notNull().default('IMAGE'),
+  caption:      text('caption'),
+  link:         varchar('link', { length: 512 }).notNull(),
+  likes:        int('likes').notNull().default(0),
+  comments:     int('comments').notNull().default(0),
+  thumbnailUrl: varchar('thumbnail_url', { length: 1024 }),
+  postedAt:     datetime('posted_at').notNull(),
+  syncedAt:     datetime('synced_at').notNull(),
+});
+
+export type InstagramPost       = typeof instagramPosts.$inferSelect;
+export type InsertInstagramPost = typeof instagramPosts.$inferInsert;
