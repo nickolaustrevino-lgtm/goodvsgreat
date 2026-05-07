@@ -113,3 +113,43 @@ export async function insertBookingRequest(
     throw error;
   }
 }
+
+/**
+ * Returns booking requests created between 20 and 28 hours ago
+ * that have not yet had a follow-up email sent.
+ * The 20-28h window gives the scheduled task a generous execution window
+ * while avoiding duplicate sends.
+ */
+export async function getUnfollowedUpLeads() {
+  const db = await getDb();
+  if (!db) return [];
+
+  const now = new Date();
+  const twentyHoursAgo = new Date(now.getTime() - 20 * 60 * 60 * 1000);
+  const twentyEightHoursAgo = new Date(now.getTime() - 28 * 60 * 60 * 1000);
+
+  const { and, isNull, between } = await import("drizzle-orm");
+
+  return db
+    .select()
+    .from(bookingRequests)
+    .where(
+      and(
+        isNull(bookingRequests.followUpSentAt),
+        between(bookingRequests.createdAt, twentyEightHoursAgo, twentyHoursAgo)
+      )
+    );
+}
+
+/**
+ * Marks a booking request as having received the follow-up email.
+ */
+export async function markFollowUpSent(id: number): Promise<void> {
+  const db = await getDb();
+  if (!db) return;
+
+  await db
+    .update(bookingRequests)
+    .set({ followUpSentAt: new Date() })
+    .where(eq(bookingRequests.id, id));
+}

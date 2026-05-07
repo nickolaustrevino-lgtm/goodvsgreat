@@ -82,10 +82,11 @@ export const bookingRequests = mysqlTable("booking_requests", {
   spend:     varchar("spend",     { length: 64  }).notNull(),
   challenge: varchar("challenge", { length: 128 }).notNull(),
   details:   text("details"),
-  /** Pipeline stage — updated by the admin via the leads dashboard */
-  status:    mysqlEnum("status", ["new", "contacted", "closed"]).default("new").notNull(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-});
+  /** Pipeline stage -- updated by the admin via the leads dashboard */
+  status:         mysqlEnum("status", ["new", "contacted", "closed"]).default("new").notNull(),
+  /** Set when the 24-hour follow-up email is sent; null means not yet sent */
+  followUpSentAt: timestamp("followUpSentAt"),
+  createdAt:      timestamp("createdAt").defaultNow().notNull(),});
 
 export type BookingRequest       = typeof bookingRequests.$inferSelect;
 export type InsertBookingRequest = typeof bookingRequests.$inferInsert;

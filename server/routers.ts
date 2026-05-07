@@ -3,6 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, router } from "./_core/trpc";
 import { bookingRouter } from "./routers/booking";
+import { followupRouter } from "./routers/followup";
 import { capiRouter } from "./routers/capi";
 import { leadsRouter } from "./routers/leads";
 import { filesRouter } from "./routers/files";
@@ -24,6 +25,7 @@ export const appRouter = router({
   }),
 
   booking: bookingRouter,
+  followup: followupRouter,
   capi: capiRouter,
   leads: leadsRouter,
   files: filesRouter,

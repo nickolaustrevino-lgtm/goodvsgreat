@@ -104,6 +104,25 @@ export default function AdminLeads() {
   const [page, setPage] = useState(1);
   const PAGE_SIZE = 25;
 
+  const exportQuery = trpc.leads.export.useQuery(
+    { status: statusFilter },
+    { enabled: false } // only fetch on demand
+  );
+
+  const handleExport = async () => {
+    const result = await exportQuery.refetch();
+    const csv = result.data?.csv;
+    if (!csv) { toast.error("No data to export"); return; }
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `gvg-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+    toast.success("CSV downloaded");
+  };
+
   const { data, isLoading, refetch } = trpc.leads.list.useQuery(
     { search, status: statusFilter, page, limit: PAGE_SIZE },
     { enabled: !!user && user.role === "admin" }
@@ -199,7 +218,7 @@ export default function AdminLeads() {
         />
 
         {/* Status filter pills */}
-        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap" }}>
+        <div style={{ display: "flex", gap: "6px", flexWrap: "wrap", alignItems: "center" }}>
           {(["all", "new", "contacted", "closed"] as StatusFilter[]).map((s) => (
             <button
               key={s}
@@ -220,6 +239,26 @@ export default function AdminLeads() {
               {s}
             </button>
           ))}
+          {/* Export CSV button */}
+          <button
+            onClick={handleExport}
+            disabled={exportQuery.isFetching}
+            style={{
+              fontFamily: MONO,
+              fontSize: "0.55rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              padding: "5px 12px",
+              borderRadius: "4px",
+              border: `1px solid ${BORDER}`,
+              background: "transparent",
+              color: exportQuery.isFetching ? DIM : "rgba(52,211,153,0.9)",
+              cursor: exportQuery.isFetching ? "not-allowed" : "pointer",
+              marginLeft: "auto",
+            }}
+          >
+            {exportQuery.isFetching ? "Exporting…" : "↓ Export CSV"}
+          </button>
         </div>
       </div>
 

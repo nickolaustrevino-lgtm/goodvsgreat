@@ -71,6 +71,60 @@ export const leadsRouter = router({
       return { items, total };
     }),
 
+  /** Export all booking requests as CSV (no pagination). */
+  export: adminProcedure
+    .input(
+      z.object({
+        status: z.enum(["all", ...STATUS_VALUES]).default("all"),
+      }).optional()
+    )
+    .query(async ({ input }) => {
+      const db = await getDb();
+      if (!db) return { csv: "" };
+
+      const conditions = [];
+      if (input?.status && input.status !== "all") {
+        conditions.push(eq(bookingRequests.status, input.status));
+      }
+      const where = conditions.length > 0 ? and(...conditions) : undefined;
+
+      const rows = await db
+        .select()
+        .from(bookingRequests)
+        .where(where)
+        .orderBy(desc(bookingRequests.createdAt));
+
+      // Build CSV
+      const headers = ["ID", "First Name", "Last Name", "Email", "Organisation", "Spend", "Challenge", "Details", "Status", "Created At"];
+      const escape = (v: unknown) => {
+        const s = v == null ? "" : String(v);
+        return s.includes(",") || s.includes('"') || s.includes("\n")
+          ? `"${s.replace(/"/g, '""')}"`
+          : s;
+      };
+      const lines = [
+        headers.join(","),
+        ...rows.map((r) =>
+          [
+            r.id,
+            r.firstName,
+            r.lastName,
+            r.email,
+            r.org,
+            r.spend,
+            r.challenge,
+            r.details ?? "",
+            r.status,
+            new Date(r.createdAt).toISOString(),
+          ]
+            .map(escape)
+            .join(",")
+        ),
+      ];
+
+      return { csv: lines.join("\n") };
+    }),
+
   /** Update the pipeline status of a single booking request. */
   updateStatus: adminProcedure
     .input(
