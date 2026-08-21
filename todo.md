@@ -12,3 +12,4 @@
 - [ ] Confirm the draft editor loads the expected title, slug, excerpt, and article body.
 - [x] Verify the saved draft record, status, metadata, and required body sections directly in the database.
 - [ ] Resolve the authenticated admin editor access denial before completing UI-level verification.
+- [x] Upload the Actor Governance framework animation and embed it after the opening framework statement in draft post 270001.
