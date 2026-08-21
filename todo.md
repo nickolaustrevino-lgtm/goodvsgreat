@@ -5,3 +5,4 @@
 - [x] Verify the video renders responsively inside the public post 240001 article at desktop and mobile widths.
 - [x] Confirm the intended published post identifier as 240001: “AI Search Solved Half the Problem. Here's the Mirror Image Nobody's Measuring.”
 - [x] Verify that the editor reference “post 24001” maps to published post 240001 through user confirmation.
+- [x] Move the conversion-model video in post 240001 directly after the opening login-screen sentence and before the next paragraph.
