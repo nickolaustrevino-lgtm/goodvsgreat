@@ -8,8 +8,11 @@
 - [x] Move the conversion-model video in post 240001 directly after the opening login-screen sentence and before the next paragraph.
 - [x] Draft the publication-ready “Actor Governance: A Framework for the AI Agent Shift” hub article from the supplied brief.
 - [x] Create the Actor Governance framework manifesto as an unpublished database draft for the website post editor.
-- [ ] Verify the Actor Governance draft appears in the admin post editor with status draft.
-- [ ] Confirm the draft editor loads the expected title, slug, excerpt, and article body.
+- [x] Verify the Actor Governance draft appears in the admin post editor with status draft.
+- [x] Confirm the draft editor loads the expected title, slug, excerpt, and article body.
 - [x] Verify the saved draft record, status, metadata, and required body sections directly in the database.
-- [ ] Resolve the authenticated admin editor access denial before completing UI-level verification.
-- [x] Upload the Actor Governance framework animation and embed it after the opening framework statement in draft post 270001.
+- [x] Resolve the authenticated admin editor access denial and complete UI-level verification through Manus sign-in.
+- [x] Upload the Actor Governance framework animation to permanent website storage.
+- [x] Add post-editor video support so HTML5 video embeds are preserved on draft save.
+- [x] Restore the Actor Governance animation after the opening framework statement in draft post 270001 and verify it persists after editor save.
+- [x] Align the project’s Tiptap package versions to resolve the custom video-node type conflict.

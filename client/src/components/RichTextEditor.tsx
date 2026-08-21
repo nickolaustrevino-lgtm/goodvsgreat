@@ -21,6 +21,7 @@ import {
   Link2,
   Link2Off,
   ImageIcon,
+  Video,
   AlignLeft,
   AlignCenter,
   AlignRight,
@@ -29,6 +30,7 @@ import {
   X,
 } from "lucide-react";
 import { trpc } from "@/lib/trpc";
+import { normalizeVideoSource } from "@/lib/videoEmbed";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -38,6 +40,48 @@ interface RichTextEditorProps {
   placeholder?: string;
   minHeight?: number;
 }
+
+const VideoNode = Image.extend({
+  name: "video",
+  group: "block",
+  atom: true,
+  draggable: true,
+
+  addAttributes() {
+    return {
+      src: { default: null },
+      controls: { default: true },
+      playsinline: { default: true },
+      preload: { default: "metadata" },
+    };
+  },
+
+  parseHTML() {
+    return [{
+      tag: "video",
+      getAttrs: (node: HTMLElement | string) => {
+        if (typeof node === "string") return false;
+        const element = node;
+        const source = element.getAttribute("src") ?? element.querySelector("source")?.getAttribute("src");
+        return source ? { src: source } : false;
+      },
+    }];
+  },
+
+  renderHTML({ HTMLAttributes }) {
+    return [
+      "video",
+      {
+        controls: "true",
+        playsinline: "true",
+        preload: "metadata",
+        class: "gvg-editor-video",
+        style: "display:block;width:100%;height:auto;background:#0A1226;border:1px solid rgba(41,121,255,0.35);border-radius:12px;",
+        ...HTMLAttributes,
+      },
+    ];
+  },
+});
 
 // ─── Toolbar button ───────────────────────────────────────────────────────────
 
@@ -124,6 +168,43 @@ function LinkDialog({
           >
             Apply
           </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function VideoDialog({
+  onConfirm,
+  onClose,
+}: {
+  onConfirm: (url: string) => void;
+  onClose: () => void;
+}) {
+  const [url, setUrl] = useState("");
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+      <div className="bg-[#0D1117] border border-[#2A3547] rounded-xl p-6 w-full max-w-sm shadow-2xl">
+        <div className="flex items-center justify-between mb-4">
+          <span className="text-white font-semibold">Insert Video</span>
+          <button type="button" onClick={onClose} className="text-[#8B9CB6] hover:text-white"><X size={16} /></button>
+        </div>
+        <p className="text-[#8B9CB6] text-sm mb-3">Use a permanent /manus-storage/ link or an HTTPS MP4, WebM, or OGG URL.</p>
+        <input
+          autoFocus
+          type="url"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          placeholder="/manus-storage/video.mp4"
+          className="w-full bg-[#1A2332] border border-[#2A3547] rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-[#2979FF] mb-4"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && url) { e.preventDefault(); onConfirm(url); }
+            if (e.key === "Escape") onClose();
+          }}
+        />
+        <div className="flex gap-2 justify-end">
+          <button type="button" onClick={onClose} className="px-4 py-2 text-sm text-[#8B9CB6] hover:text-white">Cancel</button>
+          <button type="button" disabled={!url} onClick={() => url && onConfirm(url)} className="px-4 py-2 text-sm bg-[#2979FF] text-white rounded-lg hover:bg-[#1565C0] disabled:opacity-40">Insert</button>
         </div>
       </div>
     </div>
@@ -246,6 +327,7 @@ export default function RichTextEditor({
 }: RichTextEditorProps) {
   const [showLinkDialog, setShowLinkDialog] = useState(false);
   const [showImagePicker, setShowImagePicker] = useState(false);
+  const [showVideoDialog, setShowVideoDialog] = useState(false);
   const initialLinkRef = useRef("");
 
   const editor = useEditor({
@@ -255,6 +337,7 @@ export default function RichTextEditor({
       }),
       Underline,
       Image.configure({ inline: false, allowBase64: false }),
+      VideoNode,
       Link.configure({
         openOnClick: false,
         HTMLAttributes: { class: "text-[#2979FF] underline cursor-pointer" },
@@ -308,6 +391,17 @@ export default function RichTextEditor({
       editor.chain().focus().setImage({ src: url }).run();
     },
     [editor]
+  );
+
+  const insertVideo = useCallback(
+    (url: string) => {
+      if (!editor) return;
+      const source = normalizeVideoSource(url);
+      if (!source) return;
+      setShowVideoDialog(false);
+      editor.chain().focus().insertContent({ type: "video", attrs: { src: source } }).run();
+    },
+    [editor],
   );
 
   if (!editor) return null;
@@ -398,6 +492,9 @@ export default function RichTextEditor({
         <ToolBtn title="Insert image" onClick={() => setShowImagePicker(true)}>
           <ImageIcon size={15} />
         </ToolBtn>
+        <ToolBtn title="Insert video" onClick={() => setShowVideoDialog(true)}>
+          <Video size={15} />
+        </ToolBtn>
       </div>
 
       {/* Editor canvas */}
@@ -423,6 +520,7 @@ export default function RichTextEditor({
             [&_.ProseMirror_blockquote]:border-l-4 [&_.ProseMirror_blockquote]:border-[#2979FF] [&_.ProseMirror_blockquote]:pl-4 [&_.ProseMirror_blockquote]:text-[#8B9CB6] [&_.ProseMirror_blockquote]:italic [&_.ProseMirror_blockquote]:my-4
             [&_.ProseMirror_hr]:border-[#2A3547] [&_.ProseMirror_hr]:my-6
             [&_.ProseMirror_img]:rounded-lg [&_.ProseMirror_img]:max-w-full [&_.ProseMirror_img]:my-4
+            [&_.ProseMirror_.gvg-editor-video]:my-4 [&_.ProseMirror_.gvg-editor-video]:max-w-full
             [&_.ProseMirror_code]:bg-[#1A2332] [&_.ProseMirror_code]:text-[#79C0FF] [&_.ProseMirror_code]:px-1.5 [&_.ProseMirror_code]:py-0.5 [&_.ProseMirror_code]:rounded [&_.ProseMirror_code]:text-sm
             [&_.ProseMirror_pre]:bg-[#1A2332] [&_.ProseMirror_pre]:rounded-lg [&_.ProseMirror_pre]:p-4 [&_.ProseMirror_pre]:my-4 [&_.ProseMirror_pre]:overflow-x-auto
             [&_.ProseMirror_.is-editor-empty:first-child::before]:content-[attr(data-placeholder)] [&_.ProseMirror_.is-editor-empty:first-child::before]:text-[#4A5568] [&_.ProseMirror_.is-editor-empty:first-child::before]:float-left [&_.ProseMirror_.is-editor-empty:first-child::before]:pointer-events-none [&_.ProseMirror_.is-editor-empty:first-child::before]:h-0
@@ -444,6 +542,7 @@ export default function RichTextEditor({
           onClose={() => setShowImagePicker(false)}
         />
       )}
+      {showVideoDialog && <VideoDialog onConfirm={insertVideo} onClose={() => setShowVideoDialog(false)} />}
     </>
   );
 }
