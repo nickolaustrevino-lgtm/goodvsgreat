@@ -66,12 +66,12 @@ export default function Subscribe() {
             <>
               {/* Eyebrow */}
               <p style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.14em", color: BLUE, marginBottom: "1.25rem", opacity: 0.85 }}>
-                The Newsletter
+                The Media Decision Letter
               </p>
 
               {/* Heading */}
               <h1 style={{ fontFamily: SANS, fontSize: "clamp(1.75rem, 4vw, 2.5rem)", fontWeight: 700, lineHeight: 1.15, letterSpacing: "-0.02em", color: "#FFFFFF", marginBottom: "1rem" }}>
-                Media systems. Attribution strategy. Growth decisions.
+                Strategic notes on media effectiveness, measurement systems, AI, and growth.
               </h1>
 
               {/* Subhead */}

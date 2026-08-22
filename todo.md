@@ -21,3 +21,4 @@
 - [x] Complete final backend verification of the draft and cover assignment without relying on the CAPTCHA-blocked editor.
 - [x] Restore Actor Governance post 270001 to draft status after backend verification found it published again.
 - [x] Create the supplied AI Search article as an unpublished Good vs. Great blog draft with its conversion-model video directly after the specified opening sentence.
+- [x] Update the targeted blue header to “The Media Decision Letter” and the primary bold headline to the approved strategic-notes copy.
