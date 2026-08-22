@@ -126,10 +126,10 @@ export default function WritingIndex() {
         {/* Header */}
         <div style={{ marginBottom: "64px" }}>
           <span style={{ fontFamily: MONO, fontSize: "11px", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.16em", color: COBALT, display: "block", marginBottom: "16px" }}>
-            THE DECISION LETTER
+            THE MEDIA DECISION LETTER
           </span>
           <h1 style={{ fontFamily: SANS, fontSize: "clamp(36px, 5vw, 56px)", fontWeight: 700, color: "#fff", letterSpacing: "-0.015em", lineHeight: 1.1, marginBottom: "16px" }}>
-            Operating ideas on measurement,<br />AI, and the new media stack.
+            Strategic notes on media effectiveness, measurement systems, AI, and growth.
           </h1>
           <p style={{ fontFamily: SANS, fontSize: "18px", color: TEXT_SECONDARY, lineHeight: 1.6, maxWidth: "600px" }}>
             Frameworks, case studies, and perspectives on what separates good media from great media.
