@@ -23,3 +23,10 @@
 - [x] Create the supplied AI Search article as an unpublished Good vs. Great blog draft with its conversion-model video directly after the specified opening sentence.
 - [x] Update the targeted blue header to “The Media Decision Letter” and the primary bold headline to the approved strategic-notes copy.
 - [x] Update the main blog landing page to “The Media Decision Letter” and the approved strategic-notes headline.
+- [x] Generate a text-free cover image for the August 21, 2026 AI Search and agent-attribution article.
+- [x] Confirm the AI Search cover generation has completed and review the final asset for text-free composition.
+- [x] Deliver the approved AI Search cover image URL for use on the August 21, 2026 blog post.
+- [x] Verify the final AI Search cover visually contains no text, logos, numbers, or UI elements.
+- [x] Deliver the visually verified AI Search cover asset URL to the user.
+- [x] Apply the attached design-feedback updates to the blog article page and subscribe module.
+- [x] Apply the remaining editorial hierarchy and spacing improvements to the blog landing page.
