@@ -5,6 +5,9 @@
    Nav: IBM Plex Sans 400
    Copyright: IBM Plex Mono, very muted */
 
+import React, { useEffect, useState } from "react";
+import FooterSubscribeModal from "@/components/FooterSubscribeModal";
+
 const LOGO_URL = "/manus-storage/logo-banner_353f07ff.png";
 
 const NAV_LINKS = [
@@ -70,12 +73,21 @@ const SOCIAL_LINKS = [
 ];
 
 export default function Footer() {
+  const [subscribeOpen, setSubscribeOpen] = useState(false);
+
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).get("subscribe") === "open") {
+      setSubscribeOpen(true);
+    }
+  }, []);
+
   const scrollTo = (id: string) => {
     const el = document.getElementById(id);
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
+    <>
     <footer
       style={{
         backgroundColor: "#0D0D1A",
@@ -214,27 +226,32 @@ export default function Footer() {
             >
               Stay in the loop
             </span>
-            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.8125rem", color: "rgba(255,255,255,0.4)", lineHeight: 1.55, margin: 0 }}>
-              Writing on media systems, attribution strategy, and growth decisions.
+            <p style={{ fontFamily: "'Inter', sans-serif", fontSize: "0.875rem", color: "rgba(255,255,255,0.64)", lineHeight: 1.6, margin: 0 }}>
+              Strategic notes on media effectiveness, measurement systems, AI, and growth.
             </p>
-            <a
-              href="/subscribe"
+            <button
+              type="button"
+              onClick={() => setSubscribeOpen(true)}
               style={{
                 display: "inline-flex",
                 alignItems: "center",
-                gap: "6px",
                 fontFamily: "'Inter', sans-serif",
                 fontSize: "0.8125rem",
                 fontWeight: 600,
-                color: "#2979FF",
-                textDecoration: "none",
-                transition: "opacity 0.15s ease",
+                color: "#FFFFFF",
+                background: "#2979FF",
+                border: "1px solid rgba(255,255,255,0.18)",
+                borderRadius: "7px",
+                padding: "0.7rem 1rem",
+                cursor: "pointer",
+                width: "fit-content",
+                transition: "background 0.15s ease, transform 0.15s ease",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "0.75"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLAnchorElement).style.opacity = "1"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#4D90FF"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(-1px)"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLButtonElement).style.background = "#2979FF"; (e.currentTarget as HTMLButtonElement).style.transform = "translateY(0)"; }}
             >
-              Subscribe to the blog →
-            </a>
+              Subscribe
+            </button>
           </div>
 
           {/* Connect column */}
@@ -315,5 +332,7 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    <FooterSubscribeModal open={subscribeOpen} onOpenChange={setSubscribeOpen} />
+    </>
   );
 }

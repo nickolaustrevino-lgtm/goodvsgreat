@@ -41,3 +41,7 @@
 - [x] Add a distinct production announcement send path with non-test audit metadata.
 - [x] Correct the seven subscriber-wide August 21 announcement audit records from test to production-send classification.
 - [x] Diagnose and fix the missing subscription confirmation email for nickolaus.trevino@icloud.com.
+- [x] Add the approved strategic-notes subscription prompt and in-page modal form to the footer on every page.
+- [x] Extend the footer subscription prompt to internal and file-manager routes.
+- [x] Verify the footer Subscribe button opens the in-page modal on desktop and mobile.
+- [x] Verify the open footer subscription modal in a real browser at desktop and mobile widths.

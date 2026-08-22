@@ -17,6 +17,7 @@ import WritingIndex from "./pages/WritingIndex";
 import WritingPost from "./pages/WritingPost";
 import SubscribeConfirm from "./pages/SubscribeConfirm";
 import Subscribe from "./pages/Subscribe";
+import Footer from "./components/Footer";
 
 // Legacy /writing → /blog redirect (preserves SEO equity)
 function WritingRedirect() {
@@ -81,6 +82,7 @@ function Router() {
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
+    <Footer />
     </>
   );
 }

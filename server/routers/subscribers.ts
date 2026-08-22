@@ -43,7 +43,7 @@ export const subscribersRouter = router({
         content: `${input.name ? `${input.name} (${input.email})` : input.email} subscribed via ${input.source ?? "blog"}. Confirmation email dispatched with audit ID ${confirmation.dispatchId ?? "unavailable"}.`,
       }).catch(() => {}); // non-blocking
 
-      return { success: true, alreadySubscribed: Boolean(existing), confirmationSent: true };
+      return { success: true, alreadySubscribed: false, confirmationSent: true, resentConfirmation: Boolean(existing) };
     }),
 
   /** Public: confirm subscription via one-time token */

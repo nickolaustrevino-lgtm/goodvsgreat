@@ -1,6 +1,5 @@
 import { useLocation } from "wouter";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const SURFACE_0 = "#0A1226";
 const COBALT = "#2F6FFF";
@@ -155,7 +154,6 @@ export default function NotFound() {
           </button>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

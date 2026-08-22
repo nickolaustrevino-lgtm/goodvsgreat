@@ -5,7 +5,6 @@
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
@@ -210,7 +209,6 @@ export default function WritingIndex() {
         )}
       </div>
 
-      <Footer />
     </div>
   );
 }

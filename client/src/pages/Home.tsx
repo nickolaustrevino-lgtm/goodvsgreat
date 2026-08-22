@@ -17,7 +17,6 @@ import AboutSection from "@/components/AboutSection";
 import FAQSection from "@/components/FAQSection";
 import BookingSection from "@/components/BookingSection";
 import FinalCTASection from "@/components/FinalCTASection";
-import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
@@ -34,7 +33,6 @@ export default function Home() {
       <FAQSection />
       <BookingSection />
       <FinalCTASection />
-      <Footer />
     </div>
   );
 }
