@@ -72,6 +72,20 @@ export const subscribers = mysqlTable("subscribers", {
 export type Subscriber = typeof subscribers.$inferSelect;
 export type InsertSubscriber = typeof subscribers.$inferInsert;
 
+// Email dispatch audit table — records accepted or failed outbound email sends
+export const emailDispatches = mysqlTable("email_dispatches", {
+  id: int("id").autoincrement().primaryKey(),
+  kind: varchar("kind", { length: 64 }).notNull(),
+  recipient: varchar("recipient", { length: 320 }).notNull(),
+  subject: varchar("subject", { length: 512 }).notNull(),
+  status: mysqlEnum("status", ["accepted", "failed"]).notNull(),
+  metadata: text("metadata"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type EmailDispatch = typeof emailDispatches.$inferSelect;
+export type InsertEmailDispatch = typeof emailDispatches.$inferInsert;
+
 // Booking requests table — persists every booking form submission as a lead record
 export const bookingRequests = mysqlTable("booking_requests", {
   id:        int("id").autoincrement().primaryKey(),

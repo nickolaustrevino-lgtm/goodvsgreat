@@ -30,3 +30,13 @@
 - [x] Deliver the visually verified AI Search cover asset URL to the user.
 - [x] Apply the attached design-feedback updates to the blog article page and subscribe module.
 - [x] Apply the remaining editorial hierarchy and spacing improvements to the blog landing page.
+- [x] Audit whether publishing the latest blog post triggered an automated email to subscribers.
+- [x] Draft a subscriber announcement email for the August 21, 2026 blog post.
+- [x] Send the approved August 21 subscriber announcement to nickolaus.trevino@gmail.com as a test.
+- [x] Add a durable email-dispatch audit record for blog-announcement test sends.
+- [x] Record and verify the August 21 test send recipient, subject, and timestamp in the audit trail.
+- [x] Add a reusable admin-only blog-announcement test-send procedure that automatically writes to the email-dispatch audit trail.
+- [x] Resend and verify the August 21 announcement through the reusable audited send path.
+- [x] Send the approved August 21 announcement to all eligible subscribers and verify the delivery audit.
+- [x] Add a distinct production announcement send path with non-test audit metadata.
+- [x] Correct the seven subscriber-wide August 21 announcement audit records from test to production-send classification.

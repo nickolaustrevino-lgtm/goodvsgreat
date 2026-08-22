@@ -1,6 +1,6 @@
 import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { bookingRequests, InsertBookingRequest, InsertUser, users } from "../drizzle/schema";
+import { bookingRequests, emailDispatches, InsertBookingRequest, InsertEmailDispatch, InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -87,6 +87,25 @@ export async function getUserByOpenId(openId: string) {
   const result = await db.select().from(users).where(eq(users.openId, openId)).limit(1);
 
   return result.length > 0 ? result[0] : undefined;
+}
+
+/** Writes an immutable record of an outbound email attempt for operational audit. */
+export async function recordEmailDispatch(
+  data: Omit<InsertEmailDispatch, "id" | "createdAt">
+): Promise<number | undefined> {
+  const db = await getDb();
+  if (!db) {
+    console.warn("[Database] Cannot record email dispatch: database not available");
+    return undefined;
+  }
+
+  try {
+    const result = await db.insert(emailDispatches).values(data);
+    return (result as unknown as { insertId: number }[])[0]?.insertId;
+  } catch (error) {
+    console.error("[Database] Failed to record email dispatch:", error);
+    throw error;
+  }
 }
 
 // TODO: add feature queries here as your schema grows.
