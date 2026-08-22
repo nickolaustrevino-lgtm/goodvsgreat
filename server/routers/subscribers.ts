@@ -1,7 +1,6 @@
 import { z } from "zod";
 import { adminProcedure, publicProcedure, router } from "../_core/trpc";
 import {
-  addSubscriber,
   getAllSubscribers,
   getSubscriberByEmail,
   getSubscriberByToken,
@@ -12,6 +11,7 @@ import { notifyOwner } from "../_core/notification";
 import { sendEmail } from "../mailer";
 import { buildConfirmationEmail } from "../emailTemplates";
 import { randomBytes } from "crypto";
+import { sendSubscriberConfirmation } from "../subscriberConfirmation";
 
 export const subscribersRouter = router({
   /** Public: subscribe with email (and optional name) */
@@ -21,28 +21,29 @@ export const subscribersRouter = router({
         email: z.string().email(),
         name: z.string().max(255).optional(),
         source: z.string().max(255).optional(),
+        baseUrl: z.string().url(),
       })
     )
     .mutation(async ({ input }) => {
-      // Check if already subscribed
       const existing = await getSubscriberByEmail(input.email);
-      if (existing) {
+      if (existing?.confirmedAt) {
         return { success: true, alreadySubscribed: true };
       }
 
-      await addSubscriber({
+      const confirmation = await sendSubscriberConfirmation({
         email: input.email,
-        name: input.name ?? null,
-        source: input.source ?? "blog",
+        firstName: input.name,
+        source: input.source,
+        baseUrl: input.baseUrl,
       });
 
       // Notify owner of new subscriber
       await notifyOwner({
         title: "New subscriber",
-        content: `${input.name ? `${input.name} (${input.email})` : input.email} subscribed via ${input.source ?? "blog"}.`,
+        content: `${input.name ? `${input.name} (${input.email})` : input.email} subscribed via ${input.source ?? "blog"}. Confirmation email dispatched with audit ID ${confirmation.dispatchId ?? "unavailable"}.`,
       }).catch(() => {}); // non-blocking
 
-      return { success: true, alreadySubscribed: false };
+      return { success: true, alreadySubscribed: Boolean(existing), confirmationSent: true };
     }),
 
   /** Public: confirm subscription via one-time token */

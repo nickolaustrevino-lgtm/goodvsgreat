@@ -40,3 +40,4 @@
 - [x] Send the approved August 21 announcement to all eligible subscribers and verify the delivery audit.
 - [x] Add a distinct production announcement send path with non-test audit metadata.
 - [x] Correct the seven subscriber-wide August 21 announcement audit records from test to production-send classification.
+- [x] Diagnose and fix the missing subscription confirmation email for nickolaus.trevino@icloud.com.

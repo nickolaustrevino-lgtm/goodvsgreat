@@ -152,3 +152,49 @@ You are receiving this because you previously subscribed to Good vs. Great conte
 
   return { html, text };
 }
+
+/** Confirmation message used for new self-service subscriber sign-ups. */
+export function buildNewSubscriberConfirmationEmail({
+  firstName,
+  confirmUrl,
+}: {
+  firstName?: string;
+  confirmUrl: string;
+}): { html: string; text: string } {
+  const greeting = firstName ? `Hi ${firstName},` : "Hi there,";
+  const logoUrl = "https://goodvsgreat.ai/manus-storage/GoodvsGreatBlueBannerLogoOnly_158951cf.png";
+
+  const html = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Confirm your subscription</title></head>
+<body style="margin:0;padding:0;background:#0D1117;font-family:Arial,sans-serif;color:#C9D1D9;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#0D1117;padding:40px 16px;"><tr><td align="center">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:560px;background:#111827;border:1px solid #1E2A3A;border-radius:8px;overflow:hidden;">
+      <tr><td style="background:#2979FF;height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
+      <tr><td align="center" style="padding:32px 40px 24px;"><img src="${logoUrl}" alt="Good vs. Great" width="200" style="display:block;max-width:200px;height:auto;border:0;" /></td></tr>
+      <tr><td style="padding:0 40px;"><div style="border-top:1px solid #1E2A3A;"></div></td></tr>
+      <tr><td style="padding:32px 40px 0;color:#C9D1D9;font-size:15px;line-height:1.7;">
+        <p style="margin:0 0 16px;">${greeting}</p>
+        <p style="margin:0 0 16px;">Thanks for subscribing to <strong>The Media Decision Letter</strong>.</p>
+        <p style="margin:0 0 24px;">Confirm your email to receive strategic notes on media effectiveness, measurement systems, AI, and growth.</p>
+      </td></tr>
+      <tr><td align="center" style="padding:0 40px 32px;"><a href="${confirmUrl}" style="display:inline-block;padding:14px 32px;background:#2979FF;border-radius:6px;color:#ffffff;font-size:14px;font-weight:700;text-decoration:none;">Confirm subscription &rarr;</a></td></tr>
+      <tr><td style="padding:0 40px 32px;color:#6B7280;font-size:12px;line-height:1.6;text-align:center;">Button not working? Copy and paste this link into your browser:<br /><a href="${confirmUrl}" style="color:#2979FF;word-break:break-all;">${confirmUrl}</a></td></tr>
+      <tr><td style="padding:0 40px;"><div style="border-top:1px solid #1E2A3A;"></div></td></tr>
+      <tr><td style="padding:24px 40px;color:#4B5563;font-size:12px;line-height:1.6;text-align:center;">Good vs. Great | Media Systems Architecture<br /><a href="https://goodvsgreat.ai" style="color:#2979FF;text-decoration:none;">goodvsgreat.ai</a></td></tr>
+    </table>
+  </td></tr></table>
+</body></html>`;
+
+  const text = `${greeting}
+
+Thanks for subscribing to The Media Decision Letter.
+
+Confirm your email to receive strategic notes on media effectiveness, measurement systems, AI, and growth.
+
+Confirm subscription: ${confirmUrl}
+
+Good vs. Great | Media Systems Architecture
+https://goodvsgreat.ai`;
+
+  return { html, text };
+}

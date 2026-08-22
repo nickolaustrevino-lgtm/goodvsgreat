@@ -42,7 +42,12 @@ export default function Subscribe() {
     if (!email.trim()) return;
     setState("loading");
     setErrorMsg("");
-    subscribeMutation.mutate({ email: email.trim(), name: name.trim() || undefined, source: "subscribe-page" });
+    subscribeMutation.mutate({
+      email: email.trim(),
+      name: name.trim() || undefined,
+      source: "subscribe-page",
+      baseUrl: window.location.origin,
+    });
   };
 
   return (

@@ -30,7 +30,12 @@ export default function SubscribeCTA({ source = "blog" }: SubscribeCTAProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
-    subscribe.mutate({ email: email.trim(), name: name.trim() || undefined, source });
+    subscribe.mutate({
+      email: email.trim(),
+      name: name.trim() || undefined,
+      source,
+      baseUrl: window.location.origin,
+    });
   };
 
   const inputStyle: React.CSSProperties = {
