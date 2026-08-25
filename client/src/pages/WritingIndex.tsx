@@ -3,6 +3,7 @@
    ============================================================ */
 import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
+import { BLOG_MASTHEAD } from "@/lib/blogMasthead";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
@@ -34,9 +35,9 @@ export default function WritingIndex() {
       <main className="editorial-index-shell">
         <header className="editorial-index-header">
           <div className="editorial-index-header__rule" aria-hidden="true" />
-          <span>The Decision Letter</span>
-          <h1>Operating ideas on measurement, AI, and the new media stack.</h1>
-          <p>Frameworks, case studies, and perspectives on what separates good media from great media.</p>
+          <span>{BLOG_MASTHEAD.eyebrow}</span>
+          <h1>{BLOG_MASTHEAD.title}</h1>
+          <p>{BLOG_MASTHEAD.subtitle}</p>
         </header>
 
         {isLoading ? (
