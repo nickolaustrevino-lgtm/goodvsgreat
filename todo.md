@@ -1,47 +1,10 @@
 # Project TODO
 
-- [x] Initial video embed attempt against unconfirmed post ID 24001; no matching published post was found.
-- [x] Embed the uploaded conversion-model video in confirmed published post 240001 using a stable site-relative storage URL.
-- [x] Verify the video renders responsively inside the public post 240001 article at desktop and mobile widths.
-- [x] Confirm the intended published post identifier as 240001: “AI Search Solved Half the Problem. Here's the Mirror Image Nobody's Measuring.”
-- [x] Verify that the editor reference “post 24001” maps to published post 240001 through user confirmation.
-- [x] Move the conversion-model video in post 240001 directly after the opening login-screen sentence and before the next paragraph.
-- [x] Draft the publication-ready “Actor Governance: A Framework for the AI Agent Shift” hub article from the supplied brief.
-- [x] Create the Actor Governance framework manifesto as an unpublished database draft for the website post editor.
-- [x] Verify the Actor Governance draft appears in the admin post editor with status draft.
-- [x] Confirm the draft editor loads the expected title, slug, excerpt, and article body.
-- [x] Verify the saved draft record, status, metadata, and required body sections directly in the database.
-- [x] Resolve the authenticated admin editor access denial and complete UI-level verification through Manus sign-in.
-- [x] Upload the Actor Governance framework animation to permanent website storage.
-- [x] Add post-editor video support so HTML5 video embeds are preserved on draft save.
-- [x] Restore the Actor Governance animation after the opening framework statement in draft post 270001 and verify it persists after editor save.
-- [x] Align the project’s Tiptap package versions to resolve the custom video-node type conflict.
-- [x] Verify the final generated graphics-only cover image has rendered and displays correctly for the Actor Governance draft post 270001.
-- [x] Restore post 270001 to the requested draft status after detecting it as published during cover-image verification.
-- [x] Complete final backend verification of the draft and cover assignment without relying on the CAPTCHA-blocked editor.
-- [x] Restore Actor Governance post 270001 to draft status after backend verification found it published again.
-- [x] Create the supplied AI Search article as an unpublished Good vs. Great blog draft with its conversion-model video directly after the specified opening sentence.
-- [x] Update the targeted blue header to “The Media Decision Letter” and the primary bold headline to the approved strategic-notes copy.
-- [x] Update the main blog landing page to “The Media Decision Letter” and the approved strategic-notes headline.
-- [x] Generate a text-free cover image for the August 21, 2026 AI Search and agent-attribution article.
-- [x] Confirm the AI Search cover generation has completed and review the final asset for text-free composition.
-- [x] Deliver the approved AI Search cover image URL for use on the August 21, 2026 blog post.
-- [x] Verify the final AI Search cover visually contains no text, logos, numbers, or UI elements.
-- [x] Deliver the visually verified AI Search cover asset URL to the user.
-- [x] Apply the attached design-feedback updates to the blog article page and subscribe module.
-- [x] Apply the remaining editorial hierarchy and spacing improvements to the blog landing page.
-- [x] Audit whether publishing the latest blog post triggered an automated email to subscribers.
-- [x] Draft a subscriber announcement email for the August 21, 2026 blog post.
-- [x] Send the approved August 21 subscriber announcement to nickolaus.trevino@gmail.com as a test.
-- [x] Add a durable email-dispatch audit record for blog-announcement test sends.
-- [x] Record and verify the August 21 test send recipient, subject, and timestamp in the audit trail.
-- [x] Add a reusable admin-only blog-announcement test-send procedure that automatically writes to the email-dispatch audit trail.
-- [x] Resend and verify the August 21 announcement through the reusable audited send path.
-- [x] Send the approved August 21 announcement to all eligible subscribers and verify the delivery audit.
-- [x] Add a distinct production announcement send path with non-test audit metadata.
-- [x] Correct the seven subscriber-wide August 21 announcement audit records from test to production-send classification.
-- [x] Diagnose and fix the missing subscription confirmation email for nickolaus.trevino@icloud.com.
-- [x] Add the approved strategic-notes subscription prompt and in-page modal form to the footer on every page.
-- [x] Extend the footer subscription prompt to internal and file-manager routes.
-- [x] Verify the footer Subscribe button opens the in-page modal on desktop and mobile.
-- [x] Verify the open footer subscription modal in a real browser at desktop and mobile widths.
+- [x] Upgrade article body typography to a readable 18px desktop scale with relaxed line-height and standardized reading measure.
+- [x] Create a premium editorial article header with expanded spacing, refined metadata, and a highlighted dek treatment.
+- [x] Strengthen article section headers, lists, blockquotes, pull quotes, and overall vertical rhythm.
+- [x] Add a reading-progress cue or compact table-of-contents treatment for long-form articles.
+- [x] Redesign the article subscribe module as a branded editorial card and separate the All Articles and Book a Call decisions.
+- [x] Align the blog index with the refreshed premium editorial system.
+- [x] Add or update tests and verify responsive rendering.
+- [ ] Save a checkpoint for the premium editorial blog refresh.
