@@ -8,3 +8,4 @@
 - [x] Align the blog index with the refreshed premium editorial system.
 - [x] Add or update tests and verify responsive rendering.
 - [ ] Save a checkpoint for the premium editorial blog refresh.
+- [x] Resolve post-sync TypeScript errors in subscription input and Footer test dependencies.
