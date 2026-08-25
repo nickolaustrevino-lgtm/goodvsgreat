@@ -17,4 +17,4 @@
 - [x] Retrieve the supplied LinkedIn draft article and identify its source images.
 - [x] Publish the formatted LinkedIn draft article in the blog dated August 25, 2026.
 - [x] Verify the published draft article and run regression tests.
-- [ ] Save a checkpoint for the Actor Governance article publication.
+- [x] Save a checkpoint for the Actor Governance article publication.
