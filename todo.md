@@ -14,3 +14,7 @@
 - [x] Publish the approved imported article, verify the live route, and run the regression suite.
 - [x] Reconcile the article body and inline visual treatment against the LinkedIn source for exact parity.
 - [x] Save a checkpoint for the LinkedIn article import and publication.
+- [x] Retrieve the supplied LinkedIn draft article and identify its source images.
+- [x] Publish the formatted LinkedIn draft article in the blog dated August 25, 2026.
+- [x] Verify the published draft article and run regression tests.
+- [ ] Save a checkpoint for the Actor Governance article publication.
