@@ -9,3 +9,8 @@
 - [x] Add or update tests and verify responsive rendering.
 - [x] Save a checkpoint for the premium editorial blog refresh.
 - [x] Resolve post-sync TypeScript errors in subscription input and Footer test dependencies.
+- [x] Import the exact LinkedIn article text, cover image, and all in-article images into the blog.
+- [x] Format and preview the imported article in the premium editorial layout.
+- [x] Publish the approved imported article, verify the live route, and run the regression suite.
+- [x] Reconcile the article body and inline visual treatment against the LinkedIn source for exact parity.
+- [ ] Save a checkpoint for the LinkedIn article import and publication.
