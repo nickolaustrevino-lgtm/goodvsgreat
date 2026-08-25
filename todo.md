@@ -7,5 +7,5 @@
 - [x] Redesign the article subscribe module as a branded editorial card and separate the All Articles and Book a Call decisions.
 - [x] Align the blog index with the refreshed premium editorial system.
 - [x] Add or update tests and verify responsive rendering.
-- [ ] Save a checkpoint for the premium editorial blog refresh.
+- [x] Save a checkpoint for the premium editorial blog refresh.
 - [x] Resolve post-sync TypeScript errors in subscription input and Footer test dependencies.
