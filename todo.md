@@ -21,4 +21,4 @@
 - [x] Retrieve the supplied LinkedIn article and confirm the updated copy and media placement.
 - [x] Upload and embed the supplied conversion-model video in the Actor Governance article.
 - [x] Verify the updated article and run regression tests.
-- [ ] Save a checkpoint for the updated Actor Governance article.
+- [x] Save a checkpoint for the updated Actor Governance article.
