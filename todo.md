@@ -24,4 +24,4 @@
 - [x] Save a checkpoint for the updated Actor Governance article.
 - [x] Update the blog masthead title and subtitle to the Media Decision Letter positioning.
 - [x] Verify the updated blog masthead on desktop and mobile and run tests.
-- [ ] Save a checkpoint for the Media Decision Letter masthead update.
+- [x] Save a checkpoint for the Media Decision Letter masthead update.
