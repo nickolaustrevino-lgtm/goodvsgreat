@@ -27,4 +27,4 @@
 - [x] Save a checkpoint for the Media Decision Letter masthead update.
 - [x] Correct the blog masthead label, primary headline, and supporting line hierarchy.
 - [x] Verify the corrected masthead on desktop and mobile and run tests.
-- [ ] Save a checkpoint for the corrected blog masthead hierarchy.
+- [x] Save a checkpoint for the corrected blog masthead hierarchy.
