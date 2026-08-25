@@ -6,6 +6,9 @@ describe("video embed helpers", () => {
     expect(
       normalizeVideoSource(" /manus-storage/ActorGovernanceFramework-Animation_4999dfe4.mp4 "),
     ).toBe("/manus-storage/ActorGovernanceFramework-Animation_4999dfe4.mp4");
+    expect(
+      normalizeVideoSource("/manus-storage/two-models-of-conversion_48e25e1a.mp4"),
+    ).toBe("/manus-storage/two-models-of-conversion_48e25e1a.mp4");
   });
 
   it("accepts HTTPS video URLs and identifies their MIME type", () => {

@@ -1461,6 +1461,8 @@ div.decision-layer .dl-connector__label {
 .prose-gvg img { display: block; width: 100%; height: auto; margin: 2.5rem 0; border: 1px solid rgba(255,255,255,0.1); }
 .prose-gvg figure { margin: 2.5rem 0; }
 .prose-gvg figcaption { margin-top: 0.8rem; color: rgba(255,255,255,0.42); font-size: 0.78rem; font-style: italic; text-align: center; }
+.prose-gvg .article-video { margin: 2.75rem 0 3.5rem; }
+.prose-gvg .article-video video { display: block; width: 100%; height: auto; border: 1px solid rgba(120,160,255,0.28); background: #050A16; }
 .prose-gvg table { display: block; width: 100%; margin: 2.5rem 0; overflow-x: auto; border: 1px solid rgba(255,255,255,0.1); border-collapse: collapse; }
 .prose-gvg th { padding: 0.85rem 1rem; background: rgba(41,121,255,0.12); color: #FFFFFF; font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; letter-spacing: 0.08em; text-align: left; text-transform: uppercase; white-space: nowrap; }
 .prose-gvg td { padding: 0.85rem 1rem; border-top: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.76); font-size: 0.95rem; }
