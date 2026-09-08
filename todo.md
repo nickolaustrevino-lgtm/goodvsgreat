@@ -30,4 +30,4 @@
 - [x] Save a checkpoint for the corrected blog masthead hierarchy.
 - [x] Install the supplied OpenAI pixel once in the site-wide HTML head.
 - [x] Verify the single pixel setup, site rendering, and regression tests.
-- [ ] Save a checkpoint for the OpenAI pixel installation.
+- [x] Save a checkpoint for the OpenAI pixel installation.
