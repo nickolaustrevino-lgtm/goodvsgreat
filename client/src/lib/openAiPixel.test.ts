@@ -2,7 +2,9 @@ import { readFileSync } from "node:fs";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import {
   OPENAI_CONTENTS_VIEWED_EVENT,
+  OPENAI_PAGE_VIEWED_EVENT,
   trackOpenAiBlogContentsViewed,
+  trackOpenAiHomepageViewed,
 } from "./openAiPixel";
 
 const blogNavigationSources = [
@@ -54,6 +56,23 @@ describe("OpenAI blog conversion tracking", () => {
     expect(oaiq).toHaveBeenCalledTimes(1);
   });
 
+  it("measures homepage page_viewed with the approved contents type", () => {
+    const tracked = trackOpenAiHomepageViewed();
+
+    expect(tracked).toBe(true);
+    expect(oaiq).toHaveBeenCalledWith(
+      "measure",
+      OPENAI_PAGE_VIEWED_EVENT,
+      { type: "contents" },
+    );
+  });
+
+  it("deduplicates rapid homepage view tracking", () => {
+    expect(trackOpenAiHomepageViewed()).toBe(true);
+    expect(trackOpenAiHomepageViewed()).toBe(false);
+    expect(oaiq).toHaveBeenCalledTimes(1);
+  });
+
   it("instruments every internal Blog navigation entry point", () => {
     for (const [label, sourceUrl, minimumReferences] of blogNavigationSources) {
       const source = readFileSync(sourceUrl, "utf8");
@@ -61,5 +80,11 @@ describe("OpenAI blog conversion tracking", () => {
 
       expect(references, label).toHaveLength(minimumReferences);
     }
+  });
+
+  it("limits page_viewed tracking to the homepage route", () => {
+    const appSource = readFileSync(new URL("../App.tsx", import.meta.url), "utf8");
+
+    expect(appSource).toContain('if (canonicalPath === "/") trackOpenAiHomepageViewed();');
   });
 });

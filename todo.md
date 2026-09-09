@@ -38,3 +38,6 @@
 - [x] Save a checkpoint for OpenAI blog conversion-event tracking.
 - [x] Reconcile the supplied production OpenAI pixel snippet with the existing single global setup.
 - [x] Verify the reconciled pixel setup and all Blog conversion paths.
+- [x] Add the OpenAI page_viewed event for homepage visits.
+- [x] Verify homepage conversion scope, deduplication, rendering, and regression tests.
+- [ ] Save a checkpoint for homepage OpenAI page_viewed tracking.
