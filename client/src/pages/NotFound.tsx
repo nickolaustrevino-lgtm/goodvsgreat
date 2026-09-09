@@ -1,5 +1,6 @@
 import { useLocation } from "wouter";
 import Navbar from "@/components/Navbar";
+import { trackOpenAiBlogContentsViewed } from "@/lib/openAiPixel";
 
 const SURFACE_0 = "#0A1226";
 const COBALT = "#2F6FFF";
@@ -124,7 +125,10 @@ export default function NotFound() {
 
           {/* Ghost */}
           <button
-            onClick={() => setLocation("/blog")}
+            onClick={() => {
+              trackOpenAiBlogContentsViewed();
+              setLocation("/blog");
+            }}
             style={{
               display: "inline-flex",
               alignItems: "center",

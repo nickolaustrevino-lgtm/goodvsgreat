@@ -13,6 +13,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 import { trackEvent } from "../lib/pixel";
+import { trackOpenAiBlogContentsViewed } from "../lib/openAiPixel";
 
 const LOGO_URL = "/manus-storage/logo-banner_353f07ff.png";
 const LOGO_ICON_URL = "/manus-storage/gvg-logo_7908b53b.png";
@@ -58,7 +59,11 @@ export default function Navbar() {
 
   const scrollTo = (link: { id: string; href?: string }) => {
     setMenuOpen(false);
-    if (link.href) { window.location.href = link.href; return; }
+    if (link.href) {
+      if (link.href === "/blog") trackOpenAiBlogContentsViewed();
+      window.location.href = link.href;
+      return;
+    }
     document.getElementById(link.id)?.scrollIntoView({ behavior: "smooth" });
   };
 

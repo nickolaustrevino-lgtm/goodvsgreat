@@ -12,5 +12,7 @@ describe("OpenAI pixel document setup", () => {
     expect(documentHead.indexOf("<!-- OpenAI Pixel -->")).toBeLessThan(
       documentHead.indexOf('rel="icon"'),
     );
+    expect(documentHead).toContain("https://bzrcdn.openai.com/sdk/oaiq.min.js");
+    expect(documentHead).not.toMatch(/debug\s*:/);
   });
 });

@@ -4,6 +4,7 @@ import NotFound from "@/pages/NotFound";
 import { useEffect } from "react";
 import { Route, Switch, useLocation, useParams } from "wouter";
 import { trackEvent } from "./lib/pixel";
+import { trackOpenAiBlogContentsViewed } from "./lib/openAiPixel";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -54,10 +55,23 @@ function PageViewTracker() {
   return null;
 }
 
+/** Fire the OpenAI contents_viewed conversion when the blog index is visited. */
+function BlogContentsTracker() {
+  const [location] = useLocation();
+
+  useEffect(() => {
+    const canonicalPath = location.replace(/\/+$/, "") || "/";
+    if (canonicalPath === "/blog") trackOpenAiBlogContentsViewed();
+  }, [location]);
+
+  return null;
+}
+
 function Router() {
   return (
     <>
       <PageViewTracker />
+      <BlogContentsTracker />
       <Switch>
       <Route path={"/"} component={Home} />
       {/* File manager */}

@@ -7,6 +7,7 @@ import { Link } from "wouter";
 import { trpc } from "@/lib/trpc";
 import SubscribeCTA from "@/components/SubscribeCTA";
 import { calculateReadingProgress, calculateReadingTime } from "@/lib/blogEditorial";
+import { trackOpenAiBlogContentsViewed } from "@/lib/openAiPixel";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
@@ -50,7 +51,7 @@ export default function WritingPost({ slug }: Props) {
       </div>
 
       <nav className="blog-post-nav" aria-label="Article navigation">
-        <Link href="/blog" className="blog-post-nav__link">← All articles</Link>
+        <Link href="/blog" onClick={trackOpenAiBlogContentsViewed} className="blog-post-nav__link">← All articles</Link>
         <span className="blog-post-nav__separator" aria-hidden="true" />
         <Link href="/" className="blog-post-nav__brand">Good vs. Great</Link>
       </nav>
@@ -63,7 +64,7 @@ export default function WritingPost({ slug }: Props) {
         <div className="blog-post-state">
           <span className="blog-post-state__code">404</span>
           <p>This article does not exist or has not been published yet.</p>
-          <Link href="/blog" className="blog-text-link">← Back to all articles</Link>
+          <Link href="/blog" onClick={trackOpenAiBlogContentsViewed} className="blog-text-link">← Back to all articles</Link>
         </div>
       ) : (
         <article className="blog-post-article">
@@ -98,7 +99,7 @@ export default function WritingPost({ slug }: Props) {
           <SubscribeCTA source={post.slug} />
 
           <footer className="blog-post-footer">
-            <Link href="/blog" className="blog-text-link">← All articles</Link>
+            <Link href="/blog" onClick={trackOpenAiBlogContentsViewed} className="blog-text-link">← All articles</Link>
             <Link href="/#booking-form" className="blog-post-footer__cta">
               Book a diagnostic call <span aria-hidden="true">→</span>
             </Link>

@@ -5,6 +5,7 @@
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
 import { Link } from "wouter";
+import { trackOpenAiBlogContentsViewed } from "@/lib/openAiPixel";
 
 const MONO = "'IBM Plex Mono', monospace";
 const SANS = "'Inter', sans-serif";
@@ -58,7 +59,7 @@ export default function Subscribe() {
           Good vs. Great
         </Link>
         <span style={{ color: BORDER }}>|</span>
-        <Link href="/blog" style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM, textDecoration: "none" }}>
+        <Link href="/blog" onClick={trackOpenAiBlogContentsViewed} style={{ fontFamily: MONO, fontSize: "0.6rem", textTransform: "uppercase", letterSpacing: "0.1em", color: DIM, textDecoration: "none" }}>
           Blog
         </Link>
       </div>
@@ -191,6 +192,7 @@ export default function Subscribe() {
               <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
                 <Link
                   href="/blog"
+                  onClick={trackOpenAiBlogContentsViewed}
                   style={{ fontFamily: MONO, fontSize: "0.65rem", textTransform: "uppercase", letterSpacing: "0.08em", background: BLUE, color: "#fff", padding: "0.65rem 1.5rem", borderRadius: "8px", textDecoration: "none", display: "inline-block" }}
                 >
                   Read the blog -&gt;
