@@ -35,6 +35,6 @@
 - [x] Verify direct-visit and Navbar-click deduplication, blog rendering, and regression tests.
 - [x] Audit all in-app Blog navigation links and add OpenAI contents_viewed tracking to each applicable click path.
 - [x] Extend conversion-event coverage for all Blog navigation entry points and verify deduplication.
-- [ ] Save a checkpoint for OpenAI blog conversion-event tracking.
+- [x] Save a checkpoint for OpenAI blog conversion-event tracking.
 - [x] Reconcile the supplied production OpenAI pixel snippet with the existing single global setup.
 - [x] Verify the reconciled pixel setup and all Blog conversion paths.
